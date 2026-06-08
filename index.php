@@ -1,29 +1,21 @@
-<?php
-require_once __DIR__ . '/includes/content.php';
-
-$pageTitle = 'Rockeskolen | Digitale verktøy for musikk, kreativitet og læring';
-$description = 'Rockeskolen er et digitalt lærings- og arbeidsrom for musikk med praktiske verktøy for akkorder, skalaer, instrumenter, teori og musikkskaping.';
-$heroImage = '/images/computermusic.jpg';
-$homeTools = rs_public_tools(6, true);
-$latestArticles = array_slice(rs_articles(), 0, 3);
-?><!doctype html>
+<!doctype html>
 <html lang="no">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo rs_h($pageTitle); ?></title>
-  <meta name="description" content="<?php echo rs_h($description); ?>">
+  <title>Rockeskolen | Digitale verktøy for musikk, kreativitet og læring</title>
+  <meta name="description" content="Rockeskolen er en musikkskole, kulturarena og digitalt øvingsrom med praktiske verktøy for instrumenter, samspill, musikkteori og musikkskaping.">
   <link rel="canonical" href="https://www.rockeskolen.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="<?php echo rs_h($pageTitle); ?>">
-  <meta property="og:description" content="<?php echo rs_h($description); ?>">
+  <meta property="og:title" content="Rockeskolen | Finn lyden din">
+  <meta property="og:description" content="Musikkskole, kulturarena og digitalt øvingsrom for ungdom i alle aldre.">
   <meta property="og:url" content="https://www.rockeskolen.com/">
-  <meta property="og:image" content="<?php echo rs_h($heroImage); ?>">
+  <meta property="og:image" content="/images/computermusic.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/includes/site.css?v=1">
 </head>
 <body>
-  <header class="hero" style="--hero-image:url('<?php echo rs_h($heroImage); ?>')">
+  <header class="hero" style="--hero-image:url('/images/computermusic.jpg')">
     <div class="topbar">
       <a class="brand" href="/" aria-label="Rockeskolen">
         <img src="/images/rock-logo.png" alt="Rockeskolen">
@@ -42,7 +34,8 @@ $latestArticles = array_slice(rs_articles(), 0, 3);
         <p class="eyebrow">Musikkskole. Kulturarena. Digitalt øvingsrom.</p>
         <h1>Finn lyden din.</h1>
         <p class="lead">
-          Rockeskolen er for ungdom i alle aldre: band, instrumenter, musikkproduksjon, workshops og digitale verktøy som gjør det morsomt å lære, øve og skape.
+          Rockeskolen er for ungdom i alle aldre: band, instrumenter, musikkproduksjon,
+          workshops og digitale verktøy som gjør det morsomt å lære, øve og skape.
         </p>
         <div class="actions">
           <a class="button primary" href="/tools/">Start her</a>
@@ -71,23 +64,65 @@ $latestArticles = array_slice(rs_articles(), 0, 3);
       </div>
 
       <div class="tool-grid">
-        <?php foreach ($homeTools as $tool): ?>
-          <article class="tool-card">
-            <div class="tool-art"></div>
-            <div class="tool-body">
-              <div class="meta">
-                <span class="pill"><?php echo rs_h($tool['category']); ?></span>
-                <span class="pill"><?php echo rs_h($tool['product_status']); ?></span>
-              </div>
-              <h3><?php echo rs_h($tool['title']); ?></h3>
-              <p><?php echo rs_h($tool['short_description']); ?></p>
-              <div class="link-row">
-                <a class="open" href="<?php echo rs_h($tool['app_url']); ?>"><?php echo rs_h($tool['cta_label']); ?></a>
-                <a class="learn" href="/tool.php?slug=<?php echo rawurlencode($tool['slug']); ?>">Les mer</a>
-              </div>
-            </div>
-          </article>
-        <?php endforeach; ?>
+        <article class="tool-card">
+          <div class="tool-art"></div>
+          <div class="tool-body">
+            <div class="meta"><span class="pill">Piano</span><span class="pill">Klar</span></div>
+            <h3>Pianoakkorder</h3>
+            <p>Trykk deg rundt i akkorder på piano og keyboard uten å drukne i teori.</p>
+            <div class="link-row"><a class="open" href="/tools/chords/piano/">Åpne</a><a class="learn" href="/tool.php?slug=pianoakkorder">Les mer</a></div>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-art"></div>
+          <div class="tool-body">
+            <div class="meta"><span class="pill">Gitar</span><span class="pill">Klar</span></div>
+            <h3>Gitarakkorder</h3>
+            <p>Finn grep og akkordformer som faktisk kan brukes i låter og band.</p>
+            <div class="link-row"><a class="open" href="/tools/chords/guitar/">Åpne</a><a class="learn" href="/tool.php?slug=gitarakkorder">Les mer</a></div>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-art"></div>
+          <div class="tool-body">
+            <div class="meta"><span class="pill">Skalaer</span><span class="pill">Klar</span></div>
+            <h3>Pianoskalaer</h3>
+            <p>Se skalaer på tangentene og koble teori rett til lyd.</p>
+            <div class="link-row"><a class="open" href="/tools/scales/piano/">Åpne</a><a class="learn" href="/tool.php?slug=pianoskalaer">Les mer</a></div>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-art"></div>
+          <div class="tool-body">
+            <div class="meta"><span class="pill">Skalaer</span><span class="pill">Klar</span></div>
+            <h3>Gitarskalaer</h3>
+            <p>Lær skalaer som mønstre på gitarhalsen, ikke bare som ord i en bok.</p>
+            <div class="link-row"><a class="open" href="/tools/scales/guitar/">Åpne</a><a class="learn" href="/tool.php?slug=gitarskalaer">Les mer</a></div>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-art"></div>
+          <div class="tool-body">
+            <div class="meta"><span class="pill">Harmonikk</span><span class="pill">Klar</span></div>
+            <h3>Kvintsirkelen</h3>
+            <p>Et kart over tonearter, akkorder og hvorfor noen overganger bare funker.</p>
+            <div class="link-row"><a class="open" href="/tools/circles/fifths/">Åpne</a><a class="learn" href="/tool.php?slug=kvintsirkelen">Les mer</a></div>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-art"></div>
+          <div class="tool-body">
+            <div class="meta"><span class="pill">Låtskriving</span><span class="pill">Beta</span></div>
+            <h3>ChordLog</h3>
+            <p>Fang låtidéer, akkorder og skisser før de forsvinner.</p>
+            <div class="link-row"><a class="open" href="/tools/chordlog/">Åpne</a><a class="learn" href="/tool.php?slug=chordlog">Les mer</a></div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -119,15 +154,20 @@ $latestArticles = array_slice(rs_articles(), 0, 3);
         </div>
       </div>
       <div class="article-list">
-        <?php foreach ($latestArticles as $article): ?>
-          <a class="article-row" href="/article.php?slug=<?php echo rawurlencode($article['slug']); ?>">
-            <div>
-              <strong><?php echo rs_h($article['title']); ?></strong>
-              <span><?php echo rs_h($article['ingress']); ?></span>
-            </div>
-            <span>Les</span>
-          </a>
-        <?php endforeach; ?>
+        <a class="article-row" href="/article.php?slug=fra-ide-til-ferdig-musikk">
+          <div>
+            <strong>Fra idé til ferdig musikk</strong>
+            <span>Rockeskolen skal gjøre det enklere å gå fra første idé til noe du faktisk kan spille, dele og bygge videre på.</span>
+          </div>
+          <span>Les</span>
+        </a>
+        <a class="article-row" href="/article.php?slug=chordlink-som-betaomrade">
+          <div>
+            <strong>RDØ og ChordLink</strong>
+            <span>Rockeskolens Digitale Øvingsrom er læringsplattformen. ChordLink er testbenken for nye musikkverktøy.</span>
+          </div>
+          <span>Les</span>
+        </a>
       </div>
     </section>
   </main>
