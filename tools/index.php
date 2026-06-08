@@ -18,15 +18,15 @@ $categories = array_values(array_unique(array_map(static fn($tool) => $tool['cat
 <body>
   <header class="page-header">
     <div class="topbar">
-      <a class="brand" href="/">
-        <span class="brand-mark">R</span>
-        <span>Rockeskolen</span>
+      <a class="brand" href="/" aria-label="Rockeskolen">
+        <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
         <a href="/tools/">Verktøy</a>
-        <a href="/article.php?slug=fra-ide-til-ferdig-musikk">Om prosjektet</a>
+        <a href="#instrument">Instrumenter</a>
+        <a href="#teori">Skolebenken</a>
         <a href="https://portal.rockeskolen.com">RDØ</a>
-        <a href="/members/account.php">Min side</a>
+        <a href="/article.php?slug=fra-ide-til-ferdig-musikk">Om</a>
       </nav>
     </div>
   </header>
@@ -34,14 +34,14 @@ $categories = array_values(array_unique(array_map(static fn($tool) => $tool['cat
   <main class="page-shell">
     <section class="page-title">
       <p class="eyebrow">Rockeskolen Tools</p>
-      <h1>Praktiske verktøy for musikkforståelse.</h1>
+      <h1>Verktøy som gjør teori spillbar.</h1>
       <p class="lead">
-        Alle verktøy skal etter hvert følge samme funksjonalitet som ChordLink, med Rockeskolen-språk, presentasjon og læringskontekst.
+        Akkorder, skalaer, tuner, låtskriving og instrumentressurser. Bruk dem i øving, band, undervisning og når en idé plutselig dukker opp.
       </p>
     </section>
 
     <?php foreach ($categories as $category): ?>
-      <section class="section" aria-labelledby="cat-<?php echo rs_h(rs_slugify($category)); ?>">
+      <section class="section" id="<?php echo in_array($category, ['Instrument', 'Teori'], true) ? rs_h(strtolower(str_replace(['Instrument', 'Teori'], ['instrument', 'teori'], $category))) : 'cat-' . rs_h(rs_slugify($category)); ?>" aria-labelledby="cat-<?php echo rs_h(rs_slugify($category)); ?>">
         <div class="section-head">
           <div>
             <p class="eyebrow"><?php echo rs_h($category); ?></p>
@@ -75,7 +75,7 @@ $categories = array_values(array_unique(array_map(static fn($tool) => $tool['cat
   <footer class="footer">
     <div class="footer-inner">
       <strong>Rockeskolen</strong>
-      <span>Verktøy under `/tools` vurderes mot ChordLink før større flytting eller rydding.</span>
+      <span>Samme kjerne som ChordLink, med Rockeskolen-uttrykk og norsk læringskontekst.</span>
     </div>
   </footer>
 </body>

@@ -24,15 +24,15 @@ if (!$article) {
 <body>
   <header class="page-header">
     <div class="topbar">
-      <a class="brand" href="/">
-        <span class="brand-mark">R</span>
-        <span>Rockeskolen</span>
+      <a class="brand" href="/" aria-label="Rockeskolen">
+        <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
         <a href="/tools/">Verktøy</a>
-        <a href="/article.php?slug=fra-ide-til-ferdig-musikk">Om prosjektet</a>
+        <a href="/tools/#instrument">Instrumenter</a>
+        <a href="/tools/#teori">Skolebenken</a>
         <a href="https://portal.rockeskolen.com">RDØ</a>
-        <a href="/members/account.php">Min side</a>
+        <a href="/article.php?slug=fra-ide-til-ferdig-musikk">Om</a>
       </nav>
     </div>
   </header>
