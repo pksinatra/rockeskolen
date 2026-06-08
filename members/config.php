@@ -20,21 +20,24 @@ ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
 
 // ---- DB ----
-$DB_HOST = getenv('CHORDLINK_DB_HOST') ?: 'localhost';
+$DB_HOST = getenv('CHORDLINK_DB_HOST') ?: '';
 $DB_NAME = getenv('CHORDLINK_DB_NAME') ?: '';
 $DB_USER = getenv('CHORDLINK_DB_USER') ?: '';
 $DB_PASS = getenv('CHORDLINK_DB_PASS') ?: '';
 
-try {
-    $pdo = new PDO(
-        "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
-        $DB_USER,
-        $DB_PASS,
-        [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]
-    );
-} catch (PDOException $e) {
-    http_response_code(500);
-    die("Database connection error.");
+$pdo = null;
+
+if ($DB_HOST !== '' && $DB_NAME !== '' && $DB_USER !== '') {
+    try {
+        $pdo = new PDO(
+            "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4",
+            $DB_USER,
+            $DB_PASS,
+            [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]
+        );
+    } catch (PDOException $e) {
+        error_log('Rockeskolen DB connection error: ' . $e->getMessage());
+    }
 }
 
 define('USER_TABLE', 'chordlink_users');
@@ -59,6 +62,7 @@ if (!function_exists('refresh_user_from_db')) {
     function refresh_user_from_db(): void {
         global $pdo;
         if (empty($_SESSION['user_chordlink']['id'])) return;
+        if (!$pdo instanceof PDO) return;
 
         $id = (int)$_SESSION['user_chordlink']['id'];
         $stmt = $pdo->prepare("SELECT id, email, role FROM " . USER_TABLE . " WHERE id=? LIMIT 1");
@@ -89,6 +93,7 @@ if (!function_exists('pro_required')) {
 
 function get_active_subscription(int $userId) {
     global $pdo;
+    if (!$pdo instanceof PDO) return null;
 
     $stmt = $pdo->prepare("
         SELECT *
@@ -136,6 +141,15 @@ function require_login() {
     }
 }
 
+function require_database(): void {
+    global $pdo;
+
+    if ($pdo instanceof PDO) return;
+
+    http_response_code(503);
+    die("Database connection unavailable.");
+}
+
 function require_pro() {
     require_login();
     $u = current_user();
@@ -178,6 +192,5 @@ Takk for at du er medlem hos oss.
 // ---- Stripe ----
 define('CHORDLINK_STRIPE_SECRET_KEY', getenv('CHORDLINK_STRIPE_SECRET_KEY') ?: '');
 define('CHORDLINK_STRIPE_WEBHOOK_SECRET', getenv('CHORDLINK_STRIPE_WEBHOOK_SECRET') ?: '');
-
 
 
