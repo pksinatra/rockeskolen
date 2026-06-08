@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Pauseverdier – oversikt</title>
+<script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+  }
+  #staff {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<div id="staff"></div>
+
+<script>
+const VF = Vex.Flow;
+
+const div = document.getElementById("staff");
+const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+renderer.resize(700, 520);
+
+const ctx = renderer.getContext();
+
+function drawLine(y, notes) {
+  const stave = new VF.Stave(20, y, 660);
+  stave.addClef("treble").addTimeSignature("4/4");
+  stave.setContext(ctx).draw();
+
+  const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
+  voice.addTickables(notes);
+
+  new VF.Formatter().joinVoices([voice]).format([voice], 600);
+  voice.draw(ctx, stave);
+}
+
+// 1 helpause
+drawLine(20, [
+  new VF.StaveNote({ keys:["b/4"], duration:"wr" })
+      .setXShift(230)
+]);
+
+// 2 halvpauser
+drawLine(120, [
+  new VF.StaveNote({ keys:["b/4"], duration:"hr" }),
+  new VF.StaveNote({ keys:["b/4"], duration:"hr" })
+]);
+
+// 4 firedelspauser
+drawLine(220, [
+  new VF.StaveNote({ keys:["b/4"], duration:"qr" }),
+  new VF.StaveNote({ keys:["b/4"], duration:"qr" }),
+  new VF.StaveNote({ keys:["b/4"], duration:"qr" }),
+  new VF.StaveNote({ keys:["b/4"], duration:"qr" })
+]);
+
+// 8 åttendedelspauser
+drawLine(320, [
+  ...Array(8).fill().map(() =>
+    new VF.StaveNote({ keys:["b/4"], duration:"8r" })
+  )
+]);
+
+// 16 sekstendedelspauser
+drawLine(420, [
+  ...Array(16).fill().map(() =>
+    new VF.StaveNote({ keys:["b/4"], duration:"16r" })
+  )
+]);
+</script>
+
+</body>
+</html>

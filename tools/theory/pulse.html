@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Puls – 4/4 (4 firedeler)</title>
+<script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+<style>
+  body { margin: 0; background: #fff; }
+  #staff { width: 100%; max-width: 600px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div id="staff"></div>
+
+<script>
+const VF = Vex.Flow;
+
+const div = document.getElementById("staff");
+const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+renderer.resize(600, 160);
+
+const ctx = renderer.getContext();
+const stave = new VF.Stave(20, 40, 560);
+stave.addClef("treble").addTimeSignature("4/4");
+stave.setContext(ctx).draw();
+
+// lik innrykk-stil som quarter-rests.html
+stave.setNoteStartX(stave.getNoteStartX() + 90);
+
+// 4 like firedelsnoter (C4)
+const notes = [
+  new VF.StaveNote({ clef:"treble", keys:["c/4"], duration:"q" }),
+  new VF.StaveNote({ clef:"treble", keys:["c/4"], duration:"q" }),
+  new VF.StaveNote({ clef:"treble", keys:["c/4"], duration:"q" }),
+  new VF.StaveNote({ clef:"treble", keys:["c/4"], duration:"q" })
+];
+
+const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
+voice.addTickables(notes);
+
+new VF.Formatter().joinVoices([voice]).format([voice], 400);
+voice.draw(ctx, stave);
+</script>
+
+</body>
+</html>

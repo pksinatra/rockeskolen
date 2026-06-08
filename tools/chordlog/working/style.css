@@ -1,0 +1,467 @@
+/* ===== BASE ===== */
+
+:root{
+  --bg:#151b2b;
+  --panel:#20283b;
+  --panel-2:#2a334a;
+  --panel-3:#33405d;
+
+  --border:#465372;
+  --border-soft:#5c6885;
+
+  --text:#edf2ff;
+  --muted:#aeb8d1;
+
+  --accent:#3a7cff;
+  --accent-hover:#235fe0;
+
+  --input-bg:#f8fbff;
+  --input-text:#111827;
+
+  --paper:#ffffff;
+  --paper-border:#d8dee9;
+
+  --shadow:0 10px 28px rgba(0,0,0,.22);
+  --radius:12px;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:
+    radial-gradient(circle at top left, rgba(70,110,220,.12), transparent 30%),
+    linear-gradient(180deg, #141b2b 0%, #171f31 100%);
+  color:var(--text);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  line-height:1.35;
+}
+
+
+/* ===== TYPOGRAPHY ===== */
+
+h1{
+  margin:0 0 18px 0;
+  font-size:2.2rem;
+  font-weight:700;
+}
+
+h2{
+  margin:0 0 14px 0;
+  font-size:1.2rem;
+  font-weight:700;
+}
+
+label{
+  color:var(--text);
+  font-weight:600;
+  font-size:13px;
+}
+
+input,
+select,
+button{
+  font:inherit;
+}
+
+
+/* ===== MAIN PANEL ===== */
+
+.editorPanel{
+  max-width:1320px;
+  margin:24px auto;
+  background:linear-gradient(180deg, rgba(40,50,74,.96), rgba(28,36,54,.96));
+  border:1px solid rgba(110,130,175,.28);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+
+/* ===== SONG META GRID ===== */
+
+.songMeta{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.metaBox{
+  background:#2e3953;
+  border:1px solid #445074;
+  border-radius:10px;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-height:72px;
+}
+
+.metaBox input,
+.metaBox select{
+  background:#f8faff;
+  border:1px solid #cbd4ec;
+  border-radius:6px;
+  padding:6px 8px;
+  font-size:14px;
+}
+
+.metaButtons{
+  justify-content:center;
+}
+
+
+/* ===== GRID LAYOUT ===== */
+
+#chordGrid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-top:16px;
+}
+
+
+/* ===== TAKT BOX ===== */
+
+.takt{
+  background:linear-gradient(180deg, rgba(61,74,103,.78), rgba(49,60,86,.86));
+  border:1px solid rgba(124,142,184,.35);
+  border-radius:14px;
+  padding:12px;
+  min-width:0;
+  overflow:hidden;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+
+.takt:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px rgba(0,0,0,.18);
+}
+
+
+/* ===== TAKT HEADER ===== */
+
+.taktHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-weight:700;
+  font-size:1rem;
+  color:#eef3ff;
+}
+
+
+/* ===== CHORD INPUT ROW ===== */
+
+.taktChords{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr)) auto;
+  gap:8px;
+}
+
+.taktChords input{
+  width:100%;
+  height:40px;
+  padding:7px 9px;
+  text-align:left;
+  font-size:15px;
+  font-weight:600;
+  color:var(--input-text);
+  background:var(--input-bg);
+  border:1px solid #c7d2e5;
+  border-radius:8px;
+}
+
+.taktChords input:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(58,124,255,.22);
+}
+
+
+/* ===== TOOLBAR ===== */
+
+.toolbar{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+
+/* ===== BUTTONS ===== */
+
+button{
+  appearance:none;
+  border:1px solid rgba(120,150,230,.2);
+  background:linear-gradient(180deg,#4b88ff,#2c6cf6);
+  color:#fff;
+  font-weight:700;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(24,58,140,.28);
+}
+
+button:hover{
+  background:linear-gradient(180deg,#5b94ff,#235fe0);
+}
+
+.doubleBarBtn{
+  min-width:40px;
+  height:40px;
+  font-weight:800;
+  border-radius:8px;
+}
+
+
+/* ===== NOTATION PANEL ===== */
+
+#notation{
+  margin-top:24px;
+  padding:20px 16px;
+  background:var(--paper);
+  border-radius:16px;
+  border:1px solid var(--paper-border);
+  box-shadow:0 16px 30px rgba(0,0,0,.14);
+  color:#111827;
+  overflow:auto;
+  min-height:96px;
+}
+
+.notationControls{
+  display:flex;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+
+/* ===== PRINT ===== */
+
+.print-sheet{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  font-family:Arial, sans-serif;
+}
+
+.chartHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:20px;
+}
+
+.chartHeader h1{
+  font-size:28px;
+  margin:0;
+}
+
+.chartMeta{
+  font-size:14px;
+  display:flex;
+  gap:20px;
+}
+
+@media print{
+
+  body *{
+    visibility:hidden;
+  }
+
+  #printPreview,
+  #printPreview *{
+    visibility:visible;
+  }
+
+  #printPreview{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+  }
+
+}
+
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width:1100px){
+
+  .editorPanel{
+    margin:16px;
+    padding:20px;
+  }
+
+  #chordGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+}
+
+@media (max-width:700px){
+
+  #chordGrid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+/* ===== REALBOOK MODE ===== */
+
+body.realbook{
+  background:#efe7d4;
+  color:#111;
+}
+
+body.realbook .editorPanel{
+  background:#f5eedf;
+  border:1px solid #cdbf9d;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+body.realbook label,
+body.realbook h1,
+body.realbook h2{
+  color:#181818;
+}
+
+body.realbook .takt{
+  background:#fffef9;
+  border:1px solid #1a1a1a;
+  border-radius:0;
+  box-shadow:none;
+}
+
+body.realbook .taktHeader{
+  font-size:12px;
+  color:#333;
+}
+
+body.realbook .taktChords input{
+  height:34px;
+  border:1px dashed #c8c0b0;
+  background:transparent;
+  color:#111;
+  font-weight:700;
+}
+
+body.realbook .doubleBarBtn{
+  background:#111827;
+  color:#fff;
+}
+
+body.realbook #notation{
+  background:#fffef9;
+  border:1px solid #cdbf9d;
+  box-shadow:none;
+}
+
+/* ===== SONG LIST ===== */
+
+#songList{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:12px;
+  margin-top:10px;
+}
+
+.songItem{
+  background:#2a334a;
+  border:1px solid #445074;
+  border-radius:10px;
+  padding:10px 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.15s;
+}
+
+.songItem:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+}
+
+.songItem a{
+  color:#8ab4ff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.songItem a:hover{
+  text-decoration:underline;
+}
+
+.songDelete{
+  background:#ff4d4d;
+  border:none;
+  border-radius:6px;
+  padding:6px 10px;
+  cursor:pointer;
+}
+
+#userStatus{
+  margin-bottom:14px;
+  font-size:14px;
+}
+
+.userLoggedIn{
+  color:#7ee787;
+}
+
+.userLoggedOut{
+  color:#ffb86c;
+}
+
+.chartHeader h1{
+  text-align:center;
+  color:#000;
+}
+
+.chartHeader h1{
+  text-align:center;
+  color:#000;
+}
+
+@media print {
+
+  body {
+    background: #ffffff !important;
+  }
+
+  .print-sheet {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* skjul resten av siden */
+  body * {
+    visibility: hidden;
+  }
+
+  #printPreview,
+  #printPreview * {
+    visibility: visible;
+  }
+
+  #printPreview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+}

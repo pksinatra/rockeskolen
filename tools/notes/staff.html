@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Notelinjer og nøkkel</title>
+
+<script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+  #staff {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+</head>
+
+<body>
+<div id="staff"></div>
+
+<script>
+const VF = Vex.Flow;
+
+const container = document.getElementById("staff");
+const width = Math.min(900, container.clientWidth || 900);
+
+const renderer = new VF.Renderer(container, VF.Renderer.Backends.SVG);
+renderer.resize(width, 180);
+
+const ctx = renderer.getContext();
+
+const stave = new VF.Stave(10, 40, width - 20);
+
+stave.setContext(ctx).draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,3073 @@
+{
+  "rootFamily": "A",
+  "chords": [
+    {
+      "symbol": "A",
+      "bookSymbol": "A",
+      "root": "A",
+      "quality": "major",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-open-1",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            2,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            2,
+            3,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C#",
+            "E"
+          ],
+          "source": "Standard åpen A-dur"
+        },
+        {
+          "id": "a-e-shape-5",
+          "frets": [
+            5,
+            7,
+            7,
+            6,
+            5,
+            5
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            2,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C#",
+            "E",
+            "A"
+          ],
+          "source": "A-dur E-form barre (5. bånd)"
+        }
+      ]
+    },
+    {
+      "symbol": "Am",
+      "bookSymbol": "Am",
+      "root": "A",
+      "quality": "minor",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "am-open-1",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            1,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            3,
+            1,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C",
+            "E"
+          ],
+          "source": "Standard åpen A-moll"
+        },
+        {
+          "id": "am-e-shape-5",
+          "frets": [
+            5,
+            7,
+            7,
+            5,
+            5,
+            5
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            1,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C",
+            "E",
+            "A"
+          ],
+          "source": "Am E-form barre (5. bånd)"
+        }
+      ]
+    },
+    {
+      "symbol": "Adim",
+      "bookSymbol": "Adim",
+      "root": "A",
+      "quality": "dim",
+      "family": "dim",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5"
+      ],
+      "aliases": [
+        "A°"
+      ],
+      "variants": [
+        {
+          "id": "adim-x0121x",
+          "frets": [
+            -1,
+            0,
+            1,
+            2,
+            1,
+            -1
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            3,
+            2,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "Eb",
+            "Gb",
+            "A"
+          ],
+          "source": "Adim kompakt voicing (x0121x)"
+        }
+      ]
+    },
+    {
+      "symbol": "Aaug",
+      "bookSymbol": "A+",
+      "root": "A",
+      "quality": "aug",
+      "family": "aug",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5"
+      ],
+      "aliases": [
+        "A+"
+      ],
+      "variants": [
+        {
+          "id": "aaug-x03221",
+          "frets": [
+            -1,
+            0,
+            3,
+            2,
+            2,
+            1
+          ],
+          "fingers": [
+            0,
+            0,
+            3,
+            1,
+            2,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "F",
+            "A",
+            "C#",
+            "F"
+          ],
+          "source": "Aaug åpen-aktig voicing (x03221)"
+        },
+        {
+          "id": "aaug-xx7665",
+          "frets": [
+            -1,
+            -1,
+            7,
+            6,
+            6,
+            5
+          ],
+          "fingers": [
+            0,
+            0,
+            3,
+            2,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "C#",
+            "F",
+            "A",
+            "C#"
+          ],
+          "source": "Aaug forflyttet +-form (xx7665)"
+        }
+      ]
+    },
+    {
+      "symbol": "A6",
+      "bookSymbol": "A6",
+      "root": "A",
+      "quality": "major",
+      "family": "6",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a6-open-x02222",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            2,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C#",
+            "F#"
+          ],
+          "source": "A6 åpen variant (x02222)"
+        }
+      ]
+    },
+    {
+      "symbol": "Am6",
+      "bookSymbol": "Am6",
+      "root": "A",
+      "quality": "minor",
+      "family": "m6",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "am6-x02212",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            1,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            3,
+            1,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C",
+            "F#"
+          ],
+          "source": "Am6 åpen variant (x02212)"
+        }
+      ]
+    },
+    {
+      "symbol": "A7",
+      "bookSymbol": "A7",
+      "root": "A",
+      "quality": "major",
+      "family": "7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a7-open-x02020",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            2,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            0,
+            3,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C#",
+            "E"
+          ],
+          "source": "Standard åpen A7"
+        },
+        {
+          "id": "a7-e-shape-5",
+          "frets": [
+            5,
+            7,
+            5,
+            6,
+            5,
+            5
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            2,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C#",
+            "E",
+            "A"
+          ],
+          "source": "A7 E-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "Am7",
+      "bookSymbol": "Am7",
+      "root": "A",
+      "quality": "minor",
+      "family": "m7",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "am7-open-x02010",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C",
+            "E"
+          ],
+          "source": "Standard åpen Am7"
+        },
+        {
+          "id": "am7-e-shape-5",
+          "frets": [
+            5,
+            7,
+            5,
+            5,
+            5,
+            5
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            1,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C",
+            "E",
+            "A"
+          ],
+          "source": "Am7 E-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "Amaj7",
+      "bookSymbol": "Amaj7",
+      "root": "A",
+      "quality": "major",
+      "family": "maj7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "amaj7-open-x02120",
+          "frets": [
+            -1,
+            0,
+            2,
+            1,
+            2,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            1,
+            3,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G#",
+            "C#",
+            "E"
+          ],
+          "source": "Standard åpen Amaj7"
+        },
+        {
+          "id": "amaj7-xx7654",
+          "frets": [
+            -1,
+            -1,
+            7,
+            6,
+            5,
+            4
+          ],
+          "fingers": [
+            0,
+            0,
+            4,
+            3,
+            2,
+            1
+          ],
+          "position": 4,
+          "notes": [
+            "A",
+            "C#",
+            "E",
+            "G#"
+          ],
+          "source": "Amaj7 kompakt voicing (xx7654)"
+        }
+      ]
+    },
+    {
+      "symbol": "Am(maj7)",
+      "bookSymbol": "Am(maj7)",
+      "root": "A",
+      "quality": "minor",
+      "family": "m(maj7)",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "ammaj7-open-x02110",
+          "frets": [
+            -1,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            3,
+            2,
+            1,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G#",
+            "C",
+            "E"
+          ],
+          "source": "Am(maj7) åpen variant (x02110)"
+        },
+        {
+          "id": "ammaj7-e-shape-5",
+          "frets": [
+            5,
+            7,
+            6,
+            5,
+            5,
+            5
+          ],
+          "fingers": [
+            1,
+            4,
+            3,
+            1,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "E",
+            "G#",
+            "C",
+            "E",
+            "A"
+          ],
+          "source": "Am(maj7) E-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "Asus2",
+      "bookSymbol": "Asus2",
+      "root": "A",
+      "quality": "major",
+      "family": "sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asus2-open-x02200",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            2,
+            0,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "B",
+            "E"
+          ],
+          "source": "Standard Asus2 (x02200)"
+        }
+      ]
+    },
+    {
+      "symbol": "Asus4",
+      "bookSymbol": "Asus4",
+      "root": "A",
+      "quality": "major",
+      "family": "sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asus4-open-x02230",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            3,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            2,
+            3,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "D",
+            "E"
+          ],
+          "source": "Standard Asus4 (x02230)"
+        },
+        {
+          "id": "asus4-e-shape-5",
+          "frets": [
+            5,
+            7,
+            7,
+            7,
+            5,
+            5
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            4,
+            1,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "D",
+            "E",
+            "A"
+          ],
+          "source": "Asus4 E-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "Aadd9",
+      "bookSymbol": "Aadd9",
+      "root": "A",
+      "quality": "major",
+      "family": "add9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "aadd9-open-x02420",
+          "frets": [
+            -1,
+            0,
+            2,
+            4,
+            2,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            4,
+            2,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "B",
+            "C#",
+            "E"
+          ],
+          "source": "Aadd9 åpen variant (x02420)"
+        },
+        {
+          "id": "aadd9-x02200",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            2,
+            0,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "B",
+            "E"
+          ],
+          "source": "Aadd9 (ofte brukt som Asus2-voicing)"
+        }
+      ]
+    },
+    {
+      "symbol": "A9",
+      "bookSymbol": "A9",
+      "root": "A",
+      "quality": "major",
+      "family": "9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a9-x02022",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            2,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            0,
+            3,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C#",
+            "B"
+          ],
+          "source": "A9 åpen/vanlig variant (x02022)"
+        },
+        {
+          "id": "a9-5x5675",
+          "frets": [
+            5,
+            -1,
+            5,
+            6,
+            7,
+            5
+          ],
+          "fingers": [
+            1,
+            0,
+            1,
+            2,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "G",
+            "C#",
+            "B",
+            "E"
+          ],
+          "source": "A9 voicing med rot på 6. streng"
+        }
+      ]
+    },
+    {
+      "symbol": "A11",
+      "bookSymbol": "A11",
+      "root": "A",
+      "quality": "major",
+      "family": "11",
+      "formulaDegrees": [
+        "1",
+        "5",
+        "b7",
+        "9",
+        "11"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a11-x02033",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            3,
+            3
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            0,
+            3,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "D",
+            "G"
+          ],
+          "source": "A11 åpen cluster-variant"
+        },
+        {
+          "id": "a11-5x5533",
+          "frets": [
+            5,
+            -1,
+            5,
+            5,
+            3,
+            3
+          ],
+          "fingers": [
+            2,
+            0,
+            3,
+            4,
+            1,
+            1
+          ],
+          "position": 3,
+          "notes": [
+            "A",
+            "G",
+            "C",
+            "D",
+            "G"
+          ],
+          "source": "A11 alternativ voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "A13",
+      "bookSymbol": "A13",
+      "root": "A",
+      "quality": "major",
+      "family": "13",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a13-x02024",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            2,
+            4
+          ],
+          "fingers": [
+            0,
+            0,
+            2,
+            0,
+            3,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C#",
+            "F#"
+          ],
+          "source": "A13 åpen variant (x02024)"
+        },
+        {
+          "id": "a13-5x5677",
+          "frets": [
+            5,
+            -1,
+            5,
+            6,
+            7,
+            7
+          ],
+          "fingers": [
+            1,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "G",
+            "C#",
+            "F#",
+            "A"
+          ],
+          "source": "A13 kompakt voicing med rot på 6. streng"
+        }
+      ]
+    },
+    {
+      "symbol": "A7b9",
+      "bookSymbol": "A7(b9)",
+      "root": "A",
+      "quality": "major",
+      "family": "7b9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "b9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a7b9-5x5665",
+          "frets": [
+            5,
+            -1,
+            5,
+            6,
+            6,
+            5
+          ],
+          "fingers": [
+            1,
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "G",
+            "C#",
+            "Bb",
+            "E"
+          ],
+          "source": "A7(b9) standard jazz-voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "A7#9",
+      "bookSymbol": "A7(#9)",
+      "root": "A",
+      "quality": "major",
+      "family": "7#9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "#9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a7#9-5x567x",
+          "frets": [
+            5,
+            -1,
+            5,
+            6,
+            7,
+            -1
+          ],
+          "fingers": [
+            1,
+            0,
+            1,
+            2,
+            4,
+            0
+          ],
+          "position": 5,
+          "notes": [
+            "A",
+            "G",
+            "C#",
+            "C",
+            "F"
+          ],
+          "source": "A7(#9) Hendrix-aktig voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "A#",
+      "bookSymbol": "A#",
+      "root": "A#",
+      "quality": "major",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5"
+      ],
+      "aliases": [
+        "Bb"
+      ],
+      "variants": [
+        {
+          "id": "asharp-e-shape-6",
+          "frets": [
+            6,
+            8,
+            8,
+            7,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            2,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "D",
+            "F",
+            "A#"
+          ],
+          "source": "A#-dur E-form barre (6. bånd) (Bb)"
+        },
+        {
+          "id": "asharp-a-shape-1",
+          "frets": [
+            -1,
+            1,
+            3,
+            3,
+            3,
+            1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "D",
+            "F"
+          ],
+          "source": "A#-dur A-form barre (1. bånd) (Bb)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m",
+      "bookSymbol": "A#m",
+      "root": "A#",
+      "quality": "minor",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5"
+      ],
+      "aliases": [
+        "Bbm"
+      ],
+      "variants": [
+        {
+          "id": "asharpm-e-shape-6",
+          "frets": [
+            6,
+            8,
+            8,
+            6,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            1,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "C#",
+            "F",
+            "A#"
+          ],
+          "source": "A#m E-form barre (6. bånd) (Bbm)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#dim",
+      "bookSymbol": "A#dim",
+      "root": "A#",
+      "quality": "dim",
+      "family": "dim",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5"
+      ],
+      "aliases": [
+        "A#°",
+        "Bb°"
+      ],
+      "variants": [
+        {
+          "id": "asharpdim-xx6767",
+          "frets": [
+            -1,
+            -1,
+            6,
+            7,
+            6,
+            7
+          ],
+          "fingers": [
+            0,
+            0,
+            1,
+            3,
+            2,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "C#",
+            "E",
+            "A#",
+            "C#"
+          ],
+          "source": "A#dim xx6767-type"
+        }
+      ]
+    },
+    {
+      "symbol": "A#aug",
+      "bookSymbol": "A#+",
+      "root": "A#",
+      "quality": "aug",
+      "family": "aug",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5"
+      ],
+      "aliases": [
+        "A#+",
+        "Bbaug",
+        "Bb+"
+      ],
+      "variants": [
+        {
+          "id": "asharpaug-xx9887",
+          "frets": [
+            -1,
+            -1,
+            9,
+            8,
+            8,
+            7
+          ],
+          "fingers": [
+            0,
+            0,
+            3,
+            2,
+            1,
+            1
+          ],
+          "position": 7,
+          "notes": [
+            "A#",
+            "D",
+            "F#",
+            "A#",
+            "D"
+          ],
+          "source": "A#aug forflyttet +-form"
+        }
+      ]
+    },
+    {
+      "symbol": "A#6",
+      "bookSymbol": "A#6",
+      "root": "A#",
+      "quality": "major",
+      "family": "6",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6"
+      ],
+      "aliases": [
+        "Bb6"
+      ],
+      "variants": [
+        {
+          "id": "asharp6-e-shape-6",
+          "frets": [
+            6,
+            8,
+            8,
+            7,
+            8,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            2,
+            4,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "D",
+            "G",
+            "A#"
+          ],
+          "source": "A#6 E-form type (Bb6)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m6",
+      "bookSymbol": "A#m6",
+      "root": "A#",
+      "quality": "minor",
+      "family": "m6",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6"
+      ],
+      "aliases": [
+        "Bbm6"
+      ],
+      "variants": [
+        {
+          "id": "asharpm6-e-shape-6",
+          "frets": [
+            6,
+            8,
+            8,
+            6,
+            8,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            1,
+            4,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "C#",
+            "G",
+            "A#"
+          ],
+          "source": "A#m6 tett voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7",
+      "bookSymbol": "A#7",
+      "root": "A#",
+      "quality": "major",
+      "family": "7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7"
+      ],
+      "aliases": [
+        "Bb7"
+      ],
+      "variants": [
+        {
+          "id": "asharp7-e-shape-6",
+          "frets": [
+            6,
+            8,
+            6,
+            7,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            2,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "D",
+            "F",
+            "A#"
+          ],
+          "source": "A#7 E-form barre (Bb7)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m7",
+      "bookSymbol": "A#m7",
+      "root": "A#",
+      "quality": "minor",
+      "family": "m7",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7"
+      ],
+      "aliases": [
+        "Bbm7"
+      ],
+      "variants": [
+        {
+          "id": "asharpm7-e-shape-6",
+          "frets": [
+            6,
+            8,
+            6,
+            6,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            1,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "C#",
+            "F",
+            "A#"
+          ],
+          "source": "A#m7 E-form barre (Bbm7)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#maj7",
+      "bookSymbol": "A#maj7",
+      "root": "A#",
+      "quality": "major",
+      "family": "maj7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7"
+      ],
+      "aliases": [
+        "Bbmaj7"
+      ],
+      "variants": [
+        {
+          "id": "asharpmaj7-xx8765",
+          "frets": [
+            -1,
+            -1,
+            8,
+            7,
+            6,
+            5
+          ],
+          "fingers": [
+            0,
+            0,
+            4,
+            3,
+            2,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A#",
+            "D",
+            "F",
+            "A"
+          ],
+          "source": "A#maj7 kompakt voicing (Bbmaj7)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m(maj7)",
+      "bookSymbol": "A#m(maj7)",
+      "root": "A#",
+      "quality": "minor",
+      "family": "m(maj7)",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "7"
+      ],
+      "aliases": [
+        "Bbm(maj7)"
+      ],
+      "variants": [
+        {
+          "id": "asharpmmaj7-e-shape-6",
+          "frets": [
+            6,
+            8,
+            7,
+            6,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            4,
+            3,
+            1,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "A",
+            "C#",
+            "F",
+            "A#"
+          ],
+          "source": "A#m(maj7) E-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "A#sus2",
+      "bookSymbol": "A#sus2",
+      "root": "A#",
+      "quality": "major",
+      "family": "sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5"
+      ],
+      "aliases": [
+        "Bbsus2"
+      ],
+      "variants": [
+        {
+          "id": "asharpsus2-xx8866",
+          "frets": [
+            -1,
+            -1,
+            8,
+            8,
+            6,
+            6
+          ],
+          "fingers": [
+            0,
+            0,
+            3,
+            4,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "C",
+            "F"
+          ],
+          "source": "A#sus2 tett voicing (Bbsus2)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#sus4",
+      "bookSymbol": "A#sus4",
+      "root": "A#",
+      "quality": "major",
+      "family": "sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5"
+      ],
+      "aliases": [
+        "Bbsus4"
+      ],
+      "variants": [
+        {
+          "id": "asharpsus4-e-shape-6",
+          "frets": [
+            6,
+            8,
+            8,
+            8,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            4,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "D#",
+            "F",
+            "A#"
+          ],
+          "source": "A#sus4 E-form barre (Bbsus4)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#add9",
+      "bookSymbol": "A#add9",
+      "root": "A#",
+      "quality": "major",
+      "family": "add9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "9"
+      ],
+      "aliases": [
+        "Bbadd9"
+      ],
+      "variants": [
+        {
+          "id": "asharpadd9-6x8766",
+          "frets": [
+            6,
+            -1,
+            8,
+            7,
+            6,
+            6
+          ],
+          "fingers": [
+            1,
+            0,
+            4,
+            3,
+            2,
+            2
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "A",
+            "D",
+            "F",
+            "A#"
+          ],
+          "source": "A#add9 alternativ voicing (Bbadd9)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#9",
+      "bookSymbol": "A#9",
+      "root": "A#",
+      "quality": "major",
+      "family": "9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [
+        "Bb9"
+      ],
+      "variants": [
+        {
+          "id": "asharp9-shape-6",
+          "frets": [
+            6,
+            5,
+            6,
+            5,
+            6,
+            6
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "A#",
+            "D",
+            "G#",
+            "C",
+            "F",
+            "A#"
+          ],
+          "source": "A#9 tett voicing (Bb9)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#11",
+      "bookSymbol": "A#11",
+      "root": "A#",
+      "quality": "major",
+      "family": "11",
+      "formulaDegrees": [
+        "1",
+        "5",
+        "b7",
+        "9",
+        "11"
+      ],
+      "aliases": [
+        "Bb11"
+      ],
+      "variants": [
+        {
+          "id": "asharp11-shape-6",
+          "frets": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            8
+          ],
+          "fingers": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "C",
+            "D#",
+            "A#"
+          ],
+          "source": "A#11 cluster-voicing (Bb11)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#13",
+      "bookSymbol": "A#13",
+      "root": "A#",
+      "quality": "major",
+      "family": "13",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [
+        "Bb13"
+      ],
+      "variants": [
+        {
+          "id": "asharp13-shape-6",
+          "frets": [
+            6,
+            5,
+            6,
+            6,
+            8,
+            8
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            3,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "A#",
+            "D",
+            "G#",
+            "C#",
+            "G",
+            "A"
+          ],
+          "source": "A#13-type voicing (Bb13)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7b9",
+      "bookSymbol": "A#7(b9)",
+      "root": "A#",
+      "quality": "major",
+      "family": "7b9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "b9"
+      ],
+      "aliases": [
+        "Bb7b9"
+      ],
+      "variants": [
+        {
+          "id": "asharp7b9-shape-6",
+          "frets": [
+            6,
+            5,
+            6,
+            5,
+            6,
+            5
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "A#",
+            "D",
+            "G#",
+            "B",
+            "C",
+            "E"
+          ],
+          "source": "A#7(b9) jazz-voicing (Bb7b9)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7#9",
+      "bookSymbol": "A#7(#9)",
+      "root": "A#",
+      "quality": "major",
+      "family": "7#9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "#9"
+      ],
+      "aliases": [
+        "Bb7#9"
+      ],
+      "variants": [
+        {
+          "id": "asharp7#9-shape-6",
+          "frets": [
+            6,
+            8,
+            6,
+            7,
+            9,
+            -1
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            2,
+            4,
+            0
+          ],
+          "position": 6,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "D",
+            "C#",
+            "G"
+          ],
+          "source": "A#7(#9) Hendrix-aktig form (Bb7#9)"
+        }
+      ]
+    },
+    {
+      "symbol": "A5",
+      "bookSymbol": "A5",
+      "root": "A",
+      "quality": "major",
+      "family": "5",
+      "formulaDegrees": [
+        "1",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-5-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            -1,
+            -1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            0,
+            0
+          ],
+          "position": 2,
+          "notes": [
+            "A",
+            "E",
+            "A"
+          ],
+          "source": "A5 Power chord (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A6/9",
+      "bookSymbol": "A6/9",
+      "root": "A",
+      "quality": "major",
+      "family": "69",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-69-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            2,
+            2,
+            4
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            4,
+            4
+          ],
+          "position": 2,
+          "notes": [
+            "A",
+            "E",
+            "A",
+            "C#",
+            "G#"
+          ],
+          "source": "A6/9 6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Am6/9",
+      "bookSymbol": "Am6/9",
+      "root": "A",
+      "quality": "minor",
+      "family": "m69",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-m69-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            1,
+            2,
+            3
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G#",
+            "C#",
+            "G"
+          ],
+          "source": "Am6/9 m6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Am7(b5)",
+      "bookSymbol": "Am7(b5)",
+      "root": "A",
+      "quality": "minor",
+      "family": "m7b5",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-m7b5-a0",
+          "frets": [
+            -1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "D#",
+            "G",
+            "C",
+            "E"
+          ],
+          "source": "Am7(b5) m7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Amaj9",
+      "bookSymbol": "Amaj9",
+      "root": "A",
+      "quality": "major",
+      "family": "maj9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-maj9-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            1,
+            2,
+            4
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G#",
+            "C#",
+            "G#"
+          ],
+          "source": "Amaj9 maj9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Am9",
+      "bookSymbol": "Am9",
+      "root": "A",
+      "quality": "minor",
+      "family": "m9",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-m9-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            1,
+            3
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            2,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C",
+            "G"
+          ],
+          "source": "Am9 m9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A7sus4",
+      "bookSymbol": "A7sus4",
+      "root": "A",
+      "quality": "major",
+      "family": "7sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-7sus4-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            3,
+            0
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 2,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "D",
+            "E"
+          ],
+          "source": "A7sus4 7sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A7sus2",
+      "bookSymbol": "A7sus2",
+      "root": "A",
+      "quality": "major",
+      "family": "7sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-7sus2-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            2,
+            0
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 2,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "C#",
+            "E"
+          ],
+          "source": "A7sus2 7sus2 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A9sus4",
+      "bookSymbol": "A9sus4",
+      "root": "A",
+      "quality": "major",
+      "family": "9sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-9sus4-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            3,
+            2
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 2,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "D",
+            "F#"
+          ],
+          "source": "A9sus4 9sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A13sus4",
+      "bookSymbol": "A13sus4",
+      "root": "A",
+      "quality": "major",
+      "family": "13sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-13sus4-a0",
+          "frets": [
+            -1,
+            0,
+            2,
+            0,
+            3,
+            4
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 2,
+          "notes": [
+            "A",
+            "E",
+            "G",
+            "D",
+            "G#"
+          ],
+          "source": "A13sus4 13sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A7(b5)",
+      "bookSymbol": "A7(b5)",
+      "root": "A",
+      "quality": "major",
+      "family": "7b5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-7b5-a0",
+          "frets": [
+            -1,
+            0,
+            1,
+            0,
+            2,
+            0
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "D#",
+            "G",
+            "C#",
+            "E"
+          ],
+          "source": "A7(b5) 7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A7(#5)",
+      "bookSymbol": "A7(#5)",
+      "root": "A",
+      "quality": "major",
+      "family": "7#5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "a-7#5-a0",
+          "frets": [
+            -1,
+            0,
+            3,
+            0,
+            2,
+            1
+          ],
+          "fingers": [
+            0,
+            1,
+            4,
+            1,
+            3,
+            2
+          ],
+          "position": 1,
+          "notes": [
+            "A",
+            "F",
+            "G",
+            "C#",
+            "F"
+          ],
+          "source": "A7(#5) 7#5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#5",
+      "bookSymbol": "A#5",
+      "root": "A#",
+      "quality": "major",
+      "family": "5",
+      "formulaDegrees": [
+        "1",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-5-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            3,
+            -1,
+            -1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            0,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "A#"
+          ],
+          "source": "A#5 Power chord (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#6/9",
+      "bookSymbol": "A#6/9",
+      "root": "A#",
+      "quality": "major",
+      "family": "69",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-69-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            3,
+            3,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "A#",
+            "D",
+            "A"
+          ],
+          "source": "A#6/9 6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m6/9",
+      "bookSymbol": "A#m6/9",
+      "root": "A#",
+      "quality": "minor",
+      "family": "m69",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-m69-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            2,
+            3,
+            4
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "A",
+            "D",
+            "G#"
+          ],
+          "source": "A#m6/9 m6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m7(b5)",
+      "bookSymbol": "A#m7(b5)",
+      "root": "A#",
+      "quality": "minor",
+      "family": "m7b5",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-m7b5-a1",
+          "frets": [
+            -1,
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "E",
+            "G#",
+            "C#",
+            "F"
+          ],
+          "source": "A#m7(b5) m7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#maj9",
+      "bookSymbol": "A#maj9",
+      "root": "A#",
+      "quality": "major",
+      "family": "maj9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-maj9-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            2,
+            3,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "A",
+            "D",
+            "A"
+          ],
+          "source": "A#maj9 maj9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#m9",
+      "bookSymbol": "A#m9",
+      "root": "A#",
+      "quality": "minor",
+      "family": "m9",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-m9-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            1,
+            2,
+            4
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            2,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "C#",
+            "G#"
+          ],
+          "source": "A#m9 m9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7sus4",
+      "bookSymbol": "A#7sus4",
+      "root": "A#",
+      "quality": "major",
+      "family": "7sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-7sus4-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "D#",
+            "F"
+          ],
+          "source": "A#7sus4 7sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7sus2",
+      "bookSymbol": "A#7sus2",
+      "root": "A#",
+      "quality": "major",
+      "family": "7sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-7sus2-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            1,
+            3,
+            1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "D",
+            "F"
+          ],
+          "source": "A#7sus2 7sus2 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#9sus4",
+      "bookSymbol": "A#9sus4",
+      "root": "A#",
+      "quality": "major",
+      "family": "9sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-9sus4-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            1,
+            4,
+            3
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "D#",
+            "G"
+          ],
+          "source": "A#9sus4 9sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#13sus4",
+      "bookSymbol": "A#13sus4",
+      "root": "A#",
+      "quality": "major",
+      "family": "13sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-13sus4-a1",
+          "frets": [
+            -1,
+            1,
+            3,
+            1,
+            4,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F",
+            "G#",
+            "D#",
+            "A"
+          ],
+          "source": "A#13sus4 13sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7(b5)",
+      "bookSymbol": "A#7(b5)",
+      "root": "A#",
+      "quality": "major",
+      "family": "7b5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-7b5-a1",
+          "frets": [
+            -1,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "E",
+            "G#",
+            "D",
+            "F"
+          ],
+          "source": "A#7(b5) 7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "A#7(#5)",
+      "bookSymbol": "A#7(#5)",
+      "root": "A#",
+      "quality": "major",
+      "family": "7#5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "asharp-7#5-a1",
+          "frets": [
+            -1,
+            1,
+            4,
+            1,
+            3,
+            2
+          ],
+          "fingers": [
+            0,
+            1,
+            4,
+            1,
+            3,
+            2
+          ],
+          "position": 1,
+          "notes": [
+            "A#",
+            "F#",
+            "G#",
+            "D",
+            "F#"
+          ],
+          "source": "A#7(#5) 7#5 (A-root)"
+        }
+      ]
+    }
+  ]
+}

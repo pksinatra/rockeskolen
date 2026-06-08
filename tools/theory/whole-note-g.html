@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Noteverdi</title>
+<script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+  }
+  #staff {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<div id="staff"></div>
+
+<script>
+const VF = Vex.Flow;
+
+const div = document.getElementById("staff");
+const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+// samme høyde/proporsjoner som staff-clef.html
+renderer.resize(600, 160);
+const ctx = renderer.getContext();
+
+const stave = new VF.Stave(20, 40, 560);
+stave.addClef("treble");
+stave.setContext(ctx).draw();
+// 👉 skyv notene til høyre
+stave.setNoteStartX(stave.getNoteStartX() + 140);
+
+// 👇 HER KOMMER NOTENE
+const note = new VF.StaveNote({
+  clef: "treble",
+  keys: ["g/4"],
+  duration: "w"
+});
+
+const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
+voice.addTickables([note]);
+
+new VF.Formatter().joinVoices([voice]).format([voice], 400);
+voice.draw(ctx, stave);
+
+</script>
+
+</body>
+</html>

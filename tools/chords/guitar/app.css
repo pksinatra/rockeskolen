@@ -1,0 +1,512 @@
+/* ChordLink – Guitar Chords UI (STABLE – single file)
+   ------------------------------------------------------------
+   Theme system:
+   - body[data-theme="light"]  (default)
+   - body[data-theme="dark"]
+   - body[data-theme="pink"]
+   - body[data-theme="mono"]
+*/
+
+/* =========================
+   Variables
+   ========================= */
+:root{
+  /* Layout */
+  --radius: 16px;
+  --radius-sm: 12px;
+  --shadow: 0 18px 50px rgba(0,0,0,.12);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.10);
+
+  /* Type */
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* ------------------------------------
+     THEME: LIGHT (default)
+     (ChordLink / CoF vibe – slightly brighter than dark, but still dark-ish)
+     ------------------------------------ */
+  --bg:  #121420;
+  --bg2: #1a1e2a;
+
+  --panel:  rgba(24,28,36,.86);
+  --panel2: rgba(24,28,36,.64);
+  --border: rgba(255,255,255,.14);
+
+  --text:  rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.68);
+
+  /* Brand accents */
+  --primary:  #c9a24d;  /* warm gold */
+  --primary2: #7b6cff;  /* purple */
+
+  --chip: rgba(255,255,255,.08);
+
+  --btnText: rgba(255,255,255,.92);
+  --btnBg:   rgba(255,255,255,.06);
+  --btnBorder: rgba(255,255,255,.18);
+
+  /* Fretboard palette (drives SVG via CSS overrides below) */
+  --fb-bg: rgba(0,0,0,.18);              /* SVG background inside board */
+  --fb-nut: rgba(255,255,255,.35);       /* nut color */
+  --fb-fret: rgba(255,255,255,.22);      /* fret lines */
+  --fb-fret0: rgba(255,255,255,.34);     /* “fret 0” line (at nut) */
+  --fb-string: rgba(255,255,255,.52);    /* string lines */
+  --fb-stringText: rgba(255,255,255,.62);
+
+  --fb-dotFill: rgba(8,12,20,.92);       /* finger dot fill */
+  --fb-dotText: rgba(255,255,255,.96);   /* finger number */
+  --fb-openFill: rgba(255,255,255,.86);  /* open string ring fill */
+  --fb-openStroke: rgba(8,12,20,.78);    /* open string ring stroke */
+  --fb-xText: rgba(255,255,255,.80);     /* muted string X */
+
+  /* Inlays / harmonics */
+  --fb-inlayFill: rgba(255,255,255,.14);
+  --fb-inlayStroke: rgba(255,255,255,.18);
+  --fb-harmonic: rgba(201,162,77,.92);   /* gold-ish */
+
+  /* Legacy vars used elsewhere */
+  --dot: rgba(255,255,255,.9);
+  --dotText: #0b1020;
+  --string: rgba(255,255,255,.55);
+  --fret: rgba(255,255,255,.22);
+  --nut: rgba(255,255,255,.35);
+}
+
+/* =========================
+   Theme: Dark (darker variant)
+   ========================= */
+body[data-theme="dark"]{
+  --bg:  #090a10;
+  --bg2: #14162a;
+
+  --panel:  rgba(18,20,33,.78);
+  --panel2: rgba(18,20,33,.56);
+  --border: rgba(255,255,255,.14);
+
+  --text:  rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+
+  /* Keep “ChordLink vibe” (still purple+gold, but cooler secondary) */
+  --primary:  #c9a24d;  /* keep gold as brand anchor */
+  --primary2: #7b6cff;  /* keep purple as brand anchor */
+
+  --chip: rgba(255,255,255,.08);
+
+  --btnText: rgba(255,255,255,.92);
+  --btnBg:   rgba(255,255,255,.06);
+  --btnBorder: rgba(255,255,255,.14);
+
+  --fb-bg: rgba(0,0,0,.42);
+  --fb-nut: rgba(255,255,255,.32);
+  --fb-fret: rgba(255,255,255,.18);
+  --fb-fret0: rgba(255,255,255,.26);
+  --fb-string: rgba(255,255,255,.46);
+  --fb-stringText: rgba(255,255,255,.58);
+
+  --fb-dotFill: rgba(5,7,12,.94);
+  --fb-dotText: rgba(255,255,255,.96);
+  --fb-openFill: rgba(255,255,255,.88);
+  --fb-openStroke: rgba(0,0,0,.72);
+  --fb-xText: rgba(255,255,255,.78);
+
+  --fb-inlayFill: rgba(255,255,255,.12);
+  --fb-inlayStroke: rgba(255,255,255,.16);
+  --fb-harmonic: rgba(201,162,77,.92);
+}
+
+/* =========================
+   Theme: Pink (magenta + purple, still dark)
+   ========================= */
+body[data-theme="pink"]{
+  --bg:  #140812;
+  --bg2: #240a22;
+
+  --panel:  rgba(255, 0, 122, .10);
+  --panel2: rgba(255, 0, 122, .07);
+  --border: rgba(255, 121, 198, .28);
+
+  --text:  rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.74);
+
+  --primary:  #ff4fd8;  /* magenta */
+  --primary2: #7b6cff;  /* purple (keep ChordLink-ish, not pastel) */
+  --chip: rgba(255, 121, 198, .14);
+
+  --btnText: rgba(255,255,255,.95);
+  --btnBg:   rgba(255, 79, 216, .12);
+  --btnBorder: rgba(255, 121, 198, .35);
+
+  --fb-bg: rgba(0,0,0,.34);
+  --fb-nut: rgba(255,255,255,.30);
+  --fb-fret: rgba(255,255,255,.18);
+  --fb-fret0: rgba(255,255,255,.25);
+  --fb-string: rgba(255,255,255,.46);
+  --fb-stringText: rgba(255,255,255,.62);
+
+  --fb-dotFill: rgba(10,6,14,.92);
+  --fb-dotText: rgba(255,255,255,.96);
+  --fb-openFill: rgba(255,255,255,.88);
+  --fb-openStroke: rgba(0,0,0,.70);
+  --fb-xText: rgba(255,255,255,.80);
+
+  --fb-inlayFill: rgba(255,255,255,.12);
+  --fb-inlayStroke: rgba(255,255,255,.16);
+  --fb-harmonic: rgba(255,79,216,.90); /* magenta-ish harmonic */
+}
+
+/* =========================
+   Theme: Mono (light UI)
+   ========================= */
+body[data-theme="mono"]{
+  --bg:  #f3f4f6;
+  --bg2: #e5e7eb;
+
+  --panel:  rgba(255,255,255,.86);
+  --panel2: rgba(255,255,255,.68);
+  --border: rgba(17,24,39,.14);
+
+  --text:  #0b0b0c;
+  --muted: rgba(11,11,12,.66);
+
+  --primary:  #111827;
+  --primary2: #374151;
+  --chip: rgba(17,24,39,.06);
+
+  --btnText: #0b0b0c;
+  --btnBg: rgba(255,255,255,.92);
+  --btnBorder: rgba(17,24,39,.18);
+
+  --fb-bg: rgba(17,24,39,.06);
+  --fb-nut: rgba(11,11,12,.32);
+  --fb-fret: rgba(11,11,12,.18);
+  --fb-fret0: rgba(11,11,12,.26);
+  --fb-string: rgba(11,11,12,.45);
+  --fb-stringText: rgba(11,11,12,.58);
+
+  --fb-dotFill: rgba(11,11,12,.92);
+  --fb-dotText: #ffffff;
+  --fb-openFill: rgba(255,255,255,.98);
+  --fb-openStroke: rgba(11,11,12,.70);
+  --fb-xText: rgba(11,11,12,.72);
+
+  --fb-inlayFill: rgba(11,11,12,.10);
+  --fb-inlayStroke: rgba(11,11,12,.14);
+  --fb-harmonic: rgba(17,24,39,.70);
+}
+
+/* =========================
+   Base
+   ========================= */
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 15% 0%, var(--bg2) 0%, transparent 55%),
+    radial-gradient(1100px 720px at 100% 10%, color-mix(in srgb, var(--primary) 15%, transparent) 0%, transparent 60%),
+    linear-gradient(135deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 70%, var(--bg2) 30%) 100%);
+}
+
+/* Optional wrapper IDs (works even if markup differs) */
+.container, .wrap, main{
+  width: min(1100px, calc(100% - 32px));
+  margin: 24px auto;
+}
+
+.card, .panel, .app{
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+header, .header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1, h2, h3{
+  margin: 0;
+  letter-spacing: .2px;
+}
+h1{
+  font-size: 20px;
+  font-weight: 700;
+}
+.subtitle, .hint, .muted{
+  color: var(--muted);
+}
+
+/* =========================
+   Controls
+   ========================= */
+.controls, .toolbar, .row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 18px;
+  align-items: center;
+}
+
+label{
+  font-size: 12px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Selects & inputs */
+select, input[type="number"], input[type="text"]{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--panel2);
+  color: var(--text);
+  outline: none;
+  min-height: 40px;
+}
+
+select:disabled, input:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+button, .btn{
+  border: 1px solid var(--btnBorder);
+  background: var(--btnBg);
+  color: var(--btnText);
+  border-radius: 14px;
+  padding: 10px 12px;
+  min-height: 40px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform .05s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+button:hover, .btn:hover{
+  border-color: color-mix(in srgb, var(--btnBorder) 40%, var(--primary) 60%);
+  box-shadow: 0 14px 40px rgba(0,0,0,.16);
+}
+
+button:active, .btn:active{ transform: translateY(1px); }
+
+button.primary, .btn.primary{
+  border-color: color-mix(in srgb, var(--primary) 70%, var(--btnBorder) 30%);
+  background:
+    radial-gradient(130% 140% at 20% 10%, color-mix(in srgb, var(--primary2) 45%, transparent) 0%, transparent 45%),
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 65%, transparent) 0%, var(--btnBg) 100%);
+}
+
+button.secondary{
+  border-color: color-mix(in srgb, var(--btnBorder) 70%, transparent);
+  background: color-mix(in srgb, var(--btnBg) 70%, transparent);
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--chip);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.chip strong{ color: var(--text); font-weight: 700; }
+
+/* =========================
+   Fretboard area
+   ========================= */
+#fretboard, .fretboard{
+  padding: 14px 18px 18px;
+}
+
+#fretboard svg, .fretboard svg{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--fb-bg);
+}
+
+/* ---- SVG Overrides (matches how ui.js draws the SVG) ----
+   ui.js uses explicit fill/stroke attributes; CSS can override them.
+   See: renderFretboard() creates:
+   - nut: rect with fill="#9ca3af"
+   - frets: lines stroke "#d1d5db" and first "#4b5563"
+   - strings: lines stroke "#6b7280"
+   - string name text: fill "#4b5563"
+   - finger dots: circles fill "#111827" (r=10) + text fill "#ffffff"
+   - open strings: circle fill "#ffffff" stroke "#111827" (r=6)
+   - muted strings: text fill "#111827" ("X")
+   - inlays: class .cl-inlay
+   - harmonics: class .cl-harmonic
+*/
+#fretboard svg rect[fill="#9ca3af"]{ fill: var(--fb-nut); }
+
+/* Fret lines */
+#fretboard svg line[stroke="#d1d5db"]{ stroke: var(--fb-fret); }
+#fretboard svg line[stroke="#4b5563"]{ stroke: var(--fb-fret0); }
+
+/* String lines */
+#fretboard svg line[stroke="#6b7280"]{ stroke: var(--fb-string); }
+
+/* String name labels (E A D G B e) */
+#fretboard svg text[fill="#4b5563"]{ fill: var(--fb-stringText); }
+
+/* Finger dots (fretted notes): circle r="10" fill "#111827" */
+#fretboard svg circle[r="10"][fill="#111827"]{ fill: var(--fb-dotFill); }
+#fretboard svg text[fill="#ffffff"]{ fill: var(--fb-dotText); }
+
+/* Open strings: circle r="6" fill "#ffffff" stroke "#111827" */
+#fretboard svg circle[r="6"][fill="#ffffff"]{ fill: var(--fb-openFill); }
+#fretboard svg circle[r="6"][stroke="#111827"]{ stroke: var(--fb-openStroke); }
+
+/* Muted strings: X text fill "#111827" */
+#fretboard svg text[fill="#111827"]{ fill: var(--fb-xText); }
+
+/* Inlays / Harmonics (already classed by ui.js) */
+.cl-inlay{
+  fill: var(--fb-inlayFill);
+  stroke: var(--fb-inlayStroke);
+  stroke-width: 1;
+  pointer-events: none;
+}
+.cl-harmonic{
+  fill: none;
+  stroke: var(--fb-harmonic);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+#harmonicsToggle{ margin-left: 8px; }
+
+/* =========================
+   Debug
+   ========================= */
+#debug{
+  margin: 14px 18px 18px;
+  padding: 12px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+  background: color-mix(in srgb, var(--panel2) 75%, transparent);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  overflow: auto;
+  max-height: 260px;
+  display: none;
+}
+
+/* =========================
+   Small screens
+   ========================= */
+@media (max-width: 640px){
+  h1{ font-size: 18px; }
+  .controls, .toolbar, .row{ padding: 12px 12px; }
+  header, .header{ padding: 14px 12px; }
+}
+
+/* ===== PRO NOTICE (Guitar Chords) ===== */
+
+.pro-cta{
+  display:block;
+  width:100%;
+  margin:14px 0;
+  padding:12px 16px;
+
+  border-radius:14px;
+  background: rgba(176, 0, 32, 0.40);
+  border: 1px solid rgba(255, 80, 80, 0.55);
+
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 6px 18px rgba(0,0,0,.25);
+}
+
+.pro-cta strong{
+  font-weight:800;
+}
+
+.pro-cta-sub{
+  margin-left:6px;
+  font-weight:700;
+  text-decoration:underline;
+  white-space:nowrap;
+}
+
+.pro-cta:hover{
+  background: rgba(176, 0, 32, 0.48);
+  border-color: rgba(255, 120, 120, 0.75);
+}
+.rk-status{
+  margin-top: 14px;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+@keyframes proPulse {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 14px 34px rgba(176, 0, 32, 0.45),
+      inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  50% {
+    transform: scale(1.005);
+    box-shadow:
+      0 18px 44px rgba(255, 59, 59, 0.6),
+      inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 14px 34px rgba(176, 0, 32, 0.45),
+      inset 0 1px 0 rgba(255,255,255,.25);
+  }
+}
+
+.pro-cta--promo {
+  animation: proPulse 4.5s ease-in-out infinite;
+}
+
+.pro-cta--promo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.25) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.pro-cta--promo:hover::after {
+  opacity: 1;
+}

@@ -1,0 +1,2984 @@
+{
+  "root": "D",
+  "chords": [
+    {
+      "symbol": "D",
+      "bookSymbol": "D",
+      "root": "D",
+      "quality": "major",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-open-1",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            3,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            1,
+            3,
+            2
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F#"
+          ],
+          "source": "Standard åpen D-dur"
+        },
+        {
+          "id": "d-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            7,
+            7,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F#",
+            "A",
+            "D"
+          ],
+          "source": "D-dur A-form barre (5. bånd)"
+        },
+        {
+          "id": "d-e-shape-10",
+          "frets": [
+            10,
+            12,
+            12,
+            11,
+            10,
+            10
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            2,
+            1,
+            1
+          ],
+          "position": 10,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F#",
+            "A",
+            "D"
+          ],
+          "source": "D-dur E-form barre (10. bånd)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm",
+      "bookSymbol": "Dm",
+      "root": "D",
+      "quality": "minor",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dm-open-1",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            3,
+            1
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            2,
+            3,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F"
+          ],
+          "source": "Standard åpen Dm"
+        },
+        {
+          "id": "dm-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            7,
+            6,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F",
+            "A"
+          ],
+          "source": "Dm A-form barre (5. bånd)"
+        },
+        {
+          "id": "dm-e-shape-10",
+          "frets": [
+            10,
+            12,
+            12,
+            10,
+            10,
+            10
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            1,
+            1,
+            1
+          ],
+          "position": 10,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F",
+            "A",
+            "D"
+          ],
+          "source": "Dm E-form barre (10. bånd)"
+        }
+      ]
+    },
+    {
+      "symbol": "Ddim",
+      "bookSymbol": "Ddim",
+      "root": "D",
+      "quality": "dim",
+      "family": "dim",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5"
+      ],
+      "aliases": [
+        "D°"
+      ],
+      "variants": [
+        {
+          "id": "ddim-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            6,
+            7,
+            6,
+            -1
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            4,
+            3,
+            0
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "F",
+            "Ab",
+            "Cb",
+            "F"
+          ],
+          "source": "Typisk D°-grep på A-strengen"
+        }
+      ]
+    },
+    {
+      "symbol": "D6",
+      "bookSymbol": "D6",
+      "root": "D",
+      "quality": "major",
+      "family": "6",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d6-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            0,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            3
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "B",
+            "E",
+            "F#"
+          ],
+          "source": "Vanlig D6-voicing (åpen)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm6",
+      "bookSymbol": "Dm6",
+      "root": "D",
+      "quality": "minor",
+      "family": "m6",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dm6-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            7,
+            6,
+            7
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F",
+            "B"
+          ],
+          "source": "Dm6 A-form type (5. bånd)"
+        }
+      ]
+    },
+    {
+      "symbol": "D7",
+      "bookSymbol": "D7",
+      "root": "D",
+      "quality": "major",
+      "family": "7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d7-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            1,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            2,
+            1,
+            3
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F#"
+          ],
+          "source": "Standard åpen D7"
+        },
+        {
+          "id": "d7-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            7,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F#",
+            "A",
+            "D"
+          ],
+          "source": "D7 A-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm7",
+      "bookSymbol": "Dm7",
+      "root": "D",
+      "quality": "minor",
+      "family": "m7",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dm7-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            1,
+            1
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            2,
+            1,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F"
+          ],
+          "source": "Standard åpen Dm7"
+        },
+        {
+          "id": "dm7-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            6,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            2,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F",
+            "A"
+          ],
+          "source": "Dm7 A-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "Dmaj7",
+      "bookSymbol": "Dmaj7",
+      "root": "D",
+      "quality": "major",
+      "family": "maj7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dmaj7-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            2,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "C#",
+            "F#"
+          ],
+          "source": "Standard åpen Dmaj7"
+        },
+        {
+          "id": "dmaj7-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            6,
+            7,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C#",
+            "F#",
+            "A"
+          ],
+          "source": "Dmaj7 A-form"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm(maj7)",
+      "bookSymbol": "Dm(maj7)",
+      "root": "D",
+      "quality": "minor",
+      "family": "m(maj7)",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dmmaj7-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            7,
+            6,
+            6,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C#",
+            "F",
+            "A"
+          ],
+          "source": "Dm(maj7) A-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "Dsus2",
+      "bookSymbol": "Dsus2",
+      "root": "D",
+      "quality": "major",
+      "family": "sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsus2-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            3,
+            0
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            1,
+            2,
+            0
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "E",
+            "A"
+          ],
+          "source": "Standard Dsus2 (åpen)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dsus4",
+      "bookSymbol": "Dsus4",
+      "root": "D",
+      "quality": "major",
+      "family": "sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsus4-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            3,
+            3
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            1,
+            3,
+            4
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "G",
+            "D"
+          ],
+          "source": "Standard Dsus4 (åpen)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dadd9",
+      "bookSymbol": "Dadd9",
+      "root": "D",
+      "quality": "major",
+      "family": "add9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dadd9-open",
+          "frets": [
+            -1,
+            -1,
+            0,
+            2,
+            0,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            3
+          ],
+          "position": 1,
+          "notes": [
+            "D",
+            "A",
+            "E",
+            "F#"
+          ],
+          "source": "Dadd9 åpen variant"
+        }
+      ]
+    },
+    {
+      "symbol": "D9",
+      "bookSymbol": "D9",
+      "root": "D",
+      "quality": "major",
+      "family": "9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d9-shape-5",
+          "frets": [
+            5,
+            4,
+            5,
+            5,
+            5,
+            5
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            4,
+            4,
+            4
+          ],
+          "position": 4,
+          "notes": [
+            "D",
+            "F#",
+            "C",
+            "E",
+            "A",
+            "D"
+          ],
+          "source": "Typisk D9 voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D11",
+      "bookSymbol": "D11",
+      "root": "D",
+      "quality": "major",
+      "family": "11",
+      "formulaDegrees": [
+        "1",
+        "5",
+        "b7",
+        "9",
+        "11"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d11-shape-5",
+          "frets": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            7
+          ],
+          "fingers": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "E",
+            "G",
+            "D"
+          ],
+          "source": "D11 cluster-voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D13",
+      "bookSymbol": "D13",
+      "root": "D",
+      "quality": "major",
+      "family": "13",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d13-shape-5",
+          "frets": [
+            5,
+            4,
+            5,
+            5,
+            7,
+            7
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            3,
+            4,
+            4
+          ],
+          "position": 4,
+          "notes": [
+            "D",
+            "F#",
+            "C",
+            "E",
+            "B",
+            "E"
+          ],
+          "source": "Standard D13-type voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D7b9",
+      "bookSymbol": "D7(b9)",
+      "root": "D",
+      "quality": "major",
+      "family": "7b9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "b9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d7b9-shape-10",
+          "frets": [
+            10,
+            9,
+            10,
+            9,
+            10,
+            9
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 9,
+          "notes": [
+            "D",
+            "F#",
+            "C",
+            "Eb",
+            "F#",
+            "C"
+          ],
+          "source": "D7(b9) standard jazz-voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D7#9",
+      "bookSymbol": "D7(#9)",
+      "root": "D",
+      "quality": "major",
+      "family": "7#9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "#9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d7#9-shape-10",
+          "frets": [
+            10,
+            12,
+            10,
+            11,
+            11,
+            -1
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            2,
+            4,
+            0
+          ],
+          "position": 10,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F#",
+            "F"
+          ],
+          "source": "D7(#9) Hendrix-type voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D#",
+      "bookSymbol": "D#",
+      "root": "D#",
+      "quality": "major",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5"
+      ],
+      "aliases": [
+        "Eb"
+      ],
+      "variants": [
+        {
+          "id": "dsharp-major-a-shape-6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            8,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D#",
+            "G",
+            "A#",
+            "D#"
+          ],
+          "source": "D#-dur A-form barre (6. bånd) / Eb"
+        },
+        {
+          "id": "dsharp-major-e-shape-11",
+          "frets": [
+            11,
+            13,
+            13,
+            12,
+            11,
+            11
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            2,
+            1,
+            1
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "D#",
+            "G",
+            "A#",
+            "D#"
+          ],
+          "source": "D#-dur E-form barre (11. bånd) / Eb"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m",
+      "bookSymbol": "D#m",
+      "root": "D#",
+      "quality": "minor",
+      "family": "plain",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5"
+      ],
+      "aliases": [
+        "Ebm"
+      ],
+      "variants": [
+        {
+          "id": "dsharpm-a-shape-6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            7,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D#",
+            "F#",
+            "A#",
+            "D#"
+          ],
+          "source": "D#m A-form barre (6. bånd)"
+        },
+        {
+          "id": "dsharpm-e-shape-11",
+          "frets": [
+            11,
+            13,
+            13,
+            11,
+            11,
+            11
+          ],
+          "fingers": [
+            1,
+            3,
+            4,
+            1,
+            1,
+            1
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "D#",
+            "F#",
+            "A#",
+            "D#"
+          ],
+          "source": "D#m E-form barre (11. bånd)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#dim",
+      "bookSymbol": "D#dim",
+      "root": "D#",
+      "quality": "dim",
+      "family": "dim",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5"
+      ],
+      "aliases": [
+        "D#°",
+        "Eb°"
+      ],
+      "variants": [
+        {
+          "id": "dsharpdim-shape-6",
+          "frets": [
+            -1,
+            6,
+            7,
+            8,
+            7,
+            -1
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            4,
+            3,
+            0
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "F#",
+            "A",
+            "C",
+            "F#"
+          ],
+          "source": "Typisk D#dim-grep (Ebm♭5 type)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#aug",
+      "bookSymbol": "D#+",
+      "root": "D#",
+      "quality": "aug",
+      "family": "aug",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5"
+      ],
+      "aliases": [
+        "D#+",
+        "Eb+"
+      ],
+      "variants": [
+        {
+          "id": "dsharpaug-shape-6",
+          "frets": [
+            -1,
+            6,
+            5,
+            4,
+            4,
+            -1
+          ],
+          "fingers": [
+            0,
+            4,
+            3,
+            1,
+            2,
+            0
+          ],
+          "position": 4,
+          "notes": [
+            "D#",
+            "G",
+            "B",
+            "D#",
+            "G"
+          ],
+          "source": "Vanlig D#aug-voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D#6",
+      "bookSymbol": "D#6",
+      "root": "D#",
+      "quality": "major",
+      "family": "6",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6"
+      ],
+      "aliases": [
+        "Eb6"
+      ],
+      "variants": [
+        {
+          "id": "dsharp6-openlike",
+          "frets": [
+            -1,
+            6,
+            5,
+            5,
+            4,
+            3
+          ],
+          "fingers": [
+            0,
+            4,
+            3,
+            2,
+            1,
+            1
+          ],
+          "position": 3,
+          "notes": [
+            "D#",
+            "G",
+            "B",
+            "C",
+            "G"
+          ],
+          "source": "D#6 basert på C6-form transponert"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m6",
+      "bookSymbol": "D#m6",
+      "root": "D#",
+      "quality": "minor",
+      "family": "m6",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6"
+      ],
+      "aliases": [
+        "Ebm6"
+      ],
+      "variants": [
+        {
+          "id": "dsharpm6-a-shape-6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            7,
+            8
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            2,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D#",
+            "F#",
+            "C"
+          ],
+          "source": "D#m6 A-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7",
+      "bookSymbol": "D#7",
+      "root": "D#",
+      "quality": "major",
+      "family": "7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7"
+      ],
+      "aliases": [
+        "Eb7"
+      ],
+      "variants": [
+        {
+          "id": "dsharp7-e-shape-11",
+          "frets": [
+            11,
+            13,
+            11,
+            12,
+            11,
+            11
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            2,
+            1,
+            1
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "G",
+            "A#",
+            "D#"
+          ],
+          "source": "D#7 E-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m7",
+      "bookSymbol": "D#m7",
+      "root": "D#",
+      "quality": "minor",
+      "family": "m7",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7"
+      ],
+      "aliases": [
+        "Ebm7"
+      ],
+      "variants": [
+        {
+          "id": "dsharpm7-e-shape-11",
+          "frets": [
+            11,
+            13,
+            11,
+            11,
+            11,
+            11
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            1,
+            1,
+            1
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "F#",
+            "A#",
+            "D#"
+          ],
+          "source": "D#m7 E-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "D#maj7",
+      "bookSymbol": "D#maj7",
+      "root": "D#",
+      "quality": "major",
+      "family": "maj7",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7"
+      ],
+      "aliases": [
+        "Ebmaj7"
+      ],
+      "variants": [
+        {
+          "id": "dsharpmaj7-e-shape-11",
+          "frets": [
+            11,
+            13,
+            12,
+            12,
+            11,
+            11
+          ],
+          "fingers": [
+            1,
+            3,
+            2,
+            4,
+            1,
+            1
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "C",
+            "G",
+            "A#",
+            "D#"
+          ],
+          "source": "D#maj7 E-form barre"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m(maj7)",
+      "bookSymbol": "D#m(maj7)",
+      "root": "D#",
+      "quality": "minor",
+      "family": "m(maj7)",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "7"
+      ],
+      "aliases": [
+        "Ebm(maj7)"
+      ],
+      "variants": [
+        {
+          "id": "dsharpmmaj7-e-shape-11",
+          "frets": [
+            11,
+            13,
+            12,
+            11,
+            11,
+            11
+          ],
+          "fingers": [
+            1,
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "C",
+            "F#",
+            "A#",
+            "D#"
+          ],
+          "source": "D#m(maj7) E-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "D#sus2",
+      "bookSymbol": "D#sus2",
+      "root": "D#",
+      "quality": "major",
+      "family": "sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5"
+      ],
+      "aliases": [
+        "Ebsus2"
+      ],
+      "variants": [
+        {
+          "id": "dsharpsus2-a-shape-6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            6,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            1,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "E#",
+            "A#",
+            "D#",
+            "F"
+          ],
+          "source": "D#sus2 A-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "D#sus4",
+      "bookSymbol": "D#sus4",
+      "root": "D#",
+      "quality": "major",
+      "family": "sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5"
+      ],
+      "aliases": [
+        "Ebsus4"
+      ],
+      "variants": [
+        {
+          "id": "dsharpsus4-a-shape-6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            9,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            4,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "G#",
+            "A#",
+            "C#",
+            "D#"
+          ],
+          "source": "D#sus4 A-form variant"
+        }
+      ]
+    },
+    {
+      "symbol": "D#add9",
+      "bookSymbol": "D#add9",
+      "root": "D#",
+      "quality": "major",
+      "family": "add9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "9"
+      ],
+      "aliases": [
+        "Ebadd9"
+      ],
+      "variants": [
+        {
+          "id": "dsharpadd9-a-shape-6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            6,
+            8
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            1,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "E",
+            "G",
+            "D#"
+          ],
+          "source": "D#add9 A-form type"
+        }
+      ]
+    },
+    {
+      "symbol": "D#9",
+      "bookSymbol": "D#9",
+      "root": "D#",
+      "quality": "major",
+      "family": "9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [
+        "Eb9"
+      ],
+      "variants": [
+        {
+          "id": "dsharp9-shape-11",
+          "frets": [
+            11,
+            10,
+            11,
+            10,
+            11,
+            11
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 10,
+          "notes": [
+            "D#",
+            "G",
+            "C#",
+            "F",
+            "A#",
+            "D#"
+          ],
+          "source": "D#9 funk/blues-grep"
+        }
+      ]
+    },
+    {
+      "symbol": "D#11",
+      "bookSymbol": "D#11",
+      "root": "D#",
+      "quality": "major",
+      "family": "11",
+      "formulaDegrees": [
+        "1",
+        "5",
+        "b7",
+        "9",
+        "11"
+      ],
+      "aliases": [
+        "Eb11"
+      ],
+      "variants": [
+        {
+          "id": "dsharp11-shape-11",
+          "frets": [
+            11,
+            11,
+            11,
+            11,
+            11,
+            13
+          ],
+          "fingers": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            4
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "F",
+            "G#",
+            "D#"
+          ],
+          "source": "D#11 cluster-voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D#13",
+      "bookSymbol": "D#13",
+      "root": "D#",
+      "quality": "major",
+      "family": "13",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [
+        "Eb13"
+      ],
+      "variants": [
+        {
+          "id": "dsharp13-shape-11",
+          "frets": [
+            11,
+            10,
+            11,
+            11,
+            13,
+            13
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            3,
+            4,
+            4
+          ],
+          "position": 10,
+          "notes": [
+            "D#",
+            "G",
+            "C#",
+            "F",
+            "C",
+            "F"
+          ],
+          "source": "Standard D#13-type voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7b9",
+      "bookSymbol": "D#7(b9)",
+      "root": "D#",
+      "quality": "major",
+      "family": "7b9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "b9"
+      ],
+      "aliases": [
+        "Eb7b9"
+      ],
+      "variants": [
+        {
+          "id": "dsharp7b9-shape-11",
+          "frets": [
+            11,
+            10,
+            11,
+            10,
+            11,
+            10
+          ],
+          "fingers": [
+            2,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 10,
+          "notes": [
+            "D#",
+            "G",
+            "C#",
+            "E",
+            "A",
+            "C#"
+          ],
+          "source": "D#7(b9) jazz-voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7#9",
+      "bookSymbol": "D#7(#9)",
+      "root": "D#",
+      "quality": "major",
+      "family": "7#9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "b7",
+        "#9"
+      ],
+      "aliases": [
+        "Eb7#9"
+      ],
+      "variants": [
+        {
+          "id": "dsharp7#9-shape-11",
+          "frets": [
+            11,
+            13,
+            11,
+            12,
+            14,
+            -1
+          ],
+          "fingers": [
+            1,
+            3,
+            1,
+            2,
+            4,
+            0
+          ],
+          "position": 11,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "G",
+            "F"
+          ],
+          "source": "D#7(#9) Hendrix-type voicing"
+        }
+      ]
+    },
+    {
+      "symbol": "Daug",
+      "bookSymbol": "D+",
+      "root": "D",
+      "quality": "aug",
+      "family": "aug",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5"
+      ],
+      "aliases": [
+        "D+",
+        "Daug"
+      ],
+      "variants": [
+        {
+          "id": "daug-open-x00332",
+          "frets": [
+            -1,
+            -1,
+            0,
+            3,
+            3,
+            2
+          ],
+          "fingers": [
+            0,
+            0,
+            0,
+            3,
+            4,
+            2
+          ],
+          "position": 2,
+          "notes": [
+            "D",
+            "Bb",
+            "D",
+            "F#"
+          ],
+          "source": "Vanlig Daug-voicing (xx0332)"
+        },
+        {
+          "id": "daug-a-shape-5",
+          "frets": [
+            -1,
+            5,
+            4,
+            3,
+            3,
+            2
+          ],
+          "fingers": [
+            0,
+            4,
+            3,
+            1,
+            2,
+            1
+          ],
+          "position": 2,
+          "notes": [
+            "D",
+            "F#",
+            "Bb",
+            "D",
+            "F#"
+          ],
+          "source": "Caug-form transponert til D (A-form root på 5. streng)"
+        }
+      ]
+    },
+    {
+      "symbol": "D5",
+      "bookSymbol": "D5",
+      "root": "D",
+      "quality": "major",
+      "family": "5",
+      "formulaDegrees": [
+        "1",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-5-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            7,
+            -1,
+            -1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            0,
+            0
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "D"
+          ],
+          "source": "D5 Power chord (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D6/9",
+      "bookSymbol": "D6/9",
+      "root": "D",
+      "quality": "major",
+      "family": "69",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-69-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            7,
+            7,
+            9
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "D",
+            "F#",
+            "C#"
+          ],
+          "source": "D6/9 6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm6/9",
+      "bookSymbol": "Dm6/9",
+      "root": "D",
+      "quality": "minor",
+      "family": "m69",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-m69-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            6,
+            7,
+            8
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C#",
+            "F#",
+            "C"
+          ],
+          "source": "Dm6/9 m6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm7(b5)",
+      "bookSymbol": "Dm7(b5)",
+      "root": "D",
+      "quality": "minor",
+      "family": "m7b5",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-m7b5-a5",
+          "frets": [
+            -1,
+            5,
+            6,
+            5,
+            6,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "G#",
+            "C",
+            "F",
+            "A"
+          ],
+          "source": "Dm7(b5) m7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dmaj9",
+      "bookSymbol": "Dmaj9",
+      "root": "D",
+      "quality": "major",
+      "family": "maj9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-maj9-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            6,
+            7,
+            9
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C#",
+            "F#",
+            "C#"
+          ],
+          "source": "Dmaj9 maj9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "Dm9",
+      "bookSymbol": "Dm9",
+      "root": "D",
+      "quality": "minor",
+      "family": "m9",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-m9-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            6,
+            8
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            2,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F",
+            "C"
+          ],
+          "source": "Dm9 m9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D7sus4",
+      "bookSymbol": "D7sus4",
+      "root": "D",
+      "quality": "major",
+      "family": "7sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-7sus4-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            8,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "G",
+            "A"
+          ],
+          "source": "D7sus4 7sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D7sus2",
+      "bookSymbol": "D7sus2",
+      "root": "D",
+      "quality": "major",
+      "family": "7sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-7sus2-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            7,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "F#",
+            "A"
+          ],
+          "source": "D7sus2 7sus2 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D9sus4",
+      "bookSymbol": "D9sus4",
+      "root": "D",
+      "quality": "major",
+      "family": "9sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-9sus4-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            8,
+            7
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "G",
+            "B"
+          ],
+          "source": "D9sus4 9sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D13sus4",
+      "bookSymbol": "D13sus4",
+      "root": "D",
+      "quality": "major",
+      "family": "13sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-13sus4-a5",
+          "frets": [
+            -1,
+            5,
+            7,
+            5,
+            8,
+            9
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A",
+            "C",
+            "G",
+            "C#"
+          ],
+          "source": "D13sus4 13sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D7(b5)",
+      "bookSymbol": "D7(b5)",
+      "root": "D",
+      "quality": "major",
+      "family": "7b5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-7b5-a5",
+          "frets": [
+            -1,
+            5,
+            6,
+            5,
+            7,
+            5
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "G#",
+            "C",
+            "F#",
+            "A"
+          ],
+          "source": "D7(b5) 7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D7(#5)",
+      "bookSymbol": "D7(#5)",
+      "root": "D",
+      "quality": "major",
+      "family": "7#5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "d-7#5-a5",
+          "frets": [
+            -1,
+            5,
+            8,
+            5,
+            7,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            4,
+            1,
+            3,
+            2
+          ],
+          "position": 5,
+          "notes": [
+            "D",
+            "A#",
+            "C",
+            "F#",
+            "A#"
+          ],
+          "source": "D7(#5) 7#5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#5",
+      "bookSymbol": "D#5",
+      "root": "D#",
+      "quality": "major",
+      "family": "5",
+      "formulaDegrees": [
+        "1",
+        "5"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-5-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            -1,
+            -1
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            0,
+            0
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D#"
+          ],
+          "source": "D#5 Power chord (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#6/9",
+      "bookSymbol": "D#6/9",
+      "root": "D#",
+      "quality": "major",
+      "family": "69",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-69-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            8,
+            8,
+            10
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            4,
+            4,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D#",
+            "G",
+            "D"
+          ],
+          "source": "D#6/9 6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m6/9",
+      "bookSymbol": "D#m6/9",
+      "root": "D#",
+      "quality": "minor",
+      "family": "m69",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "6",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-m69-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            7,
+            8,
+            9
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D",
+            "G",
+            "C#"
+          ],
+          "source": "D#m6/9 m6/9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m7(b5)",
+      "bookSymbol": "D#m7(b5)",
+      "root": "D#",
+      "quality": "minor",
+      "family": "m7b5",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-m7b5-a6",
+          "frets": [
+            -1,
+            6,
+            7,
+            6,
+            7,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A",
+            "C#",
+            "F#",
+            "A#"
+          ],
+          "source": "D#m7(b5) m7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#maj9",
+      "bookSymbol": "D#maj9",
+      "root": "D#",
+      "quality": "major",
+      "family": "maj9",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-maj9-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            7,
+            8,
+            10
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            2,
+            4,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "D",
+            "G",
+            "D"
+          ],
+          "source": "D#maj9 maj9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#m9",
+      "bookSymbol": "D#m9",
+      "root": "D#",
+      "quality": "minor",
+      "family": "m9",
+      "formulaDegrees": [
+        "1",
+        "b3",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-m9-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            6,
+            7,
+            9
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            2,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "F#",
+            "C#"
+          ],
+          "source": "D#m9 m9 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7sus4",
+      "bookSymbol": "D#7sus4",
+      "root": "D#",
+      "quality": "major",
+      "family": "7sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-7sus4-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            6,
+            9,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "G#",
+            "A#"
+          ],
+          "source": "D#7sus4 7sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7sus2",
+      "bookSymbol": "D#7sus2",
+      "root": "D#",
+      "quality": "major",
+      "family": "7sus2",
+      "formulaDegrees": [
+        "1",
+        "2",
+        "5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-7sus2-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            6,
+            8,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "G",
+            "A#"
+          ],
+          "source": "D#7sus2 7sus2 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#9sus4",
+      "bookSymbol": "D#9sus4",
+      "root": "D#",
+      "quality": "major",
+      "family": "9sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-9sus4-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            6,
+            9,
+            8
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "G#",
+            "C"
+          ],
+          "source": "D#9sus4 9sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#13sus4",
+      "bookSymbol": "D#13sus4",
+      "root": "D#",
+      "quality": "major",
+      "family": "13sus4",
+      "formulaDegrees": [
+        "1",
+        "4",
+        "5",
+        "b7",
+        "9",
+        "13"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-13sus4-a6",
+          "frets": [
+            -1,
+            6,
+            8,
+            6,
+            9,
+            10
+          ],
+          "fingers": [
+            0,
+            1,
+            3,
+            1,
+            4,
+            4
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A#",
+            "C#",
+            "G#",
+            "D"
+          ],
+          "source": "D#13sus4 13sus4 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7(b5)",
+      "bookSymbol": "D#7(b5)",
+      "root": "D#",
+      "quality": "major",
+      "family": "7b5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "b5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-7b5-a6",
+          "frets": [
+            -1,
+            6,
+            7,
+            6,
+            8,
+            6
+          ],
+          "fingers": [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "A",
+            "C#",
+            "G",
+            "A#"
+          ],
+          "source": "D#7(b5) 7b5 (A-root)"
+        }
+      ]
+    },
+    {
+      "symbol": "D#7(#5)",
+      "bookSymbol": "D#7(#5)",
+      "root": "D#",
+      "quality": "major",
+      "family": "7#5",
+      "formulaDegrees": [
+        "1",
+        "3",
+        "#5",
+        "b7"
+      ],
+      "aliases": [],
+      "variants": [
+        {
+          "id": "dsharp-7#5-a6",
+          "frets": [
+            -1,
+            6,
+            9,
+            6,
+            8,
+            7
+          ],
+          "fingers": [
+            0,
+            1,
+            4,
+            1,
+            3,
+            2
+          ],
+          "position": 6,
+          "notes": [
+            "D#",
+            "B",
+            "C#",
+            "G",
+            "B"
+          ],
+          "source": "D#7(#5) 7#5 (A-root)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rockeskolen – Verktøyoversikt</title>
+
+<style>
+:root{
+  --bg1:#0c1220;
+  --bg2:#111827;
+  --card:#1f2937;
+  --card-border:rgba(255,255,255,.08);
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --accent1:#f43f5e;
+  --accent2:#38bdf8;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:var(--text);
+}
+
+.wrapper{
+  max-width:1100px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+h1{
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+}
+
+.app-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px 20px;
+  background:var(--card);
+  border-radius:18px;
+  border:1px solid var(--card-border);
+  text-decoration:none;
+  color:var(--text);
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.app-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.15);
+  box-shadow:0 18px 38px rgba(0,0,0,.35);
+}
+
+.icon{
+  font-size:46px;
+  margin-bottom:14px;
+}
+
+.app-title{
+  font-weight:600;
+  font-size:18px;
+}
+
+.footer-note{
+  margin-top:50px;
+  font-size:14px;
+  color:var(--muted);
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <h1>Rockeskolen – Verktøyoversikt</h1>
+  <div class="subtitle">Intern oversikt for undervisning og presentasjon</div>
+
+  <div class="grid">
+
+    <a class="app-card" href="https://rockeskolen.com/tools/tuners/" target="_blank">
+      <div class="icon">🎵</div>
+      <div class="app-title">Tuners</div>
+    </a>
+
+    <a class="app-card" href="https://www.rockeskolen.com/tools/instruments/piano_playable.php" target="_blank">
+      <div class="icon">🎹</div>
+      <div class="app-title">Playable Piano</div>
+    </a>
+
+    <a class="app-card" href="https://www.rockeskolen.com/tools/chords/guitar/" target="_blank">
+      <div class="icon">🎸</div>
+      <div class="app-title">Guitar Chords</div>
+    </a>
+
+    <a class="app-card" href="https://www.rockeskolen.com/tools/chords/piano/" target="_blank">
+      <div class="icon">🎹</div>
+      <div class="app-title">Piano Chords</div>
+    </a>
+
+    <a class="app-card" href="https://www.rockeskolen.com/tools/scales/piano/" target="_blank">
+      <div class="icon">🎼</div>
+      <div class="app-title">Piano Scales</div>
+    </a>
+
+    <a class="app-card" href="https://rockeskolen.com/tools/circles/fifths/" target="_blank">
+      <div class="icon">⭕</div>
+      <div class="app-title">Circle of Fifths</div>
+    </a>
+
+    <a class="app-card" href="https://chordlink.net/beta/chordprog/" target="_blank">
+      <div class="icon">🧩</div>
+      <div class="app-title">Chord Progression Tool (Beta)</div>
+    </a>
+
+    <a class="app-card" href="https://www.rockeskolen.com/tools/notes/generate.php" target="_blank">
+      <div class="icon">📝</div>
+      <div class="app-title">Note Generator</div>
+    </a>
+
+    <a class="app-card" href="https://www.rockeskolen.com/tools/notes/embed.php?mode=scale&oct=4&tempo=90&root=C&type=major&output=notation" target="_blank">
+      <div class="icon">📄</div>
+      <div class="app-title">Scale Notation Tool</div>
+    </a>
+<a class="app-card" href="https://chordlink.net/beta/solfeggio/" target="_blank">
+  <div class="icon">☀️</div>
+  <div class="app-title">Solfeggio Trainer (Beta)</div>
+</a>
+<a class="app-card" href="https://chordlink.net/beta/noted/" target="_blank">
+  <div class="icon">🎵</div>
+  <div class="app-title">Noter on Demand</div>
+</a>
+<a class="app-card" href="https://www.rockeskolen.com/tools/chords/notes/index.php?chord=Emaj7&mode=key" target="_blank">
+  <div class="icon">🎵</div>
+  <div class="app-title">Akkordvisning, noter og keys</div>
+</a>
+
+
+
+  </div>
+
+
+
+
+  <div class="footer-note">
+    ChordLink by Rockeskolen (C) 2026
+  </div>
+</div>
+
+</body>
+</html>

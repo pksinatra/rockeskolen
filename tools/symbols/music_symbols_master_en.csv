@@ -1,0 +1,146 @@
+Symbol,Name,Explanation
+𝅝,Whole note,Note lasting four beats in common time
+𝅗𝅥,Half note,Note lasting two beats in common time
+♩,Quarter note,Note lasting one beat in common time
+♪,Eighth note,Note lasting half a beat in common time
+♫,Beamed eighth notes,Two connected eighth notes
+♬,Beamed sixteenth notes,Four connected sixteenth notes
+𝅘𝅥𝅯,Sixteenth note,Note lasting a quarter of a beat in common time
+𝅘𝅥𝅰,Thirty second note,Note shorter than a sixteenth note
+𝅘𝅥𝅱,Sixty fourth note,Very short note value
+𝅘𝅥𝅲,Hundred twenty eighth note,Extremely short note value used rarely
+𝅯,Whole rest,Silence lasting four beats in common time
+𝅮,Half rest,Silence lasting two beats in common time
+𝅭,Quarter rest,Silence lasting one beat in common time
+𝅰,Eighth rest,Silence lasting half a beat in common time
+𝅱,Sixteenth rest,Silence lasting a quarter of a beat in common time
+𝅲,Thirty second rest,Short silence value
+𝅳,Sixty fourth rest,Very short silence value
+𝄴,Multi measure rest,Rest symbol covering several measures
+𝄞,Treble clef,Clef that locates G above middle C on the second line of the staff
+𝄢,Bass clef,Clef that locates F below middle C on the fourth line of the staff
+𝄡,Alto clef,Clef that locates middle C on the third line of the staff
+𝄣,Tenor clef,Clef that locates middle C on the fourth line of the staff
+𝄜,Percussion clef,Clef used for unpitched percussion notation
+𝄝,Neutral clef,Clef indicating rhythmic or non pitched notation
+♯,Sharp,Raises the pitch by one semitone
+♭,Flat,Lowers the pitch by one semitone
+♮,Natural,Cancels a previous sharp or flat
+𝄪,Double sharp,Raises the pitch by two semitones
+𝄫,Double flat,Lowers the pitch by two semitones
+𝄈,Common time,Shorthand symbol for the 4 4 time signature
+𝄉,Cut time,Shorthand symbol for the 2 2 time signature
+𝄀,Barline,Divides the staff into measures
+𝄁,Double barline,Marks the end of a section or change in the music
+𝄂,Final barline,Indicates the end of a piece or movement
+𝄃,Reverse final barline,Marks a strong beginning or entry point
+𝄆,Start repeat,Marks the beginning of a repeated section
+𝄇,End repeat,Marks the end of a repeated section
+%,Percent repeat sign,Repeat the previous bar
+%%,Double percent repeat,Repeat the previous two bars
+𝄐,Fermata,Hold the note or rest longer than its written value
+𝄑,Long fermata,Hold significantly longer than a normal fermata
+𝄒,Very long fermata,Hold extremely long often freely
+𝄓,Short fermata,Hold only slightly longer than normal value
+>,Accent,Play the note with a stronger attack
+^,Marcato,Very strong pointed accent on the note
+.,Staccato,Play the note short and detached
+–,Tenuto,Play the note full value or slightly stressed
+∧,Staccatissimo,Play the note very short and detached
+𝄭,Slur,Curved line connecting notes to be played smoothly
+𝄮,Tie,Curved line joining two notes of the same pitch to extend duration
+slur,Slur text,Describes a curved line connecting notes legato
+tie,Tie text,Describes a curved line joining same pitch notes to extend value
+~,Trill sign,Indicates rapid alternation between the written note and a neighbor
+tr,Trill text,Text indication for a trill ornament
+𝆞,Trill symbol,Alternate engraved trill marking
+𝆗,Turn,Ornament that circles around the main note
+𝆘,Inverted turn,Turn ornament in inverted order
+𝆙,Mordent,Single rapid alternation with the lower neighbor note
+𝆚,Inverted mordent,Single rapid alternation with the upper neighbor note
+𝆛,Schleifer,Slide or scoop from below into a note
+𝆓,Breath mark,Indicates a small pause or breath
+𝆔,Caesura,Brief complete pause marked like railroad tracks
+p,Piano,Play softly
+pp,Pianissimo,Very soft dynamic
+ppp,Pianississimo,Extremely soft dynamic
+f,Forté,Play loudly
+ff,Fortissimo,Very loud dynamic
+fff,Fortississimo,Extremely loud dynamic
+mf,Mezzo forte,Moderately loud dynamic
+mp,Mezzo piano,Moderately soft dynamic
+sfz,Sforzando,Sudden strong accent on a single note or chord
+sf,Sforzando short,Sudden strong accent on note or chord
+sffz,Sforzato fortissimo,Very strong and sudden accent
+rfz,Rinforzando,Reinforced accent often for a short passage
+sfp,Sforzando piano,Strong attack then immediately soft
+sfpp,Sforzando pianissimo,Strong attack then very soft
+n,niente,Dynamics fade to or from almost nothing
+subito p,Subito piano,Suddenly soft after a louder passage
+subito f,Subito forte,Suddenly loud after a softer passage
+cresc.,Crescendo text,Gradually get louder indication in text
+decresc.,Decrescendo text,Gradually get softer indication in text
+<,Crescendo hairpin,Graphic sign to gradually get louder
+>,Decrescendo hairpin,Graphic sign to gradually get softer
+rit.,Ritardando,Gradually slow down the tempo
+rall.,Rallentando,Broad gradual slowing down
+accel.,Accelerando,Gradually speed up the tempo
+stringendo,Stringendo,Press forward with increasing tempo
+a tempo,A tempo,Return to the previous tempo
+rubato,Rubato,Use flexible tempo for expression
+meno mosso,Meno mosso,Less movement meaning slower
+più mosso,Più mosso,More movement meaning faster
+Largo,Largo,Very slow and broad tempo
+Adagio,Adagio,Slow relaxed tempo
+Andante,Andante,Moderately slow at a walking pace
+Moderato,Moderato,Moderate tempo
+Allegro,Allegro,Fast and lively tempo
+Presto,Presto,Very fast tempo
+Prestissimo,Prestissimo,Extremely fast tempo
+𝄋,Coda,Target sign for jumping to a final or special ending section
+𝄉,Segno,Sign used with Dal Segno repeats
+D.S.,Dal Segno,Go back to the Segno sign
+D.C.,Da Capo,Go back to the beginning of the piece
+Fine,Fine,Indicates the place where the piece ends after a repeat
+V.S.,Volti subito,Turn the page quickly
+8va,Ottava alta,Play passage one octave higher than written
+8vb,Ottava bassa,Play passage one octave lower than written
+15ma,Quindicesima alta,Play passage two octaves higher than written
+15mb,Quindicesima bassa,Play passage two octaves lower than written
+Δ,Major seventh triangle,Symbol for a major seventh chord in jazz notation
+o,Diminished chord symbol,Symbol indicating diminished triad or seventh
+ø,Half diminished symbol,Symbol for minor seven flat five chords
+sus,Suspended chord marker,Indicates suspended chord where the third is replaced
+add,Added tone marker,Indicates an added scale degree in a chord
+alt,Altered chord marker,Indicates altered chord tensions in jazz harmony
+no,No tone marker,Indicates a specific chord tone is omitted
++,Augmented marker,Indicates augmented fifth or similar alteration
+x,Cross notehead,Used for unpitched or special sounds like percussion or spoken
+◇,Diamond notehead,Used for harmonics and special tone colors
+■,Square notehead,Used in some percussion or contemporary notation
+⬤,Black circle notehead,Alternative filled notehead in some scores
+Pizz.,Pizzicato,Pluck the string instead of bowing
+Arco,Arco,Play with the bow after pizzicato
+Bartok Pizz.,Bartok pizzicato,Very strong pizzicato snapping the string to the fingerboard
+sul tasto,Sul tasto,Play over the fingerboard for a softer tone
+sul pont.,Sul ponticello,Play near the bridge for bright nasal tone
+con sord.,Con sordino,Play with a mute
+senza sord.,Senza sordino,Play without mute
+col legno,Col legno,Strike the string with the wood of the bow
+trem.,Tremolo,Rapid repetition or alternation for a trembling effect
+Ped.,Pedal mark,Indicates that the sustain pedal should be pressed
+*,Pedal release,Indicates the sustain pedal should be released
+una corda,Una corda,Press the soft pedal on piano for a quieter tone
+tre corde,Tre corde,Release the soft pedal and return to normal tone
+( ),Parentheses around note,Indicate optional or editorial note
+[ ],Brackets,Used for editorial notes or grouping
+{ },Brace,Connects multiple staves for one instrument or system
+𝄞𝄢,Grand staff bracket,Represents treble and bass clef bracket for piano system
+rim.,Rimshot,Strike rim and head of drum together
+cross stick,Cross stick,Stick laid across drum and struck for a click sound
+open,Open articulation,Play cymbal or hi hat open
+choked,Choked cymbal,Grab cymbal after strike for short sound
+GM,General MIDI mark,Indicates use of General MIDI standard in some contexts
+M.M.,Maelzels metronome,Indicates metronome marking for tempo
+♩ = 60,Metronome mark example,Quarter note equals sixty beats per minute
+sim.,Simile,Continue in the same way as previously indicated

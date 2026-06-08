@@ -1,0 +1,110 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 10px;
+  background: linear-gradient(135deg, #0c1220, #111827);
+  color: #e5e7eb;
+}
+.white-key {
+  width: 48px;
+  height: 140px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e7eb 100%);
+  border: 1px solid #d1d5db;
+  border-radius: 0 0 8px 8px;
+  position: relative;
+}
+
+.black-key {
+  position: absolute;
+  top: 0;
+  width: 32px;
+  height: 90px;
+  background: linear-gradient(to bottom, #111 0%, #000 100%);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.8);
+  z-index: 5;
+}
+
+.active-white {
+  background: linear-gradient(to bottom, #f43f5e, #be123c);
+  box-shadow: 0 0 20px rgba(244,63,94,0.6);
+}
+
+.active-black {
+  background: linear-gradient(to bottom, #f43f5e, #9f1239);
+  box-shadow: 0 0 20px rgba(244,63,94,0.7);
+}
+
+.keyboard {
+  position: relative;
+  display: inline-block;
+  height: 140px;
+}
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.notation-row {
+  margin-bottom: 20px;
+}
+
+.notation-wrapper {
+  width: 320px;
+  background: white;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.notation-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.piano-row {
+  margin-bottom: 10px;
+}
+
+#piano {
+  display: inline-block;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+}
+
+.button-row {
+  margin-top: 20px;
+}
+
+.chord-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+#toggleNotation {
+  background: #111827;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+#toggleNotation:hover {
+  background: #1f2937;
+}

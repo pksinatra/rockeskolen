@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Pauseverdier – oversikt</title>
+<script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+  }
+  #staff {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<div id="staff"></div>
+
+<script>
+const VF = Vex.Flow;
+
+const div = document.getElementById("staff");
+const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+renderer.resize(700, 520);
+
+const ctx = renderer.getContext();
+
+/**
+ * Tegner én linje med pauser
+ * @param {number} y - vertikal posisjon
+ * @param {Array} notes - VexFlow-noter (pauser)
+ * @param {number} inset - innrykk fra G-nøkkel
+ * @param {number} formatWidth - bredde for Formatter (styrer høyremarg)
+ */
+function drawLine(y, notes, inset, formatWidth) {
+  const stave = new VF.Stave(20, y, 660);
+  stave.addClef("treble").addTimeSignature("4/4");
+
+  // 👇 innrykk per linje
+  stave.setNoteStartX(stave.getNoteStartX() + inset);
+
+  stave.setContext(ctx).draw();
+
+  const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
+  voice.addTickables(notes);
+
+  new VF.Formatter()
+    .joinVoices([voice])
+    .format([voice], formatWidth);
+
+  voice.draw(ctx, stave);
+}
+
+// 1 helpause (innrykk 240)
+drawLine(
+  20,
+  [
+    new VF.StaveNote({ keys:["b/4"], duration:"wr" })
+  ],
+  260,
+  400
+);
+
+// 2 halvpauser (innrykk 160)
+drawLine(
+  130,
+  [
+    new VF.StaveNote({ keys:["b/4"], duration:"hr" }),
+    new VF.StaveNote({ keys:["b/4"], duration:"hr" })
+  ],
+  160,
+  400
+);
+
+// 4 firedelspauser (innrykk 120)
+drawLine(
+  220,
+  [
+    new VF.StaveNote({ keys:["b/4"], duration:"qr" }),
+    new VF.StaveNote({ keys:["b/4"], duration:"qr" }),
+    new VF.StaveNote({ keys:["b/4"], duration:"qr" }),
+    new VF.StaveNote({ keys:["b/4"], duration:"qr" })
+  ],
+  100,
+  440
+);
+
+// 8 åttendedelspauser (innrykk 30)
+drawLine(
+  320,
+  Array.from({ length: 8 }, () =>
+    new VF.StaveNote({ keys:["b/4"], duration:"8r" })
+  ),
+  70,
+  460
+);
+
+// 16 sekstendedelspauser
+// innrykk 30 + redusert bredde for høyre "padding"
+drawLine(
+  420,
+  Array.from({ length: 16 }, () =>
+    new VF.StaveNote({ keys:["b/4"], duration:"16r" })
+  ),
+  30,
+  480
+);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+Symbol,Name,Explanation
+𝅝,Helnote,Note med varighet på fire slag i vanlig takt
+𝅗𝅥,Halvnote,Note med varighet på to slag
+♩,Firedelsnote,Note med varighet på ett slag
+♪,Åttendedelsnote,Note med varighet på et halvt slag
+𝅘𝅥𝅯,Sekstendedelsnote,Note med varighet på en firedel av et slag
+𝅘𝅥𝅰,Trettitoendelsnote,Note med svært kort varighet
+𝅘𝅥𝅱,Sekstifjerdedelsnote,Note med svært kort varighet brukt sjelden
+
+𝅯,Helpause,Pausetegn med varighet på fire slag
+𝅮,Halvpause,Pausetegn med varighet på to slag
+𝅭,Firedelspause,Pausetegn med varighet på ett slag
+𝅰,Åttendedelspause,Pausetegn med varighet på et halvt slag
+𝅱,Sekstendedelspause,Pausetegn med kort varighet
+𝄴,Flertaktspause,Pausetegn som dekker flere takter
+
+𝄞,G-nøkkel,Plasserer tonen g over midten på notelinjen
+𝄢,F-nøkkel,Plasserer tonen f under midten på notelinjen
+𝄡,C-nøkkel,Plasserer tonen c på angitt linje
+𝄜,Slagnøkkel,Brukes for rytmeinstrumenter uten fast tonehøyde
+
+♯,Kryss,Hever tonen ett halvt trinn
+♭,B,Laver tonen ett halvt trinn
+♮,Oppløsningstegn,Opphever tidligere kryss eller b
+𝄪,Dobbeltkryss,Hever tonen to halve trinn
+𝄫,Dobbelt-b,Laver tonen to halve trinn
+
+𝄀,Enkel taktstrek,Deler notelinjen inn i takter
+𝄁,Dobbel taktstrek,Markerer slutten på en seksjon
+𝄂,Sluttstrek,Markerer slutten på stykket
+𝄆,Gjenta start,Starter en gjentakelse
+𝄇,Gjenta slutt,Avslutter en gjentakelse
+
+𝄐,Fermate,Hold tonen eller pausen lengre enn notert verdi
+
+.,Staccato,Spill tonen kort og adskilt
+–,Tenuto,Spill tonen med full lengde
+>,Aksent,Spill tonen med ekstra trykk
+^,Marcato,Spill tonen svært markert
+𝄭,Bue,Spill tonene bundet og jevnt
+𝄮,Bindebue,Binder sammen toner med samme tonehøyde
+
+~,Trill,Spill rask veksling mellom to nabotoner
+𝆗,Omvending,Ornament som beveger seg rundt hovedtonen
+𝆙,Mordent,Rask veksling med tonen under
+𝆚,Omvendt mordent,Rask veksling med tonen over
+
+p,Piano,Spill svakt
+pp,Pianissimo,Spill svært svakt
+f,Forte,Spill sterkt
+ff,Fortissimo,Spill svært sterkt
+mf,Mezzoforte,Middels sterkt
+mp,Mezzopiano,Middels svakt
+<,Crescendo,Gradvis sterkere
+>,Decrescendo,Gradvis svakere
+sfz,Sforzando,Plutselig kraftig aksent
+
+rit.,Ritardando,Gradvis saktere tempo
+accel.,Accelerando,Gradvis raskere tempo
+a tempo,A tempo,Gå tilbake til opprinnelig tempo
+
+𝄋,Coda,Hopp til avsluttende del
+𝄉,Segno,Merke brukt ved gjentakelser
+D.C.,Da capo,Gå tilbake til starten
+D.S.,Dal segno,Gå tilbake til segno-merket
+Fine,Fine,Markerer avslutning

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Takt – 4 tomme takter (kun taktstreker)</title>
+<script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+<style>
+  body { margin: 0; background:#fff; }
+  #staff { width: 100%; max-width: 700px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div id="staff"></div>
+
+<script>
+const VF = Vex.Flow;
+
+const div = document.getElementById("staff");
+const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+renderer.resize(700, 160);
+
+const ctx = renderer.getContext();
+
+// 4 tomme takter = 4 stave-segmenter ved siden av hverandre (ingen noter/pauser i det hele tatt)
+const x0 = 20;
+const y0 = 40;
+const h  = 160;
+
+const totalWidth = 660;
+const m = 4;
+const w = Math.floor(totalWidth / m); // lik bredde per takt
+
+for (let i = 0; i < m; i++) {
+  const x = x0 + i * w;
+  const isFirst = i === 0;
+  const isLast  = i === m - 1;
+
+  const stave = new VF.Stave(x, y0, w);
+
+  if (isFirst) {
+    stave.addClef("treble").addTimeSignature("4/4");
+    // første takt: vanlig venstre strek
+    stave.setBegBarType(VF.Barline.type.SINGLE);
+  } else {
+    // indre takter: vi vil bare ha taktstrek i starten (grensen mellom takter)
+    stave.setBegBarType(VF.Barline.type.SINGLE);
+  }
+
+  // sluttstrek per takt
+  if (isLast) {
+    stave.setEndBarType(VF.Barline.type.END); // dobbel avslutning
+  } else {
+    stave.setEndBarType(VF.Barline.type.SINGLE);
+  }
+
+  stave.setContext(ctx).draw();
+}
+</script>
+
+</body>
+</html>

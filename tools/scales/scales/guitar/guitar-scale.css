@@ -1,0 +1,31 @@
+body {
+  background: #0c1220;
+  color: white;
+  font-family: system-ui, sans-serif;
+}
+
+#guitar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.string {
+  display: flex;
+}
+
+.fret {
+  width: 42px;
+  height: 30px;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #222;
+}
+
+.in-scale {
+  background: rgba(56,189,248,0.7);
+  border-radius: 50%;
+}
+
+.root {
+  background: #f43f5e;
+}

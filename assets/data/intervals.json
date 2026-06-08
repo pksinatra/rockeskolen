@@ -1,0 +1,72 @@
+{
+  "1": {
+    "name": "Perfect unison",
+    "abbreviation": "P1",
+    "semitones": 0
+  },
+  "b2": {
+    "name": "Minor second",
+    "abbreviation": "m2",
+    "semitones": 1
+  },
+  "2": {
+    "name": "Major second",
+    "abbreviation": "M2",
+    "semitones": 2
+  },
+  "b3": {
+    "name": "Minor third",
+    "abbreviation": "m3",
+    "semitones": 3
+  },
+  "3": {
+    "name": "Major third",
+    "abbreviation": "M3",
+    "semitones": 4
+  },
+  "4": {
+    "name": "Perfect fourth",
+    "abbreviation": "P4",
+    "semitones": 5
+  },
+  "#4": {
+    "name": "Augmented fourth",
+    "abbreviation": "A4",
+    "semitones": 6
+  },
+  "b5": {
+    "name": "Diminished fifth",
+    "abbreviation": "d5",
+    "semitones": 6
+  },
+  "5": {
+    "name": "Perfect fifth",
+    "abbreviation": "P5",
+    "semitones": 7
+  },
+  "#5": {
+    "name": "Augmented fifth",
+    "abbreviation": "A5",
+    "semitones": 8
+  },
+  "6": {
+    "name": "Major sixth",
+    "abbreviation": "M6",
+    "semitones": 9
+  },
+  "b7": {
+    "name": "Minor seventh",
+    "abbreviation": "m7",
+    "semitones": 10
+  },
+  "7": {
+    "name": "Major seventh",
+    "abbreviation": "M7",
+    "semitones": 11
+  },
+  "8": {
+    "name": "Octave",
+    "abbreviation": "P8",
+    "semitones": 12
+  }
+}

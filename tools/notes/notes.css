@@ -1,0 +1,65 @@
+/* notes.css – lokal styling for notes-embed */
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  background:#ffffff;
+}
+
+}
+/* Noter / piano-visning */
+#notation {
+  margin-bottom: 2px; /* 👈 var 6–8px før */
+    background:#ffffff;
+}
+
+/* Kontrollknapper */
+#controls {
+  display: flex;
+  justify-content: flex-start; /* 👈 venstre */
+  gap: 6px;
+  margin: 2px 0 6px;           /* 👈 mindre luft */
+  padding-left: 10px;          /* 👈 litt innrykk */
+}
+
+#controls button {
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+#controls button:hover {
+  background: #f3f3f3;
+}
+
+#controls button:active {
+  transform: translateY(1px);
+}
+#notation svg {
+  display: block;   /* fjerner inline-gap */
+  margin: 0;
+  padding: 0;
+}
+
+
+  #pianoroll-panel {
+    width: 100%;
+    min-height: 340px;
+  }
+  #roll {
+    width: 100%;
+    height: 320px;
+    display: block;
+  }
+
+
+  
