@@ -150,6 +150,47 @@ function rs_articles(): array {
     ];
 }
 
+function rs_portal_sections(): array {
+    return [
+        [
+            'title' => 'Skolebenken',
+            'eyebrow' => 'Musikkteori',
+            'url' => 'https://portal.rockeskolen.com/musikkteori',
+            'summary' => 'Begreper, byggesteiner og forklaringer som gjør musikk lettere å bruke i praksis.',
+            'items' => [
+                ['title' => 'Noter', 'summary' => 'Hvordan musikk skrives og måles i tid.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/34'],
+                ['title' => 'Skalaer', 'summary' => 'Byggesteinene i all musikk.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/35'],
+                ['title' => 'Intervaller', 'summary' => 'Avstanden mellom toner, og nøkkelen til klang og uttrykk.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/36'],
+                ['title' => 'Akkorder og harmoni', 'summary' => 'Musikkens stemning, farge og fundament.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/37'],
+            ],
+        ],
+        [
+            'title' => 'Komponister',
+            'eyebrow' => 'Musikkhistorie',
+            'url' => 'https://portal.rockeskolen.com/komponister',
+            'summary' => 'Fra gregoriansk sang og barokk til elektronisk lyd, minimalisme og moderne klangverden.',
+            'items' => [
+                ['title' => 'Johann Sebastian Bach', 'summary' => 'Teknisk kompleksitet, dyp uttrykkskraft og enorm betydning for musikkteori.', 'url' => 'https://portal.rockeskolen.com/node/190'],
+                ['title' => 'Antonio Vivaldi', 'summary' => 'Barokk energi, solokonserter og De fire årstider.', 'url' => 'https://portal.rockeskolen.com/node/189'],
+                ['title' => 'Karlheinz Stockhausen', 'summary' => 'Elektronisk lyd, rom, struktur og radikal nytenkning.', 'url' => 'https://portal.rockeskolen.com/node/207'],
+                ['title' => 'John Cage', 'summary' => 'Stillhet, tilfeldighet og hverdagslyder som musikalske elementer.', 'url' => 'https://portal.rockeskolen.com/node/206'],
+            ],
+        ],
+        [
+            'title' => 'Instrumenter',
+            'eyebrow' => 'Instrumentleksikon',
+            'url' => 'https://portal.rockeskolen.com/instrumenter',
+            'summary' => 'Et bredt instrumentunivers fra gitar, piano og slagverk til digitale og eksperimentelle instrumenter.',
+            'items' => [
+                ['title' => 'Elektroniske og digitale instrumenter', 'summary' => 'Synthesizere, samplere, DAW-er, MIDI-kontrollere og trommemaskiner.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/47'],
+                ['title' => 'Klimpreinstrumenter', 'summary' => 'Strengeinstrumenter som gitar og bass.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/48'],
+                ['title' => 'Slagverk og perkusjon', 'summary' => 'Trommesett, marimba, perkusjon og rytmiske instrumenter.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/52'],
+                ['title' => 'Vokal', 'summary' => 'Sang, vokaleffekter, beatboxing og vokal prosessering.', 'url' => 'https://portal.rockeskolen.com/taxonomy/term/51'],
+            ],
+        ],
+    ];
+}
+
 function rs_public_tools(?int $limit = null, bool $homeOnly = false): array {
     $tools = array_values(array_filter(rs_tools(), static fn($tool) => !$homeOnly || !empty($tool['show_on_home'])));
     usort($tools, static fn($a, $b) => ($a['sort_order'] ?? 100) <=> ($b['sort_order'] ?? 100));

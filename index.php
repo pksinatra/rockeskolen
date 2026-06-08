@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://www.rockeskolen.com/">
   <meta property="og:image" content="/images/computermusic.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/includes/site.css?v=1">
+  <link rel="stylesheet" href="/includes/site.css?v=2">
 </head>
 <body>
   <header class="hero" style="--hero-image:url('/images/computermusic.jpg')">
@@ -21,11 +21,8 @@
         <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/tools/">Verktøy</a>
-        <a href="/tools/#instrument">Instrumenter</a>
-        <a href="/tools/#teori">Skolebenken</a>
-        <a href="https://portal.rockeskolen.com">RDØ</a>
-        <a href="/article.php?slug=fra-ide-til-ferdig-musikk">Om</a>
+        <a href="/workshop/">Workshop</a>
+        <a href="https://portal.rockeskolen.com">Portal</a>
       </nav>
     </div>
 
@@ -123,6 +120,34 @@
             <div class="link-row"><a class="open" href="/tools/chordlog/">Åpne</a><a class="learn" href="/tool.php?slug=chordlog">Les mer</a></div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="section portal-section" aria-labelledby="portal-range">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Portalen</p>
+          <h2 id="portal-range">Mer enn verktøy.</h2>
+          <p>Rockeskolens Digitale Øvingsrom rommer teori, instrumentleksikon, komponister og øvingsressurser. Her er noen innganger som viser spennvidden.</p>
+        </div>
+        <a class="learn" href="https://portal.rockeskolen.com">Åpne portalen</a>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://portal.rockeskolen.com/musikkteori">
+          <span>Musikkteori</span>
+          <strong>Skolebenken</strong>
+          <p>Noter, skalaer, intervaller, akkorder, tonearter, melodi og form forklart praktisk.</p>
+        </a>
+        <a class="resource-card" href="https://portal.rockeskolen.com/instrumenter">
+          <span>Instrumentleksikon</span>
+          <strong>Instrumenter</strong>
+          <p>Fra gitar, piano og slagverk til synth, MIDI, vokal og eksperimentelle instrumenter.</p>
+        </a>
+        <a class="resource-card" href="https://portal.rockeskolen.com/komponister">
+          <span>Musikkhistorie</span>
+          <strong>Komponister</strong>
+          <p>Bach, Vivaldi, Stockhausen, John Cage og flere retninger inn i musikkhistorien.</p>
+        </a>
       </div>
     </section>
 

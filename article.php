@@ -19,7 +19,7 @@ if (!$article) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo rs_h($pageTitle); ?></title>
   <meta name="description" content="<?php echo rs_h($description); ?>">
-  <link rel="stylesheet" href="/includes/site.css?v=1">
+  <link rel="stylesheet" href="/includes/site.css?v=2">
 </head>
 <body>
   <header class="page-header">
@@ -28,11 +28,8 @@ if (!$article) {
         <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/tools/">Verktøy</a>
-        <a href="/tools/#instrument">Instrumenter</a>
-        <a href="/tools/#teori">Skolebenken</a>
-        <a href="https://portal.rockeskolen.com">RDØ</a>
-        <a href="/article.php?slug=fra-ide-til-ferdig-musikk">Om</a>
+        <a href="/workshop/">Workshop</a>
+        <a href="https://portal.rockeskolen.com">Portal</a>
       </nav>
     </div>
   </header>
