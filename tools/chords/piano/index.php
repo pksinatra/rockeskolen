@@ -1,9 +1,8 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
-// require_login(); // demo is public
-$user = current_user();
+session_start();
+$user = $_SESSION['user_chordlink'] ?? null;
 $isPro =
-    ($user && in_array($user['role'], ['pro','admin'], true))
+    ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true))
     || isset($_COOKIE['rockeskolen_pro']);
 // Optional: force demo mode with ?demo=1
 if (isset($_GET['demo']) && $_GET['demo'] === '1') {

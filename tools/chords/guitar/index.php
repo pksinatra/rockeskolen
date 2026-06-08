@@ -1,10 +1,7 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
-
-refresh_user_from_db();
-$user = current_user();
-
-$isPro = ($user && in_array($user['role'], PRO_ROLES, true));
+session_start();
+$user = $_SESSION['user_chordlink'] ?? null;
+$isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
 ?>
 
 
