@@ -28,7 +28,7 @@ if (!$tool) {
         <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/workshop/">Workshop</a>
+        <a href="/workshop/index.php">Workshop</a>
         <a href="https://portal.rockeskolen.com">Portal</a>
       </nav>
     </div>

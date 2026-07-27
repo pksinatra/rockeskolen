@@ -1,0 +1,5 @@
+name: Rockeskolen Structure QA
+type: module
+description: 'Scoped canonical corrections after the site restructure.'
+package: Custom
+core_version_requirement: ^11

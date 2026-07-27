@@ -13,7 +13,7 @@ $portalSections = rs_portal_sections();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo rs_h($pageTitle); ?></title>
   <meta name="description" content="<?php echo rs_h($description); ?>">
-  <link rel="canonical" href="https://www.rockeskolen.com/tools/">
+  <link rel="canonical" href="https://rockeskolen.com/tools/">
   <link rel="stylesheet" href="/includes/site.css?v=2">
 </head>
 <body>
@@ -23,7 +23,7 @@ $portalSections = rs_portal_sections();
         <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/workshop/">Workshop</a>
+        <a href="/workshop/index.php">Workshop</a>
         <a href="https://portal.rockeskolen.com">Portal</a>
       </nav>
     </div>

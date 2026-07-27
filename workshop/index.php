@@ -32,7 +32,16 @@ $plans = [
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Workshop | Rockeskolen</title>
   <meta name="description" content="Oversikt over Rockeskolens kursplaner og workshops innen band, låtskriving, musikkproduksjon og musikkteori i praksis.">
+  <link rel="canonical" href="https://rockeskolen.com/workshop/index.php">
   <link rel="stylesheet" href="/includes/site.css?v=2">
+  <style>
+    @media (max-width: 640px) {
+      .page-title h1 {
+        font-size: clamp(38px, 11vw, 48px);
+        overflow-wrap: anywhere;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="page-header">
@@ -41,7 +50,7 @@ $plans = [
         <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/workshop/">Workshop</a>
+        <a href="/workshop/index.php">Workshop</a>
         <a href="https://portal.rockeskolen.com">Portal</a>
       </nav>
     </div>

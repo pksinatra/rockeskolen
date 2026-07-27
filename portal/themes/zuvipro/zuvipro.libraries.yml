@@ -1,0 +1,115 @@
+# Global stylings. These CSS files will be loaded on every pages.
+global-styling:
+  version: 11.1.2
+  css:
+    theme:
+      css/tiny-slider.css: {}
+      css/style.css: {}
+      css/rockeskolen-qa.css: {}
+
+# Global Javascripts. These will be loaded on every pages.
+global-scripts:
+  version: 11.1.2
+  js:
+    js/tiny-slider.js: {}
+    js/zuvipro.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+# Animated content when in view
+animated-content:
+  version: 11.1.2
+  css:
+    component:
+      css/animate.css: {}
+
+# cookiealert script
+cookiealert-scripts:
+  version: 1.0
+  js:
+    js/cookiealert.js: {}
+
+# FontAwesome
+fontawesome4:
+  version: 4.7.0
+  css:
+    component:
+      css/font-awesome4.css: {}
+
+# FontAwesome 5
+fontawesome5:
+  version: 5.15.4
+  css:
+    component:
+      css/fontawesome5.css: {weight: -10}
+
+# FontAwesome 6
+fontawesome6:
+  version: 6.7.2
+  css:
+    component:
+      css/fontawesome6.css: {weight: -10}
+
+# Bootstrap Icons
+bootstrap-icons:
+  version: 1.10.5
+  css:
+    component:
+      css/bootstrap-icons.css: {}
+
+# Google Material font Icons
+material-outlined:
+  version: 4.0.0
+  css:
+    component:
+      css/material-outlined.css: {}
+
+# Google Material font Icons
+material-filled:
+  version: 4.0.0
+  css:
+    component:
+      css/material-filled.css: {}
+
+# Google Material font Icons
+material-round:
+  version: 4.0.0
+  css:
+    component:
+      css/material-round.css: {}
+
+# Google Material font Icons
+material-sharp:
+  version: 4.0.0
+  css:
+    component:
+      css/material-sharp.css: {}
+
+# Google Material font Icons
+material-tone:
+  version: 4.0.0
+  css:
+    component:
+      css/material-tone.css: {}
+
+# Book
+book:
+  version: 11.1.2
+  css:
+    component:
+      css/book.css: {}
+
+# maintenance page
+maintenance:
+  version: 11.1.2
+  css:
+    theme:
+      css/maintenance.css: {}
+
+# Theme settings page 
+theme-settings:
+  version: 11.1.2
+  css:
+    theme:
+      css/theme-settings.css: {}

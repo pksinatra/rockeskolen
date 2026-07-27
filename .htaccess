@@ -3,6 +3,10 @@ DirectoryIndex index.html index.php
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Use the non-www hostname as the single public origin.
+RewriteCond %{HTTP_HOST} ^www\.rockeskolen\.com$ [NC]
+RewriteRule ^ https://rockeskolen.com%{REQUEST_URI} [R=301,L,NE]
+
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]

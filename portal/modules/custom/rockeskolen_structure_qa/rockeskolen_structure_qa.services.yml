@@ -1,0 +1,5 @@
+services:
+  rockeskolen_structure_qa.canonical_response_subscriber:
+    class: Drupal\rockeskolen_structure_qa\EventSubscriber\CanonicalResponseSubscriber
+    tags:
+      - { name: event_subscriber }

@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rockeskolen | Digitale verktøy for musikk, kreativitet og læring</title>
   <meta name="description" content="Rockeskolen er en musikkskole, kulturarena og digitalt øvingsrom med praktiske verktøy for instrumenter, samspill, musikkteori og musikkskaping.">
-  <link rel="canonical" href="https://www.rockeskolen.com/">
+  <link rel="canonical" href="https://rockeskolen.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rockeskolen | Finn lyden din">
   <meta property="og:description" content="Musikkskole, kulturarena og digitalt øvingsrom for ungdom i alle aldre.">
-  <meta property="og:url" content="https://www.rockeskolen.com/">
+  <meta property="og:url" content="https://rockeskolen.com/">
   <meta property="og:image" content="/images/computermusic.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/includes/site.css?v=2">
@@ -21,7 +21,7 @@
         <img src="/images/rock-logo.png" alt="Rockeskolen">
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/workshop/">Workshop</a>
+        <a href="/workshop/index.php">Workshop</a>
         <a href="https://portal.rockeskolen.com">Portal</a>
       </nav>
     </div>
