@@ -56,7 +56,6 @@ final class ArticleSeriesController extends ControllerBase {
     $storage = $this->entityTypeManager->getStorage('node');
     $ids = $storage->getQuery()
       ->accessCheck(TRUE)
-      ->condition('type', 'musikk_i_praksis')
       ->condition('status', NodeInterface::PUBLISHED)
       ->condition('field_artikkelserie.target_id', $term->id())
       ->sort('field_delnummer.value', 'ASC')
@@ -65,7 +64,7 @@ final class ArticleSeriesController extends ControllerBase {
 
     $cards = [];
     $cacheability = CacheableMetadata::createFromObject($term)
-      ->addCacheTags(['node_list:musikk_i_praksis'])
+      ->addCacheTags(['node_list'])
       ->addCacheContexts(['languages:language_content', 'user.node_grants:view', 'user.permissions']);
 
     foreach ($storage->loadMultiple($ids) as $node) {
@@ -118,7 +117,7 @@ final class ArticleSeriesController extends ControllerBase {
       '#empty' => $this->t('Det er ingen publiserte artikler i denne serien ennå.'),
       '#attached' => ['library' => ['rockeskolen_structure_qa/article-series']],
       '#cache' => [
-        'tags' => Cache::mergeTags($term->getCacheTags(), ['node_list:musikk_i_praksis']),
+        'tags' => Cache::mergeTags($term->getCacheTags(), ['node_list']),
         'contexts' => ['languages:language_content', 'url.path', 'user.node_grants:view', 'user.permissions'],
       ],
     ];

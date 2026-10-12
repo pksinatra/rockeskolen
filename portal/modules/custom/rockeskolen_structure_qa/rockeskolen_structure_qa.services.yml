@@ -3,3 +3,7 @@ services:
     class: Drupal\rockeskolen_structure_qa\EventSubscriber\CanonicalResponseSubscriber
     tags:
       - { name: event_subscriber }
+  rockeskolen_structure_qa.homepage_practice_subscriber:
+    class: Drupal\rockeskolen_structure_qa\EventSubscriber\HomepagePracticeSubscriber
+    tags:
+      - { name: event_subscriber }

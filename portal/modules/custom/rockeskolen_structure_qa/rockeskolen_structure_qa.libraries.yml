@@ -17,3 +17,8 @@ music-practice:
   css:
     theme:
       css/music-practice.css: {}
+
+homepage-practice:
+  css:
+    theme:
+      css/homepage-practice.css: {}

@@ -65,14 +65,62 @@ function rockeskolen_structure_qa_theme(): array {
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function rockeskolen_structure_qa_page_attachments(array &$attachments): void {
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $attachments['#attached']['library'][] = 'rockeskolen_structure_qa/homepage-practice';
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function rockeskolen_structure_qa_preprocess_node(array &$variables): void {
   $node = $variables['node'] ?? NULL;
-  if (!$node instanceof NodeInterface || $node->bundle() !== 'musikk_i_praksis') {
+  if (!$node instanceof NodeInterface) {
     return;
   }
 
+  if ($node->bundle() === 'musikk_i_praksis') {
+    rockeskolen_structure_qa_prepare_byline($variables, $node);
+  }
+
+  if (($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+
+  $series_navigation = rockeskolen_structure_qa_article_series_navigation($node);
+  if ($series_navigation === []) {
+    return;
+  }
+
+  $variables['content']['rockeskolen_series_top'] = [
+    '#theme' => 'rockeskolen_article_series_navigation',
+    '#series' => $series_navigation['series'],
+    '#placement' => 'top',
+    '#weight' => -100,
+    '#attached' => [
+      'library' => ['rockeskolen_structure_qa/article-series-navigation'],
+    ],
+  ];
+  $variables['content']['rockeskolen_series_bottom'] = [
+    '#theme' => 'rockeskolen_article_series_navigation',
+    '#series' => $series_navigation['series'],
+    '#placement' => 'bottom',
+    '#weight' => 100,
+    '#attached' => [
+      'library' => ['rockeskolen_structure_qa/article-series-navigation'],
+    ],
+  ];
+  $series_navigation['cacheability']->applyTo($variables['content']['rockeskolen_series_top']);
+  $series_navigation['cacheability']->applyTo($variables['content']['rockeskolen_series_bottom']);
+}
+
+/**
+ * Keeps the existing Musikk i praksis byline isolated to that content type.
+ */
+function rockeskolen_structure_qa_prepare_byline(array &$variables, NodeInterface $node): void {
   // The field belongs in ZUVI Pro's existing byline, not in the article body.
   unset($variables['content']['field_medforfatter']);
 
@@ -119,36 +167,6 @@ function rockeskolen_structure_qa_preprocess_node(array &$variables): void {
   $cacheability->applyTo($variables['author_name']);
 
   $variables['content']['#attached']['library'][] = 'rockeskolen_structure_qa/byline';
-
-  if (($variables['view_mode'] ?? '') !== 'full') {
-    return;
-  }
-
-  $series_navigation = rockeskolen_structure_qa_article_series_navigation($node);
-  if ($series_navigation === []) {
-    return;
-  }
-
-  $variables['content']['rockeskolen_series_top'] = [
-    '#theme' => 'rockeskolen_article_series_navigation',
-    '#series' => $series_navigation['series'],
-    '#placement' => 'top',
-    '#weight' => -100,
-    '#attached' => [
-      'library' => ['rockeskolen_structure_qa/article-series-navigation'],
-    ],
-  ];
-  $variables['content']['rockeskolen_series_bottom'] = [
-    '#theme' => 'rockeskolen_article_series_navigation',
-    '#series' => $series_navigation['series'],
-    '#placement' => 'bottom',
-    '#weight' => 100,
-    '#attached' => [
-      'library' => ['rockeskolen_structure_qa/article-series-navigation'],
-    ],
-  ];
-  $series_navigation['cacheability']->applyTo($variables['content']['rockeskolen_series_top']);
-  $series_navigation['cacheability']->applyTo($variables['content']['rockeskolen_series_bottom']);
 }
 
 /**
@@ -165,7 +183,7 @@ function rockeskolen_structure_qa_article_series_navigation(NodeInterface $node)
   $field_access = $series_field->access('view', NULL, TRUE);
   $cacheability = CacheableMetadata::createFromObject($node)
     ->addCacheableDependency($field_access)
-    ->addCacheTags(['node_list:musikk_i_praksis'])
+    ->addCacheTags(['node_list'])
     ->addCacheContexts([
       'languages:language_content',
       'route',
@@ -203,7 +221,6 @@ function rockeskolen_structure_qa_article_series_navigation(NodeInterface $node)
 
     $ids = $node_storage->getQuery()
       ->accessCheck(TRUE)
-      ->condition('type', 'musikk_i_praksis')
       ->condition('status', NodeInterface::PUBLISHED)
       ->condition('field_artikkelserie.target_id', $term->id())
       ->execute();

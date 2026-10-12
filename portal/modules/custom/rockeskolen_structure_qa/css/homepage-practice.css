@@ -1,0 +1,49 @@
+.rs-home-practice {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(240px, .75fr);
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: center;
+  margin-block: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(232, 93, 63, .42);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(232, 93, 63, .14), rgba(32, 37, 51, .82));
+}
+
+.rs-home-practice__copy h2 {
+  margin: 0 0 .75rem;
+  color: #fff;
+  font-size: clamp(1.65rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  text-transform: none;
+}
+
+.rs-home-practice__copy h2::before,
+.rs-home-practice__copy h2::after {
+  display: none;
+}
+
+.rs-home-practice__copy > p:last-child {
+  max-width: 680px;
+  margin: 0;
+  color: #d9dde6;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.rs-home-practice__actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.rs-home-practice a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .rs-home-practice {
+    grid-template-columns: 1fr;
+  }
+}
