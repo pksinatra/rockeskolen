@@ -39,6 +39,28 @@ function rockeskolen_structure_qa_theme(): array {
         'placement' => 'bottom',
       ],
     ],
+    'rockeskolen_music_practice' => [
+      'variables' => [
+        'series' => [],
+        'categories' => [],
+        'active_category' => NULL,
+        'article_count_label' => NULL,
+        'cards' => [],
+        'pager' => NULL,
+        'empty' => NULL,
+      ],
+    ],
+    'rockeskolen_music_practice_card' => [
+      'variables' => [
+        'node' => NULL,
+        'summary' => '',
+        'image' => NULL,
+        'url' => NULL,
+        'categories' => [],
+        'series' => NULL,
+        'part' => NULL,
+      ],
+    ],
   ];
 }
 

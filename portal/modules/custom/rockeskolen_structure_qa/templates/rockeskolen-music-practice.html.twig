@@ -1,0 +1,60 @@
+<div class="rs-practice">
+  <header class="rs-practice__intro">
+    <p class="rs-practice__eyebrow">Fra idé til publikum</p>
+    <p class="rs-practice__lead">Praktiske guider om å skrive, produsere, gi ut og dele musikk – og om rettighetene og økonomien som følger med.</p>
+  </header>
+
+  {% if series %}
+    <section class="rs-practice__section" aria-labelledby="rs-practice-series-title">
+      <div class="rs-practice__section-heading">
+        <p class="rs-practice__eyebrow">Følg en serie</p>
+        <h2 id="rs-practice-series-title">Artikkelserier</h2>
+      </div>
+      <div class="rs-practice__series-grid">
+        {% for item in series %}
+          <article class="rs-practice-series-card">
+            <div>
+              <p class="rs-practice-series-card__meta">{{ item.count_label }}</p>
+              <h3><a href="{{ item.url }}">{{ item.name }}</a></h3>
+              {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+            </div>
+            <a class="rs-practice-series-card__cta" href="{{ item.url }}">Se hele serien <span aria-hidden="true">→</span></a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="rs-practice__section" aria-labelledby="rs-practice-topics-title">
+    <div class="rs-practice__section-heading">
+      <p class="rs-practice__eyebrow">Utforsk</p>
+      <h2 id="rs-practice-topics-title">Temaer</h2>
+    </div>
+    <nav class="rs-practice__filters" aria-label="Filtrer artikler etter tema">
+      <a class="rs-practice-filter{{ active_category ? '' : ' is-active' }}" href="{{ path('rockeskolen_structure_qa.music_practice') }}"{% if not active_category %} aria-current="page"{% endif %}>Alle temaer</a>
+      {% for category in categories %}
+        <a class="rs-practice-filter{{ category.active ? ' is-active' : '' }}" href="{{ category.url }}"{% if category.active %} aria-current="page"{% endif %}>
+          <span>{{ category.name }}</span><span class="rs-practice-filter__count">{{ category.count }}</span>
+        </a>
+      {% endfor %}
+    </nav>
+  </section>
+
+  <section class="rs-practice__section" aria-labelledby="rs-practice-articles-title">
+    <div class="rs-practice__section-heading rs-practice__section-heading--articles">
+      <div>
+        <p class="rs-practice__eyebrow">Les og lær</p>
+        <h2 id="rs-practice-articles-title">{% if active_category %}{{ active_category }}{% else %}Alle artikler{% endif %}</h2>
+      </div>
+      <p class="rs-practice__count" aria-live="polite">{{ article_count_label }}</p>
+    </div>
+    {% if cards %}
+      <div class="rs-practice__article-grid">
+        {% for card in cards %}{{ card }}{% endfor %}
+      </div>
+      {{ pager }}
+    {% else %}
+      <p class="rs-practice__empty">{{ empty }}</p>
+    {% endif %}
+  </section>
+</div>

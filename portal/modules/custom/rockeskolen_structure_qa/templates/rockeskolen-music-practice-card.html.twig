@@ -1,0 +1,15 @@
+<article class="rs-practice-card">
+  <a class="rs-practice-card__media" href="{{ url }}" tabindex="-1" aria-hidden="true">
+    {% if image %}
+      {{ image }}
+    {% else %}
+      <span class="rs-practice-card__fallback"><span aria-hidden="true">♪</span></span>
+    {% endif %}
+  </a>
+  <div class="rs-practice-card__body">
+    {% if categories %}<p class="rs-practice-card__category">{{ categories|join(' · ') }}</p>{% endif %}
+    {% if series %}<p class="rs-practice-card__series">{{ series }}{% if part is not null %} · Del {{ part }}{% endif %}</p>{% endif %}
+    <h3><a href="{{ url }}">{{ node.label }}</a></h3>
+    {% if summary %}<p class="rs-practice-card__summary">{{ summary }}</p>{% endif %}
+  </div>
+</article>

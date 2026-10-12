@@ -12,3 +12,8 @@ article-series-navigation:
   css:
     theme:
       css/article-series-navigation.css: {}
+
+music-practice:
+  css:
+    theme:
+      css/music-practice.css: {}

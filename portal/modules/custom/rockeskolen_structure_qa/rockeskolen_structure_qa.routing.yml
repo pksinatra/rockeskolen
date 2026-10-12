@@ -10,3 +10,11 @@ rockeskolen_structure_qa.article_series:
     parameters:
       taxonomy_term:
         type: entity:taxonomy_term
+
+rockeskolen_structure_qa.music_practice:
+  path: '/musikk-i-praksis'
+  defaults:
+    _controller: '\Drupal\rockeskolen_structure_qa\Controller\MusicPracticeController::view'
+    _title: 'Musikk i praksis'
+  requirements:
+    _permission: 'access content'
