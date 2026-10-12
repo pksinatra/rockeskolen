@@ -1,0 +1,122 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Link;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function rockeskolen_structure_qa_theme(): array {
+  return [
+    'rockeskolen_article_series' => [
+      'variables' => [
+        'term' => NULL,
+        'description' => NULL,
+        'article_count' => 0,
+        'article_count_label' => NULL,
+        'cards' => [],
+        'empty' => NULL,
+      ],
+    ],
+    'rockeskolen_article_series_card' => [
+      'variables' => [
+        'node' => NULL,
+        'part' => NULL,
+        'summary' => '',
+        'image' => NULL,
+        'url' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function rockeskolen_structure_qa_preprocess_node(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof NodeInterface || $node->bundle() !== 'musikk_i_praksis') {
+    return;
+  }
+
+  // The field belongs in ZUVI Pro's existing byline, not in the article body.
+  unset($variables['content']['field_medforfatter']);
+
+  $owner = $node->getOwner();
+  $author_name = rockeskolen_structure_qa_author_name($owner);
+  $author = $author_name;
+  $author_access = $owner->access('view', NULL, TRUE);
+  if (!$owner->isAnonymous() && $author_access->isAllowed()) {
+    $author = Link::fromTextAndUrl($author_name, $owner->toUrl())->toRenderable();
+  }
+
+  $coauthor = '';
+  $field_access = NULL;
+  if ($node->hasField('field_medforfatter')) {
+    $field = $node->get('field_medforfatter');
+    $field_access = $field->access('view', NULL, TRUE);
+    if ($field_access->isAllowed() && !$field->isEmpty()) {
+      $values = [];
+      foreach ($field as $item) {
+        $value = trim((string) $item->value);
+        if ($value !== '') {
+          $values[] = $value;
+        }
+      }
+      $coauthor = implode(', ', $values);
+    }
+  }
+
+  $variables['author_name'] = [
+    '#type' => 'inline_template',
+    '#template' => '<span class="rs-byline">Av {{ author }}{% if coauthor %}<span class="rs-byline__coauthor"><span aria-hidden="true">|</span> Med {{ coauthor }}</span>{% endif %}</span>',
+    '#context' => [
+      'author' => $author,
+      'coauthor' => $coauthor,
+    ],
+  ];
+
+  $cacheability = CacheableMetadata::createFromObject($node)
+    ->addCacheableDependency($owner)
+    ->addCacheableDependency($author_access);
+  if ($field_access !== NULL) {
+    $cacheability->addCacheableDependency($field_access);
+  }
+  $cacheability->applyTo($variables['author_name']);
+
+  $variables['content']['#attached']['library'][] = 'rockeskolen_structure_qa/byline';
+}
+
+/**
+ * Returns the configured Name Field display name, with a safe fallback.
+ */
+function rockeskolen_structure_qa_author_name(AccountInterface $account): string {
+  try {
+    $preferred_field = (string) \Drupal::config('name.settings')->get('user_preferred');
+    if ($preferred_field !== '' && $account->hasField($preferred_field)) {
+      $name_field = $account->get($preferred_field);
+      if (!$name_field->isEmpty() && $name_field->access('view')) {
+        $formatted = \Drupal::service('name.formatter')->format(
+          $name_field->first()->getValue(),
+          'default',
+          $account->getPreferredLangcode(),
+        );
+        if (trim((string) $formatted) !== '') {
+          return trim((string) $formatted);
+        }
+      }
+    }
+  }
+  catch (\Throwable $exception) {
+    \Drupal::logger('rockeskolen_structure_qa')->warning(
+      'Name Field formatting failed for uid @uid: @message',
+      ['@uid' => $account->id(), '@message' => $exception->getMessage()],
+    );
+  }
+
+  return trim((string) $account->getAccountName());
+}

@@ -1,0 +1,21 @@
+<section class="rs-series" aria-label="Artikkelserie: {{ term.label }}">
+  <header class="rs-series__header">
+    <p class="rs-series__eyebrow">Artikkelserie</p>
+    {% if description %}
+      <div class="rs-series__description">{{ description }}</div>
+    {% else %}
+      <p class="rs-series__description">Følg serien del for del, eller velg artikkelen som passer deg.</p>
+    {% endif %}
+    <p class="rs-series__count">{{ article_count_label }}</p>
+  </header>
+
+  {% if cards %}
+    <div class="rs-series__grid">
+      {% for card in cards %}
+        {{ card }}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="rs-series__empty">{{ empty }}</p>
+  {% endif %}
+</section>

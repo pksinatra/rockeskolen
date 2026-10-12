@@ -1,0 +1,18 @@
+<article class="rs-series-card">
+  <a class="rs-series-card__media" href="{{ url }}" tabindex="-1" aria-hidden="true">
+    {% if image %}
+      {{ image }}
+    {% else %}
+      <span class="rs-series-card__fallback"><span aria-hidden="true">♪</span></span>
+    {% endif %}
+  </a>
+  <div class="rs-series-card__body">
+    {% if part is not null %}
+      <p class="rs-series-card__part">Del {{ part }}</p>
+    {% endif %}
+    <h2 class="rs-series-card__title"><a href="{{ url }}">{{ node.label }}</a></h2>
+    {% if summary %}
+      <p class="rs-series-card__summary">{{ summary }}</p>
+    {% endif %}
+  </div>
+</article>

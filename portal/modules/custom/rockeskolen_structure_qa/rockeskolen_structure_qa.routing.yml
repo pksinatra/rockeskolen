@@ -1,0 +1,12 @@
+rockeskolen_structure_qa.article_series:
+  path: '/artikkelserie/{taxonomy_term}'
+  defaults:
+    _controller: '\Drupal\rockeskolen_structure_qa\Controller\ArticleSeriesController::view'
+    _title_callback: '\Drupal\rockeskolen_structure_qa\Controller\ArticleSeriesController::title'
+  requirements:
+    _entity_access: 'taxonomy_term.view'
+    taxonomy_term: '\d+'
+  options:
+    parameters:
+      taxonomy_term:
+        type: entity:taxonomy_term
