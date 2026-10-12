@@ -7,3 +7,8 @@ services:
     class: Drupal\rockeskolen_structure_qa\EventSubscriber\HomepagePracticeSubscriber
     tags:
       - { name: event_subscriber }
+  rockeskolen_structure_qa.theory_series_redirect_subscriber:
+    class: Drupal\rockeskolen_structure_qa\EventSubscriber\TheorySeriesRedirectSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }
