@@ -1,0 +1,46 @@
+{% for item in series %}
+  {% if placement == 'top' %}
+    <aside class="rs-series-context" aria-label="Tilhører artikkelserien {{ item.name }}">
+      <a class="rs-series-context__name" href="{{ item.url }}">{{ item.name }}</a>
+      <span aria-hidden="true">·</span>
+      <span>
+        {% if item.part is not null %}
+          Del {{ item.part }} av {{ item.total }}
+        {% else %}
+          Artikkel {{ item.position }} av {{ item.total }}
+        {% endif %}
+      </span>
+    </aside>
+  {% else %}
+    <nav class="rs-series-navigation" aria-label="Navigasjon i artikkelserien {{ item.name }}">
+      <div class="rs-series-navigation__heading">
+        <a href="{{ item.url }}">{{ item.name }}</a>
+        <span>
+          {% if item.part is not null %}
+            Del {{ item.part }} av {{ item.total }}
+          {% else %}
+            Artikkel {{ item.position }} av {{ item.total }}
+          {% endif %}
+        </span>
+      </div>
+      <div class="rs-series-navigation__links">
+        {% if item.previous %}
+          <a class="rs-series-navigation__link rs-series-navigation__link--previous" rel="prev" href="{{ item.previous.url }}">
+            <span class="rs-series-navigation__direction">← Forrige</span>
+            <strong>{{ item.previous.title }}</strong>
+          </a>
+        {% else %}
+          <span class="rs-series-navigation__edge">Dette er første del</span>
+        {% endif %}
+        {% if item.next %}
+          <a class="rs-series-navigation__link rs-series-navigation__link--next" rel="next" href="{{ item.next.url }}">
+            <span class="rs-series-navigation__direction">Neste →</span>
+            <strong>{{ item.next.title }}</strong>
+          </a>
+        {% else %}
+          <span class="rs-series-navigation__edge rs-series-navigation__edge--next">Dette er siste del</span>
+        {% endif %}
+      </div>
+    </nav>
+  {% endif %}
+{% endfor %}

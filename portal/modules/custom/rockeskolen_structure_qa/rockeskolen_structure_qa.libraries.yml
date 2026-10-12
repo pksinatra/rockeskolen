@@ -7,3 +7,8 @@ article-series:
   css:
     theme:
       css/article-series.css: {}
+
+article-series-navigation:
+  css:
+    theme:
+      css/article-series-navigation.css: {}

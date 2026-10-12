@@ -5,7 +5,9 @@ declare(strict_types=1);
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Link;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Implements hook_theme().
@@ -29,6 +31,12 @@ function rockeskolen_structure_qa_theme(): array {
         'summary' => '',
         'image' => NULL,
         'url' => NULL,
+      ],
+    ],
+    'rockeskolen_article_series_navigation' => [
+      'variables' => [
+        'series' => [],
+        'placement' => 'bottom',
       ],
     ],
   ];
@@ -89,6 +97,189 @@ function rockeskolen_structure_qa_preprocess_node(array &$variables): void {
   $cacheability->applyTo($variables['author_name']);
 
   $variables['content']['#attached']['library'][] = 'rockeskolen_structure_qa/byline';
+
+  if (($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+
+  $series_navigation = rockeskolen_structure_qa_article_series_navigation($node);
+  if ($series_navigation === []) {
+    return;
+  }
+
+  $variables['content']['rockeskolen_series_top'] = [
+    '#theme' => 'rockeskolen_article_series_navigation',
+    '#series' => $series_navigation['series'],
+    '#placement' => 'top',
+    '#weight' => -100,
+    '#attached' => [
+      'library' => ['rockeskolen_structure_qa/article-series-navigation'],
+    ],
+  ];
+  $variables['content']['rockeskolen_series_bottom'] = [
+    '#theme' => 'rockeskolen_article_series_navigation',
+    '#series' => $series_navigation['series'],
+    '#placement' => 'bottom',
+    '#weight' => 100,
+    '#attached' => [
+      'library' => ['rockeskolen_structure_qa/article-series-navigation'],
+    ],
+  ];
+  $series_navigation['cacheability']->applyTo($variables['content']['rockeskolen_series_top']);
+  $series_navigation['cacheability']->applyTo($variables['content']['rockeskolen_series_bottom']);
+}
+
+/**
+ * Builds previous/next navigation for every article series on a node.
+ */
+function rockeskolen_structure_qa_article_series_navigation(NodeInterface $node): array {
+  if (!$node->isPublished()
+    || !$node->hasField('field_artikkelserie')
+    || $node->get('field_artikkelserie')->isEmpty()) {
+    return [];
+  }
+
+  $series_field = $node->get('field_artikkelserie');
+  $field_access = $series_field->access('view', NULL, TRUE);
+  $cacheability = CacheableMetadata::createFromObject($node)
+    ->addCacheableDependency($field_access)
+    ->addCacheTags(['node_list:musikk_i_praksis'])
+    ->addCacheContexts([
+      'languages:language_content',
+      'route',
+      'user.node_grants:view',
+      'user.permissions',
+    ]);
+  if (!$field_access->isAllowed()) {
+    return [];
+  }
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $node_storage = $entity_type_manager->getStorage('node');
+  $language_manager = \Drupal::languageManager();
+  $langcode = $language_manager->getCurrentLanguage()->getId();
+  $series = [];
+  $seen_terms = [];
+
+  foreach ($series_field->referencedEntities() as $term) {
+    if (!$term instanceof TermInterface
+      || $term->bundle() !== 'artikkelserier'
+      || isset($seen_terms[$term->id()])) {
+      continue;
+    }
+    $seen_terms[$term->id()] = TRUE;
+    if ($term->hasTranslation($langcode)) {
+      $term = $term->getTranslation($langcode);
+    }
+    $term_access = $term->access('view', NULL, TRUE);
+    $cacheability
+      ->addCacheableDependency($term)
+      ->addCacheableDependency($term_access);
+    if (!$term_access->isAllowed()) {
+      continue;
+    }
+
+    $ids = $node_storage->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('type', 'musikk_i_praksis')
+      ->condition('status', NodeInterface::PUBLISHED)
+      ->condition('field_artikkelserie.target_id', $term->id())
+      ->execute();
+    $siblings = [];
+    foreach ($node_storage->loadMultiple($ids) as $sibling) {
+      if ($sibling->hasTranslation($langcode)) {
+        $sibling = $sibling->getTranslation($langcode);
+      }
+      $sibling_access = $sibling->access('view', NULL, TRUE);
+      $cacheability
+        ->addCacheableDependency($sibling)
+        ->addCacheableDependency($sibling_access);
+      if (!$sibling_access->isAllowed()) {
+        continue;
+      }
+      $siblings[] = $sibling;
+    }
+
+    usort($siblings, static function (NodeInterface $left, NodeInterface $right): int {
+      $left_part = rockeskolen_structure_qa_part_number($left);
+      $right_part = rockeskolen_structure_qa_part_number($right);
+      if ($left_part === NULL && $right_part !== NULL) {
+        return 1;
+      }
+      if ($left_part !== NULL && $right_part === NULL) {
+        return -1;
+      }
+      if ($left_part !== $right_part) {
+        return ($left_part ?? 0) <=> ($right_part ?? 0);
+      }
+      $title_order = strnatcasecmp($left->label(), $right->label());
+      return $title_order !== 0 ? $title_order : ((int) $left->id() <=> (int) $right->id());
+    });
+
+    $current_index = NULL;
+    foreach ($siblings as $index => $sibling) {
+      if ((int) $sibling->id() === (int) $node->id()) {
+        $current_index = $index;
+        break;
+      }
+    }
+    if ($current_index === NULL) {
+      continue;
+    }
+
+    $series_url = Url::fromRoute('rockeskolen_structure_qa.article_series', [
+      'taxonomy_term' => $term->id(),
+    ])->toString(TRUE);
+    $cacheability->addCacheableDependency($series_url);
+    $previous = $current_index > 0
+      ? rockeskolen_structure_qa_navigation_link($siblings[$current_index - 1], $cacheability)
+      : NULL;
+    $next = $current_index < count($siblings) - 1
+      ? rockeskolen_structure_qa_navigation_link($siblings[$current_index + 1], $cacheability)
+      : NULL;
+    $part = rockeskolen_structure_qa_part_number($siblings[$current_index]);
+
+    $series[] = [
+      'name' => $term->label(),
+      'url' => $series_url->getGeneratedUrl(),
+      'part' => $part,
+      'position' => $current_index + 1,
+      'total' => count($siblings),
+      'previous' => $previous,
+      'next' => $next,
+    ];
+  }
+
+  return $series === [] ? [] : [
+    'series' => $series,
+    'cacheability' => $cacheability,
+  ];
+}
+
+/**
+ * Returns a node's numeric part, or NULL when it has none.
+ */
+function rockeskolen_structure_qa_part_number(NodeInterface $node): ?int {
+  if (!$node->hasField('field_delnummer') || $node->get('field_delnummer')->isEmpty()) {
+    return NULL;
+  }
+  return (int) $node->get('field_delnummer')->value;
+}
+
+/**
+ * Creates an access-checked navigation link and carries URL cacheability.
+ */
+function rockeskolen_structure_qa_navigation_link(
+  NodeInterface $node,
+  CacheableMetadata $cacheability,
+): array {
+  $url = $node->toUrl()->toString(TRUE);
+  $cacheability->addCacheableDependency($url);
+  return [
+    'title' => $node->label(),
+    'url' => $url->getGeneratedUrl(),
+    'part' => rockeskolen_structure_qa_part_number($node),
+  ];
 }
 
 /**
