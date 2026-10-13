@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\rockeskolen_structure_qa\EventSubscriber;
 
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Cache\CacheableRedirectResponse;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -36,6 +37,10 @@ final class TheorySeriesRedirectSubscriber implements EventSubscriberInterface {
     }
 
     $node_storage = $this->entityTypeManager->getStorage('node');
+    $cacheability = CacheableMetadata::createFromObject($term)
+      ->addCacheTags(['node_list:musikkteori'])
+      ->addCacheContexts(['languages:language_content', 'user.node_grants:view', 'user.permissions'])
+      ->setCacheMaxAge(3600);
     $ids = $node_storage->getQuery()
       ->accessCheck(TRUE)
       ->condition('type', 'musikkteori')
@@ -48,7 +53,9 @@ final class TheorySeriesRedirectSubscriber implements EventSubscriberInterface {
 
     $series_ids = [];
     foreach ($node_storage->loadMultiple($ids) as $node) {
-      if (!$node->access('view') || $node->get('field_artikkelserie')->isEmpty()) {
+      $access = $node->access('view', NULL, TRUE);
+      $cacheability->addCacheableDependency($node)->addCacheableDependency($access);
+      if (!$access->isAllowed() || $node->get('field_artikkelserie')->isEmpty()) {
         continue;
       }
       $series_ids[(int) $node->get('field_artikkelserie')->target_id] = TRUE;
@@ -64,9 +71,9 @@ final class TheorySeriesRedirectSubscriber implements EventSubscriberInterface {
       'query' => $request->query->all(),
       'absolute' => TRUE,
     ])->toString();
-    $response = new RedirectResponse($url, 301);
+    $response = new CacheableRedirectResponse($url, 301);
+    $response->addCacheableDependency($cacheability);
     $response->setPublic();
-    $response->setMaxAge(3600);
     $event->setResponse($response);
   }
 

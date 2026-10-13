@@ -12,3 +12,7 @@ services:
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
+  rockeskolen_structure_qa.practice_seo_subscriber:
+    class: Drupal\rockeskolen_structure_qa\EventSubscriber\PracticeSeoSubscriber
+    tags:
+      - { name: event_subscriber }

@@ -18,3 +18,10 @@ rockeskolen_structure_qa.music_practice:
     _title: 'Musikk i praksis'
   requirements:
     _permission: 'access content'
+
+rockeskolen_structure_qa.sitemap:
+  path: '/sitemap.xml'
+  defaults:
+    _controller: '\Drupal\rockeskolen_structure_qa\Controller\SitemapController::view'
+  requirements:
+    _access: 'TRUE'

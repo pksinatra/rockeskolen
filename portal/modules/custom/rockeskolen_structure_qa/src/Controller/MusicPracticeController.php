@@ -9,6 +9,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
@@ -34,6 +35,7 @@ final class MusicPracticeController extends ControllerBase {
     EntityTypeManagerInterface $entityTypeManager,
     LanguageManagerInterface $languageManager,
     private readonly RequestStack $requestStack,
+    private readonly PagerManagerInterface $pagerManager,
   ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->languageManager = $languageManager;
@@ -44,6 +46,7 @@ final class MusicPracticeController extends ControllerBase {
       $container->get('entity_type.manager'),
       $container->get('language_manager'),
       $container->get('request_stack'),
+      $container->get('pager.manager'),
     );
   }
 
@@ -85,7 +88,7 @@ final class MusicPracticeController extends ControllerBase {
 
     $category_items = [];
     foreach ($categories as $category) {
-      $count = $this->articleIdsForTerm('field_praksis', $category);
+      $count = $this->articleIdsForTerm('field_praksis', $category, $cacheability);
       $url = Url::fromRoute('rockeskolen_structure_qa.music_practice', [], [
         'query' => ['tema' => $category->id()],
       ])->toString(TRUE);
@@ -100,7 +103,7 @@ final class MusicPracticeController extends ControllerBase {
 
     $series_items = [];
     foreach ($this->loadTerms('artikkelserier', $cacheability) as $series_term) {
-      $series_ids = $this->articleIdsForTerm('field_artikkelserie', $series_term);
+      $series_ids = $this->articleIdsForTerm('field_artikkelserie', $series_term, $cacheability);
       if ($series_ids === []) {
         continue;
       }
@@ -129,26 +132,24 @@ final class MusicPracticeController extends ControllerBase {
     if ($active_category !== NULL) {
       $query->condition('field_praksis.target_id', $active_category->id());
     }
-    $ids = $query->pager(self::PAGE_SIZE)->execute();
-    $cards = [];
+    $ids = $query->execute();
+    $accessible_nodes = [];
     foreach ($node_storage->loadMultiple($ids) as $node) {
       $node = $this->translatedNode($node);
       $access = $node->access('view', NULL, TRUE);
       $cacheability->addCacheableDependency($node)->addCacheableDependency($access);
-      if (!$access->isAllowed()) {
-        continue;
+      if ($access->isAllowed()) {
+        $accessible_nodes[] = $node;
       }
-      $cards[] = $this->articleCard($node, $cacheability);
     }
 
-    $total_query = $node_storage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('type', 'musikk_i_praksis')
-      ->condition('status', NodeInterface::PUBLISHED);
-    if ($active_category !== NULL) {
-      $total_query->condition('field_praksis.target_id', $active_category->id());
+    $total = count($accessible_nodes);
+    $pager = $this->pagerManager->createPager($total, self::PAGE_SIZE);
+    $offset = $pager->getCurrentPage() * self::PAGE_SIZE;
+    $cards = [];
+    foreach (array_slice($accessible_nodes, $offset, self::PAGE_SIZE) as $node) {
+      $cards[] = $this->articleCard($node, $cacheability);
     }
-    $total = (int) $total_query->count()->execute();
 
     $build = [
       '#theme' => 'rockeskolen_music_practice',
@@ -192,14 +193,22 @@ final class MusicPracticeController extends ControllerBase {
   /**
    * Returns unique, accessible published article IDs for a referenced term.
    */
-  private function articleIdsForTerm(string $field, TermInterface $term): array {
+  private function articleIdsForTerm(string $field, TermInterface $term, CacheableMetadata $cacheability): array {
     $ids = $this->entityTypeManager->getStorage('node')->getQuery()
       ->accessCheck(TRUE)
       ->condition('type', 'musikk_i_praksis')
       ->condition('status', NodeInterface::PUBLISHED)
       ->condition("{$field}.target_id", $term->id())
       ->execute();
-    return array_values(array_unique(array_map('intval', $ids)));
+    $accessible_ids = [];
+    foreach ($this->entityTypeManager->getStorage('node')->loadMultiple($ids) as $node) {
+      $access = $node->access('view', NULL, TRUE);
+      $cacheability->addCacheableDependency($node)->addCacheableDependency($access);
+      if ($access->isAllowed()) {
+        $accessible_ids[] = (int) $node->id();
+      }
+    }
+    return array_values(array_unique($accessible_ids));
   }
 
   /**
