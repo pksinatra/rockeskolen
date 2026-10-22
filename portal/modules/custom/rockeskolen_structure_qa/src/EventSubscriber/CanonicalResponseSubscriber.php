@@ -360,12 +360,13 @@ HTML;
       . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 9h34v30H7zM7 15h34M24 15v24M7 29h17"/></svg>', 'Musikkteori', 'Teori, harmonikk, rytme, notasjon og kunnskap som gjør det lettere å forstå og bruke musikk.', '/musikkteori')
       . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8v32M24 8v32M38 8v32M6 14h8M20 26h8M34 19h8M6 34h8M20 13h8M34 31h8"/></svg>', 'Verktøy', 'Interaktive hjelpemidler for akkorder, skalaer, stemming, komposisjon og praktisk musikkarbeid.', '/verktoy')
       . '</div></section>'
+      . $this->membershipBand()
       . '<a class="rs-compact-reference" href="/node/152"><strong>B for H</strong><span>Rockeskolen bruker B i stedet for H. Det følger internasjonal standard, gjør musikkteori mer logisk og reduserer forvirring mellom undervisning, noter, apper og musikkprogramvare.</span><b aria-hidden="true">Les artikkelen →</b></a>'
       . '<section class="rs-compact-news" aria-labelledby="rs-compact-news-title"><h2 id="rs-compact-news-title">Aktuelt i Rockeskolen</h2>'
       . ($recent !== '' ? '<div class="rs-compact-news-grid">' . $recent . '</div>' : '')
       . '</section></div>';
 
-    $front .= '<style>.rs-compact-front{max-width:1180px;margin:0 auto;padding:clamp(32px,6vw,76px) 24px}.rs-compact-intro{max-width:720px;margin-bottom:48px}.rs-compact-intro h1{margin:0 0 16px;font-size:clamp(42px,6vw,78px);line-height:.96}.rs-compact-intro>p:last-child{max-width:650px;font-size:20px;line-height:1.55;color:#c6c9d2}.rs-compact-front h2{margin:0 0 20px;font-size:clamp(26px,3vw,38px)}.rs-compact-entry-grid,.rs-compact-news-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.rs-compact-entry-card,.rs-compact-news-card,.rs-compact-reference{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid rgba(255,255,255,.16);border-radius:8px;color:#fff;text-decoration:none;background:rgba(255,255,255,.035);transition:transform .2s,border-color .2s}.rs-compact-entry-card:hover,.rs-compact-news-card:hover,.rs-compact-reference:hover{transform:translateY(-3px);border-color:var(--color-primary)}.rs-compact-entry-card i{display:block;height:38px;font-style:normal;color:var(--color-primary)}.rs-compact-entry-card i svg{width:38px;height:38px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.rs-compact-entry-card strong,.rs-compact-news-card strong,.rs-compact-reference strong{font-size:21px}.rs-compact-entry-card span,.rs-compact-news-card span,.rs-compact-reference span{color:#c6c9d2;line-height:1.5}.rs-compact-entry-card b,.rs-compact-news-card b,.rs-compact-reference b{margin-top:auto;color:var(--color-primary)}.rs-compact-reference{margin-top:24px;border-color:rgba(239,32,41,.6);background:rgba(239,32,41,.08)}.rs-compact-news{margin-top:64px;padding-top:36px;border-top:1px solid rgba(255,255,255,.15)}.rs-compact-news-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.rs-compact-news-card{padding:20px}.rs-compact-news-card strong{font-size:18px}@media(max-width:900px){.rs-compact-entry-grid,.rs-compact-news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.rs-compact-entry-grid,.rs-compact-news-grid{grid-template-columns:1fr}.rs-compact-front{padding-inline:16px}}</style>';
+    $front .= '<style>.rs-compact-front{max-width:1180px;margin:0 auto;padding:clamp(32px,6vw,76px) 24px}.rs-compact-intro{max-width:720px;margin-bottom:48px}.rs-compact-intro h1{margin:0 0 16px;font-size:clamp(42px,6vw,78px);line-height:.96}.rs-compact-intro>p:last-child{max-width:650px;font-size:20px;line-height:1.55;color:#c6c9d2}.rs-compact-front h2{margin:0 0 20px;font-size:clamp(26px,3vw,38px)}.rs-compact-entry-grid,.rs-compact-news-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.rs-compact-entry-card,.rs-compact-news-card,.rs-compact-reference{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid rgba(255,255,255,.16);border-radius:8px;color:#fff;text-decoration:none;background:rgba(255,255,255,.035);transition:transform .2s,border-color .2s}.rs-compact-entry-card:hover,.rs-compact-news-card:hover,.rs-compact-reference:hover{transform:translateY(-3px);border-color:var(--color-primary)}.rs-compact-entry-card i{display:block;height:38px;font-style:normal;color:var(--color-primary)}.rs-compact-entry-card i svg{width:38px;height:38px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.rs-compact-entry-card strong,.rs-compact-news-card strong,.rs-compact-reference strong{font-size:21px}.rs-compact-entry-card span,.rs-compact-news-card span,.rs-compact-reference span{color:#c6c9d2;line-height:1.5}.rs-compact-entry-card b,.rs-compact-news-card b,.rs-compact-reference b{margin-top:auto;color:var(--color-primary)}.rs-compact-reference{margin-top:24px;border-color:rgba(239,32,41,.6);background:rgba(239,32,41,.08)}.rs-compact-news{margin-top:64px;padding-top:36px;border-top:1px solid rgba(255,255,255,.15)}.rs-compact-news-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.rs-compact-news-card{padding:20px}.rs-compact-news-card strong{font-size:18px}.rs-member-band{margin-top:48px}.rs-member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.rs-member-card{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid rgba(255,255,255,.16);border-radius:8px;background:rgba(255,255,255,.035)}.rs-member-card strong{font-size:21px}.rs-member-card p{margin:0;color:#c6c9d2;line-height:1.5}.rs-member-card .rs-member-price{color:#fff;font-weight:700}.rs-member-card a{margin-top:auto;align-self:flex-start;padding:10px 18px;border-radius:6px;border:1px solid rgba(255,255,255,.3);color:#fff;text-decoration:none;font-weight:700}.rs-member-card a:hover{border-color:var(--color-primary)}.rs-member-card-vip{border-color:rgba(239,32,41,.6);background:rgba(239,32,41,.08)}.rs-member-card-vip a{background:var(--color-primary);border-color:var(--color-primary)}@media(max-width:900px){.rs-member-grid{grid-template-columns:1fr}}@media(max-width:900px){.rs-compact-entry-grid,.rs-compact-news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.rs-compact-entry-grid,.rs-compact-news-grid{grid-template-columns:1fr}.rs-compact-front{padding-inline:16px}}</style>';
 
     $updated = preg_replace(
       '/<div class="field field--name-body field--type-text-with-summary field--label-hidden field-item">.*?<\/div>/is',
@@ -374,6 +375,32 @@ HTML;
       1,
     );
     return is_string($updated) ? $updated : $content;
+  }
+
+  /**
+   * Shows how to become a member; adapts to the visitor and hides for VIP.
+   */
+  private function membershipBand(): string {
+    $account = \Drupal::currentUser();
+    if ($account->hasRole('vip_member') || $account->hasRole('administrator')) {
+      return '';
+    }
+    $cards = '';
+    if ($account->isAnonymous()) {
+      $cards .= '<div class="rs-member-card"><strong>Gratis konto</strong>'
+        . '<p>Én innlogging for Rockeskolen og musikkportalen, og varsel om nytt innhold og nye verktøy.</p>'
+        . '<a href="https://rockeskolen.com/members/register.php?redirect=%2Fmembers%2Fportal.php">Opprett gratis konto</a></div>';
+    }
+    $cards .= '<div class="rs-member-card rs-member-card-vip"><strong>VIP</strong>'
+      . '<p>Alle akkorder, skalaer og funksjoner i verktøyene, og alt VIP-innhold i musikkportalen.</p>'
+      . '<p class="rs-member-price">39,90 kr/mnd eller 299 kr/år</p>'
+      . '<a href="https://rockeskolen.com/members/upgrade.php">Bli VIP</a></div>';
+    $cards .= '<div class="rs-member-card"><strong>For skoler</strong>'
+      . '<p>Elever og lærere kan logge inn med FEIDE. Les hvordan skolen din kan bruke musikkportalen.</p>'
+      . '<a href="https://rockeskolen.com/skoler/">Les om skoletilgang</a></div>';
+    return '<section class="rs-member-band" aria-labelledby="rs-member-band-title">'
+      . '<h2 id="rs-member-band-title">Bli medlem</h2>'
+      . '<div class="rs-member-grid">' . $cards . '</div></section>';
   }
 
   private function compactEntry(string $icon, string $title, string $description, string $url): string {
@@ -623,13 +650,20 @@ HTML;
       'Tuner' => 'https://rockeskolen.com/tools/tuners/',
       'Tuner og stemmetoner' => 'https://rockeskolen.com/tools/tuners/',
     ];
+    // Tools whose code unlocks more with VIP; the others are free to use.
+    // Tools not listed in either are shown without an access label.
+    $vip_extended = ['Pianoakkorder', 'Gitarakkorder', 'Pianoskalaer', 'Gitarskalaer', 'Kvintsirkelen', 'Pianovisualisering', 'ChordLog'];
+    $free = ['Tuner og stemmetoner', 'Tuner', 'Musikksymboler', 'ChordProg'];
     $escape = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $cards = '';
     foreach ($tools as $tool) {
+      $access = in_array($tool['title'], $vip_extended, TRUE) ? 'Gratis · mer med VIP'
+        : (in_array($tool['title'], $free, TRUE) ? 'Gratis' : '');
       $app_url = (string) $tool['app_url'];
       $url = $canonical_urls[$tool['title']] ?? (preg_match('#^https?://#i', $app_url) ? $app_url : 'https://rockeskolen.com' . $app_url);
       $cards .= '<article class="rs-tool-card">'
-        . '<div class="rs-tool-meta"><span>' . $escape($tool['category']) . '</span><span>' . $escape($tool['product_status']) . '</span></div>'
+        . '<div class="rs-tool-meta"><span>' . $escape($tool['category']) . '</span><span>' . $escape($tool['product_status']) . '</span>'
+        . ($access !== '' ? '<span class="rs-tool-access">' . $escape($access) . '</span>' : '') . '</div>'
         . '<h3>' . $escape($tool['title']) . '</h3>'
         . '<p>' . $escape($tool['short_description']) . '</p>'
         . '<a href="' . $escape($url) . '">' . $escape($cta) . '<span aria-hidden="true">→</span></a>'
@@ -637,7 +671,9 @@ HTML;
     }
     return '<section class="rs-tool-catalog" data-rockeskolen-tool-catalog aria-labelledby="rs-tool-catalog-title">'
       . '<div class="rs-tool-catalog-head"><p class="rs-kicker">Rockeskolen Tools</p><h2 id="rs-tool-catalog-title">' . $escape($title) . '</h2>'
-      . '<p>Én samlet oversikt – samme verktøy på Rockeskolen og i musikkportalen.</p></div>'
+      . '<p>Én samlet oversikt – samme verktøy på Rockeskolen og i musikkportalen.</p>'
+      . '<p class="rs-tool-vip-note">Grunnfunksjonene er gratis. VIP låser opp alle akkorder, skalaer og funksjoner for 39,90 kr/mnd eller 299 kr/år. '
+      . '<a href="https://rockeskolen.com/members/upgrade.php">Bli VIP</a></p></div>'
       . '<div class="rs-tool-grid">' . $cards . '</div></section>';
   }
 
