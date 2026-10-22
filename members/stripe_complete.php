@@ -21,6 +21,7 @@ $activationError = null;
 $drupalLinked = false;
 $needsPassword = false;
 $reference = substr($sessionId, -10);
+$portalUrl = '/members/portal.php';
 
 try {
     $checkout = \Stripe\Checkout\Session::retrieve($sessionId);
@@ -48,6 +49,12 @@ try {
         'role' => (string)$activation['role'],
     ]);
     unset($_SESSION['pending_checkout']);
+    // Tilbake til artikkelen kjøpet startet fra, hvis det startet i portalen.
+    $portalDestination = $_SESSION['portal_destination'] ?? null;
+    unset($_SESSION['portal_destination']);
+    if (is_string($portalDestination) && $portalDestination !== '') {
+        $portalUrl = '/members/portal.php?destination=' . rawurlencode($portalDestination);
+    }
 
     $link = $pdo->prepare('SELECT drupal_uid FROM chordlink_drupal_links WHERE user_id = ? LIMIT 1');
     $link->execute([(int)$activation['user_id']]);
@@ -113,7 +120,7 @@ catch (Throwable $exception) {
       </div>
 
       <div class="activation-actions">
-        <a class="btn primary" href="/members/portal.php">Åpne og koble portalen</a>
+        <a class="btn primary" href="<?php echo htmlspecialchars($portalUrl, ENT_QUOTES, 'UTF-8'); ?>">Åpne og koble portalen</a>
         <a class="btn" href="/members/account.php">Se medlemskapet</a>
         <?php if ($needsPassword): ?><a class="btn ghost" href="/members/forgot.php">Send ny passordlenke</a><?php endif; ?>
       </div>

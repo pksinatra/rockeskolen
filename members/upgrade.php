@@ -16,9 +16,22 @@ $prefillEmail = trim($_POST['email'] ?? ($user['email'] ?? ''));
 
 $formError = null;
 
-// Hvis bruker allerede er logget inn og har tilgang, send til konto
+// En artikkel i musikkportalen kan sende hit med ?destination=; husk den,
+// slik at kvitteringssiden og innloggede VIP-er kommer tilbake til artikkelen.
+$portalDestination = $_GET['destination'] ?? null;
+if (is_string($portalDestination) && $portalDestination !== '' && $portalDestination[0] === '/'
+    && !str_starts_with($portalDestination, '//') && strlen($portalDestination) <= 400
+    && !preg_match('/[\x00-\x1F\x7F\\\\]/', $portalDestination)) {
+    $_SESSION['portal_destination'] = $portalDestination;
+}
+
+// Hvis bruker allerede er logget inn og har tilgang, send til konto (eller tilbake til artikkelen)
 if ($isLoggedIn && in_array(($user['role'] ?? ''), VIP_ROLES, true)) {
-    header("Location: /members/account.php");
+    $destination = $_SESSION['portal_destination'] ?? null;
+    unset($_SESSION['portal_destination']);
+    header('Location: ' . ($destination !== null
+        ? '/members/portal.php?destination=' . rawurlencode($destination)
+        : '/members/account.php'));
     exit;
 }
 

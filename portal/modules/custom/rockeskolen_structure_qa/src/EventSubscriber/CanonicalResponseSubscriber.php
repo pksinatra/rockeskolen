@@ -180,7 +180,7 @@ final class CanonicalResponseSubscriber implements EventSubscriberInterface {
   <li class="menu-item menu-item-level-1"><a href="/musikk-i-praksis">Musikk i praksis</a></li>
   <li class="menu-item menu-item-level-1"><a href="/verktoy">Verktøy</a></li>
   <li class="menu-item menu-item-level-1 menu-item-has-children">
-    <a href="/musikkteori">Teori</a>
+    <a href="/musikkteori">Musikkteori</a>
   </li>
   <li class="menu-item menu-item-level-1 menu-item-has-children">
     <a href="#">Oppslag</a>
@@ -355,10 +355,10 @@ HTML;
       . '<p>Utforsk verktøy, teori og oppslag som hjelper deg å utvikle deg musikalsk og finne egne ideer.</p></section>'
       . '<section class="rs-compact-entries" aria-labelledby="rs-compact-entries-title">'
       . '<h2 id="rs-compact-entries-title">Finn en inngang</h2><div class="rs-compact-entry-grid">'
-      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="14" r="6"/><circle cx="32" cy="16" r="5"/><path d="M6 36c1-8 5-12 11-12s10 4 11 12M24 36c1-6 4-10 9-10 5 0 8 3 9 10"/></svg>', 'Samspill og musisering', 'Lær om samspill, øving, rytme, musikalsk kommunikasjon og det å spille sammen med andre.', '/musikk-i-praksis')
-      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 35V12l20-4v23"/><circle cx="12" cy="36" r="6"/><circle cx="32" cy="32" r="6"/></svg>', 'Låtskriving og komposisjon', 'Utvikle musikalske ideer, skriv melodier og tekster, bygg låter og finn ditt eget uttrykk.', '/musikk-i-praksis')
-      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 9h34v30H7zM7 15h34M24 15v24M7 29h17"/></svg>', 'Musikkforståelse', 'Teori, harmonikk, rytme, notasjon og kunnskap som gjør det lettere å forstå og bruke musikk.', '/musikkteori')
-      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8v32M24 8v32M38 8v32M6 14h8M20 26h8M34 19h8M6 34h8M20 13h8M34 31h8"/></svg>', 'Musikkverktøy', 'Interaktive hjelpemidler for akkorder, skalaer, stemming, komposisjon og praktisk musikkarbeid.', '/verktoy')
+      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="14" r="6"/><circle cx="32" cy="16" r="5"/><path d="M6 36c1-8 5-12 11-12s10 4 11 12M24 36c1-6 4-10 9-10 5 0 8 3 9 10"/></svg>', 'Samspill og musisering', 'Lær om samspill, øving, rytme, musikalsk kommunikasjon og det å spille sammen med andre.', '/musikk-i-praksis?tema=113')
+      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 35V12l20-4v23"/><circle cx="12" cy="36" r="6"/><circle cx="32" cy="32" r="6"/></svg>', 'Låtskriving og komposisjon', 'Utvikle musikalske ideer, skriv melodier og tekster, bygg låter og finn ditt eget uttrykk.', '/musikk-i-praksis?tema=94')
+      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 9h34v30H7zM7 15h34M24 15v24M7 29h17"/></svg>', 'Musikkteori', 'Teori, harmonikk, rytme, notasjon og kunnskap som gjør det lettere å forstå og bruke musikk.', '/musikkteori')
+      . $this->compactEntry('<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8v32M24 8v32M38 8v32M6 14h8M20 26h8M34 19h8M6 34h8M20 13h8M34 31h8"/></svg>', 'Verktøy', 'Interaktive hjelpemidler for akkorder, skalaer, stemming, komposisjon og praktisk musikkarbeid.', '/verktoy')
       . '</div></section>'
       . '<a class="rs-compact-reference" href="/node/152"><strong>B for H</strong><span>Rockeskolen bruker B i stedet for H. Det følger internasjonal standard, gjør musikkteori mer logisk og reduserer forvirring mellom undervisning, noter, apper og musikkprogramvare.</span><b aria-hidden="true">Les artikkelen →</b></a>'
       . '<section class="rs-compact-news" aria-labelledby="rs-compact-news-title"><h2 id="rs-compact-news-title">Aktuelt i Rockeskolen</h2>'

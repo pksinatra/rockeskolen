@@ -37,7 +37,7 @@ final class HomepagePracticeSubscriber implements EventSubscriberInterface {
   </div>
   <div class="rs-home-practice__actions">
     <a class="rs-button rs-button-primary" href="/musikk-i-praksis">Utforsk alle artiklene</a>
-    <a class="rs-button" href="https://portal.rockeskolen.com/artikkelserie/110">Følg låtskrivingsserien</a>
+    <a class="rs-button" href="/gi-ut-din-egen-musikk">Følg serien «Gi ut din egen musikk»</a>
   </div>
 </section>
 HTML;
