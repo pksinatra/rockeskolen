@@ -1,6 +1,7 @@
 members/config.local.php
 members/config.php.save
 members/debug.txt
+.pnpm-store/
 .DS_Store
 assets/.DS_Store
 audio/guitars/**/*.wav
