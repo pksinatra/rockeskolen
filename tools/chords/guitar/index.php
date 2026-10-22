@@ -134,7 +134,7 @@
     </div>
   </div>
   <?php rs_updated_help('guitar-chords'); ?>
-<p>Rockeskolen · ChordLink © 2026 OVERTONE WORKS AS</p>
+<p>Rockeskolen © 2026 OVERTONE WORKS AS</p>
   <!-- Tone.js from CDN -->
   <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
 

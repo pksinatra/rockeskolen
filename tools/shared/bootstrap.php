@@ -70,7 +70,7 @@ function chordlink_app_header_styles(): void {
 function chordlink_app_header(string $title): void {
     global $user;
     $en = rs_updated_lang() === 'en';
-    echo '<header class="rs-updated-header"><a href="/">Rockeskolen</a><nav aria-label="'.($en?'Navigation':'Navigasjon').'"><a href="/tools/">'.($en?'Tools':'Verktøy').'</a><a href="https://portal.rockeskolen.com">Portal</a>';
+    echo '<header class="rs-updated-header"><a href="/">Rockeskolen</a><nav aria-label="'.($en?'Navigation':'Navigasjon').'"><a href="/tools/">'.($en?'Tools':'Verktøy').'</a><a href="https://portal.rockeskolen.com">Musikkportalen</a>';
     $url = $user ? '/members/account.php' : '/members/login.php?redirect='.rawurlencode($_SERVER['REQUEST_URI'] ?? '/tools/');
     echo '<a href="'.rs_updated_h($url).'">'.($user?($en?'Account':'Min konto'):($en?'Log in':'Logg inn')).'</a><span class="rs-language" aria-label="Language / Språk">';
     foreach (['nb'=>'Norsk','en'=>'English'] as $code=>$label) {
