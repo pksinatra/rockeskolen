@@ -133,6 +133,28 @@ function rs_notify_drupal_vip_grant(int $membershipUserId, bool $active): string
 }
 
 /**
+ * Returns the member's own Stripe subscription that can still be cancelled.
+ */
+function rs_find_cancelable_subscription(PDO $pdo, int $userId): ?string {
+    if ($userId <= 0) {
+        return null;
+    }
+    $stmt = $pdo->prepare(
+        "SELECT provider_subscription_id
+           FROM chordlink_subscriptions
+          WHERE user_id = ?
+            AND provider = 'stripe'
+            AND status IN ('active', 'trialing')
+            AND cancel_at_period_end = 0
+          ORDER BY current_period_end DESC
+          LIMIT 1"
+    );
+    $stmt->execute([$userId]);
+    $subscriptionId = $stmt->fetchColumn();
+    return is_string($subscriptionId) && $subscriptionId !== '' ? $subscriptionId : null;
+}
+
+/**
  * Upserts the Stripe entitlement. Safe to call from both webhook and return page.
  */
 function rs_store_stripe_subscription(PDO $pdo, object $subscription, ?array $checkoutMetadata = null): array {
