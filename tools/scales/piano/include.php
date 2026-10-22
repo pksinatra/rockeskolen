@@ -8,6 +8,8 @@ header('Content-Type: text/html; charset=utf-8');
 // --- Inputs (safe defaults) ---
 $root  = isset($_GET['root'])  ? trim((string)$_GET['root'])  : 'C';
 $scale = isset($_GET['scale']) ? trim((string)$_GET['scale']) : 'major';
+$lang  = isset($_GET['lang'])  ? strtolower(trim((string)$_GET['lang'])) : 'en';
+$direction = isset($_GET['direction']) ? strtolower(trim((string)$_GET['direction'])) : 'up';
 
 // Normalize root (accept e.g. "bb", "Db", "f#", etc.)
 $root = str_replace(' ', '', $root);
@@ -18,13 +20,17 @@ $root = strtoupper(substr($root, 0, 1)) . substr($root, 1);
 // Whitelist-ish scale key (safe chars)
 $scale = preg_replace('/[^a-zA-Z0-9_\-]/', '', $scale);
 
+// English remains the shared/default language. Rockeskolen embeds opt in with ?lang=no.
+if (!in_array($lang, ['en', 'no'], true)) $lang = 'en';
+if (!in_array($direction, ['up', 'down', 'both'], true)) $direction = 'up';
+
 // Optional params (nice to have)
 $acc = isset($_GET['acc']) ? strtolower((string)$_GET['acc']) : 'sharp'; // sharp|flat
 if (!in_array($acc, ['sharp','flat'], true)) $acc = 'sharp';
 
 // Visual sizing (optional): ?w=34&h=180 etc.
 $whiteW = isset($_GET['w']) ? (int)$_GET['w'] : 34;
-$whiteH = isset($_GET['h']) ? (int)$_GET['h'] : 160;
+$whiteH = isset($_GET['h']) ? (int)$_GET['h'] : 132;
 $whiteW = max(18, min(70, $whiteW));
 $whiteH = max(90, min(320, $whiteH));
 $blackW = (int)round($whiteW * 0.62);
@@ -43,59 +49,76 @@ $blackH = (int)round($whiteH * 0.62);
       --black-w: <?= (int)$blackW ?>px;
       --black-h: <?= (int)$blackH ?>px;
 
-      --bg: #0b1020;
-      --text:#e8eeff;
-      --muted:#9fb1cf;
-      --gradA:#ff5c7a;
-      --gradB:#b28bff;
-      --gradC:#54d2f2;
+      --ink:#162036;
+      --muted:#68738e;
+      --line:rgba(48,61,91,.14);
+      --violet:#665cf6;
+      --cyan:#4cc9f0;
+      --gradA:#665cf6;
+      --gradB:#8a6ff2;
+      --gradC:#4cc9f0;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ margin:0; background:var(--bg); font-family:system-ui,Segoe UI,Roboto,Inter,Arial,sans-serif; }
+    html,body{ margin:0; min-height:100%; background:#080c14; color:var(--ink); font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
 
     .cl-mini{
-      display:inline-flex;
+      display:flex;
       flex-direction:column;
-      gap:8px;
-      align-items:flex-start;
-      padding:8px;
-      border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-        background:#101735;
+      gap:10px;
+      width:max-content;
+      min-width:min(100%, 360px);
+      padding:10px 10px 14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:linear-gradient(145deg,#fff 0%,#fbfdff 58%,#f7f4ff 100%);
+      box-shadow:0 8px 28px rgba(42,53,81,.08);
       max-width:100%;
     }
 
     .cl-mini-top{
       display:flex;
-      gap:8px;
+      justify-content:space-between;
+      gap:12px;
       align-items:center;
       flex-wrap:wrap;
     }
 
     .cl-mini-title{
       font-size:12px;
-      color:var(--muted);
+      color:#3e4965;
+      font-weight:750;
       user-select:none;
     }
 
     .cl-mini button{
       cursor:pointer;
-      border-radius:10px;
-      padding:8px 10px;
-      border:1px solid rgba(255,255,255,.14);
-      background:#101735;
-      color:var(--text);
-      font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:32px;
+      border-radius:999px;
+      padding:6px 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.92);
+      color:#26314a;
+      box-shadow:0 3px 10px rgba(42,53,81,.06);
+      font:inherit;
+      font-weight:650;
       font-size:13px;
+      transition:border-color .18s ease,background .18s ease,box-shadow .18s ease,transform .18s ease;
     }
-    .cl-mini button.primary{
-      border:0;
-      color:#061020;
-      background:linear-gradient(135deg,var(--gradA),var(--gradB),var(--gradC));
+    .cl-mini button:hover{
+      border-color:rgba(102,92,246,.35);
+      background:#fff;
+      box-shadow:0 5px 16px rgba(74,83,132,.12);
+      transform:translateY(-1px);
     }
+    .cl-mini button:focus-visible{ outline:3px solid rgba(76,201,240,.35); outline-offset:2px; }
 
-    .piano{ display:flex; justify-content:center; }
+    .piano-viewport{ max-width:100%; overflow-x:auto; padding:2px 2px 12px; scrollbar-width:thin; }
+
+    .piano{ display:flex; width:max-content; justify-content:center; }
     .oct{ position:relative; width:calc(7 * var(--white-w)); height:var(--white-h); overflow:visible; }
     .oct.tail{ width:var(--white-w); }
 
@@ -130,25 +153,35 @@ $blackH = (int)round($whiteH * 0.62);
       user-select:none;
     }
 
-    .white.active{
-      background:linear-gradient(135deg,var(--gradA),var(--gradB),var(--gradC));
-      box-shadow: 0 0 16px rgba(178,139,255,.35), 0 10px 18px rgba(0,0,0,.22);
+    .white.in-scale{
+      background:linear-gradient(180deg,#fff 0%,#f1f8ff 58%,#e8e3ff 100%);
+      box-shadow:0 0 0 1px rgba(102,92,246,.16) inset,0 8px 16px rgba(44,56,92,.13);
     }
-    .black.active{
-      background:linear-gradient(135deg,var(--gradB),var(--gradC));
-      box-shadow: 0 0 14px rgba(84,210,242,.30) inset, 0 10px 18px rgba(0,0,0,.30);
+    .black.in-scale{
+      background:linear-gradient(180deg,#34354f 0%,#15172b 70%,#665cf6 145%);
+      box-shadow:0 0 0 1px rgba(76,201,240,.18) inset,0 10px 18px rgba(0,0,0,.25);
+    }
+    .white.playing{
+      background:linear-gradient(145deg,#8de8ff 0%,#a99afc 100%);
+      box-shadow:0 0 9px rgba(76,201,240,.95),0 0 24px rgba(102,92,246,.7),0 10px 18px rgba(44,56,92,.18);
+      transform:translateY(2px);
+    }
+    .black.playing{
+      background:linear-gradient(145deg,#7868ee,#4cc9f0);
+      box-shadow:0 0 9px rgba(76,201,240,.95),0 0 22px rgba(102,92,246,.72),0 10px 18px rgba(0,0,0,.3);
+      transform:translateY(2px);
     }
 
     .mark{
       position:absolute;
-      top:6px;
+      bottom:7px;
       left:50%;
       transform:translateX(-50%);
       width:var(--black-w);
       padding:2px 0;
       text-align:center;
-      background:linear-gradient(135deg,var(--gradA),var(--gradB),var(--gradC));
-      color:#061020;
+      background:linear-gradient(135deg,var(--gradA),var(--gradC));
+      color:#fff;
       font-size:10px;
       font-weight:800;
       line-height:14px;
@@ -156,13 +189,21 @@ $blackH = (int)round($whiteH * 0.62);
       box-shadow:0 2px 10px rgba(0,0,0,.25);
     }
 
-    .white, .black {
-  transition: background 0.35s ease, box-shadow 0.35s ease;
-}
+    .white,.black{ transition:background .18s ease,box-shadow .18s ease,transform .12s ease; }
+    .black .mark{ top:7px; bottom:auto; }
 
-.mark {
-  transition: opacity 0.35s ease;
-}
+    .controls{ display:flex; align-items:center; gap:7px; }
+    .direction-controls{ display:inline-flex; gap:4px; margin-left:2px; padding-left:9px; border-left:1px solid var(--line); }
+    .cl-mini .direction-button{ min-width:34px; padding:6px 9px; color:#59647c; font-size:16px; line-height:1; }
+    .cl-mini .direction-button[aria-pressed="true"]{
+      border-color:rgba(102,92,246,.45);
+      background:linear-gradient(135deg,rgba(76,201,240,.16),rgba(134,92,246,.16));
+      color:var(--violet);
+      box-shadow:inset 0 0 0 1px rgba(102,92,246,.08),0 4px 14px rgba(102,92,246,.12);
+    }
+    .sr-only{ position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+
+    @media (prefers-reduced-motion:reduce){ .white,.black,.cl-mini button{ transition:none; } }
 
   </style>
 </head>
@@ -170,14 +211,26 @@ $blackH = (int)round($whiteH * 0.62);
 
 <div class="cl-mini" data-root="<?= htmlspecialchars($root, ENT_QUOTES) ?>"
      data-scale="<?= htmlspecialchars($scale, ENT_QUOTES) ?>"
+     data-lang="<?= htmlspecialchars($lang, ENT_QUOTES) ?>"
+     data-direction="<?= htmlspecialchars($direction, ENT_QUOTES) ?>"
      data-acc="<?= htmlspecialchars($acc, ENT_QUOTES) ?>">
 
   <div class="cl-mini-top">
     <div class="cl-mini-title" id="miniTitle">Laster…</div>
-    <button class="primary" id="btnPlay" type="button">Spill</button>
   </div>
 
-  <div class="piano" id="piano"></div>
+  <div class="piano-viewport"><div class="piano" id="piano"></div></div>
+
+  <div class="controls" aria-label="<?= $lang === 'no' ? 'Avspilling' : 'Playback' ?>">
+    <button id="btnPlay" type="button"><span aria-hidden="true">▶</span>&nbsp;<?= $lang === 'no' ? 'Spill' : 'Play' ?></button>
+    <button id="btnStop" type="button"><span aria-hidden="true">■</span>&nbsp;<?= $lang === 'no' ? 'Stopp' : 'Stop' ?></button>
+    <div class="direction-controls" role="group" aria-label="<?= $lang === 'no' ? 'Velg retning' : 'Choose direction' ?>">
+      <button type="button" class="direction-button" data-direction="up" aria-label="<?= $lang === 'no' ? 'Spill oppover' : 'Play ascending' ?>" aria-pressed="false" title="<?= $lang === 'no' ? 'Oppover' : 'Ascending' ?>">↑</button>
+      <button type="button" class="direction-button" data-direction="down" aria-label="<?= $lang === 'no' ? 'Spill nedover' : 'Play descending' ?>" aria-pressed="false" title="<?= $lang === 'no' ? 'Nedover' : 'Descending' ?>">↓</button>
+      <button type="button" class="direction-button" data-direction="both" aria-label="<?= $lang === 'no' ? 'Spill opp og ned' : 'Play up and down' ?>" aria-pressed="false" title="<?= $lang === 'no' ? 'Opp og ned' : 'Up and down' ?>">↕</button>
+    </div>
+    <span id="playbackStatus" class="sr-only" role="status" aria-live="polite"></span>
+  </div>
 </div>
 
 <script>
@@ -192,11 +245,14 @@ $blackH = (int)round($whiteH * 0.62);
 
   const rootStr = document.querySelector('.cl-mini').dataset.root || "C";
   const scaleKeyWanted = document.querySelector('.cl-mini').dataset.scale || "major";
+  const langWanted = document.querySelector('.cl-mini').dataset.lang || "en";
+  let directionWanted = document.querySelector('.cl-mini').dataset.direction || "up";
   const accPref = document.querySelector('.cl-mini').dataset.acc || "sharp";
   const pcName = pc => (accPref === "flat" ? N_FLAT[pc] : N_SHARP[pc]);
   const noteName = m => pcName(mod(m,12)) + (Math.floor(m/12)-1);
-const tempoParam = new URLSearchParams(window.location.search).get("tempo");
-const tempo = tempoParam ? parseInt(tempoParam, 10) : 120;
+  const tempoParam = new URLSearchParams(window.location.search).get("tempo");
+  const tempo = Math.min(240, Math.max(30, tempoParam ? parseInt(tempoParam, 10) || 120 : 120));
+  let playTimers=[];
 
   function rootToPc(r){
     const s = (r || "C").replace("♯","#").replace("♭","b");
@@ -220,6 +276,7 @@ const tempo = tempoParam ? parseInt(tempoParam, 10) : 120;
 
   // ---------- Audio ----------
   const AC = new (window.AudioContext||window.webkitAudioContext)();
+  const activeVoices = new Set();
   const midiToFreq = m => 440*Math.pow(2,(m-69)/12);
   function ping(m, offset=0){
     const t = AC.currentTime + offset;
@@ -234,6 +291,8 @@ const tempo = tempoParam ? parseInt(tempoParam, 10) : 120;
     g.gain.linearRampToValueAtTime(0.12, t+0.18);
     g.gain.exponentialRampToValueAtTime(0.0008, t+0.70);
 
+    activeVoices.add(o);
+    o.addEventListener('ended',()=>activeVoices.delete(o),{once:true});
     o.start(t); o.stop(t+0.72);
   }
 
@@ -264,7 +323,7 @@ const tempo = tempoParam ? parseInt(tempoParam, 10) : 120;
         lab.textContent='C'+oct;
         white.appendChild(lab);
       }
-      white.addEventListener('click',()=> ping(midi,0));
+      makeKeyInteractive(white,midi);
       whites.appendChild(white);
 
       const bpc=BLACK_AFTER[pc];
@@ -276,7 +335,7 @@ const tempo = tempoParam ? parseInt(tempoParam, 10) : 120;
         const bm=(oct+1)*12+bpc;
         black.dataset.m=bm;
         black.style.left=((wi+1)*whiteW - (blackW/2))+'px';
-        black.addEventListener('click',()=> ping(bm,0));
+        makeKeyInteractive(black,bm);
         blacks.appendChild(black);
       }
     }
@@ -296,7 +355,7 @@ const tempo = tempoParam ? parseInt(tempoParam, 10) : 120;
 
     const lab=document.createElement('div'); lab.className='lab'; lab.textContent='C'+oct;
     white.appendChild(lab);
-    white.addEventListener('click',()=> ping(midi,0));
+    makeKeyInteractive(white,midi);
     whites.appendChild(white);
 
     octWrap.appendChild(whites);
@@ -319,9 +378,25 @@ function renderPiano(){
   piano.appendChild(row);
 }
 
+  function makeKeyInteractive(key,midi){
+    key.setAttribute('role','button');
+    key.tabIndex=0;
+    key.setAttribute('aria-label',noteName(midi));
+    const play=()=>{
+      try{ if(AC.state!=='running') AC.resume(); }catch(_){}
+      ping(midi,0);
+      key.classList.add('playing');
+      setTimeout(()=>key.classList.remove('playing'),420);
+    };
+    key.addEventListener('click',play);
+    key.addEventListener('keydown',(event)=>{
+      if(event.key==='Enter'||event.key===' '){ event.preventDefault(); play(); }
+    });
+  }
+
   function clearHighlights(){
     document.querySelectorAll('.white,.black').forEach(el=>{
-      el.classList.remove('active');
+      el.classList.remove('in-scale','playing');
       const mark=el.querySelector('.mark');
       if(mark) mark.remove();
     });
@@ -346,7 +421,7 @@ function renderPiano(){
     document.querySelectorAll('.white,.black').forEach(el=>{
       const midi = parseInt(el.dataset.m,10);
       if(midisSet.has(midi)){
-        el.classList.add('active');
+        el.classList.add('in-scale');
         let tag=el.querySelector('.mark');
         if(!tag){ tag=document.createElement('div'); tag.className='mark'; el.appendChild(tag); }
         tag.textContent = noteName(midi);
@@ -373,12 +448,39 @@ function renderPiano(){
     return {};
   }
 
+  function normalizeDirection(direction){
+    return ['up','down','both'].includes(direction) ? direction : 'up';
+  }
+
+  function directionSequence(ascending,direction){
+    if(direction==='down') return [...ascending].reverse();
+    if(direction==='both') return [...ascending,...ascending.slice(0,-1).reverse()];
+    return [...ascending];
+  }
+
+  function updateDirectionButtons(){
+    document.querySelectorAll('.direction-button').forEach(button=>{
+      button.setAttribute('aria-pressed',String(button.dataset.direction===directionWanted));
+    });
+  }
+
+  function clearPlayback(){
+    playTimers.forEach(clearTimeout);
+    playTimers=[];
+    activeVoices.forEach(voice=>{ try{ voice.stop(); }catch(_){} });
+    activeVoices.clear();
+    document.querySelectorAll('.white.playing,.black.playing').forEach(key=>key.classList.remove('playing'));
+    document.body.classList.remove('is-playing');
+  }
+
   // ---------- Boot ----------
   (async () => {
     renderPiano();
 
     const titleEl = document.getElementById('miniTitle');
     const playBtn = document.getElementById('btnPlay');
+    const stopBtn = document.getElementById('btnStop');
+    const statusEl = document.getElementById('playbackStatus');
 
     const rootPc = rootToPc(rootStr);
     let scales = {};
@@ -392,58 +494,57 @@ function renderPiano(){
     const scaleObj = scales[scaleKeyWanted] || scales["major"] || null;
 
     const rootName = pcName(rootPc);
-    const scaleName = (scaleObj && scaleObj.name) ? scaleObj.name : scaleKeyWanted;
+    const scaleName = langWanted === "no" && scaleObj?.name_no
+      ? scaleObj.name_no
+      : (scaleObj?.name || scaleKeyWanted);
     titleEl.textContent = `${rootName} ${scaleName}`;
 
-    const playSeq = highlightScale(rootPc, scaleObj) || [];
+    const ascendingSeq = highlightScale(rootPc, scaleObj) || [];
+    directionWanted=normalizeDirection(directionWanted);
+    updateDirectionButtons();
 
-playBtn.addEventListener('click', async () => {
+    playBtn.addEventListener('click',async()=>{
+      clearPlayback();
+      try{ if(AC.state!=='running') await AC.resume(); }catch(_){}
+      if(!ascendingSeq.length) return;
 
-  try { if(AC.state !== 'running') await AC.resume(); } catch(_){}
-  if(!playSeq.length) return;
+      const sequence=directionSequence(ascendingSeq,directionWanted);
+      const stepMs=60000/tempo;
+      document.body.classList.add('is-playing');
+      if(statusEl) statusEl.textContent=langWanted==='no'?'Spiller skala':'Playing scale';
 
-  clearHighlights();
+      sequence.forEach((m,index)=>{
+        const startMs=index*stepMs;
+        playTimers.push(setTimeout(()=>{
+          ping(m,0);
+          const key=document.querySelector(`[data-m="${m}"]`);
+          if(key) key.classList.add('playing');
+        },startMs));
+        playTimers.push(setTimeout(()=>{
+          const key=document.querySelector(`[data-m="${m}"]`);
+          if(key) key.classList.remove('playing');
+        },startMs+Math.min(stepMs*.9,650)));
+      });
 
-  let t = 0;
-  const step = 60 / tempo; // sekunder per note
-
-  playSeq.forEach(m => {
-
-    ping(m, t);
-
-    setTimeout(() => {
-      const key = document.querySelector(`[data-m="${m}"]`);
-      if (key) key.classList.add("active");
-    }, t * 1000);
-
-    setTimeout(() => {
-      const key = document.querySelector(`[data-m="${m}"]`);
-      if (key) key.classList.remove("active");
-    }, (t + step) * 1000);
-
-    t += step;
-
-  });
-
-  // ⭐ etter siste tone → fade tilbake skala
-  const totalDuration = t * 1000;
-
-  setTimeout(() => {
-
-    const midis = highlightScale(rootPc, scaleObj);
-
-    // optional: fade-in effekt
-    document.querySelectorAll('.white.active, .black.active').forEach(el => {
-      el.style.opacity = "0";
-      setTimeout(() => {
-        el.style.transition = "opacity 0.4s ease";
-        el.style.opacity = "1";
-      }, 20);
+      playTimers.push(setTimeout(()=>{
+        clearPlayback();
+        if(statusEl) statusEl.textContent=langWanted==='no'?'Avspilling ferdig':'Playback finished';
+      },sequence.length*stepMs+120));
     });
 
-  }, totalDuration + 100);
+    stopBtn.addEventListener('click',()=>{
+      clearPlayback();
+      if(statusEl) statusEl.textContent=langWanted==='no'?'Avspilling stoppet':'Playback stopped';
+    });
 
-});
+    document.querySelectorAll('.direction-button').forEach(button=>{
+      button.addEventListener('click',()=>{
+        clearPlayback();
+        directionWanted=normalizeDirection(button.dataset.direction);
+        updateDirectionButtons();
+        if(statusEl) statusEl.textContent=button.getAttribute('title')||'';
+      });
+    });
 
 
 

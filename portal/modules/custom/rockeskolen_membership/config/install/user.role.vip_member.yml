@@ -1,0 +1,9 @@
+langcode: nb
+status: true
+dependencies: {  }
+id: vip_member
+label: VIP-medlem
+weight: 2
+is_admin: null
+permissions:
+  - 'access content'

@@ -1,0 +1,10 @@
+scale_embed:
+  version: 1.x
+  css:
+    theme:
+      css/scale-embed.css: {}
+  js:
+    js/scale-embed.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

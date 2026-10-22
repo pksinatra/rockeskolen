@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 // require_login(); // demo is public
 $user = current_user();
-$isPro = ($user && in_array($user['role'], ['pro','admin'], true));
+$isPro = has_rockeskolen_access($user);
 // Optional: force demo mode with ?demo=1
 if (isset($_GET['demo']) && $_GET['demo'] === '1') {
   $isPro = false;

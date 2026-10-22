@@ -4,10 +4,10 @@ require __DIR__ . '/config.php';
 $errors = [];
 $email  = '';
 
-$redirect = safe_redirect('/members/account.php');
+$redirect = safe_redirect('/members/portal.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $redirect = safe_redirect('/members/account.php');
+    $redirect = safe_redirect('/members/portal.php');
 
     $email = trim($_POST['email'] ?? '');
     $pass  = $_POST['password'] ?? '';
@@ -54,25 +54,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'role'  => 'free',
             ]);
 
-            header("Her: " . $redirect);
+            header("Location: " . $redirect);
             exit;
         }
     }
 }
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Opprett konto | ChordLink</title>
-  <link rel="stylesheet" href="/members/members.css?v=1">
+  <title>Opprett konto | Rockeskolen</title>
+  <link rel="stylesheet" href="/members/members.css?v=4">
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
-        <div class="title">ChordLink</div>
+        <a href="/" aria-label="Rockeskolen"><img class="brand-logo" src="/images/rock-logo.png" alt="Rockeskolen"></a>
         <div class="sub">Medlemmer</div>
       </div>
       <a class="btn ghost" href="https://portal.rockeskolen.com/">Hjem</a>

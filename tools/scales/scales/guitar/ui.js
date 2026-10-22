@@ -76,10 +76,26 @@ let NOTE_STYLE = "#"; // "#" eller "b"
 
 let viewMode = "full";
 const AC = new (window.AudioContext||window.webkitAudioContext)();
+const TUNING_MIDI = [40, 45, 50, 55, 59, 64]; // E2 A2 D3 G3 B3 E4
+const SAMPLE_ROOT = "/audio/guitars/acoustic/";
+const SAMPLE_NOTE_NAMES = ["c","c#","d","d#","e","f","f#","g","g#","a","a#","b"];
 function noteToFreq(note){
   const idx = NOTES.indexOf(note);
   const midi = 52 + (idx < 0 ? 0 : idx); // around E3
   return 440 * Math.pow(2, (midi - 69) / 12);
+}
+function midiToFreq(midi){
+  return 440 * Math.pow(2, (midi - 69) / 12);
+}
+function midiToSampleName(midi){
+  const note = SAMPLE_NOTE_NAMES[(midi + 1200) % 12];
+  const octave = Math.floor(midi / 12) - 1;
+  return `${note}${octave}.mp3`;
+}
+function playGuitarSample(midi, volume = 0.9){
+  const audio = new Audio(SAMPLE_ROOT + encodeURIComponent(midiToSampleName(midi)));
+  audio.volume = Math.max(0, Math.min(1, volume));
+  audio.play().catch(() => {});
 }
 function getAudioCfg(){
   return {
@@ -89,16 +105,115 @@ function getAudioCfg(){
     drive: Math.max(0, Math.min(0.45, Number($("drive")?.value || 0) / 100))
   };
 }
+function getOctaveCount(){
+  return Math.max(1, Math.min(2, Number($("octaveCount")?.value || 1)));
+}
+
+function getScaleTempo(){
+  return Math.max(50, Math.min(220, Number($("scaleTempo")?.value || 120)));
+}
+
+function getScaleStepSeconds(){
+  return 60 / getScaleTempo() / 2;
+}
+
+function updateTempoLabel(){
+  const el = $("tempoValue");
+  if(el){
+    el.textContent = `${getScaleTempo()} BPM`;
+  }
+}
+function rootMidiCandidates(root){
+  const rootIdx = noteIndex(root);
+  const out = [];
+  TUNING_MIDI.forEach((base, stringIndex) => {
+    for(let fret = 0; fret <= FRETS; fret++){
+      if((base + fret) % 12 === rootIdx){
+        out.push({ midi: base + fret, stringIndex, fret });
+      }
+    }
+  });
+  return out.sort((a, b) => (a.midi - b.midi) || (a.fret - b.fret) || (b.stringIndex - a.stringIndex));
+}
+function positionsForMidi(midi){
+  const out = [];
+  TUNING_MIDI.forEach((base, stringIndex) => {
+    const fret = midi - base;
+    if(fret >= 0 && fret <= FRETS){
+      out.push({ midi, stringIndex, fret });
+    }
+  });
+  return out;
+}
+
+function positionScore(pos, previous){
+  let score = pos.fret * 2;
+  if(pos.fret === 0) score -= 5;
+  if(previous){
+    score += Math.abs(pos.fret - previous.fret) * 3;
+    score += Math.abs(pos.stringIndex - previous.stringIndex) * 1.4;
+    if(pos.stringIndex < previous.stringIndex) score += 5;
+  }
+  return score;
+}
+function choosePosition(midi, previous){
+  return positionsForMidi(midi).sort((a, b) => positionScore(a, previous) - positionScore(b, previous))[0] || null;
+}
+function buildScaleRun(root, scaleKey, octaveCount = 1){
+  const scale = SCALE_DATA[scaleKey];
+  if(!scale || !Array.isArray(scale.intervals)) return [];
+
+  const starts = rootMidiCandidates(root);
+  const start = starts.find(p => p.fret <= 5) || starts[0];
+  if(!start) return [];
+
+  const intervals = scale.intervals.slice().sort((a, b) => a - b);
+  const targets = [];
+  for(let octave = 0; octave < octaveCount; octave++){
+    intervals.forEach(interval => targets.push(start.midi + octave * 12 + interval));
+  }
+  targets.push(start.midi + octaveCount * 12);
+
+  const run = [];
+  let previous = null;
+  targets.forEach((midi, idx) => {
+    const pos = idx === 0 ? start : choosePosition(midi, previous);
+    if(pos){
+      run.push({ ...pos, note: NOTES[(midi + 1200) % 12] });
+      previous = pos;
+    }
+  });
+  return run;
+}
+function highlightScalePosition(pos, durationMs = 170){
+  const selector = `.gs-note-group[data-string="${pos.stringIndex}"][data-fret="${pos.fret}"]`;
+  const el = document.querySelector(selector);
+  if(!el) return;
+  const stringEl = document.querySelector(`.gs-string[data-string="${pos.stringIndex}"]`);
+  el.classList.add("is-playing");
+  if(stringEl) stringEl.dataset.playing = "true";
+  window.setTimeout(() => {
+    el.classList.remove("is-playing");
+    if(stringEl) stringEl.dataset.playing = "false";
+  }, durationMs);
+}
 function playScale(){
   const root = $("rootSelect")?.value || "C";
   const scaleKey = $("scaleSelect")?.value || "major";
-  const notes = buildScale(root, scaleKey);
-  if (!notes?.length) return;
+  const run = buildScaleRun(root, scaleKey, getOctaveCount());
+  if (!run?.length) return;
   const cfg = getAudioCfg();
-  const seq = [...notes, notes[0]];
   const t0 = AC.currentTime + 0.02;
-  seq.forEach((n, i)=>{
-    const t = t0 + i * 0.2;
+  if(AC.state === "suspended") AC.resume();
+  const stepSeconds = getScaleStepSeconds();
+  const toneSeconds = Math.max(0.08, Math.min(cfg.sustain, stepSeconds * 1.6));
+  run.forEach((pos, i)=>{
+    const t = t0 + i * stepSeconds;
+    window.setTimeout(() => highlightScalePosition(pos), Math.max(0, (t - AC.currentTime) * 1000));
+    if(cfg.wave === "acoustic_guitar"){
+      window.setTimeout(() => playGuitarSample(pos.midi, cfg.volume), Math.max(0, (t - AC.currentTime) * 1000));
+      return;
+    }
     const osc = AC.createOscillator();
     const gain = AC.createGain();
     const pre = AC.createGain();
@@ -112,13 +227,13 @@ function playScale(){
     }
     shaper.curve = curve;
     osc.type = cfg.wave;
-    osc.frequency.value = noteToFreq(n);
+    osc.frequency.value = midiToFreq(pos.midi);
     pre.gain.value = 1 + cfg.drive * 2;
     gain.gain.setValueAtTime(0, t);
     gain.gain.linearRampToValueAtTime(0.24 * cfg.volume, t + 0.015);
-    gain.gain.exponentialRampToValueAtTime(0.0008, t + cfg.sustain);
+    gain.gain.exponentialRampToValueAtTime(0.0008, t + toneSeconds);
     osc.connect(pre); pre.connect(shaper); shaper.connect(post); post.connect(gain); gain.connect(AC.destination);
-    osc.start(t); osc.stop(t + cfg.sustain + 0.03);
+    osc.start(t); osc.stop(t + toneSeconds + 0.03);
   });
 }
 
@@ -240,7 +355,7 @@ function fillScaleSelect() {
 const name = sc.name_no || sc.name || key;
 
 if (!isScaleAllowed(key)) {
-  opt.textContent = name + " (PRO)";
+  opt.textContent = name + " (VIP)";
   opt.disabled = false; // viktig: IKKE disable
   opt.classList.add("pro-option");
 } else {
@@ -432,11 +547,11 @@ if(!isScaleAllowed(scaleKey)){
 */
 wrap.innerHTML = `
   <div class="msg">
-    🔒 The scale <strong>${formatNote(root)} ${scaleName}</strong> 
-    is only available for Pro members<br><br>
-    <a href="/members/upgrade.php" target="_top" class="pro-cta pro-cta--promo">
-      Upgrade to Pro
-    </a>
+    <strong>${formatNote(root)} ${scaleName}</strong> er med i VIP.<br>
+    Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.<br><br>
+    <a href="/members/upgrade.php" target="_top" class="pro-cta pro-cta--promo">Bli VIP</a>
+    <span>Elev eller lærer?</span>
+    <a href="https://portal.rockeskolen.com/user/login" target="_top" class="pro-cta">Logg inn med FEIDE</a>
   </div>
 `;
 
@@ -456,7 +571,6 @@ if(viewMode === "open"){
   fretStart = 0;
   fretEnd = 4;
 }
-
 
   if (!wrap) return;
 
@@ -527,7 +641,7 @@ svg.appendChild(createSvgEl("path", {
     Q ${hsX-10} ${hsY+hsH/2} ${hsX+40} ${hsY}
     Z
   `,
-  fill: "#5a2d12"
+  class: "gs-headstock"
 }));
 
 
@@ -620,6 +734,7 @@ for (let f = fretStart; f <= fretEnd; f++) {
 TUNING.slice().reverse().forEach((stringNote, s) => {
 
   const y = marginY + s * stringGap;
+  const stringIndex = 5 - s;
 
   svg.appendChild(createSvgEl("line", {
     x1: marginX-5,
@@ -627,7 +742,9 @@ TUNING.slice().reverse().forEach((stringNote, s) => {
     y1: y,
     y2: y,
     stroke:"#888",
-    "stroke-width": STRING_WIDTH[s]
+    "stroke-width": STRING_WIDTH[s],
+    class: "gs-string",
+    "data-string": stringIndex
   }));
 
   svg.appendChild(createSvgEl("text", {
@@ -646,6 +763,7 @@ TUNING.slice().reverse().forEach((stringNote, s) => {
 TUNING.slice().reverse().forEach((stringNote, s) => {
 
   const y = marginY + s * stringGap;
+  const stringIndex = 5 - s;
   let notesOnString = 0;
 
   for (let fret = fretStart; fret <= fretEnd; fret++) {
@@ -667,7 +785,9 @@ TUNING.slice().reverse().forEach((stringNote, s) => {
     const label = SHOW_DEGREES ? (degreeMap[note] || displayNote) : displayNote;
 
     const g = createSvgEl("g", {
-      class: "gs-note-group"
+      class: "gs-note-group",
+      "data-string": stringIndex,
+      "data-fret": fret
     });
 
     g.appendChild(createSvgEl("circle", {
@@ -742,9 +862,9 @@ function showProGate(root, scaleKey){
   const scaleName = scale.name_no || scale.name || scaleKey;
 
   setStatus(`
-    🔒 ${formatNote(root)} ${scaleName} is a PRO scale<br>
+    ${formatNote(root)} ${scaleName} er med i VIP. Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.<br>
     <a href="/members/upgrade.php" target="_top" style="color:#4dc3ff; font-weight:600;">
-      Upgrade to Pro
+      Bli VIP
     </a>
   `);
 
@@ -753,10 +873,10 @@ function showProGate(root, scaleKey){
   wrap.innerHTML += `
     <div class="pro-overlay">
       <div class="pro-box">
-        🔒 <strong>${scaleName}</strong><br>
-        Only available in PRO<br><br>
+        <strong>${scaleName}</strong> er med i VIP.<br>
+        Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.<br><br>
         <a href="/members/upgrade.php" target="_top" class="upgrade-btn">
-          Upgrade
+          Bli VIP
         </a>
       </div>
     </div>
@@ -809,9 +929,12 @@ async function init() {
 $("noteStyleBtn")?.addEventListener("click", toggleNoteStyle);
     $("rootSelect")?.addEventListener("change", updateScaleView);
     $("scaleSelect")?.addEventListener("change", updateScaleView);
+    $("octaveCount")?.addEventListener("change", updateScaleView);
+    $("scaleTempo")?.addEventListener("input", updateTempoLabel);
     $("toggleLabelsBtn")?.addEventListener("click", toggleLabels);
     $("playScaleBtn")?.addEventListener("click", playScale);
 
+    updateTempoLabel();
     updateScaleView();
     lastAllowedScale = $("scaleSelect")?.value || "major";
   } catch (err) {

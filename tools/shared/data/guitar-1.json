@@ -1,0 +1,1696 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 30,
+    "results": [
+        {
+            "id": 158,
+            "type": "guitar_chord",
+            "name": "C#",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#",
+            "data": {
+                "symbol": "C#",
+                "bookSymbol": "C#",
+                "root": "C#",
+                "quality": "major",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "aliases": [
+                    "Db"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            6,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "G#"
+                        ],
+                        "source": "C#-dur A-form barre (4. bånd)"
+                    },
+                    {
+                        "id": "csharp-e-shape-9",
+                        "frets": [
+                            9,
+                            11,
+                            11,
+                            10,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "C#-dur E-form barre (9. bånd)"
+                    }
+                ],
+                "slug": "c#"
+            }
+        },
+        {
+            "id": 161,
+            "type": "guitar_chord",
+            "name": "C#aug",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#aug",
+            "data": {
+                "symbol": "C#aug",
+                "bookSymbol": "C#+",
+                "root": "C#",
+                "quality": "aug",
+                "family": "aug",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5"
+                ],
+                "aliases": [
+                    "C#+",
+                    "Dbaug"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpaug-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            3,
+                            2,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            4,
+                            3,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C#",
+                            "E#",
+                            "G##",
+                            "C#"
+                        ],
+                        "source": "C#aug A-form type"
+                    }
+                ],
+                "slug": "c#aug"
+            }
+        },
+        {
+            "id": 160,
+            "type": "guitar_chord",
+            "name": "C#dim",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#dim",
+            "data": {
+                "symbol": "C#dim",
+                "bookSymbol": "C#dim",
+                "root": "C#",
+                "quality": "dim",
+                "family": "dim",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5"
+                ],
+                "aliases": [
+                    "C#°",
+                    "Dbdim"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpdim-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            5,
+                            6,
+                            5,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Typisk C#dim-grep"
+                    }
+                ],
+                "slug": "c#dim"
+            }
+        },
+        {
+            "id": 159,
+            "type": "guitar_chord",
+            "name": "C#m",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m",
+            "data": {
+                "symbol": "C#m",
+                "bookSymbol": "C#m",
+                "root": "C#",
+                "quality": "minor",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "aliases": [
+                    "Dbm"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpm-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "C#m A-form barre"
+                    },
+                    {
+                        "id": "csharpm-e-shape-9",
+                        "frets": [
+                            9,
+                            11,
+                            11,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "C#m E-form barre"
+                    }
+                ],
+                "slug": "c#m"
+            }
+        },
+        {
+            "id": 663,
+            "type": "guitar_chord",
+            "name": "C#11",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#11",
+            "data": {
+                "symbol": "C#11",
+                "bookSymbol": "C#11",
+                "root": "C#",
+                "quality": "major",
+                "family": "11",
+                "formulaDegrees": [
+                    "1",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [
+                    "Db11"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp-11-shape-4",
+                        "frets": [
+                            4,
+                            4,
+                            4,
+                            4,
+                            4,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "F#",
+                            "B",
+                            "D#",
+                            "B"
+                        ],
+                        "source": "Validated transposition of C11 voicing"
+                    }
+                ],
+                "slug": "c#11"
+            }
+        },
+        {
+            "id": 664,
+            "type": "guitar_chord",
+            "name": "C#13",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#13",
+            "data": {
+                "symbol": "C#13",
+                "bookSymbol": "C#13",
+                "root": "C#",
+                "quality": "major",
+                "family": "13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [
+                    "Db13"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp-13-shape-4",
+                        "frets": [
+                            4,
+                            4,
+                            3,
+                            4,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            3,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "E#",
+                            "B",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Validated transposition of C13 voicing"
+                    }
+                ],
+                "slug": "c#13"
+            }
+        },
+        {
+            "id": 192,
+            "type": "guitar_chord",
+            "name": "C#13sus4",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#13sus4",
+            "data": {
+                "symbol": "C#13sus4",
+                "bookSymbol": "C#13sus4",
+                "root": "C#",
+                "quality": "major",
+                "family": "13sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-13sus4-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            4,
+                            7,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B",
+                            "F#",
+                            "A#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#13sus4"
+            }
+        },
+        {
+            "id": 183,
+            "type": "guitar_chord",
+            "name": "C#5",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#5",
+            "data": {
+                "symbol": "C#5",
+                "bookSymbol": "C#5",
+                "root": "C#",
+                "quality": "major",
+                "family": "5",
+                "formulaDegrees": [
+                    "1",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-5-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "C#5 Power chord (A-root)"
+                    }
+                ],
+                "slug": "c#5"
+            }
+        },
+        {
+            "id": 162,
+            "type": "guitar_chord",
+            "name": "C#6",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#6",
+            "data": {
+                "symbol": "C#6",
+                "bookSymbol": "C#6",
+                "root": "C#",
+                "quality": "major",
+                "family": "6",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [
+                    "Db6"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp6-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "C#6 A-form type"
+                    }
+                ],
+                "slug": "c#6"
+            }
+        },
+        {
+            "id": 184,
+            "type": "guitar_chord",
+            "name": "C#6\/9",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#6-9",
+            "data": {
+                "symbol": "C#6\/9",
+                "bookSymbol": "C#6\/9",
+                "root": "C#",
+                "quality": "major",
+                "family": "69",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-69-a4",
+                        "frets": [
+                            -1,
+                            6,
+                            6,
+                            6,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#6-9"
+            }
+        },
+        {
+            "id": 164,
+            "type": "guitar_chord",
+            "name": "C#7",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7",
+            "data": {
+                "symbol": "C#7",
+                "bookSymbol": "C#7",
+                "root": "C#",
+                "quality": "major",
+                "family": "7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [
+                    "Db7"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp7-e-shape-9",
+                        "frets": [
+                            9,
+                            11,
+                            9,
+                            10,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B",
+                            "E#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "C#7 E-form barre"
+                    }
+                ],
+                "slug": "c#7"
+            }
+        },
+        {
+            "id": 194,
+            "type": "guitar_chord",
+            "name": "C#7(#5)",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7-#5",
+            "data": {
+                "symbol": "C#7(#5)",
+                "bookSymbol": "C#7(#5)",
+                "root": "C#",
+                "quality": "major",
+                "family": "7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-7#5-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            7,
+                            4,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G##",
+                            "B",
+                            "E#",
+                            "G##"
+                        ],
+                        "source": "C#7(#5) 7#5 (A-root)"
+                    }
+                ],
+                "slug": "c#7-#5"
+            }
+        },
+        {
+            "id": 196,
+            "type": "guitar_chord",
+            "name": "C#7(#9)",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7-#9",
+            "data": {
+                "symbol": "C#7(#9)",
+                "bookSymbol": "C#7(#9)",
+                "root": "C#",
+                "quality": "major",
+                "family": "7#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-7#9-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            3,
+                            4,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            2,
+                            3,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "E#",
+                            "B",
+                            "D##",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#7-#9"
+            }
+        },
+        {
+            "id": 193,
+            "type": "guitar_chord",
+            "name": "C#7(b5)",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7-b5",
+            "data": {
+                "symbol": "C#7(b5)",
+                "bookSymbol": "C#7(b5)",
+                "root": "C#",
+                "quality": "major",
+                "family": "7b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-7b5-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            5,
+                            4,
+                            6,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G",
+                            "B",
+                            "E#",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#7-b5"
+            }
+        },
+        {
+            "id": 195,
+            "type": "guitar_chord",
+            "name": "C#7(b9)",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7-b9",
+            "data": {
+                "symbol": "C#7(b9)",
+                "bookSymbol": "C#7(b9)",
+                "root": "C#",
+                "quality": "major",
+                "family": "7b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-7b9-a4",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            6,
+                            6,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            2,
+                            2,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#7-b9"
+            }
+        },
+        {
+            "id": 190,
+            "type": "guitar_chord",
+            "name": "C#7sus2",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7sus2",
+            "data": {
+                "symbol": "C#7sus2",
+                "bookSymbol": "C#7sus2",
+                "root": "C#",
+                "quality": "major",
+                "family": "7sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-7sus2-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            4,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#7sus2"
+            }
+        },
+        {
+            "id": 189,
+            "type": "guitar_chord",
+            "name": "C#7sus4",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#7sus4",
+            "data": {
+                "symbol": "C#7sus4",
+                "bookSymbol": "C#7sus4",
+                "root": "C#",
+                "quality": "major",
+                "family": "7sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-7sus4-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            4,
+                            7,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B",
+                            "F#",
+                            "G#"
+                        ],
+                        "source": "C#7sus4 7sus4 (A-root)"
+                    }
+                ],
+                "slug": "c#7sus4"
+            }
+        },
+        {
+            "id": 170,
+            "type": "guitar_chord",
+            "name": "C#9",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#9",
+            "data": {
+                "symbol": "C#9",
+                "bookSymbol": "C#9",
+                "root": "C#",
+                "quality": "major",
+                "family": "9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [
+                    "Db9"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp9-shape-9",
+                        "frets": [
+                            9,
+                            8,
+                            9,
+                            8,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            4
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C#",
+                            "E#",
+                            "B",
+                            "D#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "C#9 voicing"
+                    }
+                ],
+                "slug": "c#9"
+            }
+        },
+        {
+            "id": 191,
+            "type": "guitar_chord",
+            "name": "C#9sus4",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#9sus4",
+            "data": {
+                "symbol": "C#9sus4",
+                "bookSymbol": "C#9sus4",
+                "root": "C#",
+                "quality": "major",
+                "family": "9sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-9sus4-a4",
+                        "frets": [
+                            -1,
+                            6,
+                            6,
+                            6,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D#",
+                            "G#",
+                            "C#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#9sus4"
+            }
+        },
+        {
+            "id": 169,
+            "type": "guitar_chord",
+            "name": "C#add9",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#add9",
+            "data": {
+                "symbol": "C#add9",
+                "bookSymbol": "C#add9",
+                "root": "C#",
+                "quality": "major",
+                "family": "add9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [
+                    "Dbadd9"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpadd9-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            3,
+                            6,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "E#",
+                            "C#",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#add9"
+            }
+        },
+        {
+            "id": 662,
+            "type": "guitar_chord",
+            "name": "C#m(maj7)",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m-maj7",
+            "data": {
+                "symbol": "C#m(maj7)",
+                "bookSymbol": "C#m(maj7)",
+                "root": "C#",
+                "quality": "minor",
+                "family": "m(maj7)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [
+                    "Dbm(maj7)"
+                ],
+                "variants": [
+                    {
+                        "id": "csharp-mmaj7-e-shape-9",
+                        "frets": [
+                            9,
+                            11,
+                            10,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B#",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Validated movable E-shape"
+                    }
+                ],
+                "slug": "c#m-maj7"
+            }
+        },
+        {
+            "id": 163,
+            "type": "guitar_chord",
+            "name": "C#m6",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m6",
+            "data": {
+                "symbol": "C#m6",
+                "bookSymbol": "C#m6",
+                "root": "C#",
+                "quality": "minor",
+                "family": "m6",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [
+                    "Dbm6"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpm6-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            5,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E",
+                            "A#"
+                        ],
+                        "source": "C#m6 A-form type"
+                    }
+                ],
+                "slug": "c#m6"
+            }
+        },
+        {
+            "id": 185,
+            "type": "guitar_chord",
+            "name": "C#m6\/9",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m6-9",
+            "data": {
+                "symbol": "C#m6\/9",
+                "bookSymbol": "C#m6\/9",
+                "root": "C#",
+                "quality": "minor",
+                "family": "m69",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-m69-a4",
+                        "frets": [
+                            -1,
+                            6,
+                            6,
+                            6,
+                            5,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E",
+                            "A#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#m6-9"
+            }
+        },
+        {
+            "id": 165,
+            "type": "guitar_chord",
+            "name": "C#m7",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m7",
+            "data": {
+                "symbol": "C#m7",
+                "bookSymbol": "C#m7",
+                "root": "C#",
+                "quality": "minor",
+                "family": "m7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [
+                    "Dbm7"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpm7-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            4,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "C#m7 A-form barre"
+                    }
+                ],
+                "slug": "c#m7"
+            }
+        },
+        {
+            "id": 186,
+            "type": "guitar_chord",
+            "name": "C#m7(b5)",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m7-b5",
+            "data": {
+                "symbol": "C#m7(b5)",
+                "bookSymbol": "C#m7(b5)",
+                "root": "C#",
+                "quality": "minor",
+                "family": "m7b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-m7b5-a4",
+                        "frets": [
+                            -1,
+                            4,
+                            5,
+                            4,
+                            5,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G",
+                            "B",
+                            "E",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#m7-b5"
+            }
+        },
+        {
+            "id": 188,
+            "type": "guitar_chord",
+            "name": "C#m9",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#m9",
+            "data": {
+                "symbol": "C#m9",
+                "bookSymbol": "C#m9",
+                "root": "C#",
+                "quality": "minor",
+                "family": "m9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-m9-a4",
+                        "frets": [
+                            -1,
+                            6,
+                            6,
+                            6,
+                            5,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#m9"
+            }
+        },
+        {
+            "id": 166,
+            "type": "guitar_chord",
+            "name": "C#maj7",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#maj7",
+            "data": {
+                "symbol": "C#maj7",
+                "bookSymbol": "C#maj7",
+                "root": "C#",
+                "quality": "major",
+                "family": "maj7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [
+                    "Dbmaj7"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpmaj7-e-shape-9",
+                        "frets": [
+                            9,
+                            11,
+                            10,
+                            10,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "B#",
+                            "E#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "C#maj7 E-form barre"
+                    }
+                ],
+                "slug": "c#maj7"
+            }
+        },
+        {
+            "id": 187,
+            "type": "guitar_chord",
+            "name": "C#maj9",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#maj9",
+            "data": {
+                "symbol": "C#maj9",
+                "bookSymbol": "C#maj9",
+                "root": "C#",
+                "quality": "major",
+                "family": "maj9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csharp-maj9-a4",
+                        "frets": [
+                            -1,
+                            6,
+                            6,
+                            6,
+                            6,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "B#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c#maj9"
+            }
+        },
+        {
+            "id": 167,
+            "type": "guitar_chord",
+            "name": "C#sus2",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#sus2",
+            "data": {
+                "symbol": "C#sus2",
+                "bookSymbol": "C#sus2",
+                "root": "C#",
+                "quality": "major",
+                "family": "sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5"
+                ],
+                "aliases": [
+                    "Dbsus2"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpsus2-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "C#sus2 A-form type"
+                    }
+                ],
+                "slug": "c#sus2"
+            }
+        },
+        {
+            "id": 168,
+            "type": "guitar_chord",
+            "name": "C#sus4",
+            "root_note": "C#",
+            "instrument": "guitar",
+            "slug": "c#sus4",
+            "data": {
+                "symbol": "C#sus4",
+                "bookSymbol": "C#sus4",
+                "root": "C#",
+                "quality": "major",
+                "family": "sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5"
+                ],
+                "aliases": [
+                    "Dbsus4"
+                ],
+                "variants": [
+                    {
+                        "id": "csharpsus4-a-shape-4",
+                        "frets": [
+                            -1,
+                            4,
+                            6,
+                            6,
+                            7,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            4,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "C#",
+                            "G#",
+                            "C#",
+                            "F#",
+                            "G#"
+                        ],
+                        "source": "C#sus4 A-form variant"
+                    }
+                ],
+                "slug": "c#sus4"
+            }
+        }
+    ]
+}

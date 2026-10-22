@@ -7,7 +7,6 @@
     const extSelect = document.getElementById("extension");
     const variantSelect = document.getElementById("variantSelect");
     const playBtn = document.getElementById("playBtn");
-    const debugToggle = document.getElementById("debugToggle");
     const debugEl = document.getElementById("debug");
     const fretboardEl = document.getElementById("fretboard");
     const chordNameMainEl = document.getElementById("chordNameMain");
@@ -17,24 +16,6 @@
     const variantInfoEl = document.getElementById("variantInfo");
     const fileNameInfoEl = document.getElementById("fileNameInfo");
 
-
-console.log("root:", !!rootSelect);
-
-console.log("extension:", !!extSelect);
-console.log("variantSelect:", !!variantSelect);
-console.log("playBtn:", !!playBtn);
-console.log("debugToggle:", !!debugToggle);
-console.log("debugEl:", !!debugEl);
-console.log("fretboard:", !!fretboardEl);
-console.log("chordNameMain:", !!chordNameMainEl);
-console.log("chordNameBook:", !!chordNameBookEl);
-console.log("tagFamily:", !!tagFamilyEl);
-console.log("tagQuality:", !!tagQualityEl);
-console.log("variantInfo:", !!variantInfoEl);
-console.log("fileNameInfo:", !!fileNameInfoEl);
-
-
-
     // Hvis vi ikke finner noe av dette, gir vi opp stille for denne siden
     if (
       !rootSelect ||
@@ -42,15 +23,12 @@ console.log("fileNameInfo:", !!fileNameInfoEl);
       !extSelect ||
       !variantSelect ||
       !playBtn ||
-      !debugToggle ||
-      !debugEl ||
       !fretboardEl ||
       !chordNameMainEl ||
       !chordNameBookEl ||
       !tagFamilyEl ||
       !tagQualityEl ||
-      !variantInfoEl ||
-      !fileNameInfoEl
+      !variantInfoEl
     ) {
       console.error(
         "ChordLink Guitar UI: Required DOM elements not found. " +
@@ -67,45 +45,9 @@ console.log("fileNameInfo:", !!fileNameInfoEl);
     // - Pro extensions: 11, 13, altered
     // ------------------------------------------------------------
     const IS_PRO = !!window.CL_IS_PRO; // settes i PHP (window.CL_IS_PRO = true/false)
-    const IS_LOGGED_IN = !!window.CL_IS_LOGGED_IN;
-    const GUEST_ROOTS = new Set(["C", "F", "G"]);
-    const FREE_ROOTS = new Set(["C", "F", "G", "E"]);
-
-const GUEST_EXTENSIONS = new Set([
-  "maj",
-  "min",
-  "7"
-]);
-
-const FREE_EXTENSIONS = new Set([
-  "maj7",
-  "m7",
-  "add9",
-  "sus2",
-  "sus4"
-]);
-
-
-const PRO_EXTENSIONS = new Set([
-  "6",
-  "m6",  
-  "11",
-  "13",
-  "altered",
-  "69",
-  "m69",
-  "m7b5",
-  "maj9",
-  "m9",
-  "7sus4",
-  "7sus2",
-  "9sus4",
-  "13sus4",
-  "7b5",
-  "7#5",
-  "7b9",
-  "7#9"
-]);
+    const FREE_ROOTS = new Set(window.CL_IS_LOGGED_IN ? ["C", "F", "G", "E"] : ["C", "F", "G"]);
+const RS_ALLOWED_EXTENSIONS = new Set(window.CL_IS_LOGGED_IN ? ["maj", "min", "7", "maj7", "m7", "add9", "sus2", "sus4"] : ["maj", "min", "7"]);
+const PRO_EXTENSIONS = new Set(Array.from(extSelect.options, opt => opt.value).filter(key => !RS_ALLOWED_EXTENSIONS.has(key)));
     const UPGRADE_URL = (window.CL_UPGRADE_URL || "/members/upgrade.php");
 
 function ensureProBox() {
@@ -114,54 +56,29 @@ function ensureProBox() {
   const a = document.createElement("a");
   a.id = "proBox";
   a.href = UPGRADE_URL;
-  a.className = "pro-cta pro-cta--promo";
+    a.target = "_top";
+  a.className = "pro-cta"; // 👈 viktig: gjenbruk felles stil
   a.setAttribute("role", "button");
   a.style.display = "none";
-
-  // 🔥 MAGIC FIX HER
-  a.addEventListener("click", function(e){
-    e.preventDefault();
-
-    if(!IS_LOGGED_IN){
-      // send rett til upgrade, IKKE login
-      window.location.href = "/members/upgrade.php";
-    } else {
-      // allerede innlogget → samme sted
-      window.location.href = "/members/upgrade.php";
-    }
-  });
 
   const card = document.querySelector(".card") || document.body;
   card.insertBefore(a, card.firstChild);
 }
+
 function showProBox(name) {
   ensureProBox();
-
   const box = document.getElementById("proBox");
   if (!box) return;
 
-  let text = "";
+  box.innerHTML = `
+    <strong>Pro only:</strong> <strong>${name}</strong> is available in the Pro version.
+    Choose a free option, or
+    <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+  `;
 
-  if(!IS_LOGGED_IN){
-    text = `
-      Akkorden <strong>${name}</strong> krever konto.<br>
-      <span class="pro-cta-sub">Opprett gratis konto med begrensninger, </span>
-      eller
-      <span class="pro-cta-sub">bli VIP-medlem og få full tilgang til alt innhold.</span>
-    `;
-  } else {
-    text = `
-      Akkorden <strong>${name}</strong> er en premium-akkord.<br>
-      <span class="pro-cta-sub">Oppgrader til VIP-medlem</span>
-    `;
-  }
-
-  box.innerHTML = text;
   box.style.display = "block";
+  box.scrollIntoView({ behavior: "smooth", block: "center" });
 }
-
-
-
 
     function hideProBox() {
       const b = document.getElementById("proBox");
@@ -198,28 +115,14 @@ function showProBox(name) {
   }
 
   // Hvis user er free og står på en pro-root → hopp til C (eller første free)
-if (!IS_PRO) {
-
-  if (!IS_LOGGED_IN && !GUEST_ROOTS.has(rootSelect.value)) {
-    showProBox(rootSelect.value);
-    rootSelect.value = "C";
-    updateChordFromUI();
-    return;
+  if (!IS_PRO && !FREE_ROOTS.has(rootSelect.value)) {
+    rootSelect.value = firstFree || "C";
   }
-
-  if (IS_LOGGED_IN && !FREE_ROOTS.has(rootSelect.value)) {
-    showProBox(rootSelect.value);
-    rootSelect.value = "C";
-    updateChordFromUI();
-    return;
-  }
-
-}
 }
 
-
-function applyProGates_Extensions() {
-
+    function applyProGates_Extensions() {
+  // iOS/Safari kan vise "blanke" rader for <option disabled>.
+  // Derfor: vi lar alle options være enabled, men merker Pro-only og håndhever ved change.
   for (const opt of extSelect.options) {
     if (!opt.dataset.label) opt.dataset.label = opt.textContent;
 
@@ -238,26 +141,11 @@ function applyProGates_Extensions() {
     }
   }
 
-  // 👉 FLYTTET INN HER (viktig!)
-  if (!IS_PRO) {
-
-    if (!IS_LOGGED_IN && !GUEST_EXTENSIONS.has(extSelect.value)) {
-      showProBox(extSelect.value);
-      extSelect.value = "maj";
-      updateChordFromUI();
-      return;
-    }
-
-    if (IS_LOGGED_IN && !FREE_EXTENSIONS.has(extSelect.value)) {
-      showProBox(extSelect.value);
-      extSelect.value = "maj";
-      updateChordFromUI();
-      return;
-    }
-
+  // Hvis user er free og står på pro-extension → hopp til "none"
+  if (!IS_PRO && PRO_EXTENSIONS.has(extSelect.value)) {
+    extSelect.value = "maj";
   }
 }
-
 
 
 // Skjul Quality-dropdown – brukes ikke lenger
@@ -275,19 +163,27 @@ function applyProGates_Extensions() {
     const TUNING = [40, 45, 50, 55, 59, 64]; // E2 A2 D3 G3 B3 E4
     let toneSynth = null;
     let toneLimiter = null;
+    let toneDrive = null;
     let currentVariant = null; // sist viste grep
+    let playbackMarkerTimers = [];
+    const ACOUSTIC_SAMPLE_ROOT = "/audio/guitars/acoustic/";
+    const SAMPLE_NOTE_NAMES = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
+    const SAMPLE_MIN_MIDI = 40;
+    const SAMPLE_MAX_MIDI = 76;
+    let sampleAudioContext = null;
+    const sampleBufferCache = new Map();
+    const activeSampleSources = new Set();
 
     // ---- Harmonics toggle (stable) ----
-    // Legg en knapp ved siden av Debug uten å avhenge av ekstra wrappers.
     (function ensureHarmonicsButton() {
-      const host = debugToggle && debugToggle.parentElement;
+      const host = playBtn && playBtn.parentElement;
       if (!host) return;
       if (document.getElementById("harmonicsToggle")) return;
       const btn = document.createElement("button");
       btn.id = "harmonicsToggle";
       btn.type = "button";
       btn.className = "secondary";
-      btn.textContent = "Flageoletter";
+      btn.textContent = "Harmonics";
       btn.addEventListener("click", function () {
         showHarmonics = !showHarmonics;
         if (currentVariant) renderFretboard(currentVariant);
@@ -295,16 +191,108 @@ function applyProGates_Extensions() {
       host.appendChild(btn);
     })();
 
-    function fretsToMidis(frets) {
+    function fretsToPlayedNotes(frets) {
       const out = [];
       for (let i = 0; i < TUNING.length; i++) {
         const fret = frets[i];
         if (fret == null || fret < 0) continue; // X
         const base = TUNING[i];
         const midi = base + (fret || 0); // 0 = åpen streng
-        out.push(midi);
+        out.push({ midi, stringIndex: i });
       }
       return out;
+    }
+
+    function clearPlaybackMarkers() {
+      playbackMarkerTimers.forEach(window.clearTimeout);
+      playbackMarkerTimers = [];
+      fretboardEl.querySelectorAll(".cl-note-playing, .cl-string-playing").forEach(function (element) {
+        element.classList.remove("cl-note-playing", "cl-string-playing");
+      });
+    }
+
+    function schedulePlaybackMarker(stringIndex, delayMs, durationMs) {
+      const startTimer = window.setTimeout(function () {
+        const marker = fretboardEl.querySelector(
+          '[data-string-index="' + stringIndex + '"]'
+        );
+        const neckString = fretboardEl.querySelector(
+          '[data-neck-string-index="' + stringIndex + '"]'
+        );
+        if (!marker && !neckString) return;
+
+        if (marker) marker.classList.remove("cl-note-playing");
+        if (neckString) neckString.classList.remove("cl-string-playing");
+        void (marker || neckString).getBoundingClientRect();
+        if (marker) marker.classList.add("cl-note-playing");
+        if (neckString) neckString.classList.add("cl-string-playing");
+
+        const stopTimer = window.setTimeout(function () {
+          if (marker) marker.classList.remove("cl-note-playing");
+          if (neckString) neckString.classList.remove("cl-string-playing");
+        }, durationMs);
+        playbackMarkerTimers.push(stopTimer);
+      }, delayMs);
+      playbackMarkerTimers.push(startTimer);
+    }
+
+    async function ensureSampleAudioContext() {
+      if (!sampleAudioContext) {
+        sampleAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (sampleAudioContext.state === "suspended") await sampleAudioContext.resume();
+      return sampleAudioContext;
+    }
+
+    function midiToSampleName(midi) {
+      const note = SAMPLE_NOTE_NAMES[(midi + 1200) % 12];
+      const octave = Math.floor(midi / 12) - 1;
+      return note + octave + ".mp3";
+    }
+
+    function acousticSampleForMidi(midi) {
+      const sourceMidi = Math.max(SAMPLE_MIN_MIDI, Math.min(SAMPLE_MAX_MIDI, midi));
+      const url = ACOUSTIC_SAMPLE_ROOT + encodeURIComponent(midiToSampleName(sourceMidi));
+      if (!sampleBufferCache.has(url)) {
+        const loading = fetch(url, { cache: "force-cache" })
+          .then(function (response) {
+            if (!response.ok) throw new Error("Could not load guitar sample (" + response.status + "): " + url);
+            return response.arrayBuffer();
+          })
+          .then(function (arrayBuffer) {
+            return sampleAudioContext.decodeAudioData(arrayBuffer);
+          })
+          .then(function (buffer) {
+            return { buffer: buffer, sourceMidi: sourceMidi };
+          })
+          .catch(function (error) {
+            sampleBufferCache.delete(url);
+            throw error;
+          });
+        sampleBufferCache.set(url, loading);
+      }
+      return sampleBufferCache.get(url);
+    }
+
+    function stopActiveSamples() {
+      activeSampleSources.forEach(function (source) {
+        try { source.stop(); } catch (error) {}
+      });
+      activeSampleSources.clear();
+    }
+
+    function scheduleAcousticSample(sample, targetMidi, time, volume) {
+      const source = sampleAudioContext.createBufferSource();
+      const gain = sampleAudioContext.createGain();
+      source.buffer = sample.buffer;
+      source.playbackRate.setValueAtTime(Math.pow(2, (targetMidi - sample.sourceMidi) / 12), time);
+      gain.gain.setValueAtTime(Math.max(0, Math.min(1, volume)), time);
+      source.connect(gain).connect(sampleAudioContext.destination);
+      activeSampleSources.add(source);
+      source.addEventListener("ended", function () {
+        activeSampleSources.delete(source);
+      }, { once: true });
+      source.start(time);
     }
 
     async function ensureTone() {
@@ -342,47 +330,94 @@ function applyProGates_Extensions() {
 
       // limiter + litt lavere nivå for å unngå skurring
       toneLimiter = new Tone.Limiter(-6).toDestination();
+      toneDrive = new Tone.Distortion(0).connect(toneLimiter);
 
       toneSynth = new Tone.PolySynth(Tone.Synth, {
         oscillator: { type: "sine" },
         envelope: { attack: 0.01, decay: 0.3, sustain: 0.5, release: 0.8 },
         volume: -10
-      }).connect(toneLimiter);
+      }).connect(toneDrive);
 
       return Tone;
     }
 
-    function logDebug(obj) {
-      if (!debugEl) return;
+    function logDiagnostics(obj) {
+      if (!window.CL_DEBUG_UI || !debugEl) return;
       debugEl.textContent = JSON.stringify(obj, null, 2);
     }
 
-    // ---- Filnavn basert på rot ----
-    function getChordFileForRoot(root) {
-      // C, Cb, C# -> "c"
-      const base = root.charAt(0).toLowerCase();
-      const file = "/assets/data/guitarchords_" + base + ".json";
-      fileNameInfoEl.textContent = file;
-      return file;
+    // ---- Datakilder ----
+    function normalizeApiGuitarChord(row, requestedRoot) {
+      const data = row?.data || {};
+      const root = (row?.root_note || data?.root || requestedRoot || "").toString().trim();
+      const symbol = (data?.symbol || data?.name || row?.name || row?.slug || "").toString().trim();
+      const slug = (data?.slug || row?.slug || symbol || root).toString().trim().toLowerCase();
+      const variants = Array.isArray(data?.variants) ? data.variants : [];
+      if (!root || !variants.length) return null;
+
+      const rootSlug = root.toLowerCase().replace(/[^a-g#b]/g, "");
+      const normalizedSlug = slug.replace(/[^a-z0-9#b()+]/g, "");
+      let suffix = normalizedSlug.startsWith(rootSlug)
+        ? normalizedSlug.slice(rootSlug.length)
+        : normalizedSlug;
+      if (!suffix || suffix === "major") suffix = "maj";
+      if (suffix === "m" || suffix === "minor") suffix = "min";
+      const parsed = (data?.family && data?.quality)
+        ? { family: data.family, quality: data.quality }
+        : parseChordType(suffix);
+
+      return {
+        root,
+        family: parsed.family,
+        quality: parsed.quality,
+        variants,
+        slug,
+        symbol: symbol || row?.name || slug,
+        bookSymbol: data?.bookSymbol || "",
+        aliases: Array.isArray(data?.aliases) ? data.aliases : [],
+        name: row?.name || symbol || slug
+      };
+    }
+
+    // ---- Filnavn/API basert på rot ----
+    function getChordApiUrl(root) {
+      return `/tools/shared/music.php?type=guitar_chord&instrument=guitar&root=${encodeURIComponent(root)}`;
+    }
+
+    function setChordApiLabel(url) {
+      if (!fileNameInfoEl) return;
+      fileNameInfoEl.textContent = url;
     }
 
     async function loadDataForRoot(root) {
-      const key = root.charAt(0).toUpperCase(); // C, D, E, ...
+      const key = root.toString().trim().toUpperCase();
       if (jsonCache[key]) return jsonCache[key];
 
-      const url = getChordFileForRoot(root);
-      const res = await fetch(url);
+      const url = getChordApiUrl(root);
+      setChordApiLabel(url);
+      const res = await fetch(url, { credentials: "same-origin" });
       if (!res.ok) {
-        throw new Error("Klarte ikke å laste " + url + " (" + res.status + ")");
+        throw new Error("Could not load API or " + url + " (" + res.status + ")");
       }
-      const data = await res.json();
+      const payload = await res.json();
+      if (!payload?.success || !Array.isArray(payload.results)) {
+        throw new Error("Invalid response from music API");
+      }
+
+      const chords = payload.results
+        .map((row) => normalizeApiGuitarChord(row, root))
+        .filter(Boolean);
+
+      const data = { chords };
       jsonCache[key] = data;
       return data;
     }
 
     function rootMatchesChord(ch, root) {
-      if (ch.root === root) return true;
-      if (Array.isArray(ch.aliases) && ch.aliases.indexOf(root) !== -1)
+      const wanted = (root || "").toString().trim().toUpperCase();
+      const chordRoot = (ch.root || "").toString().trim().toUpperCase();
+      if (chordRoot === wanted) return true;
+      if (Array.isArray(ch.aliases) && ch.aliases.some(alias => (alias || "").toString().trim().toUpperCase() === wanted))
         return true;
       return false;
     }
@@ -450,8 +485,8 @@ function parseChordType(chordType) {
 }
 
     function qualityLabel(quality) {
-      if (quality === "major") return "Dur";
-      if (quality === "minor") return "Moll";
+      if (quality === "major") return "Major";
+      if (quality === "minor") return "Minor";
       if (quality === "dim") return "Dim";
       if (quality === "aug") return "Aug";
       return quality;
@@ -459,7 +494,7 @@ function parseChordType(chordType) {
 
     function familyLabel(family) {
       const map = {
-        plain: "Grunnakkord",
+        plain: "Root",
         "6": "6",
         m6: "m6",
         "7": "7",
@@ -561,42 +596,70 @@ function updateAvailabilityForRoot(data, root) {
       fretboardEl.innerHTML = "";
 
       if (!variant || !Array.isArray(variant.frets)) {
-        fretboardEl.textContent = "Ingen grep funnet for denne kombinasjonen.";
+        fretboardEl.textContent = "No chord shapes found for this combination.";
         return;
       }
 
       const frets = variant.frets; // f.eks. [-1, 3, 2, 0, 1, 0]
       const fingers = variant.fingers || [0, 0, 0, 0, 0, 0];
 
-      const width = 720;
-      const height = 220;
-      const marginLeft = 40;
-      const nutWidth = 8;
+      const width = 960;
+      const height = 270;
+      const marginLeft = 64;
+      const marginTop = 46;
+      const boardHeight = 166;
+      const nutWidth = 10;
       const strings = 6;
       const totalFrets = 14; // bånd 1–14
-      const stringGap = (height - 20) / 5; // 6 strenger = 5 mellomrom
-      const fretGap = (width - marginLeft - 20) / totalFrets;
+      const stringGap = boardHeight / 5; // 6 strenger = 5 mellomrom
+      const boardWidth = width - marginLeft - 34;
+      const fretGap = boardWidth / totalFrets;
+      const yForStringIndex = function (stringIndex) {
+        return marginTop + (strings - 1 - stringIndex) * stringGap;
+      };
 
       const svgNS = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(svgNS, "svg");
       svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+      svg.setAttribute("class", "chord-neck-svg");
 
-      // Bakgrunn
-      const bg = document.createElementNS(svgNS, "rect");
-      bg.setAttribute("x", "0");
-      bg.setAttribute("y", "0");
-      bg.setAttribute("width", String(width));
-      bg.setAttribute("height", String(height));
-      bg.setAttribute("fill", "transparent");
-      svg.appendChild(bg);
+      const defs = document.createElementNS(svgNS, "defs");
+      const boardGradient = document.createElementNS(svgNS, "linearGradient");
+      boardGradient.setAttribute("id", "clChordBoardGradient");
+      boardGradient.setAttribute("x1", "0");
+      boardGradient.setAttribute("x2", "1");
+      boardGradient.setAttribute("y1", "0");
+      boardGradient.setAttribute("y2", "1");
+      [
+        ["0%", "#7b4a24"],
+        ["42%", "#4f2e17"],
+        ["100%", "#24140c"]
+      ].forEach(function ([offset, color]) {
+        const stop = document.createElementNS(svgNS, "stop");
+        stop.setAttribute("offset", offset);
+        stop.setAttribute("stop-color", color);
+        boardGradient.appendChild(stop);
+      });
+      defs.appendChild(boardGradient);
+      svg.appendChild(defs);
+
+      const board = document.createElementNS(svgNS, "rect");
+      board.setAttribute("x", String(marginLeft));
+      board.setAttribute("y", String(marginTop));
+      board.setAttribute("width", String(boardWidth));
+      board.setAttribute("height", String(boardHeight));
+      board.setAttribute("rx", "18");
+      board.setAttribute("class", "cl-chord-board");
+      board.setAttribute("fill", "url(#clChordBoardGradient)");
+      svg.appendChild(board);
 
       // Nut (alltid fast, helt til venstre)
       const nut = document.createElementNS(svgNS, "rect");
       nut.setAttribute("x", String(marginLeft - nutWidth));
-      nut.setAttribute("y", "10");
+      nut.setAttribute("y", String(marginTop));
       nut.setAttribute("width", String(nutWidth));
-      nut.setAttribute("height", String(height - 20));
-      nut.setAttribute("rx", "2");
+      nut.setAttribute("height", String(boardHeight));
+      nut.setAttribute("rx", "4");
       nut.setAttribute("fill", "#9ca3af");
       svg.appendChild(nut);
 
@@ -605,17 +668,28 @@ function updateAvailabilityForRoot(data, root) {
         const line = document.createElementNS(svgNS, "line");
         const x = marginLeft + i * fretGap;
         line.setAttribute("x1", String(x));
-        line.setAttribute("y1", "10");
+        line.setAttribute("y1", String(marginTop));
         line.setAttribute("x2", String(x));
-        line.setAttribute("y2", String(height - 10));
+        line.setAttribute("y2", String(marginTop + boardHeight));
         line.setAttribute("stroke", i === 0 ? "#4b5563" : "#d1d5db");
         line.setAttribute("stroke-width", i === 0 ? "2" : "1");
+        line.setAttribute("class", i === 0 ? "cl-fret cl-fret-zero" : "cl-fret");
         svg.appendChild(line);
+
+        if (i > 0) {
+          const label = document.createElementNS(svgNS, "text");
+          label.setAttribute("x", String(marginLeft + (i - 0.5) * fretGap));
+          label.setAttribute("y", String(marginTop - 14));
+          label.setAttribute("text-anchor", "middle");
+          label.setAttribute("class", "cl-fret-label");
+          label.textContent = String(i);
+          svg.appendChild(label);
+        }
       }
 
       // ---- Inlays / posisjonsmarkører (stable) ----
       (function drawInlays() {
-        const inlayYCenter = 10 + (height - 20) / 2;
+        const inlayYCenter = marginTop + boardHeight / 2;
         const single = [3, 5, 7, 9];
         const r = 7;
 
@@ -638,29 +712,35 @@ function updateAvailabilityForRoot(data, root) {
         });
 
         const cx12 = cxForFret(12);
-        addInlay(cx12, 10 + 1.5 * stringGap);
-        addInlay(cx12, 10 + 3.5 * stringGap);
+        addInlay(cx12, marginTop + 1.5 * stringGap);
+        addInlay(cx12, marginTop + 3.5 * stringGap);
       })();
 
-      // Strenger (E–A–D–G–B–e)
+      // Horisontal hals: høy e øverst, lav E nederst.
+      // Datarekkefølgen beholdes som E–A–D–G–B–e.
       const stringNames = ["E", "A", "D", "G", "B", "e"];
+      const stringWidths = [3.6, 3.1, 2.6, 2.05, 1.55, 1.15];
       for (let s = 0; s < strings; s++) {
-        const y = 10 + s * stringGap;
+        const y = yForStringIndex(s);
 
-        const line = document.createElementNS(svgNS, "line");
-        line.setAttribute("x1", String(marginLeft - nutWidth));
-        line.setAttribute("y1", String(y));
-        line.setAttribute("x2", String(width - 10));
-        line.setAttribute("y2", String(y));
-        line.setAttribute("stroke", "#6b7280");
-        line.setAttribute("stroke-width", String(1 + (5 - s) * 0.2));
-        svg.appendChild(line);
+        const neckString = document.createElementNS(svgNS, "line");
+        neckString.setAttribute("x1", String(marginLeft - nutWidth));
+        neckString.setAttribute("y1", String(y));
+        neckString.setAttribute("x2", String(marginLeft + boardWidth));
+        neckString.setAttribute("y2", String(y));
+        neckString.setAttribute("stroke", "#6b7280");
+        neckString.setAttribute("stroke-width", String(stringWidths[s]));
+        neckString.setAttribute("class", "cl-string cl-neck-string");
+        neckString.setAttribute("data-neck-string-index", String(s));
+        svg.appendChild(neckString);
 
         const text = document.createElementNS(svgNS, "text");
-        text.setAttribute("x", "8");
-        text.setAttribute("y", String(14 + s * stringGap));
+        text.setAttribute("x", "18");
+        text.setAttribute("y", String(y + 4));
+        text.setAttribute("text-anchor", "end");
         text.setAttribute("fill", "#4b5563");
         text.setAttribute("font-size", "10");
+        text.setAttribute("class", "cl-string-label");
         text.textContent = stringNames[s];
         svg.appendChild(text);
       }
@@ -669,7 +749,7 @@ function updateAvailabilityForRoot(data, root) {
       (function drawHarmonics() {
         if (!showHarmonics) return;
         const harmonicFrets = [5, 7, 12];
-        const cy = 10 + (height - 20) / 2;
+        const cy = marginTop + boardHeight / 2;
 
         function cxForFret(fretNumber) {
           return marginLeft + (fretNumber - 0.5) * fretGap;
@@ -685,19 +765,63 @@ function updateAvailabilityForRoot(data, root) {
         });
       })();
 
-      // Prikker og X / O
+      // Barre: samme finger på samme bånd over minst to strenger.
+      // Tegnes før fingerprikkene slik at endepunktene forblir lesbare.
+      const barreGroups = new Map();
       for (let i = 0; i < strings; i++) {
         const fret = frets[i];
         const finger = fingers[i] || 0;
-        const y = 10 + i * stringGap;
+        if (fret == null || fret <= 0 || finger <= 0) continue;
+        const key = finger + ":" + fret;
+        if (!barreGroups.has(key)) barreGroups.set(key, []);
+        barreGroups.get(key).push(i);
+      }
+
+      barreGroups.forEach(function (stringIndexes, key) {
+        if (stringIndexes.length < 2) return;
+        const parts = key.split(":");
+        const finger = parts[0];
+        const fret = Number(parts[1]);
+        const x = marginLeft + (fret - 0.5) * fretGap;
+        const ys = stringIndexes.map(yForStringIndex);
+        const y1 = Math.min.apply(null, ys);
+        const y2 = Math.max.apply(null, ys);
+
+        const barre = document.createElementNS(svgNS, "line");
+        barre.setAttribute("x1", String(x));
+        barre.setAttribute("x2", String(x));
+        barre.setAttribute("y1", String(y1));
+        barre.setAttribute("y2", String(y2));
+        barre.setAttribute("class", "cl-barre-indicator");
+        barre.setAttribute("data-barre-finger", finger);
+        barre.setAttribute("data-barre-fret", String(fret));
+        svg.appendChild(barre);
+
+        const sheen = document.createElementNS(svgNS, "line");
+        sheen.setAttribute("x1", String(x - 2.5));
+        sheen.setAttribute("x2", String(x - 2.5));
+        sheen.setAttribute("y1", String(y1 + 3));
+        sheen.setAttribute("y2", String(y2 - 3));
+        sheen.setAttribute("class", "cl-barre-sheen");
+        svg.appendChild(sheen);
+      });
+
+      // Prikker og X / O
+      const openStringMarkerX = marginLeft - nutWidth - 12;
+      for (let i = 0; i < strings; i++) {
+        const fret = frets[i];
+        const finger = fingers[i] || 0;
+        const y = yForStringIndex(i);
 
         // X = dempet streng
         if (fret === -1) {
           const text = document.createElementNS(svgNS, "text");
-          text.setAttribute("x", String(marginLeft - 24));
+          text.setAttribute("x", String(openStringMarkerX));
           text.setAttribute("y", String(y + 4));
+          text.setAttribute("text-anchor", "middle");
           text.setAttribute("fill", "#111827");
           text.setAttribute("font-size", "12");
+          text.setAttribute("class", "cl-muted-string");
           text.textContent = "X";
           svg.appendChild(text);
           continue;
@@ -706,11 +830,13 @@ function updateAvailabilityForRoot(data, root) {
         // Åpen streng (O)
         if (fret === 0) {
           const circle = document.createElementNS(svgNS, "circle");
-          circle.setAttribute("cx", String(marginLeft - 16));
+          circle.setAttribute("cx", String(openStringMarkerX));
           circle.setAttribute("cy", String(y));
           circle.setAttribute("r", "6");
           circle.setAttribute("fill", "#ffffff");
           circle.setAttribute("stroke", "#111827");
+          circle.setAttribute("class", "cl-open-string");
+          circle.setAttribute("data-string-index", String(i));
           svg.appendChild(circle);
           continue;
         }
@@ -721,8 +847,10 @@ function updateAvailabilityForRoot(data, root) {
         const dot = document.createElementNS(svgNS, "circle");
         dot.setAttribute("cx", String(cx));
         dot.setAttribute("cy", String(y));
-        dot.setAttribute("r", "10");
+        dot.setAttribute("r", "12");
         dot.setAttribute("fill", "#111827");
+        dot.setAttribute("class", "cl-finger-dot");
+        dot.setAttribute("data-string-index", String(i));
         svg.appendChild(dot);
 
         if (finger > 0) {
@@ -730,8 +858,9 @@ function updateAvailabilityForRoot(data, root) {
           t.setAttribute("x", String(cx));
           t.setAttribute("y", String(y + 3));
           t.setAttribute("fill", "#ffffff");
-          t.setAttribute("font-size", "10");
+          t.setAttribute("font-size", "11");
           t.setAttribute("text-anchor", "middle");
+          t.setAttribute("class", "cl-finger-label");
           t.textContent = String(finger);
           svg.appendChild(t);
         }
@@ -746,7 +875,7 @@ function updateAvailabilityForRoot(data, root) {
       if (!chord || !Array.isArray(chord.variants) || chord.variants.length === 0) {
         const opt = document.createElement("option");
         opt.value = "0";
-        opt.textContent = "Ingen varianter";
+        opt.textContent = "No variants";
         variantSelect.appendChild(opt);
         variantSelect.disabled = true;
         return;
@@ -759,7 +888,7 @@ function updateAvailabilityForRoot(data, root) {
         const pos = v.position || 1;
         opt.textContent =
           (idx === 0 ? "Standard " : "Variant " + (idx + 1) + " ") +
-          "(pos " + pos + ", id: " + v.id + ")";
+          "(position " + pos + ")";
         variantSelect.appendChild(opt);
       });
     }
@@ -774,7 +903,7 @@ function updateAvailabilityForRoot(data, root) {
         return;
       }
       chordNameMainEl.textContent = chord.symbol || chord.root || "-";
-      chordNameBookEl.textContent = chord.bookSymbol ? "(bok: " + chord.bookSymbol + ")" : "";
+      chordNameBookEl.textContent = "";
 
       const fam = chord.family || "plain";
       const qual = chord.quality || "";
@@ -795,7 +924,7 @@ function updateAvailabilityForRoot(data, root) {
       }
 
       if (variant && variant.source) {
-        variantInfoEl.textContent = "Kilde: " + variant.source;
+        variantInfoEl.textContent = "";
       } else {
         variantInfoEl.textContent = "";
       }
@@ -813,6 +942,7 @@ function updateAvailabilityForRoot(data, root) {
 
 
       ///          jjjjjjjjjjjj
+const chordType = extSelect.value;
 
 try {
   const data = await loadDataForRoot(root);
@@ -828,7 +958,7 @@ try {
       "Ingen akkord definert for " + root + " (" + chordType2 + ").";
     populateVariants(null);
     updateHeader(null, null);
-    logDebug({ root, chordType: chordType2, found: false });
+    logDiagnostics({ root, chordType: chordType2, found: false });
     return;
   }
 
@@ -840,7 +970,7 @@ try {
   renderFretboard(variant);
   updateHeader(chord, variant);
 
-  logDebug({
+  logDiagnostics({
     root,
     chordType: chordType2,
     family: chord.family,
@@ -850,8 +980,8 @@ try {
   });
 } catch (err) {
         console.error(err);
-        fretboardEl.textContent = "Feil ved lasting av data: " + err.message;
-        logDebug({ error: String(err) });
+        fretboardEl.textContent = "Error loading data: " + err.message;
+        logDiagnostics({ error: String(err) });
       }
     }
 
@@ -859,7 +989,7 @@ function onVariantChange() {
   const root = rootSelect.value;
   const chordType = extSelect.value; // extension-dropdownen ER chordType nå
 
-  const key = root.charAt(0).toUpperCase();
+  const key = root.toString().trim().toUpperCase();
   const data = jsonCache[key];
   if (!data) {
     updateChordFromUI();
@@ -876,7 +1006,7 @@ function onVariantChange() {
   renderFretboard(variant);
   updateHeader(chord, variant);
 
-  logDebug({
+  logDiagnostics({
     root,
     chordType,
     family: chord.family,
@@ -887,101 +1017,101 @@ function onVariantChange() {
 }
 
     // ---- Event listeners ----
-rootSelect.addEventListener("change", function () {
-
-  if (!IS_PRO) {
-
-    if (!IS_LOGGED_IN && !GUEST_ROOTS.has(rootSelect.value)) {
-      showProBox(rootSelect.value);
-      rootSelect.value = "C";
+    rootSelect.addEventListener("change", function () {
+      if (!IS_PRO && !FREE_ROOTS.has(rootSelect.value)) {
+        showProBox(rootSelect.value);
+        // hopp til en free root
+        rootSelect.value = "C";
+        updateChordFromUI();
+        return;
+      }
+      hideProBox();
       updateChordFromUI();
-      return;
-    }
+    });
 
-    if (IS_LOGGED_IN && !FREE_ROOTS.has(rootSelect.value)) {
-      showProBox(rootSelect.value);
-      rootSelect.value = "C";
+
+    extSelect.addEventListener("change", function () {
+      if (!IS_PRO && PRO_EXTENSIONS.has(extSelect.value)) {
+        showProBox(extSelect.value);
+        extSelect.value = "maj";
+        updateChordFromUI();
+        return;
+      }
+      hideProBox();
       updateChordFromUI();
-      return;
-    }
-  }
-
-  hideProBox();
-  updateChordFromUI();
-});
-
-
-
-extSelect.addEventListener("change", function () {
-
-  if (!IS_PRO) {
-
-    if (!IS_LOGGED_IN && !GUEST_EXTENSIONS.has(extSelect.value)) {
-      showProBox(extSelect.value);
-      extSelect.value = "maj";
-      updateChordFromUI();
-      return;
-    }
-
-    if (IS_LOGGED_IN && !FREE_EXTENSIONS.has(extSelect.value)) {
-      showProBox(extSelect.value);
-      extSelect.value = "maj";
-      updateChordFromUI();
-      return;
-    }
-
-  }
-
-  hideProBox();
-  updateChordFromUI();
-});
-
-
-
+    });
 
     variantSelect.addEventListener("change", onVariantChange);
 
     playBtn.addEventListener("click", async function () {
       try {
         if (!currentVariant || !Array.isArray(currentVariant.frets)) {
-          alert("Ingen grep valgt å spille av.");
+          alert(window.RS_TRANSLATE ? window.RS_TRANSLATE("No chord shape selected.") : "No chord shape selected.");
           return;
         }
 
-        const Tone = await ensureTone();
-        const midis = fretsToMidis(currentVariant.frets);
-        if (!midis.length) {
-          alert("Dette grepet har ingen klingende strenger (bare X?).");
+        const playedNotes = fretsToPlayedNotes(currentVariant.frets);
+        if (!playedNotes.length) {
+          alert(window.RS_TRANSLATE ? window.RS_TRANSLATE("This chord shape has no sounding strings.") : "This chord shape has no sounding strings.");
           return;
         }
 
-        // Konverter MIDI -> frekvens
-        const freqs = midis.map(function (m) {
-          return 440 * Math.pow(2, (m - 69) / 12);
-        });
-
-        const now = Tone.now() + 0.05;
-        const dur = 0.8; // lengde på tonen
+        const sustainMs = Number(document.getElementById("sustain")?.value || 80);
+        const volumePct = Number(document.getElementById("volume")?.value || 78);
+        const drivePct = Number(document.getElementById("drive")?.value || 0);
+        const soundType = document.getElementById("soundType")?.value || "acoustic_guitar";
+        const dur = Math.max(0.2, sustainMs / 100);
         const strumMs = 40; // strum-delay mellom strenger
+        const markerNotes = playedNotes.slice();
+        clearPlaybackMarkers();
+        stopActiveSamples();
 
-        // Enkel strum nedover (6 -> 1)
-        freqs.forEach(function (f, i) {
-          const t = now + i * (strumMs / 1000);
-          toneSynth.triggerAttackRelease(f, dur, t, 0.95);
+        if (soundType === "acoustic_guitar") {
+          await ensureSampleAudioContext();
+          const samples = await Promise.all(playedNotes.map(function (note) {
+            return acousticSampleForMidi(note.midi);
+          }));
+          const sampleNow = sampleAudioContext.currentTime + 0.05;
+          playedNotes.forEach(function (note, i) {
+            scheduleAcousticSample(samples[i], note.midi, sampleNow + i * (strumMs / 1000), volumePct / 100);
+          });
+        } else {
+          const Tone = await ensureTone();
+          const synthNow = Tone.now() + 0.05;
+          toneSynth.set({
+            oscillator: { type: soundType },
+            volume: -24 + (volumePct / 100) * 20
+          });
+          if (toneDrive) toneDrive.distortion = Math.min(0.9, drivePct / 100);
+          playedNotes.forEach(function (note, i) {
+            const frequency = 440 * Math.pow(2, (note.midi - 69) / 12);
+            toneSynth.triggerAttackRelease(frequency, dur, synthNow + i * (strumMs / 1000), 0.95);
+          });
+        }
+
+        markerNotes.forEach(function (note, i) {
+          schedulePlaybackMarker(
+            note.stringIndex,
+            50 + i * strumMs,
+            Math.max(220, Math.min(520, dur * 1000))
+          );
         });
       } catch (err) {
         console.error("Feil ved avspilling:", err);
-        alert("Klarte ikke å starte lyd. Sjekk konsoll for detaljer.");
+        alert(window.RS_TRANSLATE ? window.RS_TRANSLATE("Could not start audio. Please try again.") : "Could not start audio. Please try again.");
       }
     });
 
-    debugToggle.addEventListener("click", function () {
-      if (debugEl.style.display === "none" || debugEl.style.display === "") {
-        debugEl.style.display = "block";
-      } else {
-        debugEl.style.display = "none";
-      }
-    });
+    const debugToggle = document.getElementById("debugToggle");
+    if (debugToggle && debugEl) {
+      debugToggle.addEventListener("click", function () {
+        if (debugEl.style.display === "none" || debugEl.style.display === "") {
+          debugEl.style.display = "block";
+        } else {
+          debugEl.style.display = "none";
+        }
+      });
+    }
 
     // ---- Theme toggle (NO persistence) ----
     // Default on every load: :root (no data-theme attribute)
@@ -990,30 +1120,20 @@ extSelect.addEventListener("change", function () {
       if (!btn) return;
 
       const labelEl = document.getElementById("themeLabel");
-      const THEMES = ["default", "dark", "light", "pink", "mono"];
-      const THEME_LABELS = {
-        default: "Standard",
-        dark: "Mørk",
-        light: "Lys",
-        pink: "Rosa",
-        mono: "Monokrom"
-      };
+      const THEMES = ["dark", "light"];
+      const THEME_LABELS = { dark: "Dark", light: "Light" };
 
       function setTheme(theme) {
-        if (theme === "default") {
-          document.body.removeAttribute("data-theme"); // :root
-        } else {
-          document.body.setAttribute("data-theme", theme);
-        }
+        document.body.setAttribute("data-theme", theme);
         if (labelEl) labelEl.textContent = THEME_LABELS[theme] || theme;
       }
 
       function getCurrentTheme() {
-        return document.body.getAttribute("data-theme") || "default";
+        return document.body.getAttribute("data-theme") || "dark";
       }
 
       // ✅ Always start at :root on page load
-      setTheme("default");
+      setTheme("dark");
 
       btn.setAttribute("aria-label", "Bytt tema");
       btn.title = "Bytt tema";
@@ -1025,28 +1145,6 @@ extSelect.addEventListener("change", function () {
         setTheme(next);
       });
     }
-function renderUserStatus(){
-  const el = document.getElementById("rkUserStatus");
-  if(!el) return;
-
-  if(!window.CL_IS_LOGGED_IN){
-    el.innerHTML = `Ikke innlogget – <a href="/members/login.php">Logg inn</a>`;
-    return;
-  }
-
-  const plan = (window.CL_USER_PLAN || "").toLowerCase();
-
-  let label = "Free";
-
-  if(plan === "vip") label = "VIP";
-  else if(plan === "pro") label = "Pro";
-  else if(plan === "admin") label = "Admin";
-
-  el.innerHTML = `Plan: <strong>${label}</strong>`;
-}
-
-// 👇 LEGG DENNE HER
-renderUserStatus();
 
     // ---- Init ----
     initThemeToggle();

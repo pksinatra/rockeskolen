@@ -376,16 +376,16 @@ function buildScaleMenu(){
       if (!allowed) {
         // Låst for Free-brukere
         btn.classList.add('locked-scale');
-        btn.textContent = sc.name + " (Pro)";
+        btn.textContent = sc.name + " (VIP)";
 btn.addEventListener('click', () => {
   const el = document.getElementById("scaleProMsg");
   if (!el) return;
 
   el.innerHTML = `
-<a class="pro-cta" href="/members/upgrade.php">
-  <strong>Kun for medlemmer:</strong> <strong>${scaleName(sc, key)}</strong> er tilgjengelig med VIP medlemskap.<br>
-  <span class="pro-cta-sub">Se medlemskap</span>
-</a>
+<div class="pro-cta">
+  <strong>${scaleName(sc, key)}</strong> er med i VIP.<br>
+  <span class="pro-cta-sub">Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd. <a href="/members/upgrade.php">Bli VIP</a><br>Elev eller lærer? <a href="https://portal.rockeskolen.com/user/login">Logg inn med FEIDE</a></span>
+</div>
   `;
   el.style.display = "block";
 

@@ -1,0 +1,5 @@
+<nav class="rs-composer-neighbors" aria-label="Videre i komponistenes tidslinje">
+  {% if previous %}<a href="{{ previous.url }}"><small>← Tidligere født · {{ previous.year }}</small><strong>{{ previous.title }}</strong></a>{% endif %}
+  <a href="{{ path('view.komponister.page_1') }}"><small>Utforsk videre</small><strong>Alle komponister</strong></a>
+  {% if next %}<a href="{{ next.url }}"><small>Senere født · {{ next.year }} →</small><strong>{{ next.title }}</strong></a>{% endif %}
+</nav>

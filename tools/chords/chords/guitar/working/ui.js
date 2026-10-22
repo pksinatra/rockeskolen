@@ -62,7 +62,7 @@
       a.href = UPGRADE_URL;
       a.className = "pro-box";
       a.setAttribute("role", "button");
-      a.innerHTML = `<strong>Pro only:</strong> <span id="proBoxText"></span>`;
+      a.innerHTML = `<strong>VIP:</strong> <span id="proBoxText"></span>`;
       a.style.display = "none";
 
       const card = document.querySelector(".card") || document.body;
@@ -759,7 +759,7 @@
     // ---- Event listeners ----
     rootSelect.addEventListener("change", function () {
       if (!IS_PRO && !FREE_ROOTS.has(rootSelect.value)) {
-        showProBox("More root notes are available in Pro. Click to upgrade.");
+        showProBox("Flere grunntoner er med i VIP. Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.");
         // hopp til en free root
         rootSelect.value = "C";
         updateChordFromUI();
@@ -776,7 +776,7 @@
 
     extSelect.addEventListener("change", function () {
       if (!IS_PRO && PRO_EXTENSIONS.has(extSelect.value)) {
-        showProBox("11, 13 og Altered er tilgjengelig i Pro. Klikk for å oppgradere.");
+        showProBox("11, 13 og Altered er med i VIP. Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.");
         extSelect.value = "none";
         updateChordFromUI();
         return;

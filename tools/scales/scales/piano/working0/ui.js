@@ -336,15 +336,15 @@ function buildScaleMenu(){
       if (!allowed) {
         // Låst for Free-brukere
         btn.classList.add('locked-scale');
-        btn.textContent = sc.name + " (Pro)";
+        btn.textContent = sc.name + " (VIP)";
 btn.addEventListener('click', () => {
   const el = document.getElementById("scaleProMsg");
   if (!el) return;
 
   el.innerHTML = `
     <a class="pro-cta" href="/members/upgrade.php">
-      <strong>Pro only:</strong> <strong>${sc.name}</strong> is available in the Pro version.<br>
-      <span class="pro-cta-sub">Upgrade to Pro</span>
+      <strong>${sc.name}</strong> er med i VIP.<br>
+      <span class="pro-cta-sub">Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd. Bli VIP</span>
     </a>
   `;
   el.style.display = "block";

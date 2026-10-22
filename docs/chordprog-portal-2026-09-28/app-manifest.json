@@ -1,0 +1,38 @@
+[
+  {
+    "file": "tools/chordprog/chordlink_scale_explorer_v3_1_ux.js",
+    "sha256": "9f509564b3d0298e36af614837200db7b650a928ff57c77c818f0d5cad6e9a6a"
+  },
+  {
+    "file": "tools/chordprog/index.php",
+    "sha256": "f24ed99a1f72a0b861f47f3de1d10423387b1647d949d74215cc0cacbcd88b41"
+  },
+  {
+    "file": "tools/chordprog/language.js",
+    "sha256": "fe2e6adf23a8a7f5e2a75fc9b3cff69e9667e768ee84f11756a3374780c331dc"
+  },
+  {
+    "file": "tools/chordprog/midi.js",
+    "sha256": "f8d5f4de26d0d6345efc375338b5587a64ec8cd2b55745603d1c6e358863956e"
+  },
+  {
+    "file": "tools/chordprog/music.js",
+    "sha256": "11db97f5b9d2b365cdb648a053d8bf4a2dd336ce32967b6e0fa5cc971ed1b23e"
+  },
+  {
+    "file": "tools/chordprog/progressions.json",
+    "sha256": "e4d70a913a87a7ce0d7f55358d8b4de0a9d31a55f7a4fa2a65fb69a2cffae66f"
+  },
+  {
+    "file": "tools/chordprog/scale-notation.js",
+    "sha256": "a403551d6655680c4e986903eb8147d5e31679f82e01478681d40ea76cd98d55"
+  },
+  {
+    "file": "tools/chordprog/site-header.php",
+    "sha256": "7f27f5dc2e95267b02ea7d2e6c0ce48c2e4529b8dabbd043c5dc0b264f0db9ac"
+  },
+  {
+    "file": "tools/chordprog/titles-nb.json",
+    "sha256": "be46920e38d341f605f14d43c78b4b1e978ea5e984bd597f27c31a1256ca7c3d"
+  }
+]

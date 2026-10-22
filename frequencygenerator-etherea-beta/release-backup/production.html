@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Explore tones, frequencies, layered oscillators, sweeps and noise with ChordLink Frequency Generator." />
+  <link rel="canonical" href="https://chordlink.net/tools/frequencygenerator/" />
+  <meta name="theme-color" content="#0a0d12" />
+  <title>Frequency Generator | ChordLink</title>
+  <script type="module" crossorigin src="./assets/index-ClBWpXrW.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BYic_ccM.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">AUDIO TOOL</div>
+        <h1>Frequency Generator</h1>
+      </div>
+      <div class="header-actions">
+        <button class="ghost-btn" id="shareBtn" type="button">Share <small class="pro-chip" id="advancedShareBadge" hidden>PRO</small></button>
+        <button class="ghost-btn" id="savePresetBtn" data-pro-feature="presets.custom" type="button">Save preset <small class="pro-chip">PRO</small></button>
+      </div>
+    </header>
+
+    <div class="safety-note" role="note">
+      <strong>Start low.</strong> Very low and very high frequencies may be hard to hear. Do not raise volume aggressively to compensate.
+    </div>
+
+    <nav class="tabs" aria-label="Generator modes">
+      <button class="tab active" data-tab="tone">Tone</button>
+      <button class="tab" data-tab="multi">Multi</button>
+      <button class="tab" data-tab="sweep">Sweep</button>
+      <button class="tab" data-tab="binaural">Binaural</button>
+      <button class="tab" data-tab="noise">Noise</button>
+      <button class="tab" data-tab="presets">Presets</button>
+    </nav>
+
+    <main>
+      <section class="panel active" id="panel-tone">
+        <div class="hero-card">
+          <div class="hero-label">FREQUENCY</div>
+          <div class="frequency-entry">
+            <input id="toneFreq" class="big-frequency" inputmode="decimal" value="440.00" aria-label="Frequency in hertz" />
+            <span class="hz">Hz</span>
+          </div>
+          <div class="note-readout" id="toneNote">A4 · 0.0 cents</div>
+
+          <canvas id="scope" width="1200" height="180" aria-label="Waveform visualizer"></canvas>
+
+          <div class="range-wrap">
+            <input aria-label="Frequency slider" id="toneSlider" class="range main-range" type="range" min="0" max="1000" value="521" />
+            <div class="range-labels"><span>20 Hz</span><span>20 kHz</span></div>
+          </div>
+
+          <div class="nudge-row" id="nudgeRow">
+            <button data-delta="-10">−10</button>
+            <button data-delta="-1">−1</button>
+            <button data-delta="-0.1">−0.1</button>
+            <button data-delta="0.1">+0.1</button>
+            <button data-delta="1">+1</button>
+            <button data-delta="10">+10</button>
+          </div>
+
+          <div class="octave-row">
+            <button id="halfBtn">÷2</button>
+            <button id="exactFreqBtn" class="center-chip">440.00 Hz</button>
+            <button id="doubleBtn">×2</button>
+          </div>
+
+          <div class="wave-buttons" id="toneWaveButtons">
+            <button class="wave active" data-wave="sine">Sine</button>
+            <button class="wave" data-wave="triangle">Triangle</button>
+            <button class="wave" data-wave="square">Square</button>
+            <button class="wave" data-wave="sawtooth">Saw</button>
+          </div>
+
+          <button id="tonePlay" class="play-btn" type="button"><span class="play-icon">▶</span><span>PLAY</span></button>
+        </div>
+
+        <div class="controls-grid">
+          <div class="control-card">
+            <div class="control-head"><span>Volume</span><strong id="volumeValue">30%</strong></div>
+            <input aria-label="Master volume" id="masterVolume" class="range" type="range" min="0" max="100" value="30" />
+          </div>
+          <div class="control-card">
+            <div class="control-head"><span>Balance</span><strong id="panValue">Center</strong></div>
+            <input aria-label="Stereo balance" id="masterPan" class="range" type="range" min="-100" max="100" value="0" />
+          </div>
+          <div class="control-card compact-card">
+            <label for="sliderMode">Slider</label>
+            <select id="sliderMode">
+              <option value="log" selected>Logarithmic</option>
+              <option value="linear">Linear</option>
+            </select>
+          </div>
+          <div class="control-card compact-card">
+            <label for="rangeSelect">Range</label>
+            <select id="rangeSelect">
+              <option value="20,200">20–200 Hz</option>
+              <option value="20,2000">20–2 kHz</option>
+              <option value="20,20000" selected>20–20 kHz</option>
+              <option value="100,1000">100–1 kHz</option>
+              <option value="200,2000">200–2 kHz</option>
+            </select>
+          </div>
+          <div class="control-card compact-card">
+            <label for="tuningRef">Tuning reference</label>
+            <select id="tuningRef">
+              <option value="440" selected>A4 = 440 Hz</option>
+              <option value="442">A4 = 442 Hz</option>
+              <option value="432">A4 = 432 Hz</option>
+            </select>
+          </div>
+          <div class="control-card compact-card">
+            <label for="precisionSelect">Display precision</label>
+            <select id="precisionSelect">
+              <option value="0">1 Hz</option>
+              <option value="1">0.1 Hz</option>
+              <option value="2" selected>0.01 Hz</option>
+              <option value="3">0.001 Hz</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-multi">
+        <div class="section-title-row">
+          <div><div class="eyebrow">LAYERED TONES</div><h2>Multi oscillator</h2></div>
+          <div class="inline-actions"><button class="ghost-btn" id="addOscBtn">+ Add tone <small class="pro-chip" id="multiProBadge">PRO</small></button><button class="play-btn small" id="multiPlay">▶ PLAY ALL</button></div>
+        </div>
+        <div id="oscList" class="osc-list"></div>
+      </section>
+
+      <section class="panel" id="panel-sweep">
+        <div class="section-title-row"><div><div class="eyebrow">FREQUENCY TEST</div><h2>Sweep generator</h2></div></div>
+        <div class="form-grid">
+          <label>Start frequency<input id="sweepStart" type="number" min="20" max="20000" step="0.01" value="20" /></label>
+          <label>End frequency<input id="sweepEnd" type="number" min="20" max="20000" step="0.01" value="20000" /></label>
+          <label>Duration<input id="sweepDuration" type="number" min="0.1" max="600" step="0.1" value="30" /></label>
+          <label>Curve<select id="sweepCurve"><option value="exponential" selected>Logarithmic</option><option value="linear">Linear</option></select></label>
+          <label>Motion<select id="sweepMotion"><option value="up" selected>Up</option><option value="down">Down</option><option value="pingpong">Ping-pong · PRO</option></select></label>
+          <label>Waveform<select id="sweepWave"><option>sine</option><option>triangle</option><option>square</option><option>sawtooth</option></select></label>
+        </div>
+        <label class="toggle-line"><input id="sweepLoop" type="checkbox" /> Loop continuously <small class="pro-chip" data-pro-feature="sweep.loop">PRO</small></label>
+        <div class="sweep-readout"><span id="sweepLive">20.00 Hz</span><small id="sweepStatus">Ready</small></div>
+        <button id="sweepPlay" class="play-btn">▶ START SWEEP</button>
+      </section>
+
+      <section class="panel" id="panel-binaural">
+        <div class="section-title-row"><div><div class="eyebrow">STEREO BEAT</div><h2>Binaural generator</h2></div></div>
+        <div class="form-grid">
+          <label>Carrier frequency<input id="binauralCarrier" type="number" min="20" max="20000" step="0.01" value="200" /></label>
+          <label>Beat frequency<input id="binauralBeat" type="number" min="0.1" max="100" step="0.1" value="10" /></label>
+          <label>Calculation<select id="binauralMode"><option value="symmetric" selected>Symmetrical</option><option value="left">Left fixed</option><option value="right">Right fixed</option></select></label>
+          <label>Waveform<select id="binauralWave"><option>sine</option><option>triangle</option><option>square</option><option>sawtooth</option></select></label>
+        </div>
+        <div class="stereo-readout">
+          <div><span>LEFT</span><strong id="leftFreq">195.00 Hz</strong></div>
+          <div><span>BEAT</span><strong id="beatFreq">10.00 Hz</strong></div>
+          <div><span>RIGHT</span><strong id="rightFreq">205.00 Hz</strong></div>
+        </div>
+        <div class="headphones-note">Headphones recommended for binaural mode.</div>
+        <button id="binauralPlay" class="play-btn">▶ PLAY BINAURAL</button>
+      </section>
+
+      <section class="panel" id="panel-noise">
+        <div class="section-title-row"><div><div class="eyebrow">BROADBAND AUDIO</div><h2>Noise generator</h2></div></div>
+        <div class="noise-cards">
+          <button class="noise-card active" data-noise="white"><strong>White</strong><span>Equal energy per frequency bin</span></button>
+          <button class="noise-card" data-noise="pink"><strong>Pink</strong><span>Balanced, softer high end</span></button>
+          <button class="noise-card" data-noise="brown"><strong>Brown</strong><span>Deeper, low-frequency emphasis</span></button>
+        </div>
+        <button id="noisePlay" class="play-btn">▶ PLAY NOISE</button>
+      </section>
+
+      <section class="panel" id="panel-presets">
+        <div class="section-title-row"><div><div class="eyebrow">ONE-TAP START</div><h2>Presets</h2></div></div>
+        <div id="presetGroups"></div>
+        <div id="customPresetsWrap" class="preset-group hidden"><h3>My presets <small class="pro-chip" data-pro-feature="presets.custom">PRO</small></h3><div id="customPresets" class="preset-grid"></div></div>
+      </section>
+    </main>
+
+    <div class="audio-status"><span id="audioStatus" role="status">Audio stopped</span><span>Digital amplitude · Not calibrated SPL</span></div>
+    <footer class="chordlink-footer">
+      <div><a class="chordlink-brand" href="/">ChordLink</a><p>Visual tools for chords, scales, and harmony — built for exploring, learning and songwriting.</p></div>
+      <nav aria-label="ChordLink footer"><a href="/tools/">Tools</a><a href="/members/upgrade.php">Pro</a><a href="/members/">Account</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms &amp; refunds</a></nav>
+    </footer>
+  </div>
+
+  <dialog id="presetDialog" aria-labelledby="dialogTitle"><form id="presetForm"><h2 id="dialogTitle">Save preset</h2><label>Name<input id="presetName" maxlength="80" required /></label><div class="inline-actions"><button type="button" id="cancelPreset">Cancel</button><button type="submit">Save</button></div></form></dialog>
+  <dialog id="shareDialog" aria-labelledby="shareTitle"><h2 id="shareTitle">Share link</h2><label>Copy this link<textarea id="shareLink" readonly></textarea></label><button id="closeShare">Close</button></dialog>
+  <dialog id="proDialog" aria-labelledby="proTitle"><h2 id="proTitle">Explore ChordLink Pro</h2><p id="proMessage"></p><p>Get full access to every ChordLink tool.</p><div class="inline-actions"><button id="closePro" type="button">Keep exploring Free</button><a class="pro-upgrade" href="/members/upgrade.php">Explore Pro</a></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

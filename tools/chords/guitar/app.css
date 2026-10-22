@@ -1,10 +1,10 @@
 /* ChordLink – Guitar Chords UI (STABLE – single file)
    ------------------------------------------------------------
    Theme system:
-   - body[data-theme="light"]  (default)
+   - body[data-theme="dark"] (default)
    - body[data-theme="dark"]
    - body[data-theme="pink"]
-   - body[data-theme="mono"]
+   - body[data-theme="light"]
 */
 
 /* =========================
@@ -157,7 +157,7 @@ body[data-theme="pink"]{
 /* =========================
    Theme: Mono (light UI)
    ========================= */
-body[data-theme="mono"]{
+body[data-theme="light"]{
   --bg:  #f3f4f6;
   --bg2: #e5e7eb;
 
@@ -397,23 +397,6 @@ button.secondary{
 #harmonicsToggle{ margin-left: 8px; }
 
 /* =========================
-   Debug
-   ========================= */
-#debug{
-  margin: 14px 18px 18px;
-  padding: 12px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px dashed var(--border);
-  background: color-mix(in srgb, var(--panel2) 75%, transparent);
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 12px;
-  overflow: auto;
-  max-height: 260px;
-  display: none;
-}
-
-/* =========================
    Small screens
    ========================= */
 @media (max-width: 640px){
@@ -458,55 +441,369 @@ button.secondary{
   background: rgba(176, 0, 32, 0.48);
   border-color: rgba(255, 120, 120, 0.75);
 }
-.rk-status{
-  margin-top: 14px;
-  padding: 10px;
-  font-size: 13px;
-  text-align: center;
-  color: var(--muted);
-  opacity: 0.9;
+
+
+/* Guitar neck polish */
+#fretboard svg, .fretboard svg{
+  background: linear-gradient(180deg,#3a2717 0%, #2b1b10 45%, #21140c 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -12px 40px rgba(0,0,0,.35);
+}
+#fretboard svg line[stroke="#6b7280"]{
+  stroke-linecap: round;
+}
+#fretboard svg line[stroke="#6b7280"]:nth-of-type(1){ stroke-width: 1.4; }
+#fretboard svg line[stroke="#6b7280"]:nth-of-type(6){ stroke-width: 3.2; }
+#fretboard svg line[stroke="#d1d5db"],
+#fretboard svg line[stroke="#4b5563"]{
+  filter: drop-shadow(0 0 1px rgba(255,255,255,.35));
 }
 
-@keyframes proPulse {
-  0% {
-    transform: scale(1);
-    box-shadow:
-      0 14px 34px rgba(176, 0, 32, 0.45),
-      inset 0 1px 0 rgba(255,255,255,.25);
+/* ChordLink guitar instrument pass */
+#fretboard{
+  margin:8px 18px 18px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:
+    radial-gradient(760px 220px at 44% 48%, rgba(255,255,255,.05), transparent 68%),
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.16));
+  overflow-x:auto;
+}
+
+#fretboard svg.chord-neck-svg{
+  min-width:820px;
+  border-radius:16px;
+  background:
+    radial-gradient(760px 170px at 50% 48%, rgba(147,95,45,.12), transparent 72%),
+    linear-gradient(180deg,#15191d 0%, #090d11 100%);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.1),
+    inset 0 -28px 70px rgba(0,0,0,.34),
+    0 18px 48px rgba(0,0,0,.2);
+}
+
+.cl-chord-board{
+  stroke:rgba(255,226,180,.16);
+  stroke-width:1.5;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.28));
+}
+
+.cl-chord-headstock{
+  fill:#633a1d;
+  stroke:rgba(255,224,184,.22);
+  stroke-width:2;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.3));
+}
+
+.cl-chord-tuner-stem{
+  stroke:#b9bec6;
+  stroke-width:3;
+  stroke-linecap:round;
+}
+
+.cl-chord-tuner-key{
+  fill:#dce0e5;
+  stroke:#505761;
+  stroke-width:1.5;
+}
+
+.cl-chord-tuner-post{
+  fill:#eef0f3;
+  stroke:#454c56;
+  stroke-width:1.5;
+}
+
+.cl-fret{
+  stroke:#dfd2bf;
+  stroke-width:2.1;
+  filter:drop-shadow(0 0 1px rgba(255,255,255,.35));
+}
+
+.cl-fret-zero{
+  stroke:#f1e7d8;
+  stroke-width:3;
+}
+
+.cl-fret-label,
+.cl-string-label{
+  fill:#e7cda9;
+  font-size:12px;
+  font-weight:800;
+  opacity:.86;
+}
+
+.cl-string{
+  stroke:#dedede;
+  stroke-linecap:round;
+  opacity:.9;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.75));
+}
+
+.cl-inlay{
+  fill:rgba(244,232,212,.34);
+  stroke:rgba(255,255,255,.26);
+}
+
+.cl-finger-dot{
+  fill:#172032;
+  stroke:rgba(255,255,255,.84);
+  stroke-width:1.4;
+  filter:
+    drop-shadow(0 2px 2px rgba(0,0,0,.45))
+    drop-shadow(0 0 10px rgba(56,189,248,.15));
+}
+
+.cl-barre-indicator{
+  stroke:#172032;
+  stroke-width:18;
+  stroke-linecap:round;
+  filter:
+    drop-shadow(0 2px 2px rgba(0,0,0,.48))
+    drop-shadow(0 0 9px rgba(89,224,255,.18));
+}
+
+.cl-barre-sheen{
+  stroke:rgba(255,255,255,.24);
+  stroke-width:3;
+  stroke-linecap:round;
+  pointer-events:none;
+}
+
+.cl-finger-label{
+  fill:#fff;
+  font-weight:900;
+  paint-order:stroke;
+  stroke:rgba(0,0,0,.36);
+  stroke-width:2px;
+}
+
+.cl-open-string{
+  fill:#f9fafb;
+  stroke:#172032;
+  stroke-width:1.5;
+}
+
+.cl-finger-dot,
+.cl-open-string{
+  transform-box:fill-box;
+  transform-origin:center;
+}
+
+.cl-note-playing{
+  animation:cl-note-pulse .42s ease-out;
+  fill:#59e0ff;
+  stroke:#ffffff;
+  stroke-width:3;
+  filter:
+    drop-shadow(0 0 4px rgba(89,224,255,.95))
+    drop-shadow(0 0 12px rgba(89,224,255,.8));
+}
+
+.cl-neck-string{
+  transform-box:fill-box;
+  transform-origin:center;
+}
+
+.cl-string-playing{
+  animation:cl-string-vibrate .11s linear 4;
+  stroke:#86efff;
+  opacity:1;
+  filter:
+    drop-shadow(0 0 3px rgba(89,224,255,.95))
+    drop-shadow(0 0 8px rgba(89,224,255,.55));
+}
+
+@keyframes cl-note-pulse{
+  0%{transform:scale(.82)}
+  45%{transform:scale(1.38)}
+  100%{transform:scale(1)}
+}
+
+@keyframes cl-string-vibrate{
+  0%,100%{transform:translateY(0)}
+  25%{transform:translateY(-1.3px)}
+  75%{transform:translateY(1.3px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .cl-note-playing,
+  .cl-string-playing{animation:none}
+}
+
+.cl-muted-string{
+  fill:#f6d7c9;
+  font-size:14px;
+  font-weight:900;
+}
+
+@media (max-width: 760px){
+  #fretboard{
+    margin:8px 12px 16px;
+    padding:10px;
   }
-  50% {
-    transform: scale(1.005);
-    box-shadow:
-      0 18px 44px rgba(255, 59, 59, 0.6),
-      inset 0 1px 0 rgba(255,255,255,.25);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow:
-      0 14px 34px rgba(176, 0, 32, 0.45),
-      inset 0 1px 0 rgba(255,255,255,.25);
+
+  #fretboard svg.chord-neck-svg{
+    min-width:760px;
   }
 }
 
-.pro-cta--promo {
-  animation: proPulse 4.5s ease-in-out infinite;
+/* Guitar Chords app layout pass */
+.page{
+  width:min(1200px, calc(100% - 32px));
+  margin:0 auto;
+  padding:46px 0 44px;
 }
 
-.pro-cta--promo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0.25) 50%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity .3s;
+.page > .card{
+  overflow:hidden;
+  background:
+    radial-gradient(900px 260px at 28% 0%, rgba(201,162,77,.08), transparent 64%),
+    linear-gradient(180deg, rgba(18,20,33,.94), rgba(11,14,22,.96));
+  border-radius:16px;
 }
 
-.pro-cta--promo:hover::after {
-  opacity: 1;
+.title-row{
+  width:100%;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.header h1{
+  font-size:clamp(30px, 4vw, 42px);
+  line-height:1.05;
+}
+
+.sub{
+  margin-top:8px;
+  color:var(--muted);
+  line-height:1.45;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  align-items:end;
+  padding:18px 24px;
+}
+
+.field{
+  min-width:0;
+}
+
+.field select,
+.field input{
+  width:100%;
+}
+
+.row[style]{
+  display:block !important;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.row[style] > div{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.small-note{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--muted);
+  font-size:13px;
+  margin-left:0 !important;
+}
+
+.small-note select{
+  min-width:112px;
+}
+
+.small-note input[type="range"]{
+  width:128px;
+  accent-color:var(--primary);
+}
+
+.chord-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin:10px 24px 0;
+  padding:16px 18px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(255,255,255,.045);
+}
+
+.chord-name-main{
+  font-size:36px;
+  font-weight:950;
+  color:#f7ead2;
+}
+
+.chord-name-book{
+  margin-left:8px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:6px 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:#f7ead2;
+  font-size:12px;
+  font-weight:900;
+}
+
+.tag.moll{
+  color:#dbeafe;
+}
+
+#variantInfo{
+  display:block;
+  margin:0 24px 20px;
+  color:var(--muted);
+}
+
+body > p{
+  width:min(1200px, calc(100% - 32px));
+  margin:0 auto 28px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media (max-width: 880px){
+  .row{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .page{
+    width:min(100% - 20px, 1200px);
+    padding-top:22px;
+  }
+
+  .title-row,
+  .chord-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .row{
+    grid-template-columns:1fr;
+    padding:14px;
+  }
 }

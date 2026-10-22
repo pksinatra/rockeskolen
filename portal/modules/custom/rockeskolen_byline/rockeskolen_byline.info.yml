@@ -1,0 +1,5 @@
+name: Rockeskolen byline
+type: module
+description: 'Compatibility placeholder for cached module references. Byline implementation resides in rockeskolen_structure_qa.'
+package: Rockeskolen
+core_version_requirement: ^11

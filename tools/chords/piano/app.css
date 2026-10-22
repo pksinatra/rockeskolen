@@ -30,6 +30,16 @@ h1{margin:8px 0 14px;font-size:clamp(18px,2.8vw,28px)}
   margin-bottom:12px
 }
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.controls-row{align-items:flex-end}
+.sound-row{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.sound-row input[type="range"]{
+  width:120px;
+  accent-color:#b28bff;
+}
 label span{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
 select,button,input[type=checkbox]{
   background:#101735;color:var(--text);
@@ -38,13 +48,71 @@ select,button,input[type=checkbox]{
 }
 button{cursor:pointer}
 small{color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:6px}
+.howto h2{
+  margin:0 0 8px;
+  font-size:16px;
+}
+.howto ol{
+  margin:0;
+  padding-left:20px;
+  color:var(--muted);
+  line-height:1.45;
+}
+.howto li + li{
+  margin-top:4px;
+}
+.controls-row small{
+  display:inline-grid;
+  place-items:center;
+  width:17px;
+  height:17px;
+  margin-left:4px;
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:999px;
+  color:var(--text);
+  font-size:11px;
+  cursor:help;
+}
+.badges{display:flex;flex-wrap:wrap;gap:2px}
 .badge{
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;padding:6px 10px;font-size:12px;color:var(--text)
+  border-radius:16px;
+  padding:6px 10px;
+  font-size:12px;
+  color:var(--text)
+}
+.badge{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 2px 6px rgba(0,0,0,.25);
 }
 .badge strong{font-weight:700}
+.chordFacts{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.chordFacts div{
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:10px;
+  background:rgba(255,255,255,.05);
+  padding:10px;
+}
+.chordFacts strong,
+.chordFacts span{
+  display:block;
+}
+.chordFacts strong{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:4px;
+}
+.chordFacts span{
+  font-weight:800;
+  letter-spacing:0;
+}
 
 
 /* Make widths include borders so the octave width math stays correct */
@@ -129,7 +197,9 @@ small{color:var(--muted)}
   opacity:.85;
   pointer-events:none;
 }
-
+.black{
+  z-index: 3;
+}
 /* Keep your signature gradients for active + bass */
 .white.active{
   background:linear-gradient(135deg,var(--gradA),var(--gradB),var(--gradC));
@@ -138,11 +208,22 @@ small{color:var(--muted)}
     0 10px 22px rgba(0,0,0,.35);
 }
 .white.active:before{opacity:.20}
+.white.active{
+  border-top-color: transparent;
+}
 .black.active{
   background:linear-gradient(135deg,var(--gradB),var(--gradC));
   box-shadow:
     0 0 18px rgba(84,210,242,.55) inset,
     0 10px 18px rgba(0,0,0,.55);
+}
+.white.playing-note,
+.black.playing-note{
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.88) inset,
+    0 0 22px rgba(255,255,255,.70),
+    0 10px 22px rgba(0,0,0,.35);
+  filter:brightness(1.12);
 }
 .white.bass{
   box-shadow:
@@ -155,23 +236,13 @@ small{color:var(--muted)}
     0 8px 20px rgba(255,92,122,.35);
 }
 
-/* Small marker badge used by voicing display */
-.mark{
-  position:absolute; top:6px; left:50%; transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--gradA),var(--gradB),var(--gradC));
-  color:#061020;
-  padding:2px 6px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:700;
-  box-shadow:0 2px 10px rgba(0,0,0,.35);
-  z-index:5;
-}
+
 
 /* Mobile: keep it usable */
 @media (max-width:560px){
   :root{ --white-w:40px; --white-h:168px; --black-w:26px; --black-h:104px; }
   .wrap{padding:14px}
+  .chordFacts{grid-template-columns:1fr}
 }
 
 /* ===== HARD FIX: all white keys identical width (incl. B/H) ===== */
@@ -208,6 +279,11 @@ small{color:var(--muted)}
   transform: none !important;
 }
 .white, .black { box-sizing: border-box; }
+
+.white{
+  position: relative;
+  z-index: 2;
+}
 
 /* ===== Button highlight states ===== */
 
@@ -259,10 +335,12 @@ small{color:var(--muted)}
   border: 1px solid rgba(255,255,255,.22) !important;
   color: var(--text) !important;
   box-shadow: 0 2px 10px rgba(0,0,0,.25) !important;
-  z-index: 50 !important;
   pointer-events: none;
 }
-
+.mark{
+  position: absolute;
+  z-index: 5;
+}
 /* For Demo/Pro */
 
 #qual option {
@@ -275,20 +353,40 @@ small{color:var(--muted)}
   font-weight: 200;
   opacity: 0.6;
 }
+/* =========================================================
+   PRO CTA – Base + Promo modifier
+   ========================================================= */
 
+/* Base CTA (used everywhere) */
 .pro-cta{
-  display:block;
-  padding:12px 14px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 16px 18px;
+  border-radius: 14px;
+
+  text-decoration: none;
+  font-weight: 700;
   color: #fff;
 }
 
-.pro-cta-sub{
-  font-weight:600;
-  text-decoration:underline;
+/* Emphasis text */
+.pro-cta strong{
+  font-weight: 800;
 }
+
+/* Sub call-to-action */
+.pro-cta-sub{
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   Promo / attention variant
+   --------------------------------------------------------- */
 
 .pro-cta--promo{
   background: linear-gradient(135deg, #b00020, #ff3b3b);
@@ -299,8 +397,29 @@ small{color:var(--muted)}
     inset 0 1px 0 rgba(255,255,255,.25);
 
   transition: transform .25s ease, box-shadow .25s ease;
+  animation: proPulse 1.6s ease-in-out infinite;
 }
 
 .pro-cta--promo:hover{
   transform: scale(1.05);
+  box-shadow:
+    0 18px 42px rgba(176, 0, 32, 0.55),
+    inset 0 1px 0 rgba(255,255,255,.35);
 }
+
+/* ---------------------------------------------------------
+   Soft pulse (reusable)
+   --------------------------------------------------------- */
+
+@keyframes proPulse{
+  0%   { box-shadow: 0 0 0 0 rgba(255,140,80,.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(255,140,80,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,140,80,0); }
+}
+  
+
+/* Keep key geometry consistent with the renderer; scroll inside the keyboard on phones. */
+.piano{max-width:100%;overflow-x:auto;align-items:flex-start;padding-bottom:12px;overscroll-behavior-x:contain}
+.piano>div{flex-shrink:0;margin-inline:auto}
+.piano .oct{flex-shrink:0}
+@media(max-width:560px){:root{--white-w:44px;--black-w:28px}.pro-cta-sub{white-space:normal}}

@@ -1,0 +1,31 @@
+<section class="rs-composers" data-rs-composers aria-label="Komponister i kronologisk rekkefølge">
+  <header class="rs-composers__intro">
+    <p class="rs-composers__eyebrow">Menneskene bak musikken</p>
+    <h2>Komponister gjennom tidene</h2>
+    <p>Utforsk komponistene fra eldst til yngst, sortert etter fødselsår. Se hvilke epoker de tilhører, bli kjent med verkene og få tips til hva du kan lytte etter.</p>
+    <p class="rs-composers__note">Årstall og epoker følger opplysningene i artiklene. «Ca.» markerer et omtrentlig år. Manglende dødsår betyr at dødsår ikke er oppgitt.</p>
+  </header>
+  <div class="rs-composers__controls" hidden>
+    <label>Søk etter komponist<input type="search" data-composer-search placeholder="Navn eller nasjonalitet" autocomplete="off"></label>
+    <label>Epoke<select data-composer-period><option value="">Alle epoker</option>{% for period in periods %}<option value="{{ period }}">{{ period }}</option>{% endfor %}</select></label>
+    <p role="status" aria-live="polite" data-composer-count>{{ cards|length }} komponister</p>
+  </div>
+  <ol class="rs-composers__timeline">
+    {% for card in cards %}
+      <li class="rs-composers__entry" data-composer-card data-search="{{ card.title }} {{ card.nationality }}" data-period="{{ card.period }}">
+        <p class="rs-composers__year">{% if card.year %}{% if 'ca' in card.birth|lower %}ca. {% endif %}{{ card.year }}{% else %}År ikke oppgitt{% endif %}</p>
+        <article class="rs-composer-card">
+          <a class="rs-composer-card__image" href="{{ card.url }}" tabindex="-1" aria-hidden="true">{{ card.image }}</a>
+          <div class="rs-composer-card__copy">
+            {% if card.period %}<p class="rs-composers__eyebrow">{{ card.period }}</p>{% endif %}
+            <h3><a href="{{ card.url }}">{{ card.title }}</a></h3>
+            <p class="rs-composer-card__dates">{{ card.birth }}{% if card.death %} – {{ card.death }}{% endif %}{% if card.nationality %} · {{ card.nationality }}{% endif %}</p>
+            {% if card.summary %}<p>{{ card.summary }}</p>{% endif %}
+            <a class="rs-composer-card__link" href="{{ card.url }}">Les om {{ card.title }} <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </li>
+    {% endfor %}
+  </ol>
+  <p data-composer-empty hidden>Ingen komponister passer søket. Prøv et annet navn eller velg alle epoker.</p>
+</section>

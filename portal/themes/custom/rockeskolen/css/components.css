@@ -1,0 +1,13 @@
+/* Rockeskolen components */
+
+.view-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.view-content > * {
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 16px;
+}

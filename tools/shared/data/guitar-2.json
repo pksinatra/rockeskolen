@@ -1,0 +1,1824 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 30,
+    "results": [
+        {
+            "id": 197,
+            "type": "guitar_chord",
+            "name": "D",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d",
+            "data": {
+                "symbol": "D",
+                "bookSymbol": "D",
+                "root": "D",
+                "quality": "major",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-open-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Standard åpen D-dur"
+                    },
+                    {
+                        "id": "d-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            7,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "D-dur A-form barre (5. bånd)"
+                    },
+                    {
+                        "id": "d-e-shape-10",
+                        "frets": [
+                            10,
+                            12,
+                            12,
+                            11,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F#",
+                            "A",
+                            "D"
+                        ],
+                        "source": "D-dur E-form barre (10. bånd)"
+                    }
+                ],
+                "slug": "d"
+            }
+        },
+        {
+            "id": 232,
+            "type": "guitar_chord",
+            "name": "Daug",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "daug",
+            "data": {
+                "symbol": "Daug",
+                "bookSymbol": "D+",
+                "root": "D",
+                "quality": "aug",
+                "family": "aug",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5"
+                ],
+                "aliases": [
+                    "D+",
+                    "Daug"
+                ],
+                "variants": [
+                    {
+                        "id": "daug-open-x00332",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            3,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            3,
+                            4,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "A#",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Vanlig Daug-voicing (xx0332)"
+                    },
+                    {
+                        "id": "daug-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            3,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            4,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "A#",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Caug-form transponert til D (A-form root på 5. streng)"
+                    }
+                ],
+                "slug": "daug"
+            }
+        },
+        {
+            "id": 199,
+            "type": "guitar_chord",
+            "name": "Ddim",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "ddim",
+            "data": {
+                "symbol": "Ddim",
+                "bookSymbol": "Ddim",
+                "root": "D",
+                "quality": "dim",
+                "family": "dim",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5"
+                ],
+                "aliases": [
+                    "D°"
+                ],
+                "variants": [
+                    {
+                        "id": "ddim-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            7,
+                            6,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "D",
+                            "F"
+                        ],
+                        "source": "Typisk D°-grep på A-strengen"
+                    }
+                ],
+                "slug": "ddim"
+            }
+        },
+        {
+            "id": 198,
+            "type": "guitar_chord",
+            "name": "Dm",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm",
+            "data": {
+                "symbol": "Dm",
+                "bookSymbol": "Dm",
+                "root": "D",
+                "quality": "minor",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dm-open-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            3,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F"
+                        ],
+                        "source": "Standard åpen Dm"
+                    },
+                    {
+                        "id": "dm-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            7,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F",
+                            "A"
+                        ],
+                        "source": "Dm A-form barre (5. bånd)"
+                    },
+                    {
+                        "id": "dm-e-shape-10",
+                        "frets": [
+                            10,
+                            12,
+                            12,
+                            10,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Dm E-form barre (10. bånd)"
+                    }
+                ],
+                "slug": "dm"
+            }
+        },
+        {
+            "id": 210,
+            "type": "guitar_chord",
+            "name": "D11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d11",
+            "data": {
+                "symbol": "D11",
+                "bookSymbol": "D11",
+                "root": "D",
+                "quality": "major",
+                "family": "11",
+                "formulaDegrees": [
+                    "1",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d11-shape-5",
+                        "frets": [
+                            5,
+                            5,
+                            5,
+                            5,
+                            5,
+                            8
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "C",
+                            "E",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d11"
+            }
+        },
+        {
+            "id": 211,
+            "type": "guitar_chord",
+            "name": "D13",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d13",
+            "data": {
+                "symbol": "D13",
+                "bookSymbol": "D13",
+                "root": "D",
+                "quality": "major",
+                "family": "13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d13-shape-5",
+                        "frets": [
+                            5,
+                            5,
+                            4,
+                            5,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            3,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "D",
+                            "F#",
+                            "C",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d13"
+            }
+        },
+        {
+            "id": 242,
+            "type": "guitar_chord",
+            "name": "D13sus4",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d13sus4",
+            "data": {
+                "symbol": "D13sus4",
+                "bookSymbol": "D13sus4",
+                "root": "D",
+                "quality": "major",
+                "family": "13sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-13sus4-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            5,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d13sus4"
+            }
+        },
+        {
+            "id": 233,
+            "type": "guitar_chord",
+            "name": "D5",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d5",
+            "data": {
+                "symbol": "D5",
+                "bookSymbol": "D5",
+                "root": "D",
+                "quality": "major",
+                "family": "5",
+                "formulaDegrees": [
+                    "1",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-5-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            7,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D"
+                        ],
+                        "source": "D5 Power chord (A-root)"
+                    }
+                ],
+                "slug": "d5"
+            }
+        },
+        {
+            "id": 200,
+            "type": "guitar_chord",
+            "name": "D6",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d6",
+            "data": {
+                "symbol": "D6",
+                "bookSymbol": "D6",
+                "root": "D",
+                "quality": "major",
+                "family": "6",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d6-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            0,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Vanlig D6-voicing (åpen)"
+                    }
+                ],
+                "slug": "d6"
+            }
+        },
+        {
+            "id": 234,
+            "type": "guitar_chord",
+            "name": "D6\/9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d6-9",
+            "data": {
+                "symbol": "D6\/9",
+                "bookSymbol": "D6\/9",
+                "root": "D",
+                "quality": "major",
+                "family": "69",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-69-a5",
+                        "frets": [
+                            -1,
+                            7,
+                            7,
+                            7,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "E",
+                            "A",
+                            "D",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d6-9"
+            }
+        },
+        {
+            "id": 202,
+            "type": "guitar_chord",
+            "name": "D7",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7",
+            "data": {
+                "symbol": "D7",
+                "bookSymbol": "D7",
+                "root": "D",
+                "quality": "major",
+                "family": "7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Standard åpen D7"
+                    },
+                    {
+                        "id": "d7-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            5,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "D7 A-form barre"
+                    }
+                ],
+                "slug": "d7"
+            }
+        },
+        {
+            "id": 213,
+            "type": "guitar_chord",
+            "name": "D7#9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7#9",
+            "data": {
+                "symbol": "D7#9",
+                "bookSymbol": "D7(#9)",
+                "root": "D",
+                "quality": "major",
+                "family": "7#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7#9-shape-10",
+                        "frets": [
+                            10,
+                            9,
+                            10,
+                            10,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            2,
+                            2,
+                            2,
+                            0
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E#",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d7#9"
+            }
+        },
+        {
+            "id": 244,
+            "type": "guitar_chord",
+            "name": "D7(#5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7-#5",
+            "data": {
+                "symbol": "D7(#5)",
+                "bookSymbol": "D7(#5)",
+                "root": "D",
+                "quality": "major",
+                "family": "7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-7#5-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            8,
+                            5,
+                            7,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A#",
+                            "C",
+                            "F#",
+                            "A#"
+                        ],
+                        "source": "D7(#5) 7#5 (A-root)"
+                    }
+                ],
+                "slug": "d7-#5"
+            }
+        },
+        {
+            "id": 243,
+            "type": "guitar_chord",
+            "name": "D7(b5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7-b5",
+            "data": {
+                "symbol": "D7(b5)",
+                "bookSymbol": "D7(b5)",
+                "root": "D",
+                "quality": "major",
+                "family": "7b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-7b5-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            5,
+                            7,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F#",
+                            "Ab"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d7-b5"
+            }
+        },
+        {
+            "id": 212,
+            "type": "guitar_chord",
+            "name": "D7b9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7b9",
+            "data": {
+                "symbol": "D7b9",
+                "bookSymbol": "D7(b9)",
+                "root": "D",
+                "quality": "major",
+                "family": "7b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7b9-shape-10",
+                        "frets": [
+                            10,
+                            9,
+                            10,
+                            8,
+                            10,
+                            8
+                        ],
+                        "fingers": [
+                            3,
+                            2,
+                            3,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "Eb",
+                            "A",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d7b9"
+            }
+        },
+        {
+            "id": 240,
+            "type": "guitar_chord",
+            "name": "D7sus2",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7sus2",
+            "data": {
+                "symbol": "D7sus2",
+                "bookSymbol": "D7sus2",
+                "root": "D",
+                "quality": "major",
+                "family": "7sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-7sus2-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d7sus2"
+            }
+        },
+        {
+            "id": 239,
+            "type": "guitar_chord",
+            "name": "D7sus4",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7sus4",
+            "data": {
+                "symbol": "D7sus4",
+                "bookSymbol": "D7sus4",
+                "root": "D",
+                "quality": "major",
+                "family": "7sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-7sus4-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            5,
+                            8,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "G",
+                            "A"
+                        ],
+                        "source": "D7sus4 7sus4 (A-root)"
+                    }
+                ],
+                "slug": "d7sus4"
+            }
+        },
+        {
+            "id": 209,
+            "type": "guitar_chord",
+            "name": "D9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d9",
+            "data": {
+                "symbol": "D9",
+                "bookSymbol": "D9",
+                "root": "D",
+                "quality": "major",
+                "family": "9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d9-shape-5",
+                        "frets": [
+                            5,
+                            5,
+                            4,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d9"
+            }
+        },
+        {
+            "id": 241,
+            "type": "guitar_chord",
+            "name": "D9sus4",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d9sus4",
+            "data": {
+                "symbol": "D9sus4",
+                "bookSymbol": "D9sus4",
+                "root": "D",
+                "quality": "major",
+                "family": "9sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-9sus4-a5",
+                        "frets": [
+                            -1,
+                            7,
+                            7,
+                            7,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "E",
+                            "A",
+                            "D",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "d9sus4"
+            }
+        },
+        {
+            "id": 208,
+            "type": "guitar_chord",
+            "name": "Dadd9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dadd9",
+            "data": {
+                "symbol": "Dadd9",
+                "bookSymbol": "Dadd9",
+                "root": "D",
+                "quality": "major",
+                "family": "add9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dadd9-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            2,
+                            2,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "E",
+                            "A",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "dadd9"
+            }
+        },
+        {
+            "id": 205,
+            "type": "guitar_chord",
+            "name": "Dm(maj7)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm-maj7",
+            "data": {
+                "symbol": "Dm(maj7)",
+                "bookSymbol": "Dm(maj7)",
+                "root": "D",
+                "quality": "minor",
+                "family": "m(maj7)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmmaj7-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            6,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F",
+                            "A"
+                        ],
+                        "source": "Dm(maj7) A-form type"
+                    }
+                ],
+                "slug": "dm-maj7"
+            }
+        },
+        {
+            "id": 201,
+            "type": "guitar_chord",
+            "name": "Dm6",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm6",
+            "data": {
+                "symbol": "Dm6",
+                "bookSymbol": "Dm6",
+                "root": "D",
+                "quality": "minor",
+                "family": "m6",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dm6-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            7,
+                            6,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            4
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F",
+                            "B"
+                        ],
+                        "source": "Dm6 A-form type (5. bånd)"
+                    }
+                ],
+                "slug": "dm6"
+            }
+        },
+        {
+            "id": 235,
+            "type": "guitar_chord",
+            "name": "Dm6\/9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm6-9",
+            "data": {
+                "symbol": "Dm6\/9",
+                "bookSymbol": "Dm6\/9",
+                "root": "D",
+                "quality": "minor",
+                "family": "m69",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-m69-a5",
+                        "frets": [
+                            -1,
+                            7,
+                            7,
+                            7,
+                            6,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "E",
+                            "A",
+                            "D",
+                            "F",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "dm6-9"
+            }
+        },
+        {
+            "id": 203,
+            "type": "guitar_chord",
+            "name": "Dm7",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm7",
+            "data": {
+                "symbol": "Dm7",
+                "bookSymbol": "Dm7",
+                "root": "D",
+                "quality": "minor",
+                "family": "m7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dm7-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F"
+                        ],
+                        "source": "Standard åpen Dm7"
+                    },
+                    {
+                        "id": "dm7-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            5,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F",
+                            "A"
+                        ],
+                        "source": "Dm7 A-form barre"
+                    }
+                ],
+                "slug": "dm7"
+            }
+        },
+        {
+            "id": 236,
+            "type": "guitar_chord",
+            "name": "Dm7(b5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm7-b5",
+            "data": {
+                "symbol": "Dm7(b5)",
+                "bookSymbol": "Dm7(b5)",
+                "root": "D",
+                "quality": "minor",
+                "family": "m7b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-m7b5-a5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            5,
+                            6,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F",
+                            "Ab"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "dm7-b5"
+            }
+        },
+        {
+            "id": 238,
+            "type": "guitar_chord",
+            "name": "Dm9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm9",
+            "data": {
+                "symbol": "Dm9",
+                "bookSymbol": "Dm9",
+                "root": "D",
+                "quality": "minor",
+                "family": "m9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-m9-a5",
+                        "frets": [
+                            -1,
+                            7,
+                            7,
+                            7,
+                            6,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "E",
+                            "A",
+                            "D",
+                            "F",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "dm9"
+            }
+        },
+        {
+            "id": 204,
+            "type": "guitar_chord",
+            "name": "Dmaj7",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dmaj7",
+            "data": {
+                "symbol": "Dmaj7",
+                "bookSymbol": "Dmaj7",
+                "root": "D",
+                "quality": "major",
+                "family": "maj7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmaj7-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Standard åpen Dmaj7"
+                    },
+                    {
+                        "id": "dmaj7-a-shape-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            6,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Dmaj7 A-form"
+                    }
+                ],
+                "slug": "dmaj7"
+            }
+        },
+        {
+            "id": 237,
+            "type": "guitar_chord",
+            "name": "Dmaj9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dmaj9",
+            "data": {
+                "symbol": "Dmaj9",
+                "bookSymbol": "Dmaj9",
+                "root": "D",
+                "quality": "major",
+                "family": "maj9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d-maj9-a5",
+                        "frets": [
+                            -1,
+                            7,
+                            7,
+                            7,
+                            7,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "E",
+                            "A",
+                            "D",
+                            "F#",
+                            "C#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "dmaj9"
+            }
+        },
+        {
+            "id": 206,
+            "type": "guitar_chord",
+            "name": "Dsus2",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dsus2",
+            "data": {
+                "symbol": "Dsus2",
+                "bookSymbol": "Dsus2",
+                "root": "D",
+                "quality": "major",
+                "family": "sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dsus2-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Standard Dsus2 (åpen)"
+                    }
+                ],
+                "slug": "dsus2"
+            }
+        },
+        {
+            "id": 207,
+            "type": "guitar_chord",
+            "name": "Dsus4",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dsus4",
+            "data": {
+                "symbol": "Dsus4",
+                "bookSymbol": "Dsus4",
+                "root": "D",
+                "quality": "major",
+                "family": "sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dsus4-open",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Standard Dsus4 (åpen)"
+                    }
+                ],
+                "slug": "dsus4"
+            }
+        }
+    ]
+}

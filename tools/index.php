@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__) . '/includes/content.php';
+require_once dirname(__DIR__) . '/includes/meta.php';
 
 $pageTitle = 'Verktøy | Rockeskolen';
 $description = 'Utforsk Rockeskolens digitale musikkverktøy for akkorder, skalaer, instrumenter, teori, stemming og låtskriving.';
@@ -11,9 +12,13 @@ $portalSections = rs_portal_sections();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo rs_h($pageTitle); ?></title>
-  <meta name="description" content="<?php echo rs_h($description); ?>">
-  <link rel="canonical" href="https://rockeskolen.com/tools/">
+<?php rs_render_meta(
+    $pageTitle,
+    $description,
+    'https://rockeskolen.com/tools/',
+    'https://rockeskolen.com/images/share/rockeskolen-2026.jpg',
+    'Rockeskolens digitale musikkverktøy'
+); ?>
   <link rel="stylesheet" href="/includes/site.css?v=2">
 </head>
 <body>
@@ -24,14 +29,14 @@ $portalSections = rs_portal_sections();
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
         <a href="/workshop/index.php">Workshop</a>
-        <a href="https://portal.rockeskolen.com">Portal</a>
+        <a href="https://portal.rockeskolen.com">Musikkportalen</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
     <section class="page-title">
-      <p class="eyebrow">Rockeskolen Tools</p>
+      <p class="eyebrow">Musikkportalen</p>
       <h1>Verktøy som gjør teori spillbar.</h1>
       <p class="lead">
         Akkorder, skalaer, tuner, låtskriving og instrumentressurser. Bruk dem i øving, band, undervisning og når en idé plutselig dukker opp.
@@ -69,7 +74,7 @@ $portalSections = rs_portal_sections();
       </section>
     <?php endforeach; ?>
 
-    <?php foreach ($portalSections as $section): ?>
+    <?php if (false): foreach ($portalSections as $section): ?>
       <section class="section portal-section" aria-labelledby="portal-<?php echo rs_h(rs_slugify($section['title'])); ?>">
         <div class="section-head">
           <div>
@@ -89,7 +94,7 @@ $portalSections = rs_portal_sections();
           <?php endforeach; ?>
         </div>
       </section>
-    <?php endforeach; ?>
+    <?php endforeach; endif; ?>
   </main>
 
   <footer class="footer">

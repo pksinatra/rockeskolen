@@ -278,7 +278,7 @@ if (qual === "min"){
       return `${n}`;
     });
 
-    const relLabel = qual==="maj" ? "Relativ moll" : "Relativ dur";
+    const relLabel = qual==="maj" ? "relative minor" : "relative major";
 
     // Dim degree (matches your diatonic mapping): maj -> vii°, min -> ii°
     const dimIndex = (qual === "maj") ? 6 : 1;
@@ -288,17 +288,17 @@ const dimChord = `${dualLabel(scale[dimIndex], pref)}°`;
     infoPanel.innerHTML = `
       <div class="infoTitle">${title}</div>
       <div class="infoRow"><span>${relLabel}:</span> <strong>${rel}</strong></div>
-      <div class="infoRow"><span>Dominant:</span> <strong>${dom}</strong></div>
-      <div class="infoRow"><span>Subdominant:</span> <strong>${sub}</strong></div>
-      <div class="infoRow"><span>Dim:</span> <strong>${dimChord}</strong></div>
+      <div class="infoRow"><span>dominant:</span> <strong>${dom}</strong></div>
+      <div class="infoRow"><span>subdominant:</span> <strong>${sub}</strong></div>
+      <div class="infoRow"><span>dim:</span> <strong>${dimChord}</strong></div>
 
       <div class="hr"></div>
-      <div class="infoSub">Akkorder i tonearten</div>
+      <div class="infoSub">Chords in the key</div>
       <div class="chips">${chords.map(c=>`<span class="chip">${c}</span>`).join("")}</div>
 
       <div class="hr"></div>
-      <div class="infoSub">${qual==="maj"?"Durskala":"Naturlig moll"}</div>
-      <div class="infoRow"><span>Toner:</span> <strong>${scale.join(" ")}</strong></div>
+      <div class="infoSub">${qual==="maj"?"Major scale":"Natural minor"}</div>
+      <div class="infoRow"><span>tones:</span> <strong>${scale.join(" ")}</strong></div>
     `;
   }
 
@@ -411,7 +411,7 @@ group.appendChild(dimBadgeText);
     centerTitle.setAttribute("text-anchor","middle");
     centerTitle.setAttribute("class","wedgeTextMajor");
     centerTitle.setAttribute("fill","rgba(234,240,255,.9)");
-    centerTitle.textContent = "PARALLELL MOLL";
+    centerTitle.textContent = "RELATIVE MINOR";
     group.appendChild(centerTitle);
 
     const centerSub = document.createElementNS(svgNS,"text");
@@ -420,7 +420,7 @@ group.appendChild(dimBadgeText);
     centerSub.setAttribute("text-anchor","middle");
     centerSub.setAttribute("class","wedgeTextMinor");
     centerSub.setAttribute("fill","rgba(169,182,216,.85)");
-    centerSub.textContent = "Shift+klikk for parallel";
+    centerSub.textContent = "Shift+click for relative minor";
     group.appendChild(centerSub);
 
     wedges.forEach((w) => {
@@ -503,6 +503,7 @@ function showProNotice(name){
     box = document.createElement("a");
     box.id = "proBox";
     box.href = "/members/upgrade.php";
+    box.target = "_top"
     box.className = "pro-cta";
     box.style.display = "none";
 
@@ -511,8 +512,9 @@ function showProNotice(name){
   }
 
   box.innerHTML = `
- <strong>Tilgjengelig for VIP-medlemmer:</strong> <strong>${name}</strong>.
-<span class="pro-cta-sub">Oppgrader for å få tilgang til alle funksjoner</span>.
+    <strong>Pro only:</strong> <strong>${name}</strong> is available in the Pro version.
+    Choose a free option, or
+    <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
   `;
   box.style.display = "block";
   box.scrollIntoView({ behavior:"smooth", block:"center" });

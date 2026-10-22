@@ -3,6 +3,7 @@
   let currentCtx = null;
   let currentStave = null;
   let playTimeouts = [];
+  let currentDirection = "up";
 
   (function () {
 
@@ -20,7 +21,7 @@
        Skala-data
        ========================= */
     async function loadScales() {
-      const res = await fetch("/data/scales.json");
+      const res = await fetch("/assets/data/scales.json");
       return await res.json();
     }
 
@@ -308,6 +309,24 @@ function buildScale(root, type, oct, scales) {
   });
 }
 
+  function normalizeDirection(direction) {
+    return ["up", "down", "both"].includes(direction) ? direction : "up";
+  }
+
+  function buildDirectionSequence(ascendingNotes, direction) {
+    if (direction === "down") return [...ascendingNotes].reverse();
+    if (direction === "both") {
+      return [...ascendingNotes, ...ascendingNotes.slice(0, -1).reverse()];
+    }
+    return [...ascendingNotes];
+  }
+
+  function updateDirectionButtons() {
+    document.querySelectorAll(".direction-button").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.direction === currentDirection));
+    });
+  }
+
   function getKeyAccidentals(keySig) {
     if (!keySig) return [];
 
@@ -362,7 +381,10 @@ const root = theoretical ? rootRaw : normalizeKey(rootRaw, type);
 
   const scales = await loadScales();
 
-  currentScaleNotes = buildScale(root, type, oct, scales);
+  const ascendingScaleNotes = buildScale(root, type, oct, scales);
+  currentDirection = normalizeDirection(currentDirection);
+  currentScaleNotes = buildDirectionSequence(ascendingScaleNotes, currentDirection);
+  updateDirectionButtons();
   
   // ===== Pianoroll-adapter =====
   window.RK_PIANOROLL_STATE = {
@@ -396,7 +418,9 @@ const root = theoretical ? rootRaw : normalizeKey(rootRaw, type);
   const renderer = new VF.Renderer(host, VF.Renderer.Backends.SVG);
   renderer.resize(width, 140);
 
-  currentStave = new VF.Stave(10, 40, width - 20);
+  // VexFlow positions the staff relative to this y-coordinate. Keeping it near
+  // the top balances the clef and note extents inside the 140 px notation box.
+  currentStave = new VF.Stave(10, 10, width - 20);
 
 
       currentCtx = renderer.getContext();
@@ -484,11 +508,19 @@ if (keySig) {
         const isActive = (!isGhost && i === activeIndex + 1);
 
         vn.setStyle({
-          fillStyle: isActive ? "#00b060" : "#000",
-          strokeStyle: isActive ? "#00b060" : "#000"
+          fillStyle: isActive ? "#665cf6" : "#162036",
+          strokeStyle: isActive ? "#665cf6" : "#162036",
+          shadowColor: isActive ? "rgba(76, 201, 240, .9)" : "transparent",
+          shadowBlur: isActive ? 16 : 0
         });
 
         vn.setContext(currentCtx).draw();
+      });
+
+      // VexFlow renders SVG. A CSS filter gives the active note a reliable glow;
+      // canvas-style shadowBlur values on setStyle are ignored by the SVG backend.
+      document.querySelectorAll("#notation .vf-stavenote").forEach((noteEl) => {
+        noteEl.classList.toggle("is-active-note", noteEl.getAttribute("fill") === "#665cf6");
       });
     }
 
@@ -500,20 +532,26 @@ if (keySig) {
       if (!currentScaleNotes.length) return;
 
       await Tone.start();
-      const stepMs = 400;
+      const tempo = Math.min(240, Math.max(30, parseInt(param("tempo", "90"), 10) || 90));
+      const stepMs = 60000 / tempo;
+      document.body.classList.add("is-playing");
+      const status = document.getElementById("playbackStatus");
+      if (status) status.textContent = "Spiller skala";
 
-      currentScaleNotes.forEach((note, i) => {
+      currentScaleNotes.forEach((note, noteIndex) => {
           const id = setTimeout(() => {
             synth.triggerAttackRelease(note, "8n");
-            redraw(i);
+            redraw(noteIndex);
             // 🔑 oppdater pianoroll highlight
             if (window.RK_PIANOROLL_STATE) {
-              window.RK_PIANOROLL_STATE.activeIdx = i;
+              window.RK_PIANOROLL_STATE.activeIdx = noteIndex;
+              window.RK_PIANOROLL_STATE.activeSince = performance.now();
               window.dispatchEvent(new Event("rk-pianoroll-ready"));
             }
-          }, i * stepMs);
+          }, noteIndex * stepMs);
         playTimeouts.push(id);
       });
+      playTimeouts.push(setTimeout(() => stopScale(), currentScaleNotes.length * stepMs + 180));
     }
 
     function stopScale() {
@@ -521,15 +559,37 @@ if (keySig) {
       playTimeouts = [];
       synth.releaseAll();
       redraw();
+      document.body.classList.remove("is-playing");
+      const status = document.getElementById("playbackStatus");
+      if (status) status.textContent = "Avspilling stoppet";
+      if (window.RK_PIANOROLL_STATE) {
+        window.RK_PIANOROLL_STATE.activeIdx = -1;
+        window.RK_PIANOROLL_STATE.activeSince = 0;
+        window.dispatchEvent(new Event("rk-pianoroll-ready"));
+      }
     }
 
     /* =========================
        Init
        ========================= */
     document.addEventListener("DOMContentLoaded", () => {
+      currentDirection = normalizeDirection(param("direction", "up").toLowerCase());
       render();
       document.getElementById("playScale")?.addEventListener("click", playScale);
       document.getElementById("stopScale")?.addEventListener("click", stopScale);
+      document.querySelectorAll(".direction-button").forEach((button) => {
+        button.addEventListener("click", async () => {
+          stopScale();
+          currentDirection = normalizeDirection(button.dataset.direction);
+          await render();
+          const status = document.getElementById("playbackStatus");
+          if (status) status.textContent = currentDirection === "up"
+            ? "Oppover valgt"
+            : currentDirection === "down"
+              ? "Nedover valgt"
+              : "Opp og ned valgt";
+        });
+      });
     });
 
   })();

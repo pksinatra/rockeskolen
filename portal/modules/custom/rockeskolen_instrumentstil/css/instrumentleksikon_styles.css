@@ -1,0 +1,59 @@
+
+/* Instrumentkort – Rockeskolens instrumentleksikon */
+
+.instrument-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.instrument-card {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.instrument-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.instrument-card h2,
+.instrument-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.instrument-card p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.instrument-card img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+
+/*
+.instrument-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+*/
+
+.instrument-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+

@@ -39,8 +39,10 @@ const CHORD_TYPES = {
   "sus4": { intervals:[0,5,7],        degrees:[0,3,4] },
   "6":    { intervals:[0,4,7,9],      degrees:[0,2,4,5] },
   "min6": { intervals:[0,3,7,9],      degrees:[0,2,4,5] },
-"13":   { intervals:[0,4,7,10,14,17,21], degrees:[0,2,4,6,1,3,5] },
-"add9": { intervals:[0,4,7,14], degrees:[0,2,4,1] }  
+  "9":    { intervals:[0,4,7,10,14],  degrees:[0,2,4,6,1] },
+  "11":   { intervals:[0,4,7,10,14,17], degrees:[0,2,4,6,1,3] },
+  "13":   { intervals:[0,4,7,10,14,17,21], degrees:[0,2,4,6,1,3,5] },
+  "add9": { intervals:[0,4,7,14],       degrees:[0,2,4,1] }
 };
 
 let octave = 4;
@@ -191,7 +193,9 @@ function parseChordString(chordStr) {
     "m6": "min6",
     "13": "13",
     "add9": "add9",
-    "min6": "min6"
+    "min6": "min6",
+    "9": "9",
+    "11": "11"
   };
 
   const type = typeMap[rawType];
@@ -625,4 +629,3 @@ document.addEventListener("DOMContentLoaded", function() {
   updateToggleLabel();
   render();
 });
-

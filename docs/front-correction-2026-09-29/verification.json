@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://www.rockeskolen.com/",
+    "status": 200,
+    "correct_cards": true
+  },
+  {
+    "url": "https://portal.rockeskolen.com/",
+    "status": 200,
+    "correct_cards": true
+  }
+]

@@ -1,0 +1,8 @@
+name: Rockeskolen Membership
+type: module
+description: 'Secure membership SSO, Feide identity linking, VIP role synchronization, and article access tiers.'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:user
+  - externalauth:externalauth

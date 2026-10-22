@@ -1,65 +1,155 @@
-/* notes.css – lokal styling for notes-embed */
+:root {
+  color-scheme: light;
+  --ink: #162036;
+  --line: rgba(48, 61, 91, .14);
+  --violet: #665cf6;
+  --cyan: #4cc9f0;
+}
 
+* { box-sizing: border-box; }
+
+html,
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  padding: 0;
+  overflow-x: hidden;
+  background: transparent;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-html, body {
-  margin:0;
-  padding:0;
-  background:#ffffff;
+[hidden] { display: none !important; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
+#notation,
+#pianoroll-panel {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(145deg, #fff 0%, #fbfdff 58%, #f7f4ff 100%);
 }
-/* Noter / piano-visning */
+
 #notation {
-  margin-bottom: 2px; /* 👈 var 6–8px før */
-    background:#ffffff;
+  min-height: 142px;
+  border-radius: 16px 16px 8px 8px;
 }
 
-/* Kontrollknapper */
+#notation svg {
+  display: block;
+  width: 100%;
+  margin: 0;
+  overflow: visible;
+}
+
+#notation .vf-stavenote {
+  transition: fill .16s ease, stroke .16s ease, filter .16s ease;
+}
+
+#notation .vf-stavenote.is-active-note {
+  filter:
+    drop-shadow(0 0 3px rgba(76, 201, 240, .95))
+    drop-shadow(0 0 8px rgba(102, 92, 246, .72));
+}
+
+#pianoroll-panel {
+  min-height: 240px;
+  border-radius: 8px 8px 16px 16px;
+}
+
+#notation + #pianoroll-panel:not([hidden]) { margin-top: 8px; }
+
+#roll {
+  display: block;
+  width: 100%;
+  height: 280px;
+}
+
 #controls {
   display: flex;
-  justify-content: flex-start; /* 👈 venstre */
-  gap: 6px;
-  margin: 2px 0 6px;           /* 👈 mindre luft */
-  padding-left: 10px;          /* 👈 litt innrykk */
+  align-items: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 8px 4px 2px;
 }
 
 #controls button {
-  padding: 4px 12px;
-  font-size: 13px;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
   border-radius: 999px;
-  border: 1px solid #ccc;
-  background: #fff;
+  background: rgba(255, 255, 255, .9);
+  color: #26314a;
+  box-shadow: 0 3px 10px rgba(42, 53, 81, .06);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
   cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
 }
 
 #controls button:hover {
-  background: #f3f3f3;
+  border-color: rgba(102, 92, 246, .35);
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(74, 83, 132, .12);
+  transform: translateY(-1px);
 }
 
-#controls button:active {
-  transform: translateY(1px);
-}
-#notation svg {
-  display: block;   /* fjerner inline-gap */
-  margin: 0;
-  padding: 0;
+#controls button:active { transform: translateY(0); }
+
+#controls button:focus-visible {
+  outline: 3px solid rgba(76, 201, 240, .35);
+  outline-offset: 2px;
 }
 
+.direction-controls {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 2px;
+  padding-left: 9px;
+  border-left: 1px solid var(--line);
+}
 
-  #pianoroll-panel {
-    width: 100%;
-    min-height: 340px;
-  }
-  #roll {
-    width: 100%;
-    height: 320px;
-    display: block;
-  }
+#controls .direction-button {
+  justify-content: center;
+  min-width: 34px;
+  padding: 6px 9px;
+  color: #59647c;
+  font-size: 16px;
+  line-height: 1;
+}
 
+#controls .direction-button[aria-pressed="true"] {
+  border-color: rgba(102, 92, 246, .45);
+  background: linear-gradient(135deg, rgba(76, 201, 240, .16), rgba(134, 92, 246, .16));
+  color: var(--violet);
+  box-shadow: inset 0 0 0 1px rgba(102, 92, 246, .08), 0 4px 14px rgba(102, 92, 246, .12);
+}
 
-  
+body.is-playing #playScale {
+  border-color: rgba(76, 201, 240, .48);
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, .1), 0 6px 20px rgba(102, 92, 246, .14);
+}
+
+@media (max-width: 520px) {
+  #notation { min-height: 132px; }
+  #roll { height: 250px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #controls button { transition: none; }
+  #notation .vf-stavenote { transition: none; }
+}

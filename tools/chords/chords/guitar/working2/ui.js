@@ -79,9 +79,8 @@ function showProBox(name) {
   if (!box) return;
 
   box.innerHTML = `
-    <strong>Pro only:</strong> <strong>${name}</strong> is available in the Pro version.
-    Choose a free option, or
-    <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+    <strong>${name}</strong> er med i VIP.
+    Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.
   `;
 
   box.style.display = "block";

@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Compatibility placeholder. Keep while cached module references may exist.
+ * The active byline hook is provided by rockeskolen_structure_qa.
+ */
+
+/**
+ * Supports existing theme registries until their caches have been rebuilt.
+ */
+function rockeskolen_byline_preprocess_node(array &$variables): void {
+  // The active module supplies the byline; this legacy callback is a no-op.
+}

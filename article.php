@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/content.php';
+require_once __DIR__ . '/includes/meta.php';
 
 $slug = rs_slugify($_GET['slug'] ?? '');
 $article = rs_article_by_slug($slug);
@@ -17,8 +18,16 @@ if (!$article) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo rs_h($pageTitle); ?></title>
-  <meta name="description" content="<?php echo rs_h($description); ?>">
+<?php rs_render_meta(
+    $pageTitle,
+    $description,
+    $article
+        ? 'https://rockeskolen.com/article.php?slug=' . rawurlencode($slug)
+        : 'https://rockeskolen.com/article.php',
+    'https://rockeskolen.com/images/share/rockeskolen-2026.jpg',
+    $article ? $article['title'] . ' – Rockeskolen' : 'Rockeskolen',
+    $article ? 'article' : 'website'
+); ?>
   <link rel="stylesheet" href="/includes/site.css?v=2">
 </head>
 <body>
@@ -29,7 +38,7 @@ if (!$article) {
       </a>
       <nav class="nav" aria-label="Hovednavigasjon">
         <a href="/workshop/index.php">Workshop</a>
-        <a href="https://portal.rockeskolen.com">Portal</a>
+        <a href="https://portal.rockeskolen.com">Musikkportalen</a>
       </nav>
     </div>
   </header>

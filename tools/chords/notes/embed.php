@@ -23,6 +23,6 @@
       <button onclick="playArpeggio()">Arpeggio</button>
     </div>
   </div>
-<script src="./ui.js"></script>
+<script src="./ui.js?v=20260909-1"></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+[
+  {
+    "site": "production",
+    "status": 200,
+    "robots_header": null
+  },
+  {
+    "site": "beta",
+    "status": 200,
+    "robots_header": "noindex, nofollow, noarchive"
+  }
+]

@@ -1,0 +1,192 @@
+:root{
+  --bg:#0b0b10;
+  --panel:rgba(255,255,255,.07);
+  --panel2:rgba(255,255,255,.11);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.65);
+  --accent:#ff2a5f;
+  --accent2:#a855f7;
+  --gold:#f5c542;
+  --radius:18px;
+  --shadow:0 18px 50px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(255,42,95,.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 30%, rgba(168,85,247,.14), transparent 55%),
+    radial-gradient(900px 700px at 50% 90%, rgba(245,197,66,.09), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+.cl-tuner-shell{width:min(1120px,100%);margin:0 auto;padding:24px 16px 32px}
+.cl-hero{padding:18px 4px 16px;text-align:left}
+.eyebrow{margin:0 0 7px;color:var(--gold);text-transform:uppercase;letter-spacing:.16em;font-size:12px}
+h1{margin:0;font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-.04em}
+.cl-hero p:last-child{margin:12px 0 0;color:var(--muted);font-size:18px}
+.tuner-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+.tab-btn,.btn{
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.08);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:650;
+  letter-spacing:.2px;
+  transition:transform .06s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease;
+  user-select:none;
+}
+.tab-btn:hover,.btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.24)}
+.tab-btn:active,.btn:active{transform:translateY(1px)}
+.tab-btn.active,.btn.active,.string-btn.active{
+  background:linear-gradient(135deg,rgba(255,42,95,.55),rgba(168,85,247,.35));
+  border-color:rgba(255,255,255,.42);
+  box-shadow:0 0 24px rgba(255,42,95,.15);
+}
+.app-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.card header{padding:14px 16px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
+.title{font-size:16px;letter-spacing:.3px;font-weight:700}.subtitle,.note{font-size:12px;color:var(--muted)}.content{padding:16px}
+.mode-panel{display:none}.mode-panel.active{display:block}
+.fork-wrap,.instrument-stage{
+  width:100%;min-height:310px;display:flex;align-items:center;justify-content:center;position:relative;
+  background:radial-gradient(500px 220px at 50% 40%,rgba(255,42,95,.10),transparent 60%);
+  border-radius:16px;border:1px solid rgba(255,255,255,.08);overflow:hidden;
+}
+.fork{width:320px;max-width:85%;transform-origin:50% 60%;transform:scale(var(--forkScale,1));filter:drop-shadow(0 18px 30px rgba(0,0,0,.5));transition:transform .25s ease}
+#forkWrap[data-playing="true"] .fork{animation:vibrate 120ms infinite linear}
+@keyframes vibrate{0%{transform:scale(var(--forkScale,1)) translateX(0)}50%{transform:scale(var(--forkScale,1)) translateX(.6px)}100%{transform:scale(var(--forkScale,1)) translateX(0)}}
+.fork-waves path{stroke:currentColor;stroke-width:4;fill:none}#forkWrap[data-playing="false"] .fork-waves{opacity:0}#forkWrap[data-playing="true"] .fork-waves{opacity:.5;transition:opacity .5s ease}
+.instrument-stage{flex-direction:column;gap:18px;padding:22px}.instrument-name{font-size:34px;font-weight:800;letter-spacing:-.03em}.string-buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:10px;width:min(620px,100%)}.string-btn{min-height:66px}.string-btn strong{display:block;font-size:20px}.string-btn span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.readout{margin-top:14px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:12px;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08)}.hz{font-size:26px;font-weight:800;letter-spacing:.2px}
+.controls{margin-top:12px;display:grid;gap:10px;align-items:center}.main-controls{grid-template-columns:1fr auto auto}.octave-controls{grid-template-columns:1fr 1fr 1fr}input[type=range]{width:100%;accent-color:var(--accent)}
+.tip-card p{margin:0 0 10px;color:var(--muted);line-height:1.45}.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);font-size:12px;margin-bottom:10px}.dot{width:9px;height:9px;border-radius:99px;background:var(--accent);box-shadow:0 0 14px rgba(255,42,95,.55)}.octave-status{margin-top:16px}
+.btn.oct-active{background:linear-gradient(135deg,#ff9f1c,#ff6a00);border-color:rgba(255,255,255,.4)}.btn.oct-active.level-2{background:linear-gradient(135deg,#ff6a00,#cc4a00)}.tip-card.attention{animation:hintPulse 1.2s ease-out 1;border-color:rgba(255,42,95,.9)}@keyframes hintPulse{0%{box-shadow:0 0 0 rgba(255,42,95,0);transform:scale(1)}30%{box-shadow:0 0 30px rgba(255,42,95,.6);transform:scale(1.012)}100%{box-shadow:0 0 0 rgba(255,42,95,0);transform:scale(1)}}
+@media(max-width:860px){.app-grid{grid-template-columns:1fr}.main-controls{grid-template-columns:1fr}.octave-controls{grid-template-columns:1fr}.fork-wrap,.instrument-stage{min-height:260px}}
+
+/* v5 signal/control/pitch additions */
+.stop-btn{
+  background:linear-gradient(135deg,rgba(220,38,38,.88),rgba(120,0,0,.72));
+  border-color:rgba(255,120,120,.55);
+  box-shadow:0 0 20px rgba(255,0,0,.15);
+}
+.stop-btn:hover{background:linear-gradient(135deg,rgba(255,45,45,.95),rgba(150,0,0,.82));border-color:rgba(255,150,150,.72)}
+.top-readout{margin-top:0;margin-bottom:10px}
+.top-controls{margin-top:0}
+.top-controls{grid-template-columns:auto minmax(0,1fr)}
+.top-controls #freq{grid-column:1/-1}
+.transport-controls{display:flex;align-items:center;gap:8px}
+.transport-controls #play{min-height:48px;padding:12px 22px}
+.transport-controls #stop{min-height:44px;padding:8px 12px;font-size:13px}
+.top-controls .mic-btn{justify-self:start}
+@media(max-width:580px){.top-controls{grid-template-columns:1fr}.top-controls .mic-btn{justify-self:stretch}}
+.signal-card{
+  margin:12px 0 16px;
+  padding:10px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.09);
+  background:
+    radial-gradient(420px 130px at 18% 50%,rgba(255,42,95,.12),transparent 60%),
+    radial-gradient(420px 130px at 82% 50%,rgba(168,85,247,.12),transparent 60%),
+    rgba(0,0,0,.22);
+  overflow:hidden;
+}
+.signal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 8px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.13em}
+#signalCanvas{width:100%;height:120px;display:block;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.20));border:1px solid rgba(255,255,255,.06)}
+
+.fork-options{margin-top:14px;display:grid;gap:14px}
+.option-group{background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
+.option-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;margin-bottom:9px}
+.segmented{display:flex;gap:8px;flex-wrap:wrap}
+.mode-choice,.note-choice{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  color:var(--text);
+  border-radius:12px;
+  padding:9px 11px;
+  cursor:pointer;
+  font-weight:700;
+}
+.mode-choice.active,.note-choice.active{
+  background:linear-gradient(135deg,rgba(255,42,95,.55),rgba(168,85,247,.25));
+  border-color:rgba(255,255,255,.38);
+  box-shadow:0 0 20px rgba(255,42,95,.12);
+}
+.fork-notes{display:grid;grid-template-columns:repeat(13,minmax(42px,1fr));gap:7px}
+.note-choice{min-height:46px;padding:7px 5px}
+.note-choice strong{display:block;font-size:15px}.note-choice span{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:2px}
+@media(max-width:760px){.fork-notes{grid-template-columns:repeat(4,1fr)}}
+
+
+/* v5 microphone tuner */
+.listen-choice.active{
+  background:linear-gradient(135deg,rgba(34,211,238,.46),rgba(168,85,247,.32));
+  border-color:rgba(165,243,252,.45);
+}
+.pitch-card{
+  display:none;
+  margin:12px 0 14px;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(420px 160px at 50% 10%,rgba(34,211,238,.10),transparent 65%),
+    rgba(0,0,0,.22);
+}
+.pitch-card.active{display:block}
+.pitch-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.pitch-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;margin-bottom:4px}
+.pitch-hz{font-size:18px;font-weight:800;color:rgba(255,255,255,.84)}
+.pitch-readout{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:6px 0 10px}
+.detected-note{font-size:54px;line-height:1;font-weight:900;letter-spacing:-.06em}
+.cents-text{font-size:18px;font-weight:750;color:var(--muted)}
+.tune-meter{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.meter-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.meter-label.left{text-align:right}.meter-label.right{text-align:left}
+.meter-track{height:18px;border-radius:99px;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(255,42,95,.38),rgba(34,197,94,.32),rgba(255,42,95,.38));border:1px solid rgba(255,255,255,.10)}
+.meter-center{position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,255,255,.75);box-shadow:0 0 12px rgba(255,255,255,.45)}
+.tune-needle{position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 0 16px rgba(255,255,255,.5);transform:translate(-50%,-50%);transition:left .08s linear, background .12s ease, box-shadow .12s ease}
+.pitch-card.in-tune .tune-needle{background:rgba(74,222,128,.95);box-shadow:0 0 22px rgba(74,222,128,.75)}
+.pitch-card.in-tune .detected-note{color:rgba(187,247,208,.98);text-shadow:0 0 24px rgba(74,222,128,.32)}
+@media(max-width:760px){.detected-note{font-size:42px}.pitch-readout{gap:9px}.tune-meter{grid-template-columns:1fr}.meter-label{display:none}}
+/* Optional mic controls for ChordLink Tuner v8 */
+.mic-icon-btn{
+  min-width: 42px;
+  width: 42px;
+  padding-left: 0;
+  padding-right: 0;
+  opacity: .58;
+  font-size: 1.05rem;
+}
+
+.mic-icon-btn:hover,
+.mic-icon-btn.active{
+  opacity: 1;
+}
+
+.mic-stop-btn{
+  min-width: 42px;
+  width: 42px;
+  padding-left: 0;
+  padding-right: 0;
+  opacity: .55;
+  color: #ffd7d7;
+  border-color: rgba(255, 70, 70, .45);
+  background: linear-gradient(180deg, rgba(140,20,35,.30), rgba(55,8,16,.28));
+}
+
+.mic-stop-btn:hover,
+.mic-stop-btn.active{
+  opacity: 1;
+  border-color: rgba(255, 70, 70, .8);
+  box-shadow: 0 0 18px rgba(255, 40, 60, .22);
+}

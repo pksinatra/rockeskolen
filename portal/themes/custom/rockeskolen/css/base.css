@@ -1,0 +1,25 @@
+/* Rockeskolen base styling */
+
+body,
+.page-wrapper,
+.dialog-off-canvas-main-canvas {
+  background-color: #0b0b10;
+  color: #e6e6eb;
+}
+
+.site-header {
+  background-color: #0b0b10;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+h1, h2, h3, h4 {
+  color: #ffffff;
+}
+
+a {
+  color: #ff2a5f;
+}
+
+a:hover {
+  color: #ffffff;
+}

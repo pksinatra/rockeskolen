@@ -21,6 +21,21 @@ function rs_meta_from_text(?string $text): string {
 function rs_tools(): array {
     return [
         [
+            'title' => 'ChordFlow', 'slug' => 'chordflow', 'category' => 'Låtskriving',
+            'product_status' => 'Ny', 'app_url' => '/tools/chordflow/', 'cta_label' => 'Åpne ChordFlow',
+            'short_description' => 'Lag akkordrekker som passer stemningen i låten. Velg toneart, lytt og behold akkordene du liker mens du prøver nye varianter. Se tonene på pianoet og last ned resultatet som MIDI.',
+            'body' => 'Velg toneart, stemning og tonefordeling. Se tonene falle ned på pianotangentene, prøv ulike lyder og behold akkorder mens du utforsker nye varianter. Verktøyet har norsk språkvalg, stoppknapp og MIDI-eksport.', 'image' => '/images/chordflow-promo.jpg',
+            'show_on_home' => true, 'sort_order' => 61,
+        ],
+        [
+            'title' => 'ChordProg', 'slug' => 'chordprog', 'category' => 'Låtskriving',
+            'product_status' => 'Ny', 'app_url' => '/tools/chordprog/', 'cta_label' => 'Åpne ChordProg',
+            'short_description' => 'Utforsk 250 akkordrekker, melodiskalaer og MIDI-eksport.',
+            'body' => 'Finn akkordrekker for en versdel, et refreng eller en bestemt stemning. Lytt, bytt toneart og utforsk akkordtoner og mulige melodiskalaer. ChordProg har norsk språkvalg og åpnes her på Rockeskolen.', 'image' => '/images/chordprog-promo.jpg',
+            'show_on_home' => true, 'sort_order' => 62,
+        ],
+
+        [
             'title' => 'Pianoakkorder',
             'slug' => 'pianoakkorder',
             'category' => 'Piano',
@@ -31,6 +46,18 @@ function rs_tools(): array {
             'body' => "Pianoakkorder gjør akkordteori konkret. Verktøyet viser hvordan akkorder bygges opp, hvordan de ligger på klaviaturet, og hvordan samme harmonikk kan forstås gjennom toner og intervaller.\n\nBruk det når du øver, lager beats, skriver låter eller bare vil finne ut hva som faktisk skjer i en akkord.",
             'show_on_home' => true,
             'sort_order' => 10,
+        ],
+        [
+            'title' => 'Pianovisualisering',
+            'slug' => 'pianovisualisering',
+            'category' => 'Piano',
+            'product_status' => 'Ny',
+            'app_url' => '/tools/visualizers/piano/',
+            'cta_label' => 'Åpne',
+            'short_description' => 'Se melodier, skalaer og MIDI-filer falle ned på tangentene mens musikken spiller.',
+            'body' => "Pianovisualisering kobler lyd, timing og tangentplassering i ett bilde. Spill på skjermklaviaturet, utforsk skalaer eller åpne en MIDI-fil og følg tonene mens de beveger seg mot tangentene.\n\nVerktøyet passer til øving, gehør, undervisning og til å forstå hvordan en melodi faktisk ligger på pianoet.",
+            'show_on_home' => true,
+            'sort_order' => 15,
         ],
         [
             'title' => 'Gitarakkorder',

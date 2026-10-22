@@ -1,0 +1,9 @@
+{
+  "beta_http": 200,
+  "robots_header": "noindex, nofollow, noarchive",
+  "assets_verified": true,
+  "production_unchanged": true,
+  "unit_tests": 12,
+  "browser_tests": 20,
+  "build_browser_tests": 18
+}

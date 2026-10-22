@@ -1,0 +1,6 @@
+global:
+  css:
+    theme:
+      css/base.css: {}
+      css/layout.css: {}
+      css/components.css: {}

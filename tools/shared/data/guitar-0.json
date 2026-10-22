@@ -1,0 +1,1780 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 30,
+    "results": [
+        {
+            "id": 140,
+            "type": "guitar_chord",
+            "name": "C",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c",
+            "data": {
+                "symbol": "C",
+                "bookSymbol": "C",
+                "root": "C",
+                "quality": "major",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-open-1",
+                        "frets": [
+                            -1,
+                            3,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "E",
+                            "G",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Standard åpen C-dur"
+                    },
+                    {
+                        "id": "c-a-shape-3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            5,
+                            5,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "C",
+                            "E",
+                            "G"
+                        ],
+                        "source": "C-dur A-form barre (3. bånd)"
+                    },
+                    {
+                        "id": "c-e-shape-8",
+                        "frets": [
+                            8,
+                            10,
+                            10,
+                            9,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C",
+                            "G",
+                            "C",
+                            "E",
+                            "G",
+                            "C"
+                        ],
+                        "source": "C-dur E-form barre (8. bånd)"
+                    }
+                ],
+                "slug": "c"
+            }
+        },
+        {
+            "id": 143,
+            "type": "guitar_chord",
+            "name": "Caug",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "caug",
+            "data": {
+                "symbol": "Caug",
+                "bookSymbol": "C+",
+                "root": "C",
+                "quality": "aug",
+                "family": "aug",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5"
+                ],
+                "aliases": [
+                    "C+"
+                ],
+                "variants": [
+                    {
+                        "id": "caug-open",
+                        "frets": [
+                            -1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "E",
+                            "G#",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Vanlig C+ voicing (åpen posisjon)"
+                    }
+                ],
+                "slug": "caug"
+            }
+        },
+        {
+            "id": 142,
+            "type": "guitar_chord",
+            "name": "Cdim",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cdim",
+            "data": {
+                "symbol": "Cdim",
+                "bookSymbol": "Cdim",
+                "root": "C",
+                "quality": "dim",
+                "family": "dim",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5"
+                ],
+                "aliases": [
+                    "C°"
+                ],
+                "variants": [
+                    {
+                        "id": "cdim-shape-3",
+                        "frets": [
+                            -1,
+                            3,
+                            4,
+                            5,
+                            4,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "Gb",
+                            "C",
+                            "Eb"
+                        ],
+                        "source": "Typisk C°-grep høyt på halsen"
+                    }
+                ],
+                "slug": "cdim"
+            }
+        },
+        {
+            "id": 141,
+            "type": "guitar_chord",
+            "name": "Cm",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm",
+            "data": {
+                "symbol": "Cm",
+                "bookSymbol": "Cm",
+                "root": "C",
+                "quality": "minor",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "cm-a-shape-3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            5,
+                            4,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "C",
+                            "Eb",
+                            "G"
+                        ],
+                        "source": "Cm A-form barre (3. bånd)"
+                    },
+                    {
+                        "id": "cm-e-shape-8",
+                        "frets": [
+                            8,
+                            10,
+                            10,
+                            8,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C",
+                            "G",
+                            "C",
+                            "Eb",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Cm E-form barre (8. bånd)"
+                    }
+                ],
+                "slug": "cm"
+            }
+        },
+        {
+            "id": 154,
+            "type": "guitar_chord",
+            "name": "C11",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c11",
+            "data": {
+                "symbol": "C11",
+                "bookSymbol": "C11",
+                "root": "C",
+                "quality": "major",
+                "family": "11",
+                "formulaDegrees": [
+                    "1",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c11-shape-3",
+                        "frets": [
+                            3,
+                            3,
+                            3,
+                            3,
+                            3,
+                            6
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "G",
+                            "C",
+                            "F",
+                            "Bb",
+                            "D",
+                            "Bb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c11"
+            }
+        },
+        {
+            "id": 155,
+            "type": "guitar_chord",
+            "name": "C13",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c13",
+            "data": {
+                "symbol": "C13",
+                "bookSymbol": "C13",
+                "root": "C",
+                "quality": "major",
+                "family": "13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c13-shape-3",
+                        "frets": [
+                            3,
+                            3,
+                            2,
+                            3,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            3,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "G",
+                            "C",
+                            "E",
+                            "Bb",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c13"
+            }
+        },
+        {
+            "id": 180,
+            "type": "guitar_chord",
+            "name": "C13sus4",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c13sus4",
+            "data": {
+                "symbol": "C13sus4",
+                "bookSymbol": "C13sus4",
+                "root": "C",
+                "quality": "major",
+                "family": "13sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-13sus4-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            3,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "Bb",
+                            "F",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c13sus4"
+            }
+        },
+        {
+            "id": 171,
+            "type": "guitar_chord",
+            "name": "C5",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c5",
+            "data": {
+                "symbol": "C5",
+                "bookSymbol": "C5",
+                "root": "C",
+                "quality": "major",
+                "family": "5",
+                "formulaDegrees": [
+                    "1",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-5-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            5,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "C"
+                        ],
+                        "source": "C5 Power chord (A-root)"
+                    }
+                ],
+                "slug": "c5"
+            }
+        },
+        {
+            "id": 144,
+            "type": "guitar_chord",
+            "name": "C6",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c6",
+            "data": {
+                "symbol": "C6",
+                "bookSymbol": "C6",
+                "root": "C",
+                "quality": "major",
+                "family": "6",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c6-open",
+                        "frets": [
+                            -1,
+                            3,
+                            2,
+                            2,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            4,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "E",
+                            "A",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Standard C6 åpent grep"
+                    }
+                ],
+                "slug": "c6"
+            }
+        },
+        {
+            "id": 172,
+            "type": "guitar_chord",
+            "name": "C6\/9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c6-9",
+            "data": {
+                "symbol": "C6\/9",
+                "bookSymbol": "C6\/9",
+                "root": "C",
+                "quality": "major",
+                "family": "69",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-69-a3",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c6-9"
+            }
+        },
+        {
+            "id": 146,
+            "type": "guitar_chord",
+            "name": "C7",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7",
+            "data": {
+                "symbol": "C7",
+                "bookSymbol": "C7",
+                "root": "C",
+                "quality": "major",
+                "family": "7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c7-open",
+                        "frets": [
+                            -1,
+                            3,
+                            2,
+                            3,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            4,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "E",
+                            "Bb",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Standard åpen C7"
+                    },
+                    {
+                        "id": "c7-e-shape-8",
+                        "frets": [
+                            8,
+                            10,
+                            8,
+                            9,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C",
+                            "G",
+                            "Bb",
+                            "E",
+                            "G",
+                            "C"
+                        ],
+                        "source": "C7 E-form barre (8. bånd)"
+                    }
+                ],
+                "slug": "c7"
+            }
+        },
+        {
+            "id": 157,
+            "type": "guitar_chord",
+            "name": "C7#9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7#9",
+            "data": {
+                "symbol": "C7#9",
+                "bookSymbol": "C7(#9)",
+                "root": "C",
+                "quality": "major",
+                "family": "7#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c7#9-shape-8",
+                        "frets": [
+                            8,
+                            7,
+                            8,
+                            8,
+                            8,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            2,
+                            2,
+                            2,
+                            0
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C",
+                            "E",
+                            "Bb",
+                            "D#",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c7#9"
+            }
+        },
+        {
+            "id": 182,
+            "type": "guitar_chord",
+            "name": "C7(#5)",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7-#5",
+            "data": {
+                "symbol": "C7(#5)",
+                "bookSymbol": "C7(#5)",
+                "root": "C",
+                "quality": "major",
+                "family": "7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-7#5-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            6,
+                            3,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G#",
+                            "Bb",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "C7(#5) 7#5 (A-root)"
+                    }
+                ],
+                "slug": "c7-#5"
+            }
+        },
+        {
+            "id": 181,
+            "type": "guitar_chord",
+            "name": "C7(b5)",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7-b5",
+            "data": {
+                "symbol": "C7(b5)",
+                "bookSymbol": "C7(b5)",
+                "root": "C",
+                "quality": "major",
+                "family": "7b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-7b5-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            4,
+                            3,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "Gb",
+                            "Bb",
+                            "E",
+                            "Gb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c7-b5"
+            }
+        },
+        {
+            "id": 156,
+            "type": "guitar_chord",
+            "name": "C7b9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7b9",
+            "data": {
+                "symbol": "C7b9",
+                "bookSymbol": "C7(b9)",
+                "root": "C",
+                "quality": "major",
+                "family": "7b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c7b9-shape-8",
+                        "frets": [
+                            8,
+                            7,
+                            8,
+                            6,
+                            8,
+                            6
+                        ],
+                        "fingers": [
+                            3,
+                            2,
+                            3,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "C",
+                            "E",
+                            "Bb",
+                            "Db",
+                            "G",
+                            "Bb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c7b9"
+            }
+        },
+        {
+            "id": 178,
+            "type": "guitar_chord",
+            "name": "C7sus2",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7sus2",
+            "data": {
+                "symbol": "C7sus2",
+                "bookSymbol": "C7sus2",
+                "root": "C",
+                "quality": "major",
+                "family": "7sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-7sus2-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            3,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "Bb",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c7sus2"
+            }
+        },
+        {
+            "id": 177,
+            "type": "guitar_chord",
+            "name": "C7sus4",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c7sus4",
+            "data": {
+                "symbol": "C7sus4",
+                "bookSymbol": "C7sus4",
+                "root": "C",
+                "quality": "major",
+                "family": "7sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-7sus4-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            3,
+                            6,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "Bb",
+                            "F",
+                            "G"
+                        ],
+                        "source": "C7sus4 7sus4 (A-root)"
+                    }
+                ],
+                "slug": "c7sus4"
+            }
+        },
+        {
+            "id": 153,
+            "type": "guitar_chord",
+            "name": "C9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c9",
+            "data": {
+                "symbol": "C9",
+                "bookSymbol": "C9",
+                "root": "C",
+                "quality": "major",
+                "family": "9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c9-shape-3",
+                        "frets": [
+                            3,
+                            3,
+                            2,
+                            3,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "G",
+                            "C",
+                            "E",
+                            "Bb",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c9"
+            }
+        },
+        {
+            "id": 179,
+            "type": "guitar_chord",
+            "name": "C9sus4",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "c9sus4",
+            "data": {
+                "symbol": "C9sus4",
+                "bookSymbol": "C9sus4",
+                "root": "C",
+                "quality": "major",
+                "family": "9sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-9sus4-a3",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "F",
+                            "Bb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "c9sus4"
+            }
+        },
+        {
+            "id": 152,
+            "type": "guitar_chord",
+            "name": "Cadd9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cadd9",
+            "data": {
+                "symbol": "Cadd9",
+                "bookSymbol": "Cadd9",
+                "root": "C",
+                "quality": "major",
+                "family": "add9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "cadd9-open",
+                        "frets": [
+                            -1,
+                            3,
+                            2,
+                            0,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            0,
+                            4,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "E",
+                            "G",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Standard Cadd9 (åpen)"
+                    }
+                ],
+                "slug": "cadd9"
+            }
+        },
+        {
+            "id": 149,
+            "type": "guitar_chord",
+            "name": "Cm(maj7)",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm-maj7",
+            "data": {
+                "symbol": "Cm(maj7)",
+                "bookSymbol": "Cm(maj7)",
+                "root": "C",
+                "quality": "minor",
+                "family": "m(maj7)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "cmmaj7-e-shape-8",
+                        "frets": [
+                            8,
+                            10,
+                            9,
+                            8,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C",
+                            "G",
+                            "B",
+                            "Eb",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Cm(maj7) E-form type"
+                    }
+                ],
+                "slug": "cm-maj7"
+            }
+        },
+        {
+            "id": 145,
+            "type": "guitar_chord",
+            "name": "Cm6",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm6",
+            "data": {
+                "symbol": "Cm6",
+                "bookSymbol": "Cm6",
+                "root": "C",
+                "quality": "minor",
+                "family": "m6",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "cm6-a-shape-3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            5,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            4
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "C",
+                            "Eb",
+                            "A"
+                        ],
+                        "source": "Cm6 A-form type"
+                    }
+                ],
+                "slug": "cm6"
+            }
+        },
+        {
+            "id": 173,
+            "type": "guitar_chord",
+            "name": "Cm6\/9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm6-9",
+            "data": {
+                "symbol": "Cm6\/9",
+                "bookSymbol": "Cm6\/9",
+                "root": "C",
+                "quality": "minor",
+                "family": "m69",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-m69-a3",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "Eb",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "cm6-9"
+            }
+        },
+        {
+            "id": 147,
+            "type": "guitar_chord",
+            "name": "Cm7",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm7",
+            "data": {
+                "symbol": "Cm7",
+                "bookSymbol": "Cm7",
+                "root": "C",
+                "quality": "minor",
+                "family": "m7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "cm7-a-shape-3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            3,
+                            4,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "Bb",
+                            "Eb",
+                            "G"
+                        ],
+                        "source": "Cm7 A-form barre"
+                    },
+                    {
+                        "id": "cm7-e-shape-8",
+                        "frets": [
+                            8,
+                            10,
+                            8,
+                            8,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "C",
+                            "G",
+                            "Bb",
+                            "Eb",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Cm7 E-form barre"
+                    }
+                ],
+                "slug": "cm7"
+            }
+        },
+        {
+            "id": 174,
+            "type": "guitar_chord",
+            "name": "Cm7(b5)",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm7-b5",
+            "data": {
+                "symbol": "Cm7(b5)",
+                "bookSymbol": "Cm7(b5)",
+                "root": "C",
+                "quality": "minor",
+                "family": "m7b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-m7b5-a3",
+                        "frets": [
+                            -1,
+                            3,
+                            4,
+                            3,
+                            4,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "Gb",
+                            "Bb",
+                            "Eb",
+                            "Gb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "cm7-b5"
+            }
+        },
+        {
+            "id": 176,
+            "type": "guitar_chord",
+            "name": "Cm9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cm9",
+            "data": {
+                "symbol": "Cm9",
+                "bookSymbol": "Cm9",
+                "root": "C",
+                "quality": "minor",
+                "family": "m9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-m9-a3",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            4,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "Eb",
+                            "Bb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "cm9"
+            }
+        },
+        {
+            "id": 148,
+            "type": "guitar_chord",
+            "name": "Cmaj7",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cmaj7",
+            "data": {
+                "symbol": "Cmaj7",
+                "bookSymbol": "Cmaj7",
+                "root": "C",
+                "quality": "major",
+                "family": "maj7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "cmaj7-open",
+                        "frets": [
+                            -1,
+                            3,
+                            2,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "E",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Standard åpen Cmaj7"
+                    },
+                    {
+                        "id": "cmaj7-a-shape-3",
+                        "frets": [
+                            -1,
+                            3,
+                            5,
+                            4,
+                            5,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "C",
+                            "G",
+                            "B",
+                            "E",
+                            "G"
+                        ],
+                        "source": "Cmaj7 A-form"
+                    }
+                ],
+                "slug": "cmaj7"
+            }
+        },
+        {
+            "id": 175,
+            "type": "guitar_chord",
+            "name": "Cmaj9",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "cmaj9",
+            "data": {
+                "symbol": "Cmaj9",
+                "bookSymbol": "Cmaj9",
+                "root": "C",
+                "quality": "major",
+                "family": "maj9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "c-maj9-a3",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            5,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "E",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "cmaj9"
+            }
+        },
+        {
+            "id": 150,
+            "type": "guitar_chord",
+            "name": "Csus2",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "csus2",
+            "data": {
+                "symbol": "Csus2",
+                "bookSymbol": "Csus2",
+                "root": "C",
+                "quality": "major",
+                "family": "sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csus2-open",
+                        "frets": [
+                            -1,
+                            3,
+                            0,
+                            0,
+                            1,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            0,
+                            0,
+                            1,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "D",
+                            "G",
+                            "C",
+                            "G"
+                        ],
+                        "source": "Vanlig Csus2-voicing"
+                    }
+                ],
+                "slug": "csus2"
+            }
+        },
+        {
+            "id": 151,
+            "type": "guitar_chord",
+            "name": "Csus4",
+            "root_note": "C",
+            "instrument": "guitar",
+            "slug": "csus4",
+            "data": {
+                "symbol": "Csus4",
+                "bookSymbol": "Csus4",
+                "root": "C",
+                "quality": "major",
+                "family": "sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "csus4-open",
+                        "frets": [
+                            -1,
+                            3,
+                            3,
+                            0,
+                            1,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            4,
+                            0,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "C",
+                            "F",
+                            "G",
+                            "C",
+                            "F"
+                        ],
+                        "source": "Standard Csus4-voicing"
+                    }
+                ],
+                "slug": "csus4"
+            }
+        }
+    ]
+}

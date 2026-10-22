@@ -1,6 +1,6 @@
 let currentTaktCount = 0;
 let currentTaktslag = 4;
-let currentSongId = null; // which song are we editing?
+let currentSongId = null;
 const current = encodeURIComponent(window.location.pathname + window.location.search);
 
 function renderUserStatus(){
@@ -9,11 +9,11 @@ function renderUserStatus(){
 
   if(window.CL_IS_LOGGED_IN){
     el.innerHTML =
-      `Innlogget ✔ <strong>${window.CL_USER_NAME || ""}</strong>`;
+      `Innlogget <strong>${window.CL_USER_NAME || ""}</strong>`;
     el.className = "userLoggedIn";
   } else {
 el.innerHTML =
-  `Ikke innlogget – <a href="/members/login.php?redirect=${current}">Logg inn</a>`;
+  `Ikke innlogget - <a href="/members/login.php?redirect=${current}">Logg inn</a>`;
     el.className = "userLoggedOut";
   }
 
@@ -22,18 +22,20 @@ el.innerHTML =
 window.addEventListener("DOMContentLoaded", () => {
   renderUserStatus();
   loadSongs();
+  if (!document.querySelector("#chordGrid .takt")) {
+    document.getElementById("songForm").dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true })
+    );
+  }
 });
 
 
-// Build initial form-generated grid (new song)
+// Build initial form-generated grid.
 document.getElementById("songForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const form = new FormData(e.target);
-  const title = form.get("title");
-  const tempo = form.get("tempo");
   const timeSignature = form.get("timeSignature");
-  const key = form.get("key");
 
   currentSongId = null;
 
@@ -41,17 +43,43 @@ document.getElementById("songForm").addEventListener("submit", function (e) {
   currentTaktCount = 0;
 
   const grid = document.getElementById("chordGrid");
-
-  document.getElementById("songHeader").innerHTML =
-    `<h2>${title} (${key}) – ${timeSignature} @ ${tempo} BPM</h2>`;
+  updateSongHeader();
 
   grid.innerHTML = "";
   document.getElementById("notation").innerHTML = "";
 
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 8; i++) {
     addTakt(i);
   }
+
+  renderCurrentNotation();
 });
+
+document.getElementById("songForm").addEventListener("input", () => {
+  updateSongHeader();
+  renderCurrentNotation();
+});
+
+document.getElementById("songForm").addEventListener("change", () => {
+  updateSongHeader();
+  renderCurrentNotation();
+});
+
+function updateSongHeader() {
+  const form = new FormData(document.getElementById("songForm"));
+  const title = form.get("title") || "Nytt akkordskjema";
+  const tempo = form.get("tempo") || "120";
+  const timeSignature = form.get("timeSignature") || "4/4";
+  const key = form.get("key") || "";
+  const keyText = key ? ` (${key})` : "";
+
+  const header = document.getElementById("songHeader");
+  header.innerHTML = "";
+
+  const heading = document.createElement("h2");
+  heading.textContent = `${title}${keyText} – ${timeSignature} @ ${tempo} BPM`;
+  header.appendChild(heading);
+}
 
 
 // Add a new bar
@@ -70,6 +98,24 @@ document.getElementById("removeTaktBtn").addEventListener("click", () => {
   currentTaktCount--;
 
 });
+document.getElementById("btnSaveChart")?.addEventListener("click", saveChordData);
+
+
+function setDoubleBarButtonState(taktDiv) {
+  const btn = taktDiv.querySelector(".doubleBarBtn");
+  if (!btn) return;
+
+  if (taktDiv.dataset.doublebar === "1") {
+    btn.style.fontWeight = "bold";
+    btn.style.background = "#4caf50";
+    btn.style.color = "#fff";
+  } else {
+    btn.style.fontWeight = "normal";
+    btn.style.background = "";
+    btn.style.color = "";
+  }
+}
+
 
 function addTakt(taktNr = null) {
   const grid = document.getElementById("chordGrid");
@@ -87,7 +133,7 @@ function addTakt(taktNr = null) {
 takt.innerHTML =
   `<div class="taktHeader">
       <strong>Takt ${nummer}</strong>
-      <input class="sectionInput" name="takt${nummer}_section" placeholder="Vers / Refreng">
+      <input class="sectionInput" name="takt${nummer}_section" placeholder="${nummer === 1 ? "Intro / Vers" : "Seksjon"}">
    </div>
    <div class="taktChords"></div>`;
 
@@ -96,7 +142,7 @@ const chordRow = takt.querySelector(".taktChords");
 for (let j = 1; j <= currentTaktslag; j++) {
   const input = document.createElement("input");
   input.type = "text";
-  input.placeholder = "Akkord";
+  input.placeholder = "";
   input.size = 3;
   input.name = `takt${nummer}_slag${j}`;
   input.className = "chordInput";
@@ -119,6 +165,11 @@ chordRow.appendChild(btn);
 }
 
 async function saveChordData() {
+  if (!window.CL_IS_LOGGED_IN) {
+    alert("Logg inn for å lagre låter.");
+    window.location.href = `/members/login.php?redirect=${current}`;
+    return false;
+  }
 
   const form = document.getElementById("songForm");
   const formData = new FormData(form);
@@ -158,10 +209,12 @@ async function saveChordData() {
     if (data.song_id) currentSongId = data.song_id;
 
     loadSongs();
+    return true;
 
   } else {
 
     alert("Feil: " + (data.error || "Ukjent feil"));
+    return false;
 
   }
 
@@ -176,6 +229,16 @@ function loadSongs() {
 
       const list = document.getElementById("songList");
       list.innerHTML = "";
+
+      if (!Array.isArray(songs)) {
+        list.innerHTML = `<div class="songItem">Kunne ikke laste låter.</div>`;
+        return;
+      }
+
+      if (!songs.length) {
+        list.innerHTML = `<div class="songItem">Ingen lagrede låter ennå.</div>`;
+        return;
+      }
 
       songs.forEach((song) => {
 
@@ -204,7 +267,7 @@ function loadSongs() {
 
 
 function loadSong(id) {
-console.log("Loading song", id);
+console.log("Laster låt", id);
   const url = "get_song.php?id=" + encodeURIComponent(id) + "&nocache=" + Date.now();
 
   fetch(url, { cache: "no-store" })
@@ -214,7 +277,7 @@ console.log("Loading song", id);
     .then(data => {
 
       if (!data || !data.song) {
-        alert("Fant ikke sang.");
+        alert("Fant ikke låten.");
         return;
       }
 
@@ -226,17 +289,14 @@ console.log(chords);
       document.getElementById("title").value = song.title || "";
       document.querySelector("input[name='tempo']").value = song.tempo || 120;
       document.querySelector("select[name='timeSignature']").value = song.time_signature || "4/4";
-      document.querySelector("input[name='key']").value = song.song_key || "C";
+      document.querySelector("[name='key']").value = song.song_key || "";
 
       currentTaktslag = parseInt((song.time_signature || "4/4").split("/")[0], 10);
 
       const grid = document.getElementById("chordGrid");
+      updateSongHeader();
 
-
-document.getElementById("songHeader").innerHTML =
-  `<h2>${song.title} (${song.song_key}) – ${song.time_signature} @ ${song.tempo} BPM</h2>`;
-
-grid.innerHTML = "";
+      grid.innerHTML = "";
       const grouped = new Map();
 
       chords.forEach(ch => {
@@ -284,21 +344,9 @@ const db = slagArr.find(s => s.doublebar == 1);
 
 taktDiv.dataset.doublebar = db ? "1" : "0";
 
-const btn = taktDiv.querySelector(".doubleBarBtn");
+setDoubleBarButtonState(taktDiv);
 
-if (btn) {
 
-  if (taktDiv.dataset.doublebar === "1") {
-    btn.style.fontWeight = "bold";
-    btn.style.background = "#4caf50";
-    btn.style.color = "#fff";
-  } else {
-    btn.style.fontWeight = "normal";
-    btn.style.background = "";
-    btn.style.color = "";
-  }
-
-}
 } // ← DENNE manglet
       const chordsFromGrid = exportChordsFromGridOnePerBar();
       const doubleBars = exportDoubleBars();
@@ -312,6 +360,8 @@ if (btn) {
         timeSig: song.time_signature,
         measuresPerLine
       });
+
+      document.querySelectorAll("#chordGrid .takt").forEach(setDoubleBarButtonState);
 
 })
 
@@ -332,7 +382,7 @@ function buildPrintPreview() {
 
 const tempo = document.querySelector("input[name='tempo']").value;
 const timeSig = document.querySelector("select[name='timeSignature']").value;
-const key = document.querySelector("input[name='key']").value;
+const key = document.querySelector("[name='key']").value;
 
 const keyHtml = key ? `<span><strong>Toneart:</strong> ${key}</span>` : "";
 const tempoHtml = tempo ? `<span><strong>Tempo:</strong> ${tempo} BPM</span>` : "";
@@ -436,7 +486,7 @@ function deleteSong(id) {
 
 function renderChordStaff({ chords, doubleBars = [], timeSig = "4/4", measuresPerLine = 8 }) {
   if (!window.Vex || !window.Vex.Flow) {
-    alert("VexFlow er ikke lastet. Sjekk at vexflow-min.js ligger inne i index.php.");
+    alert("VexFlow er ikke lastet. Sjekk at VexFlow er inkludert i index.php.");
     return;
   }
 
@@ -455,7 +505,10 @@ function renderChordStaff({ chords, doubleBars = [], timeSig = "4/4", measuresPe
 
   const renderer = new VF.Renderer(container, VF.Renderer.Backends.SVG);
 
-  const width = Math.min(900, (container.clientWidth || 900) - 40);
+  const containerWidth = Math.max(0, (container.clientWidth || 1100) - 40);
+  const minMeasureWidth = measuresPerLine <= 4 ? 280 : 230;
+  const targetWidth = measuresPerLine * minMeasureWidth + 100;
+  const width = Math.max(containerWidth, targetWidth);
   const lineHeight = 120;
   const lines = Math.ceil(chords.length / measuresPerLine) || 1;
 
@@ -464,7 +517,7 @@ function renderChordStaff({ chords, doubleBars = [], timeSig = "4/4", measuresPe
   const ctx = renderer.getContext();
   ctx.setFont("Times New Roman", 12, "");
 
-  const leftMargin = 30;
+  const leftMargin = 50;
   const topMargin = 20;
   const usableW = width - leftMargin * 2;
   const measureW = Math.floor(usableW / measuresPerLine);
@@ -524,7 +577,7 @@ const voice = new VF.Voice({
 
 voice.addTickables(notes);
 
-      new VF.Formatter().joinVoices([voice]).format([voice], measureW - 18);
+      new VF.Formatter().joinVoices([voice]).format([voice], measureW - 36);
       voice.draw(ctx, stave);
 
       idx++;
@@ -532,10 +585,7 @@ voice.addTickables(notes);
   }
 }
 
-document.getElementById("btnRenderNotation")?.addEventListener("click", async () => {
-
-  await saveChordData();
-
+function renderCurrentNotation() {
   const chords = exportChordsFromGridOnePerBar();
   const doubleBars = exportDoubleBars();
 
@@ -543,7 +593,7 @@ document.getElementById("btnRenderNotation")?.addEventListener("click", async ()
     document.querySelector("select[name='timeSignature']").value;
 
   const measuresPerLine =
-    parseInt(document.getElementById("measuresPerLine").value,10);
+    parseInt(document.getElementById("measuresPerLine").value, 10);
 
   renderChordStaff({
     chords,
@@ -551,6 +601,10 @@ document.getElementById("btnRenderNotation")?.addEventListener("click", async ()
     timeSig,
     measuresPerLine
   });
+}
+
+document.getElementById("btnRenderNotation")?.addEventListener("click", async () => {
+  renderCurrentNotation();
 
 });
 
@@ -574,20 +628,29 @@ document.addEventListener("click", function (e) {
   e.preventDefault();
 
   const takt = e.target.closest(".takt");
+  if (!takt) return;
+
   takt.dataset.doublebar =
     takt.dataset.doublebar === "1" ? "0" : "1";
 
-if (takt.dataset.doublebar === "1") {
-  e.target.style.fontWeight = "bold";
-  e.target.style.background = "#4caf50";
-  e.target.style.color = "#fff";
-} else {
-  e.target.style.fontWeight = "normal";
-  e.target.style.background = "";
-  e.target.style.color = "";
-}
+  setDoubleBarButtonState(takt);
 
+  const chords = exportChordsFromGridOnePerBar();
+  const doubleBars = exportDoubleBars();
+  const timeSig = document.querySelector("select[name='timeSignature']").value;
+  const measuresPerLine =
+    parseInt(document.getElementById("measuresPerLine").value, 10);
+
+  renderChordStaff({
+    chords,
+    doubleBars,
+    timeSig,
+    measuresPerLine
+  });
 });
+
+
+
 
 document.addEventListener("input", function(e){
 
@@ -620,24 +683,7 @@ document.addEventListener("input", function(e){
 });
 
 document.getElementById("btnUpdateChart").addEventListener("click", async () => {
-
-await saveChordData();
-
-  const chords = exportChordsFromGridOnePerBar();
-  const doubleBars = exportDoubleBars();
-
-  const timeSig =
-    document.querySelector("select[name='timeSignature']").value;
-
-  const measuresPerLine =
-    parseInt(document.getElementById("measuresPerLine").value,10);
-
-  renderChordStaff({
-    chords,
-    doubleBars,
-    timeSig,
-    measuresPerLine
-  });
+  renderCurrentNotation();
 
 });
 

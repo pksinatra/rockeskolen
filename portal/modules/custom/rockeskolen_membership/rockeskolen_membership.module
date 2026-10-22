@@ -1,0 +1,397 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\rockeskolen_membership\FeideGroupNormalizer;
+use Drupal\user\UserInterface;
+use Drupal\rockeskolen_membership\AccessSynchronizer;
+use Drupal\rockeskolen_membership\ArticleAccessPolicy;
+
+/**
+ * Implements hook_entity_bundle_create().
+ *
+ * Makes the editorial access selector available on future node types too.
+ */
+function rockeskolen_membership_entity_bundle_create(string $entity_type_id, string $bundle): void {
+  if ($entity_type_id !== 'node') {
+    return;
+  }
+  $storage = \Drupal\field\Entity\FieldStorageConfig::loadByName('node', 'field_access_level');
+  if (!$storage || \Drupal\field\Entity\FieldConfig::loadByName('node', $bundle, 'field_access_level')) {
+    return;
+  }
+  \Drupal\field\Entity\FieldConfig::create([
+    'field_name' => 'field_access_level',
+    'entity_type' => 'node',
+    'bundle' => $bundle,
+    'label' => 'Tilgangsnivå',
+    'description' => 'Velg hvem som kan lese hovedinnholdet. Standard er Åpen.',
+    'required' => TRUE,
+    'default_value' => [['value' => 'public']],
+  ])->save();
+  $form_display = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('node.' . $bundle . '.default');
+  if ($form_display) {
+    $form_display->setComponent('field_access_level', ['type' => 'options_select', 'weight' => -20])->save();
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function rockeskolen_membership_node_access(\Drupal\node\NodeInterface $node, string $op, \Drupal\Core\Session\AccountInterface $account): \Drupal\Core\Access\AccessResult {
+  // Keep the node route visible so anonymous and free users receive the
+  // teaser wall. The protected field itself is denied below.
+  return \Drupal\Core\Access\AccessResult::neutral();
+}
+
+/**
+ * Implements hook_entity_field_access().
+ */
+function rockeskolen_membership_entity_field_access(string $operation, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, \Drupal\Core\Session\AccountInterface $account, ?\Drupal\Core\Field\FieldItemListInterface $items = NULL): \Drupal\Core\Access\AccessResult {
+  $entity = $items?->getEntity();
+  if (!$entity instanceof \Drupal\Core\Entity\EntityInterface) {
+    return \Drupal\Core\Access\AccessResult::neutral();
+  }
+  return ArticleAccessPolicy::fieldAccess($operation, $entity, $account, $field_definition->getName());
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function rockeskolen_membership_preprocess_node(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof \Drupal\node\NodeInterface || !$node->hasField('field_access_level')) {
+    return;
+  }
+  $account = \Drupal::currentUser();
+  if (ArticleAccessPolicy::canView($node, $account)) {
+    return;
+  }
+  unset($variables['content']['field_body']);
+    $is_vip = ArticleAccessPolicy::level($node) === ArticleAccessPolicy::VIP;
+  $variables['content']['rockeskolen_access_wall'] = [
+      '#markup' => '<section class="rs-access-wall" style="border-color:#4f8db8;background:rgba(79,141,184,.12)" aria-labelledby="rs-access-wall-title">'
+        . '<h2 id="rs-access-wall-title">' . ($is_vip ? 'Denne artikkelen er med i VIP.' : 'Denne artikkelen krever innlogging.') . '</h2>'
+        . ($is_vip ? '<p>Lås opp alt innhold for 299 kr i året. <a href="https://rockeskolen.com/members/upgrade.php">Bli VIP</a> &nbsp; Elev eller lærer? <a href="/user/login">Logg inn med FEIDE</a></p>' : '<p><a href="/user/login">Logg inn med FEIDE</a></p>')
+        . '</section>',
+    '#cache' => ['contexts' => ['user'], 'tags' => $node->getCacheTags()],
+    '#weight' => 50,
+  ];
+}
+
+/**
+ * Adds a clear account status and complete logout link to every portal page.
+ */
+function rockeskolen_membership_page_top(array &$page_top): void {
+  $currentUser = \Drupal::currentUser();
+  if ($currentUser->isAnonymous()) {
+    $page_top['rockeskolen_account_status'] = [
+      '#markup' => '<div class="rs-account-status rs-account-status-anonymous"><div><span>Ikke innlogget</span></div>'
+        . '<nav><a class="rs-account-login" href="/user/login">Logg inn</a>'
+        . '<a href="https://rockeskolen.com/members/register.php?redirect=%2Fmembers%2Fportal.php">Opprett konto</a></nav></div>',
+      '#cache' => ['contexts' => ['user'], 'max-age' => 0],
+    ];
+    return;
+  }
+  $roles = $currentUser->getRoles();
+  if (in_array('administrator', $roles, TRUE)) {
+    $status = 'Administrator';
+  }
+  else {
+    $statusParts = [];
+    if (in_array('content_editor', $roles, TRUE)) {
+      $statusParts[] = 'Innholdsredaktør';
+    }
+    if (in_array('vip_member', $roles, TRUE)) {
+      $statusParts[] = 'VIP-medlem';
+    }
+    $status = $statusParts ? implode(' + ', $statusParts) : 'Autentisert bruker';
+  }
+  $logoutUrl = '/members/logout-continue?portal=1';
+  $name = htmlspecialchars($currentUser->getDisplayName(), ENT_QUOTES, 'UTF-8');
+  $page_top['rockeskolen_account_status'] = [
+    '#markup' => '<div class="rs-account-status"><div><span>Innlogget som</span><strong>' . $name . '</strong><em>' . $status . '</em></div>'
+      . '<nav><a href="/user">Profil</a><a class="rs-account-logout" href="' . htmlspecialchars($logoutUrl, ENT_QUOTES, 'UTF-8') . '">Logg ut</a></nav></div>',
+    '#cache' => ['contexts' => ['user'], 'max-age' => 0],
+  ];
+}
+
+/**
+ * Shows the authoritative access status on Drupal user profiles.
+ */
+function rockeskolen_membership_user_view(
+  array &$build,
+  UserInterface $account,
+  EntityViewDisplayInterface $display,
+  $view_mode,
+): void {
+  $viewer = \Drupal::currentUser();
+  if ((int) $viewer->id() !== (int) $account->id() && !$viewer->hasPermission('administer users')) {
+    return;
+  }
+
+  if ($account->hasRole('administrator')) {
+    $access = 'Administrator';
+  }
+  else {
+    $accessParts = [];
+    if ($account->hasRole('content_editor')) {
+      $accessParts[] = 'Innholdsredaktør';
+    }
+    if ($account->hasRole('vip_member')) {
+      $accessParts[] = 'VIP-medlem';
+    }
+    $access = $accessParts ? implode(' + ', $accessParts) : 'Free';
+  }
+  $member_status = 'Ikke koblet';
+  $membership_user_id = 0;
+  try {
+    $pdo = \Drupal::service('rockeskolen_membership.connection')->get();
+    $statement = $pdo->prepare(
+      'SELECT u.id, u.role FROM chordlink_drupal_links l
+       INNER JOIN chordlink_users u ON u.id = l.user_id
+       WHERE l.drupal_uid = ? LIMIT 1'
+    );
+    $statement->execute([(int) $account->id()]);
+    $member = $statement->fetch(\PDO::FETCH_ASSOC) ?: [];
+    $membership_user_id = (int) ($member['id'] ?? 0);
+    $member_role = (string) ($member['role'] ?? '');
+    $member_status = match ($member_role) {
+      'admin' => 'Administrator',
+      'vip' => 'VIP',
+      'pro' => 'Pro',
+      'free' => 'Free',
+      default => 'Ikke koblet',
+    };
+  }
+  catch (\Throwable) {
+    $member_status = 'Kan ikke leses akkurat nå';
+  }
+
+  $email = htmlspecialchars((string) $account->getEmail(), ENT_QUOTES, 'UTF-8');
+  $access = htmlspecialchars($access, ENT_QUOTES, 'UTF-8');
+  $member_status = htmlspecialchars($member_status, ENT_QUOTES, 'UTF-8');
+  if ($membership_user_id > 0) {
+    $profile_action = '<a href="/members/account-bridge">Min konto og medlemskap</a>';
+  }
+  else {
+    $profileActions = [];
+    if ($account->hasRole('vip_member')) {
+      $profileActions[] = '<a href="/members/account-bridge">Koble medlemskonto</a>';
+    }
+    elseif (!$account->hasRole('administrator') && !$account->hasRole('content_editor')) {
+      $profileActions[] = '<a href="https://rockeskolen.com/members/login.php?redirect=%2Fmembers%2Fportal.php">Koble medlemskonto</a>';
+    }
+    if ($account->hasRole('administrator') || $account->hasRole('content_editor')) {
+      $profileActions[] = '<a href="/admin/content">Administrer innhold</a>';
+    }
+    $profile_action = implode('', $profileActions);
+  }
+  $build['rockeskolen_membership_status'] = [
+    '#weight' => -100,
+    '#markup' => '<section class="rs-profile-status" aria-labelledby="rs-profile-status-title">'
+      . '<p class="rs-profile-kicker">Din Rockeskolen-konto</p>'
+      . '<h2 id="rs-profile-status-title">Medlemsstatus</h2>'
+      . '<dl><div><dt>E-post</dt><dd>' . $email . '</dd></div>'
+      . '<div><dt>Tilgang i portalen</dt><dd><strong>' . $access . '</strong></dd></div>'
+      . '<div><dt>Rockeskolen / ChordLink</dt><dd><strong>' . $member_status . '</strong></dd></div></dl>'
+      . '<div class="rs-profile-actions">' . $profile_action . '</div></section>',
+    '#cache' => ['contexts' => ['user'], 'tags' => $account->getCacheTags()],
+  ];
+}
+
+/**
+ * Mirrors authoritative Drupal role and account changes to the linked member.
+ */
+function rockeskolen_membership_user_update(UserInterface $account): void {
+  try {
+    /** @var \Drupal\rockeskolen_membership\MembershipConnection $connection */
+    $connection = \Drupal::service('rockeskolen_membership.connection');
+    $pdo = $connection->get();
+    $statement = $pdo->prepare(
+      'SELECT user_id FROM chordlink_drupal_links WHERE drupal_uid = ? LIMIT 1'
+    );
+    $statement->execute([(int) $account->id()]);
+    $membershipUserId = (int) $statement->fetchColumn();
+    if ($membershipUserId > 0) {
+      AccessSynchronizer::applyToMembership($pdo, $membershipUserId, $account);
+    }
+  }
+  catch (\Throwable $exception) {
+    \Drupal::logger('rockeskolen_membership')->error(
+      'Drupal-to-membership synchronization failed for uid @uid: @message',
+      ['@uid' => $account->id(), '@message' => $exception->getMessage()],
+    );
+  }
+}
+
+/**
+ * Builds a safe internal portal destination from the current request.
+ */
+function rockeskolen_membership_login_destination(): string {
+  $destination = (string) \Drupal::request()->query->get('destination', '/');
+  if ($destination === '' || $destination[0] !== '/' || str_starts_with($destination, '//')) {
+    return '/';
+  }
+  return $destination;
+}
+
+/**
+ * Makes the portal form the single Rockeskolen password entry point.
+ */
+function rockeskolen_membership_form_user_login_form_alter(array &$form, FormStateInterface $form_state): void {
+  $form['#cache']['contexts'][] = 'url.query_args:admin';
+  $form['#cache']['contexts'][] = 'url.query_args:destination';
+  $form['#cache']['contexts'][] = 'url.query_args:login_error';
+  $destination = rockeskolen_membership_login_destination();
+  $portal_bridge = '/members/portal.php?destination=' . rawurlencode($destination);
+  $member_register = 'https://rockeskolen.com/members/register.php?redirect=' . rawurlencode($portal_bridge);
+  $admin_mode = (string) \Drupal::request()->query->get('admin', '') === '1';
+
+  if (!$admin_mode) {
+    // Keep Drupal's root form metadata intact, but replace the credential
+    // elements. The external action means Drupal never receives the member
+    // password; members/login.php authenticates it and returns through SSO.
+    unset($form['name'], $form['pass'], $form['actions']);
+    $form['#action'] = 'https://rockeskolen.com/members/login.php';
+    $form['#attributes']['class'][] = 'rs-unified-login-form';
+    if ((string) \Drupal::request()->query->get('login_error', '') === 'credentials') {
+      $form['login_error'] = [
+        '#markup' => '<div class="messages messages--error rs-login-error" role="alert">Feil e-postadresse eller passord. Prøv igjen.</div>',
+        '#weight' => -110,
+      ];
+    }
+    $form['heading'] = [
+      '#markup' => '<div class="rs-unified-login-heading"><h2>Logg inn</h2><p>Bruk Rockeskolen-kontoen din med e-postadresse og passord.</p></div>',
+      '#weight' => -100,
+    ];
+    $form['email'] = [
+      '#type' => 'email',
+      '#title' => t('E-postadresse'),
+      '#required' => TRUE,
+      '#weight' => -90,
+      '#attributes' => [
+        'autocomplete' => 'email',
+        'autofocus' => 'autofocus',
+      ],
+    ];
+    $form['password'] = [
+      '#type' => 'password',
+      '#title' => t('Passord'),
+      '#required' => TRUE,
+      '#weight' => -80,
+      '#attributes' => ['autocomplete' => 'current-password'],
+    ];
+    $form['redirect'] = [
+      '#type' => 'hidden',
+      '#value' => $portal_bridge,
+      '#weight' => -70,
+    ];
+    $form['actions'] = [
+      '#type' => 'actions',
+      '#weight' => -60,
+      'submit' => [
+        '#type' => 'submit',
+        '#value' => t('Logg inn'),
+        '#attributes' => ['class' => ['rs-login-primary']],
+      ],
+    ];
+    $form['links'] = [
+      '#markup' => '<div class="rs-unified-login-links">'
+        . '<a href="' . htmlspecialchars($member_register, ENT_QUOTES, 'UTF-8') . '">Opprett konto</a>'
+        . '<a href="https://rockeskolen.com/members/forgot.php">Glemt passord?</a>'
+        . '</div>',
+      '#weight' => -50,
+    ];
+    return;
+  }
+
+  $form['administrator_heading'] = [
+    '#markup' => '<div class="rs-admin-login-heading"><h2>Administrator eller redaktør</h2><p>Logg inn med den lokale Drupal-kontoen som administrerer portalen.</p><p><a href="/user/login?destination=' . rawurlencode($destination) . '">← Til vanlig innlogging</a></p></div>',
+    '#weight' => -100,
+  ];
+  $form['name']['#title'] = t('Administratorbrukernavn');
+  $form['actions']['submit']['#value'] = t('Logg inn som administrator');
+  $form['#attributes']['class'][] = 'rs-admin-login-form';
+  $form['administrator_password'] = [
+    '#markup' => '<p class="rs-admin-password"><a href="/user/password">Glemt Drupal-passord?</a></p>',
+    '#weight' => 100,
+  ];
+}
+
+/**
+ * Clarifies and localizes the Feide option while preserving destinations.
+ */
+function rockeskolen_membership_form_openid_connect_login_form_alter(array &$form, FormStateInterface $form_state): void {
+  $form['#cache']['contexts'][] = 'url.query_args:admin';
+  $form['#cache']['contexts'][] = 'url.query_args:destination';
+  if ((string) \Drupal::request()->query->get('admin', '') === '1') {
+    $form['#access'] = FALSE;
+    return;
+  }
+  $destination = rockeskolen_membership_login_destination();
+  $form['#action'] = Url::fromRoute('user.login', [], [
+    'query' => ['destination' => $destination],
+  ])->toString();
+  $form['feide_heading'] = [
+    '#markup' => '<div class="rs-feide-login-heading"><span>eller</span><p>Elev eller ansatt ved en skole?</p></div>',
+    '#weight' => -100,
+  ];
+  if (isset($form['openid_connect_client_feide_login'])) {
+    $form['openid_connect_client_feide_login']['#value'] = t('Logg inn med FEIDE');
+    $form['openid_connect_client_feide_login']['#attributes']['class'][] = 'rs-feide-login-button';
+  }
+  $form['admin_link'] = [
+    '#markup' => '<p class="rs-admin-entry"><a href="/admin-login?return_to=' . rawurlencode($destination) . '">Admin/Redaktør</a></p>',
+    '#weight' => 100,
+  ];
+  $form['#attributes']['class'][] = 'rs-feide-login-form';
+}
+
+/**
+ * Fetches verified Feide basis groups while the OAuth access token is valid.
+ *
+ * The access token is never persisted by this module. Only normalized school,
+ * group and affiliation values are stored in the server-side Drupal session.
+ */
+function rockeskolen_membership_openid_connect_post_authorize(UserInterface $account, array $context): void {
+  if (($context['plugin_id'] ?? '') !== 'feide') {
+    return;
+  }
+  $accessToken = $context['tokens']['access_token'] ?? '';
+  if (!is_string($accessToken) || $accessToken === '') {
+    \Drupal::logger('rockeskolen_membership')->warning(
+      'Feide group synchronization skipped for uid @uid because no access token was returned.',
+      ['@uid' => $account->id()],
+    );
+    return;
+  }
+
+  try {
+    $response = \Drupal::httpClient()->request('GET', 'https://groups-api.dataporten.no/groups/me/groups', [
+      'headers' => [
+        'Authorization' => 'Bearer ' . $accessToken,
+        'Accept' => 'application/json',
+      ],
+      'connect_timeout' => 3,
+      'timeout' => 8,
+    ]);
+    $groups = json_decode((string) $response->getBody(), TRUE, 64, JSON_THROW_ON_ERROR);
+    if (!is_array($groups)) {
+      throw new \RuntimeException('Feide Groups API returned an invalid response.');
+    }
+    $memberships = FeideGroupNormalizer::memberships($groups);
+    $session = \Drupal::request()->getSession();
+    $session->set('rockeskolen_feide_memberships', $memberships);
+    $session->set('rockeskolen_feide_memberships_fetched_at', time());
+  }
+  catch (\Throwable $exception) {
+    \Drupal::logger('rockeskolen_membership')->error(
+      'Feide group synchronization failed for uid @uid: @message',
+      ['@uid' => $account->id(), '@message' => $exception->getMessage()],
+    );
+  }
+}

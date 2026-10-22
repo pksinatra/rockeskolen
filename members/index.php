@@ -13,7 +13,7 @@ if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 $subscription = get_active_subscription((int)$u['id']);
 
 $marketingOptIn = !empty($u['marketing_opt_in']);
-$isPro = in_array($u['role'], PRO_ROLES, true);
+$isPro = has_rockeskolen_access($u);
 
 
 $updated = null;
@@ -33,23 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Konto | ChordLink</title>
-  <link rel="stylesheet" href="/members/members.css?v=1">
+  <title>Min side | Rockeskolen</title>
+  <link rel="stylesheet" href="/members/members.css?v=4">
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
-        <div class="title">ChordLink for Rockeskolen</div>
-        <div class="sub">VIP Medlemmer</div>
+        <a href="/" aria-label="Rockeskolen"><img class="brand-logo" src="/images/rock-logo.png" alt="Rockeskolen"></a>
+        <div class="sub">Medlemsside</div>
       </div>
       <div class="row">
         <a class="btn ghost" href="/">Hjem</a>
-        <a class="btn" href="/members/logout.php">Logg ut</a>
+        <a class="btn logout" href="<?= htmlspecialchars(member_logout_url(), ENT_QUOTES, 'UTF-8') ?>">Logg ut av Rockeskolen</a>
       </div>
     </div>
 
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class="row" style="justify-content:space-between;">
         <span class="pill">Logget inn som <strong style="color:var(--text);"><?= htmlspecialchars($u['email']) ?></strong></span>
-        <span class="pill">Plan: <strong style="color:var(--text);"><?= $isPro ? 'Pro' : 'Free' ?></strong></span>
+        <span class="pill">Plan: <strong style="color:var(--text);"><?= $isPro ? 'VIP' : 'Free' ?></strong></span>
       </div>
 
       <?php if ($updated): ?>

@@ -3,6 +3,8 @@
     <p class="rs-practice__lead">Praktiske guider om å skrive, produsere, gi ut og dele musikk – og om rettighetene og økonomien som følger med.</p>
   </header>
 
+  {# Keep a single series rendering, but prioritize results on filtered pages. #}
+  {% set series_markup %}
   {% if series %}
     <section class="rs-practice__section" aria-labelledby="rs-practice-series-title">
       <div class="rs-practice__section-heading">
@@ -22,6 +24,11 @@
         {% endfor %}
       </div>
     </section>
+  {% endif %}
+  {% endset %}
+
+  {% if not active_category %}
+    {{ series_markup }}
   {% endif %}
 
   <section class="rs-practice__section" aria-labelledby="rs-practice-topics-title">
@@ -56,4 +63,8 @@
       <p class="rs-practice__empty">{{ empty }}</p>
     {% endif %}
   </section>
+
+  {% if active_category %}
+    {{ series_markup }}
+  {% endif %}
 </div>

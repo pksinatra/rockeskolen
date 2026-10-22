@@ -1,0 +1,17 @@
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+  Require expr "%{REQUEST_URI} =~ m#^/beta/(frequencygenerator(/(index\.html|app\.js|styles\.css|assets/index\-C_r0\-kgR\.js|assets/index\-DDcKnQSn\.css|assets/noise\-worklet\-BMdjwMhJ\.js)?)?|frequencer(/(index\.html)?)?)$#"
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  SetEnvIf Request_URI "^/beta/(frequencygenerator(/(index\.html|app\.js|styles\.css|assets/index\-C_r0\-kgR\.js|assets/index\-DDcKnQSn\.css|assets/noise\-worklet\-BMdjwMhJ\.js)?)?|frequencer(/(index\.html)?)?)$" frequency_public
+  Order deny,allow
+  Deny from all
+  Allow from env=frequency_public
+</IfModule>
+
+# Beta tools are development previews, excluded from search indexing.
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>

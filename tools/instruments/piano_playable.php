@@ -1,12 +1,19 @@
 <?php
 // tools/instruments/piano_playable.php
 // (adjust include paths to match how you do it in the other tools)
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/meta.php';
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="UTF-8">
-  <title>ChordLink – Playable Piano</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php rs_render_meta(
+    'Spillbart piano | Rockeskolen',
+    'Spill piano direkte i nettleseren og hør toner når du øver, underviser eller lager musikk.',
+    'https://rockeskolen.com/tools/instruments/piano_playable.php',
+    'https://rockeskolen.com/images/share/rockeskolen-2026.jpg',
+    'Spillbart piano fra Rockeskolen'
+); ?>
 
   <link rel="stylesheet" href="piano_playable.css">
 
@@ -18,7 +25,7 @@
 </head>
 <body>
   <div id="piano-page">
-    <h1>ChordLink – Playable Piano</h1>
+    <h1>Spillbart piano</h1>
 
    <div id="piano-wrapper">
       <div id="piano"></div>

@@ -3,8 +3,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 // require_login(); // demo is public
 $user = current_user();
-$isPro =
-    ($user && in_array($user['role'], ['pro','vip','admin'], true));
+$isPro = has_rockeskolen_access($user);
 
 // Optional: force demo mode with ?demo=1
 if (isset($_GET['demo']) && $_GET['demo'] === '1') {
@@ -18,7 +17,7 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Guitar Scales</title>
-  <link rel="stylesheet" href="app.css?v=13">
+  <link rel="stylesheet" href="app.css?v=14">
 </head>
 <body>
 
@@ -68,11 +67,25 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
   <div class="field">
     <label for="soundType">Sound</label>
     <select id="soundType">
+      <option value="acoustic_guitar">Acoustic guitar (MP3)</option>
       <option value="triangle" selected>Triangle</option>
       <option value="sine">Sine</option>
       <option value="square">Square</option>
       <option value="sawtooth">Sawtooth</option>
     </select>
+  </div>
+
+  <div class="field">
+    <label for="octaveCount">Octaves</label>
+    <select id="octaveCount">
+      <option value="1" selected>1 octave</option>
+      <option value="2">2 octaves</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="scaleTempo">Tempo <span id="tempoValue">120 BPM</span></label>
+    <input id="scaleTempo" type="range" min="50" max="220" step="1" value="120">
   </div>
 
   <div class="field">
@@ -108,6 +121,6 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
 window.CL_IS_PRO = <?= $isPro ? 'true' : 'false' ?>;
 window.CL_IS_LOGGED_IN = <?= $user ? 'true' : 'false' ?>;
 </script>
-<script src="ui.js?v=13"></script>
+<script src="ui.js?v=18"></script>
 </body>
 </html>

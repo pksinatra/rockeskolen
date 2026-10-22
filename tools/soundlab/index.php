@@ -1,0 +1,5 @@
+<?php
+$mode = $_GET['mode'] ?? 'frequency';
+if (!in_array($mode, ['frequency','harmonics','nature','melody','motif','harmony'], true)) $mode = 'frequency';
+$titles = ['frequency'=>'Hør frekvensen','harmonics'=>'Bygg en klang','nature'=>'Fra tone til naturlyd','melody'=>'Forandre én ting','motif'=>'Et motiv, flere muligheter','harmony'=>'Samme melodi, nye akkorder'];
+?><!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $titles[$mode] ?> | Rockeskolen</title><link rel="stylesheet" href="lab.css?v=1"></head><body data-mode="<?= $mode ?>"><main><p class="eyebrow">LYTT · UTFORSK · SKAP</p><h1><?= $titles[$mode] ?></h1><p id="intro"></p><div id="workspace"></div><div class="transport"><button id="play" class="primary">▶ Spill</button><button id="stop">■ Stopp</button><label>Lydnivå <input id="volume" type="range" min="0" max="0.35" step="0.01" value="0.12"></label></div><p id="status" role="status" aria-live="polite">Klar til å spille.</p><p id="challenge" class="challenge"></p></main><script src="lab.js?v=20260911-b"></script></body></html>

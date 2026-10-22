@@ -1,0 +1,66 @@
+rockeskolen_membership.sso:
+  path: '/members/sso'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\MembershipSsoController::consume'
+    _title: 'Medlemsinnlogging'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rockeskolen_membership.admin_login:
+  path: '/admin-login'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\AdminLoginController::login'
+    _title: 'Administratorinnlogging'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rockeskolen_membership.payment_grant:
+  path: '/members/payment-grant'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\PaymentGrantController::update'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+  options:
+    no_cache: TRUE
+
+rockeskolen_membership.account_bridge:
+  path: '/members/account-bridge'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\AccountBridgeController::returnToAccount'
+    _title: 'Min konto'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rockeskolen_membership.logout_continue:
+  path: '/members/logout-continue'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\LogoutController::continueLogout'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rockeskolen_membership.logout_portal:
+  path: '/members/logout-portal'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\LogoutController::portalLogout'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rockeskolen_membership.logout_start:
+  path: '/members/logout-all'
+  defaults:
+    _controller: '\Drupal\rockeskolen_membership\Controller\LogoutController::startLogout'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE

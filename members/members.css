@@ -1,21 +1,19 @@
-/* /members/members.css
-   Shared styling for ChordLink members area (login/register/account/upgrade)
-   Drop-in file. No external dependencies.
-*/
+/* Rockeskolen members area */
 :root{
-  --bg0:#070a12;
-  --bg1:#0b0f1a;
-  --card:rgba(255,255,255,0.06);
-  --card2:rgba(255,255,255,0.045);
-  --border:rgba(255,255,255,0.10);
-  --text:#e8eeff;
-  --muted:#9fb1cf;
-  --danger:#ff6b86;
-  --ok:#66e3b4;
+  --bg0:#05070c;
+  --bg1:#0d1018;
+  --card:#151923;
+  --card2:#10141d;
+  --border:rgba(255,255,255,0.13);
+  --text:#f5f5f7;
+  --muted:#aeb1ba;
+  --danger:#ff6268;
+  --ok:#72d7a6;
+  --accent:#ed1c24;
   --shadow: 0 18px 55px rgba(0,0,0,0.45);
   --radius:14px;
   --radius2:10px;
-  --grad: linear-gradient(135deg, #ff5c7a, #b28bff, #54d2f2);
+  --grad:linear-gradient(100deg,#f3272f,#b90c13);
 }
 
 *{ box-sizing:border-box; }
@@ -24,16 +22,15 @@ body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   background:
-    radial-gradient(1200px 700px at 20% 10%, rgba(178,139,255,0.18), transparent 60%),
-    radial-gradient(900px 600px at 80% 0%, rgba(84,210,242,0.16), transparent 55%),
-    radial-gradient(900px 600px at 60% 90%, rgba(255,92,122,0.14), transparent 55%),
+    radial-gradient(1100px 700px at 10% 0%, rgba(237,28,36,.20), transparent 58%),
+    radial-gradient(800px 600px at 90% 100%, rgba(150,8,14,.14), transparent 58%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
   color:var(--text);
   line-height:1.55;
 }
 
 a{ color:inherit; }
-a.link{ color:#b7c7ff; text-decoration:none; }
+a.link{ color:#ff686d; text-decoration:none; }
 a.link:hover{ text-decoration:underline; }
 
 .wrap{
@@ -60,6 +57,7 @@ a.link:hover{ text-decoration:underline; }
   font-weight: 800;
   letter-spacing: 0.2px;
 }
+.brand-logo{display:block;width:min(238px,58vw);height:auto}
 .brand .sub{
   color:var(--muted);
   font-size: 13px;
@@ -71,6 +69,7 @@ a.link:hover{ text-decoration:underline; }
   border-radius: var(--radius);
   padding: 18px;
   box-shadow: var(--shadow);
+  border-top:3px solid rgba(237,28,36,.85);
 }
 
 .card + .card{ margin-top:14px; }
@@ -124,8 +123,8 @@ input[type="text"]{
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="text"]:focus{
-  border-color: rgba(178,139,255,0.55);
-  box-shadow: 0 0 0 3px rgba(178,139,255,0.18);
+  border-color: rgba(237,28,36,.72);
+  box-shadow: 0 0 0 3px rgba(237,28,36,.17);
 }
 
 .row{
@@ -152,12 +151,22 @@ input[type="text"]:focus{
 .btn:hover{ background: rgba(255,255,255,0.08); }
 .btn.primary{
   background: var(--grad);
-  color: #061020;
+  color: #fff;
   border-color: transparent;
 }
 .btn.primary:hover{ filter: brightness(1.03); }
 .btn.ghost{
   background: transparent;
+}
+.btn.logout {
+  border-color: rgba(255, 90, 90, .72);
+  background: rgba(180, 20, 20, .24);
+  color: #fff;
+  font-weight: 800;
+}
+.btn.logout:hover {
+  border-color: #ff5a5a;
+  background: rgba(210, 25, 25, .38);
 }
 .btn.full{ width:100%; }
 
@@ -243,4 +252,109 @@ hr.sep{
   font-weight: 600;
   font-size: 15px;
   text-align: center;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.feide-choice h2 { margin: 0 0 6px; font-size: 20px; }
+.feide-choice p { margin: 0 0 12px; }
+.btn.feide {
+  border-color: rgba(237,28,36,.55);
+  background: rgba(237,28,36,.12);
+  color: var(--text);
+}
+.btn.feide:hover { background: rgba(237,28,36,.22); }
+
+.account-page{
+  background:
+    radial-gradient(850px 560px at 7% 2%, rgba(237,28,36,.28), transparent 62%),
+    radial-gradient(720px 540px at 96% 18%, rgba(31,153,203,.18), transparent 64%),
+    radial-gradient(680px 520px at 50% 100%, rgba(123,72,201,.14), transparent 68%),
+    linear-gradient(180deg,#05070c,#0d1018);
+}
+.account-page .topbar{
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  background:linear-gradient(110deg,rgba(237,28,36,.13),rgba(30,45,75,.26));
+  box-shadow:0 16px 42px rgba(0,0,0,.28);
+}
+.account-page .brand .title{
+  background:linear-gradient(90deg,#fff 0%,#ff7378 95%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.account-overview{
+  position:relative;
+  overflow:hidden;
+  border-top:0;
+  background:
+    linear-gradient(140deg,rgba(35,42,61,.96),rgba(17,21,31,.98));
+}
+.account-overview::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:4px;
+  background:linear-gradient(90deg,#ed1c24 0 42%,#d946ef 68%,#25a7d9 100%);
+}
+.account-kicker{
+  margin:2px 0 5px;
+  color:#ff777c;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.account-page .pill{
+  background:linear-gradient(110deg,rgba(237,28,36,.11),rgba(53,126,168,.11));
+  border-color:rgba(255,255,255,.16);
+}
+.membership-card{
+  border-top-color:#d946ef;
+  background:
+    radial-gradient(380px 180px at 100% 0,rgba(217,70,239,.13),transparent 66%),
+    var(--card2);
+}
+.portal-card{
+  border-top-color:#25a7d9;
+  background:
+    radial-gradient(420px 190px at 100% 0,rgba(37,167,217,.16),transparent 68%),
+    var(--card2);
+}
+.password-card{
+  border-color:rgba(255,92,98,.52);
+  background:
+    radial-gradient(500px 240px at 100% 0,rgba(237,28,36,.2),transparent 68%),
+    linear-gradient(135deg,#21161d,#151923);
+}
+.account-page .checkbox{
+  background:linear-gradient(110deg,rgba(217,70,239,.08),rgba(37,167,217,.07));
+  border-color:rgba(217,134,239,.18);
+}
+.account-page .alert.ok{
+  background:linear-gradient(110deg,rgba(102,227,180,.11),rgba(37,167,217,.07));
+}
+
+@media (max-width:560px){
+  .wrap{padding-top:22px}
+  .topbar{align-items:flex-start;flex-direction:column}
+  .topbar>.row{width:100%}
+  .account-page .topbar{padding:13px}
 }

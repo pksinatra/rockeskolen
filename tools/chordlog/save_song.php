@@ -2,32 +2,15 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 
 $user = current_user();
+header('Content-Type: application/json');
 
 if (!$user) {
-    echo json_encode([]);
+    http_response_code(401);
+    echo json_encode(["success" => false, "error" => "Logg inn for å lagre låter."]);
     exit;
 }
 
 $userId = $user['id'];
-
-// session_start();
-// $userId = $_SESSION['user_id'] ?? 0;
-
-$userLevel = "free";
-
-if($isVip){
-    $userLevel = "vip";
-}
-
-$limits = [
-    "free" => [
-        "max_songs" => 5
-    ],
-    "vip" => [
-        "max_songs" => 999999
-    ]
-];
-
 
 $title = trim($_POST["title"] ?? "");
 $tempo = intval($_POST["tempo"] ?? 120);
@@ -41,40 +24,29 @@ $songId = isset($_POST["song_id"]) && $_POST["song_id"] !== ""
 $total_takter = intval($_POST["total_takter"] ?? 4);
 
 if ($title === "") {
-    echo json_encode(["success"=>false,"error"=>"Title required"]);
+    echo json_encode(["success"=>false,"error"=>"Tittel mangler"]);
     exit;
 }
 
 try {
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->beginTransaction();
 
+    if ($songId) {
+        $stmt = $pdo->prepare("
+            SELECT id
+            FROM chordapp_songs
+            WHERE id = ? AND user_id = ?
+            LIMIT 1
+        ");
+        $stmt->execute([$songId, $userId]);
 
-$limit_free = 5;
-
-if(!$isVip){
-
-    $stmt = $pdo->prepare("
-        SELECT COUNT(*) 
-        FROM chordapp_songs 
-        WHERE user_id = ?
-    ");
-
-    $stmt->execute([$userId]);
-
-    $songCount = $stmt->fetchColumn();
-
-    if($songCount >= $limit_free && !$songId){
-        echo json_encode([
-            "success"=>false,
-            "error"=>"Free-brukere kan lagre maks $limit_free låter."
-        ]);
-        exit;
+        if (!$stmt->fetchColumn()) {
+            $pdo->rollBack();
+            http_response_code(404);
+            echo json_encode(["success" => false, "error" => "Fant ikke låten."]);
+            exit;
+        }
     }
-}
-
-$maxSongs = $limits[$userLevel]["max_songs"];
 
 $stmt = $pdo->prepare("
 SELECT COUNT(*) 
@@ -86,24 +58,26 @@ $stmt->execute([$userId]);
 
 $songCount = $stmt->fetchColumn();
 
-if($songCount >= $maxSongs && !$songId){
+if(!has_rockeskolen_access($user) && $songCount >= 5 && !$songId){
 
+    $pdo->rollBack();
     echo json_encode([
         "success" => false,
-        "error" => "Du har nådd maks antall lagrede låter. Oppgrader til VIP for ubegrenset lagring."
+        "error" => "Free-brukere kan lagre maks 5 låter. Oppgrader til VIP for ubegrenset lagring."
     ]);
 
     exit;
 }
+
     // ---------- SONG ----------
     if ($songId) {
 
         $stmt = $pdo->prepare("
         UPDATE chordapp_songs
         SET title=?, tempo=?, song_key=?, time_signature=?, total_takter=?
-        WHERE id=?");
+        WHERE id=? AND user_id=?");
 
-        $stmt->execute([$title,$tempo,$key,$sig,$total_takter,$songId]);
+        $stmt->execute([$title,$tempo,$key,$sig,$total_takter,$songId,$userId]);
 
         $pdo->prepare("DELETE FROM chordapp_chords WHERE song_id=?")
             ->execute([$songId]);
@@ -174,7 +148,9 @@ $ins->execute([
 
 } catch (Exception $e) {
 
-    $pdo->rollBack();
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
 
     echo json_encode([
         "success"=>false,

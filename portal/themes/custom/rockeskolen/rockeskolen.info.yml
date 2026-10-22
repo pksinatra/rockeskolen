@@ -1,0 +1,16 @@
+name: Rockeskolen
+type: theme
+base theme: olivero
+description: Clean Rockeskolen theme based on Olivero
+core_version_requirement: ^11
+
+libraries:
+  - rockeskolen/global
+
+regions:
+  header: Header
+  primary_menu: Primary menu
+  secondary_menu: Secondary menu
+  highlighted: Highlighted
+  content: Content
+  footer: Footer

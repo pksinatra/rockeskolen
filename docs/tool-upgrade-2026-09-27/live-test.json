@@ -1,0 +1,86 @@
+[
+  {
+    "app": "guitar-chords",
+    "lang": "nb",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "piano-chords",
+    "lang": "nb",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "guitar-scales",
+    "lang": "nb",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "piano-scales",
+    "lang": "nb",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "fifths",
+    "lang": "nb",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "tuner",
+    "lang": "nb",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "guitar-chords",
+    "lang": "en",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "piano-chords",
+    "lang": "en",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "guitar-scales",
+    "lang": "en",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "piano-scales",
+    "lang": "en",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "fifths",
+    "lang": "en",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "app": "tuner",
+    "lang": "en",
+    "http": 200,
+    "errors": [],
+    "bad": []
+  }
+]

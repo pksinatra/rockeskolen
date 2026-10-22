@@ -1,0 +1,1807 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 30,
+    "results": [
+        {
+            "id": 99,
+            "type": "guitar_chord",
+            "name": "B",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b",
+            "data": {
+                "symbol": "B",
+                "bookSymbol": "B",
+                "root": "B",
+                "quality": "major",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b-major-a-shape-2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            4,
+                            4,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "D#",
+                            "F#"
+                        ],
+                        "source": "Standard B-dur (A-form barre, 2. bånd)"
+                    },
+                    {
+                        "id": "b-major-e-shape-7",
+                        "frets": [
+                            7,
+                            9,
+                            9,
+                            8,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "D#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Standard B-dur (E-form barre, 7. bånd)"
+                    }
+                ],
+                "slug": "b"
+            }
+        },
+        {
+            "id": 103,
+            "type": "guitar_chord",
+            "name": "Baug",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "baug",
+            "data": {
+                "symbol": "Baug",
+                "bookSymbol": "B+",
+                "root": "B",
+                "quality": "aug",
+                "family": "aug",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5"
+                ],
+                "aliases": [
+                    "B+"
+                ],
+                "variants": [
+                    {
+                        "id": "b-aug-x2100x",
+                        "frets": [
+                            -1,
+                            2,
+                            1,
+                            0,
+                            0,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "F##",
+                            "B"
+                        ],
+                        "source": "Enkelt aug-voicing med åpne strenger"
+                    },
+                    {
+                        "id": "b-aug-7654xx",
+                        "frets": [
+                            7,
+                            6,
+                            5,
+                            4,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            4,
+                            3,
+                            2,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "F##",
+                            "B"
+                        ],
+                        "source": "Aug-voicing (lukket grep)"
+                    }
+                ],
+                "slug": "baug"
+            }
+        },
+        {
+            "id": 102,
+            "type": "guitar_chord",
+            "name": "Bdim",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bdim",
+            "data": {
+                "symbol": "Bdim",
+                "bookSymbol": "Bdim",
+                "root": "B",
+                "quality": "dim",
+                "family": "dim",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5"
+                ],
+                "aliases": [
+                    "B°"
+                ],
+                "variants": [
+                    {
+                        "id": "b-dim-xx234x",
+                        "frets": [
+                            -1,
+                            2,
+                            3,
+                            4,
+                            3,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Vanlig dim-triad-voicing (kompakt grep)"
+                    },
+                    {
+                        "id": "b-dim-7897xx",
+                        "frets": [
+                            7,
+                            8,
+                            9,
+                            7,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            4,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Dim-triad-voicing høyere på halsen"
+                    }
+                ],
+                "slug": "bdim"
+            }
+        },
+        {
+            "id": 101,
+            "type": "guitar_chord",
+            "name": "Bm",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm",
+            "data": {
+                "symbol": "Bm",
+                "bookSymbol": "Bm",
+                "root": "B",
+                "quality": "minor",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b-minor-a-shape-2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            4,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Standard B-moll (A-form barre, 2. bånd)"
+                    },
+                    {
+                        "id": "b-minor-e-shape-7",
+                        "frets": [
+                            7,
+                            9,
+                            9,
+                            7,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "D",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Standard B-moll (E-form barre, 7. bånd)"
+                    }
+                ],
+                "slug": "bm"
+            }
+        },
+        {
+            "id": 120,
+            "type": "guitar_chord",
+            "name": "B11",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b11",
+            "data": {
+                "symbol": "B11",
+                "bookSymbol": "B11",
+                "root": "B",
+                "quality": "major",
+                "family": "11",
+                "formulaDegrees": [
+                    "1",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b11-barre-7",
+                        "frets": [
+                            7,
+                            7,
+                            7,
+                            6,
+                            7,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            2,
+                            1,
+                            2,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "E",
+                            "A",
+                            "C#",
+                            "F#",
+                            "C#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b11"
+            }
+        },
+        {
+            "id": 121,
+            "type": "guitar_chord",
+            "name": "B13",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b13",
+            "data": {
+                "symbol": "B13",
+                "bookSymbol": "B13",
+                "root": "B",
+                "quality": "major",
+                "family": "13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b13-barre-7",
+                        "frets": [
+                            7,
+                            6,
+                            7,
+                            6,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            4
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "A",
+                            "C#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "B13 jazz\/funk standard"
+                    }
+                ],
+                "slug": "b13"
+            }
+        },
+        {
+            "id": 133,
+            "type": "guitar_chord",
+            "name": "B13sus4",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b13sus4",
+            "data": {
+                "symbol": "B13sus4",
+                "bookSymbol": "B13sus4",
+                "root": "B",
+                "quality": "major",
+                "family": "13sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-13sus4-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            2,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b13sus4"
+            }
+        },
+        {
+            "id": 124,
+            "type": "guitar_chord",
+            "name": "B5",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b5",
+            "data": {
+                "symbol": "B5",
+                "bookSymbol": "B5",
+                "root": "B",
+                "quality": "major",
+                "family": "5",
+                "formulaDegrees": [
+                    "1",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-5-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            4,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "B5 Power chord (A-root)"
+                    }
+                ],
+                "slug": "b5"
+            }
+        },
+        {
+            "id": 108,
+            "type": "guitar_chord",
+            "name": "B6",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b6",
+            "data": {
+                "symbol": "B6",
+                "bookSymbol": "B6",
+                "root": "B",
+                "quality": "major",
+                "family": "6",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b6-open",
+                        "frets": [
+                            -1,
+                            2,
+                            1,
+                            1,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            1,
+                            0,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "G#",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "b6-barre-7",
+                        "frets": [
+                            7,
+                            9,
+                            9,
+                            8,
+                            9,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "D#",
+                            "G#",
+                            "B"
+                        ],
+                        "source": "B6 E-form barre"
+                    }
+                ],
+                "slug": "b6"
+            }
+        },
+        {
+            "id": 125,
+            "type": "guitar_chord",
+            "name": "B6\/9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b6-9",
+            "data": {
+                "symbol": "B6\/9",
+                "bookSymbol": "B6\/9",
+                "root": "B",
+                "quality": "major",
+                "family": "69",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-69-a2",
+                        "frets": [
+                            -1,
+                            4,
+                            4,
+                            4,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C#",
+                            "F#",
+                            "B",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b6-9"
+            }
+        },
+        {
+            "id": 110,
+            "type": "guitar_chord",
+            "name": "B7",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7",
+            "data": {
+                "symbol": "B7",
+                "bookSymbol": "B7",
+                "root": "B",
+                "quality": "major",
+                "family": "7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b7-open",
+                        "frets": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            2,
+                            0,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "D#",
+                            "A",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "b7-barre-7",
+                        "frets": [
+                            7,
+                            9,
+                            7,
+                            8,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A",
+                            "D#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "B7 E-form barre"
+                    }
+                ],
+                "slug": "b7"
+            }
+        },
+        {
+            "id": 123,
+            "type": "guitar_chord",
+            "name": "B7#9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7#9",
+            "data": {
+                "symbol": "B7#9",
+                "bookSymbol": "B7(#9)",
+                "root": "B",
+                "quality": "major",
+                "family": "7#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b7sharp9-barre-7",
+                        "frets": [
+                            7,
+                            6,
+                            7,
+                            7,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            2,
+                            2,
+                            3,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "A",
+                            "C##",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b7#9"
+            }
+        },
+        {
+            "id": 135,
+            "type": "guitar_chord",
+            "name": "B7(#5)",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7-#5",
+            "data": {
+                "symbol": "B7(#5)",
+                "bookSymbol": "B7(#5)",
+                "root": "B",
+                "quality": "major",
+                "family": "7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-7#5-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            5,
+                            2,
+                            4,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F##",
+                            "A",
+                            "D#",
+                            "F##"
+                        ],
+                        "source": "B7(#5) 7#5 (A-root)"
+                    }
+                ],
+                "slug": "b7-#5"
+            }
+        },
+        {
+            "id": 134,
+            "type": "guitar_chord",
+            "name": "B7(b5)",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7-b5",
+            "data": {
+                "symbol": "B7(b5)",
+                "bookSymbol": "B7(b5)",
+                "root": "B",
+                "quality": "major",
+                "family": "7b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-7b5-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F",
+                            "A",
+                            "D#",
+                            "F"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b7-b5"
+            }
+        },
+        {
+            "id": 122,
+            "type": "guitar_chord",
+            "name": "B7b9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7b9",
+            "data": {
+                "symbol": "B7b9",
+                "bookSymbol": "B7(b9)",
+                "root": "B",
+                "quality": "major",
+                "family": "7b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b7b9-barre-7",
+                        "frets": [
+                            7,
+                            6,
+                            7,
+                            5,
+                            7,
+                            -1
+                        ],
+                        "fingers": [
+                            3,
+                            2,
+                            3,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "A",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b7b9"
+            }
+        },
+        {
+            "id": 131,
+            "type": "guitar_chord",
+            "name": "B7sus2",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7sus2",
+            "data": {
+                "symbol": "B7sus2",
+                "bookSymbol": "B7sus2",
+                "root": "B",
+                "quality": "major",
+                "family": "7sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-7sus2-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b7sus2"
+            }
+        },
+        {
+            "id": 130,
+            "type": "guitar_chord",
+            "name": "B7sus4",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b7sus4",
+            "data": {
+                "symbol": "B7sus4",
+                "bookSymbol": "B7sus4",
+                "root": "B",
+                "quality": "major",
+                "family": "7sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-7sus4-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            2,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A",
+                            "E",
+                            "F#"
+                        ],
+                        "source": "B7sus4 7sus4 (A-root)"
+                    }
+                ],
+                "slug": "b7sus4"
+            }
+        },
+        {
+            "id": 119,
+            "type": "guitar_chord",
+            "name": "B9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b9",
+            "data": {
+                "symbol": "B9",
+                "bookSymbol": "B9",
+                "root": "B",
+                "quality": "major",
+                "family": "9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "b9-barre-7",
+                        "frets": [
+                            7,
+                            6,
+                            7,
+                            6,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            4
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "A",
+                            "C#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "B9 funk\/jazz standard"
+                    }
+                ],
+                "slug": "b9"
+            }
+        },
+        {
+            "id": 132,
+            "type": "guitar_chord",
+            "name": "B9sus4",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "b9sus4",
+            "data": {
+                "symbol": "B9sus4",
+                "bookSymbol": "B9sus4",
+                "root": "B",
+                "quality": "major",
+                "family": "9sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-9sus4-a2",
+                        "frets": [
+                            -1,
+                            4,
+                            4,
+                            4,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C#",
+                            "F#",
+                            "B",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "b9sus4"
+            }
+        },
+        {
+            "id": 116,
+            "type": "guitar_chord",
+            "name": "Badd9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "badd9",
+            "data": {
+                "symbol": "Badd9",
+                "bookSymbol": "Badd9",
+                "root": "B",
+                "quality": "major",
+                "family": "add9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "badd9-open",
+                        "frets": [
+                            -1,
+                            2,
+                            1,
+                            -1,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            0,
+                            2,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "B",
+                            "D#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "badd9"
+            }
+        },
+        {
+            "id": 113,
+            "type": "guitar_chord",
+            "name": "Bm(maj7)",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm-maj7",
+            "data": {
+                "symbol": "Bm(maj7)",
+                "bookSymbol": "Bm(maj7)",
+                "root": "B",
+                "quality": "minor",
+                "family": "m(maj7)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "bmmaj7-barre-7",
+                        "frets": [
+                            7,
+                            9,
+                            8,
+                            7,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A#",
+                            "D",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Bm(maj7) E-form"
+                    }
+                ],
+                "slug": "bm-maj7"
+            }
+        },
+        {
+            "id": 109,
+            "type": "guitar_chord",
+            "name": "Bm6",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm6",
+            "data": {
+                "symbol": "Bm6",
+                "bookSymbol": "Bm6",
+                "root": "B",
+                "quality": "minor",
+                "family": "m6",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "bm6-barre-7",
+                        "frets": [
+                            7,
+                            9,
+                            9,
+                            7,
+                            9,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "D",
+                            "G#",
+                            "B"
+                        ],
+                        "source": "Bm6 standard jazz-voicing"
+                    }
+                ],
+                "slug": "bm6"
+            }
+        },
+        {
+            "id": 126,
+            "type": "guitar_chord",
+            "name": "Bm6\/9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm6-9",
+            "data": {
+                "symbol": "Bm6\/9",
+                "bookSymbol": "Bm6\/9",
+                "root": "B",
+                "quality": "minor",
+                "family": "m69",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-m69-a2",
+                        "frets": [
+                            -1,
+                            4,
+                            4,
+                            4,
+                            3,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C#",
+                            "F#",
+                            "B",
+                            "D",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "bm6-9"
+            }
+        },
+        {
+            "id": 111,
+            "type": "guitar_chord",
+            "name": "Bm7",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm7",
+            "data": {
+                "symbol": "Bm7",
+                "bookSymbol": "Bm7",
+                "root": "B",
+                "quality": "minor",
+                "family": "m7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "bm7-barre-2",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            2,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Bm7 A-form barre"
+                    },
+                    {
+                        "id": "bm7-barre-7",
+                        "frets": [
+                            7,
+                            9,
+                            7,
+                            7,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A",
+                            "D",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Bm7 E-form barre"
+                    }
+                ],
+                "slug": "bm7"
+            }
+        },
+        {
+            "id": 127,
+            "type": "guitar_chord",
+            "name": "Bm7(b5)",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm7-b5",
+            "data": {
+                "symbol": "Bm7(b5)",
+                "bookSymbol": "Bm7(b5)",
+                "root": "B",
+                "quality": "minor",
+                "family": "m7b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-m7b5-a2",
+                        "frets": [
+                            -1,
+                            2,
+                            3,
+                            2,
+                            3,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F",
+                            "A",
+                            "D",
+                            "F"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "bm7-b5"
+            }
+        },
+        {
+            "id": 129,
+            "type": "guitar_chord",
+            "name": "Bm9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bm9",
+            "data": {
+                "symbol": "Bm9",
+                "bookSymbol": "Bm9",
+                "root": "B",
+                "quality": "minor",
+                "family": "m9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-m9-a2",
+                        "frets": [
+                            -1,
+                            4,
+                            4,
+                            4,
+                            3,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C#",
+                            "F#",
+                            "B",
+                            "D",
+                            "A"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "bm9"
+            }
+        },
+        {
+            "id": 112,
+            "type": "guitar_chord",
+            "name": "Bmaj7",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bmaj7",
+            "data": {
+                "symbol": "Bmaj7",
+                "bookSymbol": "Bmaj7",
+                "root": "B",
+                "quality": "major",
+                "family": "maj7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "bmaj7-barre-7",
+                        "frets": [
+                            7,
+                            9,
+                            8,
+                            8,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "A#",
+                            "D#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Bmaj7 E-form barre"
+                    }
+                ],
+                "slug": "bmaj7"
+            }
+        },
+        {
+            "id": 128,
+            "type": "guitar_chord",
+            "name": "Bmaj9",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bmaj9",
+            "data": {
+                "symbol": "Bmaj9",
+                "bookSymbol": "Bmaj9",
+                "root": "B",
+                "quality": "major",
+                "family": "maj9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "flat-maj9-a2",
+                        "frets": [
+                            -1,
+                            4,
+                            4,
+                            4,
+                            4,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C#",
+                            "F#",
+                            "B",
+                            "D#",
+                            "A#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "bmaj9"
+            }
+        },
+        {
+            "id": 117,
+            "type": "guitar_chord",
+            "name": "Bsus2",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bsus2",
+            "data": {
+                "symbol": "Bsus2",
+                "bookSymbol": "Bsus2",
+                "root": "B",
+                "quality": "major",
+                "family": "sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "bsus2-open",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            4,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Bsus2 A-form"
+                    }
+                ],
+                "slug": "bsus2"
+            }
+        },
+        {
+            "id": 118,
+            "type": "guitar_chord",
+            "name": "Bsus4",
+            "root_note": "B",
+            "instrument": "guitar",
+            "slug": "bsus4",
+            "data": {
+                "symbol": "Bsus4",
+                "bookSymbol": "Bsus4",
+                "root": "B",
+                "quality": "major",
+                "family": "sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "bsus4-open",
+                        "frets": [
+                            -1,
+                            2,
+                            4,
+                            4,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            4,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "F#",
+                            "B",
+                            "E",
+                            "F#"
+                        ],
+                        "source": "Bsus4 A-form"
+                    }
+                ],
+                "slug": "bsus4"
+            }
+        }
+    ]
+}

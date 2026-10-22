@@ -17,19 +17,24 @@ Symbol,Name,Explanation
 𝄞,G-nøkkel,Plasserer tonen g over midten på notelinjen
 𝄢,F-nøkkel,Plasserer tonen f under midten på notelinjen
 𝄡,C-nøkkel,Plasserer tonen c på angitt linje
+𝄣,Tenornøkkel,Plasserer tonen c på den fjerde linjen og brukes blant annet for cello fagott og trombone
 𝄜,Slagnøkkel,Brukes for rytmeinstrumenter uten fast tonehøyde
 
 ♯,Kryss,Hever tonen ett halvt trinn
-♭,B,Laver tonen ett halvt trinn
+♭,B♭,Senker tonen ett halvt trinn
 ♮,Oppløsningstegn,Opphever tidligere kryss eller b
 𝄪,Dobbeltkryss,Hever tonen to halve trinn
 𝄫,Dobbelt-b,Laver tonen to halve trinn
 
-𝄀,Enkel taktstrek,Deler notelinjen inn i takter
-𝄁,Dobbel taktstrek,Markerer slutten på en seksjon
-𝄂,Sluttstrek,Markerer slutten på stykket
-𝄆,Gjenta start,Starter en gjentakelse
-𝄇,Gjenta slutt,Avslutter en gjentakelse
+𝄈,Vanlig takt,Forkortet taktartssymbol for fire firedelstakt
+𝄉,Alla breve,Forkortet taktartssymbol for to halvnoter i takten
+
+𝄀,Enkel taktstrek,Skiller én takt fra den neste
+𝄁,Dobbel taktstrek,Markerer et tydelig skille mellom seksjoner og kan være både slutten på én del og starten på en ny
+𝄂,Sluttstrek,Markerer slutten på et musikkstykke eller en sats med én tynn og én tykk strek
+𝄁,Dobbel startstrek,Markerer starten på en tydelig avgrenset del eller seksjon med én tykk og én tynn strek
+𝄆,Dobbel startstrek med repetisjon,Markerer starten på et parti som skal repeteres; prikkene vender inn mot partiet
+𝄇,Dobbel sluttstrek med repetisjon,Avslutter et parti som skal repeteres; gå tilbake til nærmeste startstrek med repetisjonstegn eller til stykkets begynnelse hvis starttegnet mangler
 
 𝄐,Fermate,Hold tonen eller pausen lengre enn notert verdi
 
@@ -42,13 +47,19 @@ Symbol,Name,Explanation
 
 ~,Trill,Spill rask veksling mellom to nabotoner
 𝆗,Omvending,Ornament som beveger seg rundt hovedtonen
+𝆘,Omvendt omvending,Omvending der tonebevegelsen starter i motsatt retning
 𝆙,Mordent,Rask veksling med tonen under
 𝆚,Omvendt mordent,Rask veksling med tonen over
 
+𝆓,Pustetegn,Markerer et kort pust eller en liten pause mellom toner
+𝆔,Cesur,Markerer et tydelig kort opphold i musikken
+
 p,Piano,Spill svakt
 pp,Pianissimo,Spill svært svakt
+ppp,Pianississimo,Spill ekstremt svakt
 f,Forte,Spill sterkt
 ff,Fortissimo,Spill svært sterkt
+fff,Fortississimo,Spill ekstremt sterkt
 mf,Mezzoforte,Middels sterkt
 mp,Mezzopiano,Middels svakt
 <,Crescendo,Gradvis sterkere
@@ -56,11 +67,98 @@ mp,Mezzopiano,Middels svakt
 sfz,Sforzando,Plutselig kraftig aksent
 
 rit.,Ritardando,Gradvis saktere tempo
+rall.,Rallentando,Gradvis saktere og ofte bredere i uttrykket
 accel.,Accelerando,Gradvis raskere tempo
 a tempo,A tempo,Gå tilbake til opprinnelig tempo
+rubato,Rubato,Bruk friere tempo uten å miste den overordnede pulsen
 
 𝄋,Coda,Hopp til avsluttende del
 𝄉,Segno,Merke brukt ved gjentakelser
 D.C.,Da capo,Gå tilbake til starten
 D.S.,Dal segno,Gå tilbake til segno-merket
 Fine,Fine,Markerer avslutning
+
+8va,Oktav opp,Spill partiet én oktav høyere enn notert
+8vb,Oktav ned,Spill partiet én oktav lavere enn notert
+
+Ped.,Pedal ned,Trykk ned klaverets demperpedal
+*,Pedal opp,Slipp klaverets demperpedal
+una corda,Una corda,Trykk ned klaverets venstre pedal for en mykere klang
+tre corde,Tre corde,Slipp venstre pedal og gå tilbake til normal klang
+Pizz.,Pizzicato,Plukk strengen med fingeren i stedet for å bruke buen
+Arco,Arco,Spill med buen igjen etter pizzicato
+trem.,Tremolo,Gjenta tonen eller veksle raskt mellom toner for en skjelvende virkning
+
+♫,Bjelkede åttendedelsnoter,To eller flere åttendedelsnoter bundet sammen med en bjelke
+♬,Bjelkede sekstendedelsnoter,To eller flere sekstendedelsnoter bundet sammen med bjelker
+𝅘𝅥𝅲,Hundreogtjueåttedelsnote,Note med svært kort varighet
+𝄲,Trettitoendelspause,Pausetegn med varighet på en åttedel av et slag
+𝄳,Sekstifjerdedelspause,Pausetegn med svært kort varighet
+𝄴,Nøytral nøkkel,Nøkkel for rytmeinstrumenter uten bestemt tonehøyde
+𝄑,Lang fermate,Fermate som forlenger tonen ekstra mye
+𝄒,Meget lang fermate,Fermate som markerer et svært langt opphold
+𝄓,Kort fermate,Fermate som forlenger tonen litt
+−,Staccatissimo,Spill tonen svært kort
+𝄋,Trillsymbol,Symbol for rask veksling mellom nabotoner
+Schleifer,Schleifer,Lite ornament med trinnvis bevegelse inn mot hovedtonen
+Rinforzando,Rinforzando,Gradvis eller plutselig forsterkning av uttrykket
+sfp,Sforzando piano,Kraftig anslag som straks blir svakt
+sffz,Sforzato fortissimo,Svært kraftig og markert anslag
+rfz,Rinforzando,Forsterket uttrykk på en tone eller frase
+niente,Niente,Gradvis mot fullstendig stillhet
+subito p,Subito piano,Plutselig svakt
+subito f,Subito forte,Plutselig sterkt
+<,Crescendo-tegn,Gradvis sterkere
+>,Decrescendo-tegn,Gradvis svakere
+stringendo,Stringendo,Gradvis raskere og mer intenst
+meno mosso,Meno mosso,Saktere tempo
+più mosso,Più mosso,Raskere tempo
+Largo,Largo,Svært rolig tempo
+Adagio,Adagio,Langsomt tempo
+Andante,Andante,Gående og rolig tempo
+Moderato,Moderato,Middels tempo
+Allegro,Allegro,Raskt og livlig tempo
+Presto,Presto,Svært raskt tempo
+Prestissimo,Prestissimo,Ekstremt raskt tempo
+V.S.,Volti subito,Snu siden raskt
+15ma,Oktavtegn to oktaver opp,Spill to oktaver høyere enn notert
+15mb,Oktavtegn to oktaver ned,Spill to oktaver lavere enn notert
+△,Durakkord-symbol,Symbol som viser en durtreklang eller stor septim
+°,Forminsket akkordsymbol,Viser en forminsket akkord
+ø,Halvforminsket akkordsymbol,Viser en halvforminsket akkord
+sus,Sus-symbol,Erstatt ters med sekund eller kvart
+add,Add-symbol,Legg til en bestemt ekstra tone i akkorden
+alt,Alterert akkordsymbol,Akkorden har endrede toner
+no,Ingen tone,Viser at en bestemt akkordtone ikke skal spilles
+aug,Forstørret akkordsymbol,Viser en forstørret akkord
+×,Kryssnotehode,Notehode brukt for slagverk eller spesialeffekter
+◇,Diamantnotehode,Notehode brukt for flageolett eller åpne toner
+□,Firkantnotehode,Firkantet notehode brukt i enkelte notasjonstyper
+●,Sirkelnotehode,Åpent eller rundt notehode brukt i spesialnotasjon
+Bartók pizzicato,Bartók-pizzicato,Slipp strengen mot gripebrettet for et kraftig pizzicato
+Sul tasto,Sul tasto,Spill nær gripebrettet
+Sul ponticello,Sul ponticello,Spill nær stolen
+Con sordino,Con sordino,Spill med sordino eller demper
+Senza sordino,Senza sordino,Spill uten sordino eller demper
+Col legno,Col legno,Spill med treverket på buen
+Ped.,Pedalmarkering,Markerer bruk av pedal
+( ),Parentes rundt note,Viser en valgfri eller alternativ tone
+[ ],Klammer,Samler eller markerer et musikalsk element
+{ },Klamme,Samler flere notelinjer i et system
+Rimshot,Rimshot,Slag på både skinnet og kanten av en tromme
+Cross-stick,Cross-stick,Slag med pinnen mot siden av en tromme
+Open,Åpen artikulasjon,Viser at en cymbal eller tone skal klinge åpent
+Choke,Avdempet cymbal,Viser at cymbalklangen skal stoppes
+GM,General MIDI-markering,Markering for General MIDI-instrument eller funksjon
+𝅘,Metronomtegn,Angir tempo med en bestemt noteverdi
+𝅘 = 120,Metronommarkering,Eksempel på tempoangivelse
+sim.,Simile,Spill på samme måte som foregående takt eller frase
+𝄃,Omvendt sluttstrek,Avslutter en del med den tykke streken først
+%,Repetisjonstegn i prosent,Repeterer forrige takt
+%%,Dobbel repetisjon i prosent,Repeterer de to foregående taktene
+Slur,Slur-tekst,Bind toner med en jevn bue
+Tie,Bindebue-tekst,Binder sammen to toner med samme tonehøyde
+Trill,Trill-tekst,Viser med tekst at tonen skal trilleres
+sfz,Sforzando kort,Kort og kraftig aksent
+<tekst,Crescendo-tekst,Ordet crescendo viser gradvis sterkere uttrykk
+>tekst,Decrescendo-tekst,Ordet decrescendo viser gradvis svakere uttrykk

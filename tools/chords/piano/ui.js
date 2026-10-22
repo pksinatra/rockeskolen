@@ -6,16 +6,32 @@
 const N_SHARP = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 const N_FLAT  = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
 
-const QUAL = {
-  maj:{name:"dur",iv:[0,4,7]},
-  min:{name:"moll",iv:[0,3,7]},
+const LOCAL_QUAL = {
+  maj:{name:"major",iv:[0,4,7]},
+  min:{name:"minor",iv:[0,3,7]},
   maj7:{name:"maj7",iv:[0,4,7,11]},
   m7:{name:"m7",iv:[0,3,7,10]},
   "7":{name:"7",iv:[0,4,7,10]},
   sus2:{name:"sus2",iv:[0,2,7]},
   sus4:{name:"sus4",iv:[0,5,7]},
+  aug:{name:"aug",iv:[0,4,8]},
+  dim:{name:"dim",iv:[0,3,6]},
+  dim7:{name:"dim7",iv:[0,3,6,9]},
   add9:{name:"add9",iv:[0,4,7,14]},
+  madd9:{name:"madd9",iv:[0,3,7,14]},
+  add11:{name:"add11",iv:[0,4,7,17]},
+  madd11:{name:"madd11",iv:[0,3,7,17]},
   "6":{name:"6",iv:[0,4,7,9]},
+  m6:{name:"m6",iv:[0,3,7,9]},
+  "69":{name:"6/9",iv:[0,4,7,9,14]},
+  mMaj7:{name:"mMaj7",iv:[0,3,7,11]},
+  augMaj7:{name:"augMaj7",iv:[0,4,8,11]},
+  "7sus4":{name:"7sus4",iv:[0,5,7,10]},
+  "7b5":{name:"7b5",iv:[0,4,6,10]},
+  "7#5":{name:"7#5",iv:[0,4,8,10]},
+  "7b9":{name:"7b9",iv:[0,4,7,10,13]},
+  "7#9":{name:"7#9",iv:[0,4,7,10,15]},
+  "9sus4":{name:"9sus4",iv:[0,5,7,10,14]},
   m9:{name:"m9",iv:[0,3,7,10,14]},
   maj9:{name:"maj9",iv:[0,4,7,11,14]},
   "9":{name:"9",iv:[0,4,7,10,14]},
@@ -32,14 +48,9 @@ const QUAL = {
   "13":{name:"13",iv:[0,4,7,10,21]},
   m7b5:{name:"m7b5",iv:[0,3,6,10]}
 };
+let QUAL = { ...LOCAL_QUAL };
+let dataSourceState = "fallback";
 
-const GUEST_CHORD_KEYS = [
-  "maj",
-  "min",
-  "7",
-  "maj7",
-  "sus4"
-];
 const FREE_CHORD_KEYS = [
   "maj",
   "min",
@@ -47,19 +58,19 @@ const FREE_CHORD_KEYS = [
   "maj7",
   "m7",
   "sus2",
-  "sus4",
-  "add9"
+  "sus4"
 ];
+
 // Canonical dropdown order (UI only)
 const QUAL_ORDER = [
   // Triads & suspensions
-  "maj","min","sus2","sus4",
+  "maj","min","dim","aug","sus2","sus4",
   // Adds & 6
-  "add9","6",
+  "add9","madd9","add11","madd11","6","m6","69",
   // 7ths
-  "maj7","7","m7","m7b5",
+  "maj7","7","m7","mMaj7","dim7","m7b5","augMaj7","7sus4","7b5","7#5","7b9","7#9",
   // 9ths
-  "maj9","9","m9",
+  "maj9","9","m9","9sus4",
   // 11ths / #11
   "maj#11","11","m11",
   // 13ths
@@ -75,6 +86,9 @@ const sharpBtn = document.getElementById("sharpBtn");
 const flatBtn  = document.getElementById("flatBtn");
 const invertUpBtn = document.getElementById("invertUp");
 const invertDownBtn = document.getElementById("invertDown");
+const sustainSlider = document.getElementById("sustain");
+const volumeSlider = document.getElementById("volume");
+const soundTypeSelect = document.getElementById("soundType");
 
 // ===== State =====
 const WHITE_W = 44, BLACK_W = 28;
@@ -93,16 +107,38 @@ const AC = new (window.AudioContext||window.webkitAudioContext)();
 const midiToFreq = m => 440*Math.pow(2,(m-69)/12);
 function ping(m){
   const t=AC.currentTime, o=AC.createOscillator(), g=AC.createGain();
-  o.type="triangle";
+  const sustainValue = sustainSlider ? (Number(sustainSlider.value) / 100) : 0.5;
+  const volumeValue = volumeSlider ? (Number(volumeSlider.value) / 100) : 0.75;
+  const selectedSound = soundTypeSelect ? soundTypeSelect.value : "warm";
+  o.type = selectedSound === "warm" ? "triangle" : selectedSound;
   o.frequency.value=midiToFreq(m);
   o.connect(g); g.connect(AC.destination);
+  const attack = 0.01;
+  const holdTime = 0.18 + (sustainValue * 0.9);
+  const releaseTime = 0.25 + (sustainValue * 0.9);
+  const peakGain = Math.max(0.02, volumeValue * 0.32);
+  const sustainGain = peakGain * (0.55 + sustainValue * 0.25);
   g.gain.setValueAtTime(0,t);
-  g.gain.linearRampToValueAtTime(0.22,t+0.01);
-  g.gain.linearRampToValueAtTime(0.12,t+0.18);
-  g.gain.exponentialRampToValueAtTime(0.0008,t+0.70);
-  o.start(t); o.stop(t+0.72);
+  g.gain.linearRampToValueAtTime(peakGain,t+attack);
+  g.gain.linearRampToValueAtTime(sustainGain,t+holdTime);
+  g.gain.exponentialRampToValueAtTime(0.0008,t+holdTime+releaseTime);
+  o.start(t); o.stop(t+holdTime+releaseTime+0.02);
 }
 function playVoicing(){ voicingMidis.forEach(ping); }
+function clearPlayedKeyHighlights(){
+  document.querySelectorAll(".white.playing-note,.black.playing-note").forEach(el=>{
+    el.classList.remove("playing-note");
+  });
+}
+function flashPlayedKeys(midis, durationMs=520){
+  clearPlayedKeyHighlights();
+  midis.forEach(m=>{
+    document.querySelectorAll(`.white[data-m="${m}"],.black[data-m="${m}"]`).forEach(el=>{
+      el.classList.add("playing-note");
+      window.setTimeout(()=>el.classList.remove("playing-note"), durationMs);
+    });
+  });
+}
 
 // ===== Names =====
 const pcName = pc => (accPref === "b" ? N_FLAT[pc] : N_SHARP[pc]);
@@ -126,15 +162,6 @@ function arraysEqual(a,b){
   for(let i=0;i<a.length;i++) if(a[i]!==b[i]) return false;
   return true;
 }
-function isChordAllowed(qualKey){
-  if(window.CL_IS_PRO) return true;
-
-  if(window.CL_IS_LOGGED_IN){
-    return FREE_CHORD_KEYS.includes(qualKey);
-  }
-
-  return GUEST_CHORD_KEYS.includes(qualKey);
-}
 function updateInvertState(dir){
   // If we're back at base, clear highlight; otherwise keep the last direction.
   if(baseVoicingMidis && arraysEqual(baseVoicingMidis, voicingMidis)){
@@ -148,6 +175,9 @@ function updateInvertState(dir){
 
 // ===== Chat helper =====
 
+function isChordAllowed(qualKey){
+  return window.CL_IS_PRO || (window.CL_IS_LOGGED_IN ? ["maj","min","7","maj7","m7","sus2","sus4","add9"] : ["maj","min","7","maj7","sus4"]).includes(qualKey);
+}
 
 let lastAllowedQual = "";
 
@@ -159,37 +189,74 @@ function showProNotice(qualKey){
   const v = QUAL[qualKey];
   const name = v ? v.name : qualKey;
 
-  let text = "";
-
-  if(!window.CL_IS_LOGGED_IN){
-    text = `
-      Akkorden <strong>${name}</strong> er tilgjengelig for medlemmer.<br><br>
-      <span class="pro-cta-sub">
-        Opprett gratis konto
-      </span>
-      eller
-      <span class="pro-cta-sub">
-        bli VIP-medlem
-      </span>
-    `;
-  } else {
-    text = `
-      Akkorden <strong>${name}</strong> er en premium-akkord.<br>
-      <span class="pro-cta-sub">
-        Oppgrader til VIP-medlemskap
-      </span>
-    `;
-  }
-
   el.innerHTML = `
-    <a class="pro-cta pro-cta--promo"
-       href="/members/upgrade.php"
-       target="_top">
-       ${text}
-    </a>
+    <a class="pro-cta pro-cta--promo" href="/members/upgrade.php" target="_top">The chord <strong>${name}</strong> is available in the Pro version. You can choose another chord, or <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.    </a>
   `;
 
   card.style.display = "block";
+}
+
+function setDataSourceBadge(state){
+  dataSourceState = state;
+  const el = document.getElementById("dataSourceBadge");
+  if(!el) return;
+  if(state === "live"){
+    el.textContent = "Live chord formulas";
+    el.title = "Chord formulas loaded from the ChordLink music API.";
+  } else if(state === "fallback"){
+    el.textContent = "Local chord formulas";
+    el.title = "Using built-in chord formulas because live data is unavailable.";
+  } else {
+    el.textContent = "Local chord formulas";
+    el.title = "Using built-in chord formulas because live data is unavailable.";
+  }
+}
+
+function normalizeApiRows(rows){
+  if(!Array.isArray(rows)) return [];
+  return rows
+    .map((row)=>{
+      const slug = (row?.slug || "").toString().trim();
+      const name = (row?.name || "").toString().trim();
+      const intervals =
+        row?.data?.iv ??
+        row?.data?.intervals ??
+        row?.data?.formula ??
+        row?.formula ??
+        row?.intervals;
+      if(!slug || !name || !Array.isArray(intervals) || !intervals.length) return null;
+      const iv = intervals.map(v => Number(v)).filter(v => Number.isFinite(v));
+      if(!iv.length) return null;
+      return { slug, name, iv };
+    })
+    .filter(Boolean);
+}
+
+async function loadChordData(){
+  setDataSourceBadge("fallback");
+  const candidates = [
+    "/tools/shared/music.php?type=chord_formula&instrument=general"
+  ];
+  try {
+    let rows = [];
+    for(const url of candidates){
+      const resp = await fetch(url, { credentials: "same-origin" });
+      if(!resp.ok) continue;
+      const payload = await resp.json();
+      rows = normalizeApiRows(payload?.results);
+      if(rows.length) break;
+    }
+    if(!rows.length) throw new Error("No valid rows from API");
+    const nextQual = {};
+    rows.forEach((row)=>{
+      nextQual[row.slug] = { name: row.name, iv: row.iv };
+    });
+    QUAL = { ...LOCAL_QUAL, ...nextQual };
+    setDataSourceBadge("live");
+  } catch (_err){
+    QUAL = { ...LOCAL_QUAL };
+    setDataSourceBadge("fallback");
+  }
 }
 
 
@@ -215,7 +282,7 @@ function buildSelectors(){
   qualSel.innerHTML = "";
 const ph = document.createElement("option");
 ph.value = "";
-ph.textContent = "— Velg akkordkvalitet —";
+ph.textContent = "— Select chord quality —";
 ph.selected = true;
 qualSel.appendChild(ph);
 
@@ -238,7 +305,6 @@ qualSel.appendChild(ph);
 // ===== Piano render =====
 const WHITE_PCS=[0,2,4,5,7,9,11];
 const BLACK_AFTER={0:1,2:3,4:null,5:6,7:8,9:10,11:null};
-
 
 function renderOctave(oct){
   const octWrap=document.createElement("div");
@@ -372,8 +438,24 @@ function candidateLabel(rootPc, qualKey){
     "7":"7",
     sus2:"sus2",
     sus4:"sus4",
+    aug:"aug",
+    dim:"dim",
+    dim7:"dim7",
     add9:"add9",
+    madd9:"madd9",
+    add11:"add11",
+    madd11:"madd11",
     "6":"6",
+    m6:"m6",
+    "69":"6/9",
+    mMaj7:"mMaj7",
+    augMaj7:"augMaj7",
+    "7sus4":"7sus4",
+    "7b5":"7♭5",
+    "7#5":"7♯5",
+    "7b9":"7♭9",
+    "7#9":"7♯9",
+    "9sus4":"9sus4",
     m9:"m9",
     maj9:"maj9",
     "9":"9",
@@ -472,9 +554,9 @@ function drawChordName(){
       let label = cand.best.label;
       if(bassPc!==cand.best.rootPc) label += "/"+pcName(bassPc);
       const alts = cand.alts && cand.alts.length
-        ? "  ·  Alternativer: " + cand.alts.slice(0,3).map(x => (bassPc!==x.rootPc ? x.label + "/" + pcName(bassPc) : x.label)).join(", ")
+        ? "  ·  Alternatives: " + cand.alts.slice(0,3).map(x => (bassPc!==x.rootPc ? x.label + "/" + pcName(bassPc) : x.label)).join(", ")
         : "";
-      el.textContent = `Gjennkjendt: ${label}${alts}`;
+      el.textContent = `Detected: ${label}${alts}`;
       return;
     }
   }
@@ -489,8 +571,24 @@ function drawChordName(){
     "7":"7",
     sus2:"sus2",
     sus4:"sus4",
+    aug:"aug",
+    dim:"dim",
+    dim7:"dim7",
     add9:"add9",
+    madd9:"madd9",
+    add11:"add11",
+    madd11:"madd11",
     "6":"6",
+    m6:"m6",
+    "69":"6/9",
+    mMaj7:"mMaj7",
+    augMaj7:"augMaj7",
+    "7sus4":"7sus4",
+    "7b5":"7♭5",
+    "7#5":"7♯5",
+    "7b9":"7♭9",
+    "7#9":"7♯9",
+    "9sus4":"9sus4",
     m9:"m9",
     maj9:"maj9",
     "9":"9",
@@ -513,6 +611,48 @@ function drawChordName(){
   el.textContent=label;
 }
 
+function intervalLabel(iv){
+  const labels = {
+    0:"1",
+    1:"b2",
+    2:"2",
+    3:"b3",
+    4:"3",
+    5:"4",
+    6:"b5",
+    7:"5",
+    8:"#5",
+    9:"6",
+    10:"b7",
+    11:"7",
+    13:"b9",
+    14:"9",
+    15:"#9",
+    17:"11",
+    18:"#11",
+    21:"13"
+  };
+  return labels[iv] || String(iv);
+}
+
+function updateChordFacts(){
+  const notesEl = document.getElementById("chordNotes");
+  const intervalsEl = document.getElementById("chordIntervals");
+  if(!notesEl || !intervalsEl) return;
+
+  if(!voicingMidis.length){
+    notesEl.textContent = "-";
+    intervalsEl.textContent = "-";
+    return;
+  }
+
+  const q = document.getElementById("qual").value || "maj";
+  const chord = QUAL[q];
+  const notes = voicingMidis.map(m => pcName(mod(m, 12)));
+  notesEl.textContent = notes.join(" - ");
+  intervalsEl.textContent = chord ? chord.iv.map(intervalLabel).join(" - ") : "-";
+}
+
 function clampAndShow(){
   const showAll=document.getElementById("showAll").checked;
   const active=new Set();
@@ -532,6 +672,7 @@ function clampAndShow(){
   drawHighlights(active);
   drawBadges(active);
   drawChordName();
+  updateChordFacts();
 }
 
 // ===== Interaction =====
@@ -632,7 +773,7 @@ function clearAll(){
 
 // ===== Init =====
 document.addEventListener("DOMContentLoaded",()=>{
-  buildSelectors();
+  loadChordData().finally(buildSelectors);
   renderPiano();
 
   // Defaults – ingen auto-visning før «Spill»
@@ -657,6 +798,8 @@ if(playBtn) playBtn.addEventListener("click", ()=>{
   if(!isChordAllowed(q)) { showProNotice(q); return; }
 
   if(!voicingMidis.length) applyChord(false);
+  clampAndShow();
+  flashPlayedKeys(voicingMidis);
   playVoicing();
 });
 
@@ -695,26 +838,4 @@ if(anchorSel) anchorSel.addEventListener("change", ()=>{
 });
 
   clampAndShow();
-  renderUserStatus();
 });
-
-
-function renderUserStatus(){
-  const el = document.getElementById("rkUserStatus");
-  if(!el) return;
-
-  if(!window.CL_IS_LOGGED_IN){
-    el.innerHTML = `Ikke innlogget – <a href="/members/login.php">Logg inn</a>`;
-    return;
-  }
-
-  const plan = (window.CL_USER_PLAN || "").toLowerCase();
-
-  let label = "Free";
-
-  if(plan === "vip") label = "VIP";
-  else if(plan === "pro") label = "Pro";
-  else if(plan === "admin") label = "Admin";
-
-  el.innerHTML = `Plan: <strong>${label}</strong>`;
-}

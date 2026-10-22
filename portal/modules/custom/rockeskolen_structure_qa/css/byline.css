@@ -1,0 +1,22 @@
+.node-type-musikk-i-praksis .node-submitted-details {
+  flex-wrap: wrap;
+  line-height: 1.45;
+  row-gap: 0.35rem;
+}
+
+.node-type-musikk-i-praksis .node-submitted-details > span:first-child {
+  align-items: baseline;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.node-type-musikk-i-praksis .rs-byline__coauthor {
+  margin-inline-start: 0.35em;
+}
+
+@media (max-width: 600px) {
+  .node-type-musikk-i-praksis .node-submitted-details {
+    align-items: flex-start;
+  }
+}
+

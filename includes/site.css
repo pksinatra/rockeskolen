@@ -17,6 +17,59 @@
   --heading: Roboto, "Arial Black", system-ui, sans-serif;
 }
 
+/* Ren forside: kun de to hovedinngangene til Rockeskolen. */
+.home-clean{min-height:100vh;background:#080a10}.home-gateway{width:min(1380px,calc(100% - 40px));min-height:100vh;margin:0 auto;padding:34px 0 24px}.home-header{display:grid;grid-template-columns:minmax(180px,290px) minmax(0,760px);align-items:end;justify-content:space-between;gap:48px;padding:0 4px 34px}.home-logo{display:block;width:min(290px,100%)}.home-intro{justify-self:end}.home-intro .eyebrow{margin-bottom:9px}.home-intro h1{margin:0;max-width:760px;font-size:clamp(42px,6vw,80px);line-height:.92;text-transform:uppercase}.home-intro>p:last-child{max-width:660px;margin:18px 0 0;color:#b9bbc3;font-size:clamp(16px,1.6vw,20px);line-height:1.55}.gateway-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:clamp(470px,62vh,700px);border:1px solid rgba(255,255,255,.14)}.gateway-card{position:relative;isolation:isolate;display:flex;align-items:flex-end;min-height:100%;overflow:hidden;padding:clamp(28px,4.5vw,64px);color:#fff;background-position:center;background-size:cover}.gateway-card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,5,11,.18),rgba(3,5,11,.92) 78%);transition:background .25s ease}.gateway-card::after{content:"";position:absolute;inset:0;z-index:-2;background:inherit;background-position:center;background-size:cover;transition:transform .45s ease}.gateway-card+.gateway-card{border-left:1px solid rgba(255,255,255,.18)}.gateway-card--digital{background-image:url('/images/computermusic.jpg')}.gateway-card--courses{background-image:url('/images/rockeskolen-hero.png')}.gateway-card:hover::before{background:linear-gradient(180deg,rgba(3,5,11,.08),rgba(3,5,11,.85) 78%)}.gateway-card:hover::after{transform:scale(1.025)}.gateway-card:focus-visible{outline:3px solid #ff3030;outline-offset:-6px}.gateway-card__copy{max-width:570px}.gateway-card__label{margin:0 0 12px;color:#ff4545;font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.gateway-card h2{margin:0;font-size:clamp(34px,4.5vw,64px);line-height:.95;text-transform:uppercase}.gateway-card__copy>p:not(.gateway-card__label){max-width:530px;margin:18px 0 0;color:rgba(255,255,255,.83);font-size:clamp(16px,1.35vw,19px);line-height:1.55}.gateway-card__copy>span{display:inline-flex;gap:10px;margin-top:24px;padding-bottom:5px;border-bottom:2px solid #f00000;font-weight:900}.home-footer{display:flex;justify-content:space-between;gap:20px;padding:18px 4px 0;color:#858893;font-size:13px}@media(max-width:760px){.home-gateway{width:min(100% - 22px,1380px);padding-top:20px}.home-header{grid-template-columns:1fr;gap:24px;padding-bottom:24px}.home-logo{width:min(230px,65vw)}.home-intro{justify-self:start}.gateway-grid{grid-template-columns:1fr;min-height:0}.gateway-card{min-height:430px}.gateway-card+.gateway-card{border-left:0;border-top:1px solid rgba(255,255,255,.18)}}@media(max-width:480px){.gateway-card{min-height:390px;padding:24px}.home-footer{display:grid;gap:4px}}
+
+/* Toppfelt og introduksjon på den rene forsiden. */
+.home-header{display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:92px;padding:8px 4px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
+.home-brand{display:inline-flex;align-items:center;flex:0 0 auto}
+.home-logo{width:min(230px,42vw);max-height:74px;object-fit:contain}
+.home-nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(20px,3vw,44px);flex-wrap:wrap}
+.home-nav a{position:relative;display:inline-flex;align-items:center;min-height:40px;color:#fff;font-size:15px;font-weight:800}
+.home-nav a::after{content:"";position:absolute;left:0;bottom:2px;width:22px;height:2px;background:linear-gradient(90deg,var(--red),var(--hot));transition:width .2s ease}
+.home-nav a:hover::after{width:100%}
+.home-intro{max-width:760px;padding:34px 4px 30px}
+.home-intro .eyebrow{margin-bottom:8px}
+.home-intro h1{max-width:none;font-size:clamp(34px,4.2vw,58px);line-height:.98}
+.home-intro>p:last-child{max-width:620px;margin-top:14px;font-size:clamp(16px,1.35vw,19px)}
+@media(max-width:760px){.home-header{display:flex;align-items:flex-start;gap:18px;padding-bottom:18px}.home-nav{gap:8px 20px}.home-nav a{font-size:14px}.home-intro{padding:26px 2px 24px}}
+@media(max-width:560px){.home-header{display:grid}.home-logo{width:min(220px,68vw)}.home-nav{justify-content:flex-start}.home-intro h1{font-size:clamp(32px,11vw,46px)}}
+
+/* Recruitment campaign for Rockeskolen's first 100 free members. */
+.member-campaign{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);align-items:center;gap:clamp(28px,5vw,74px);margin:0 0 28px;padding:clamp(25px,4vw,44px);border:1px solid rgba(255,65,72,.52);background:linear-gradient(120deg,rgba(227,27,35,.2),transparent 48%),#151822;box-shadow:0 24px 65px rgba(0,0,0,.28)}
+.member-campaign__goal{margin:0 0 10px;color:#ff6268;font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.member-campaign h2{margin:0;color:#fff;font-family:var(--heading);font-size:clamp(34px,4.4vw,62px);line-height:.95;text-transform:uppercase}
+.member-campaign__copy>p:last-child{max-width:760px;margin:18px 0 0;color:#c4c6cf;font-size:17px;line-height:1.6}
+.member-campaign__actions{display:flex;align-items:flex-start;flex-direction:column;gap:10px}
+.member-campaign__actions>a{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:50px;padding:12px 16px;border:1px solid rgba(255,255,255,.2);font-weight:900}
+.member-campaign__primary{border-color:#ed1c24!important;background:linear-gradient(90deg,#f3272f,#bc0e15);color:#fff!important}
+.member-campaign__secondary{color:#fff!important}
+.member-campaign__actions>p{margin:5px 0 0;color:#9da1ac;font-size:13px;line-height:1.5}
+.member-campaign__actions>p strong{color:#fff}
+@media(max-width:850px){.member-campaign{grid-template-columns:1fr}.member-campaign__actions{max-width:560px}}
+@media(max-width:520px){.member-campaign{padding:22px 18px}.member-campaign__copy>p:last-child{font-size:15px}}
+
+/* Kontakt på kurs- og workshopsiden. */
+.contact-section{display:grid;grid-template-columns:minmax(0,.82fr) minmax(420px,1.18fr);gap:clamp(34px,6vw,82px);align-items:start;padding-top:76px;padding-bottom:82px;scroll-margin-top:24px}
+.contact-copy h2{margin:0;font-size:clamp(34px,4vw,58px);line-height:1}
+.contact-copy>p:not(.eyebrow){color:#b9bbc3;font-size:17px;line-height:1.65}
+.contact-email a{color:#fff;font-weight:900;border-bottom:2px solid var(--red)}
+.contact-form{position:relative;display:grid;gap:20px;padding:clamp(24px,4vw,42px);border:1px solid var(--soft-line);background:rgba(24,26,37,.86);box-shadow:var(--shadow)}
+.contact-field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.contact-form label{display:grid;gap:8px;color:#f4f4f6;font-size:14px;font-weight:800}
+.contact-form label span{color:var(--hot)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;border:1px solid #4b4f5c;border-radius:2px;background:#0e1119;color:#fff;font:inherit;font-weight:400;padding:13px 14px;outline:none}
+.contact-form textarea{resize:vertical;min-height:138px;line-height:1.5}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--hot);box-shadow:0 0 0 3px rgba(255,59,59,.16)}
+.contact-submit{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.contact-submit small{max-width:280px;color:#9397a3;line-height:1.45}
+.form-notice{padding:14px 16px;border-left:3px solid;font-weight:800;line-height:1.45}
+.form-notice--success{border-color:#48c774;background:rgba(72,199,116,.12)}
+.form-notice--error{border-color:var(--hot);background:rgba(255,59,59,.12)}
+.contact-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+@media(max-width:860px){.contact-section{grid-template-columns:1fr;padding-top:58px}.contact-copy{max-width:700px}}
+@media(max-width:580px){.contact-field-row{grid-template-columns:1fr}.contact-form{padding:22px 18px}.contact-submit{align-items:flex-start;flex-direction:column}}
+
 * { box-sizing: border-box; }
 html { background: var(--bg); scrollbar-color: var(--red) var(--panel); }
 body {
@@ -303,6 +356,80 @@ h1 {
   border-bottom: 1px solid var(--soft-line);
 }
 
+.school-invite {
+  border-top: 1px solid rgba(255,59,59,.34);
+  border-bottom: 1px solid rgba(255,59,59,.34);
+  background:
+    linear-gradient(115deg, rgba(255,0,0,.26), transparent 42%),
+    linear-gradient(160deg, #171a25, #080a11);
+}
+
+.school-invite-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(240px, .7fr);
+  align-items: center;
+  gap: 40px;
+  padding-top: 66px;
+  padding-bottom: 66px;
+}
+
+.school-invite h2,
+.pilot-panel h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(36px, 5vw, 66px);
+  line-height: .95;
+  text-transform: uppercase;
+}
+
+.school-invite p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: #c7c9d0;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.school-invite-actions { display: grid; gap: 12px; }
+
+.school-page { padding-top: 62px; }
+.school-hero { max-width: 1000px; margin-bottom: 34px; }
+.school-hero h1 { max-width: 980px; }
+.pilot-note { margin: 18px 0 0; color: var(--muted); font-size: 14px; }
+.school-section { width: 100%; }
+
+.pilot-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 42px;
+  margin: 30px 0 44px;
+  padding: 34px;
+  border: 1px solid rgba(255,59,59,.4);
+  background:
+    linear-gradient(135deg, rgba(255,0,0,.18), transparent 48%),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.check-list { margin: 0; padding: 0; list-style: none; }
+.check-list li {
+  position: relative;
+  padding: 10px 0 10px 34px;
+  color: #d7d8dd;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--soft-line);
+}
+.check-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 2px;
+  color: var(--hot);
+  font-weight: 950;
+}
+
+.school-copy h3 { margin-top: 0; font-size: 30px; }
+.school-copy ol { padding-left: 24px; }
+
 .band .section { padding: 64px 0; }
 .value-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .value {
@@ -442,6 +569,8 @@ h1 {
   .nav { justify-content: flex-start; gap: 14px; }
   .tool-grid, .value-grid, .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-head { align-items: flex-start; flex-direction: column; }
+  .school-invite-inner, .pilot-panel { grid-template-columns: 1fr; }
+  .school-invite-actions { display: flex; flex-wrap: wrap; }
 }
 
 @media (max-width: 640px) {

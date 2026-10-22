@@ -1,0 +1,16 @@
+{
+  "tools": {
+    "http": 200,
+    "chordflow": 1,
+    "kvintsirkel": 1,
+    "chordprogURL": "https://rockeskolen.com/tools/chordprog/",
+    "malformedLinks": 0
+  },
+  "front": {
+    "http": 200,
+    "chordflow": 1,
+    "kvintsirkel": 0,
+    "chordprogURL": "https://rockeskolen.com/tools/chordprog/",
+    "malformedLinks": 0
+  }
+}

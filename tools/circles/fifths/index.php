@@ -1,20 +1,12 @@
-<?php
-require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
-
-// Circle of Fifths is a public tool
-// Login is optional, Pro status is used only for feature gating
-
-$user = current_user();               // returnerer null / false hvis ikke innlogget
-$isLoggedIn = is_array($user);
-$isPro = $isLoggedIn && in_array($user['role'], ['pro','admin'], true);
-?>
+<?php require_once dirname(__DIR__, 2) . '/shared/bootstrap.php'; ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="<?= rs_updated_lang() ?>">
 <head>
   <meta charset="utf-8">
-  <title>Interaktiv kvintsirkel</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <?php chordlink_share_meta(['title' => 'Interactive Circle of Fifths | ChordLink', 'description' => 'Navigate keys, chords, scales, and harmonic relationships with an interactive circle of fifths.', 'path' => '/tools/circles/fifths/', 'image' => '/images/tools/chordlink-tool-circle-of-fifths-v1.png', 'width' => 1586, 'height' => 992]); ?>
+  <?php chordlink_app_header_styles(); ?>
   <link rel="stylesheet" href="./app.css">
 
   <!-- PHP → JS flags -->
@@ -27,11 +19,12 @@ $isPro = $isLoggedIn && in_array($user['role'], ['pro','admin'], true);
 </head>
 
 <body class="darkPremium">    
+<?php chordlink_app_header('Circle of Fifths'); ?>
 
 <header class="top">
   <div class="brand">
-    <h1>Interaktiv kvintsirkel</h1>
-    <div class="sub">Shift+klikk = parallel moll. <span class="build">Debug: TEST2_FULL</span></div>
+    <h1>INTERACTIVE CIRCLE OF FIFTHS</h1>
+    <div class="sub">Shift+click = relative minor.</div>
   </div>
 </header>
 
@@ -47,16 +40,16 @@ $isPro = $isLoggedIn && in_array($user['role'], ['pro','admin'], true);
     </div>
 
     <div class="section">
-      <div class="sectionTitle">Dur / Moll</div>
+      <div class="sectionTitle">Major / Minor</div>
       <div class="seg" role="tablist" aria-label="Choose major or minor">
-        <button type="button" class="segBtn isOn" data-quality="maj">Dur</button>
-        <button type="button" class="segBtn" data-quality="min">Moll</button>
+        <button type="button" class="segBtn isOn" data-quality="maj">Major</button>
+        <button type="button" class="segBtn" data-quality="min">Minor</button>
       </div>
     </div>
 
     <div class="section grid2">
       <div>
-        <div class="label">Oktav</div>
+        <div class="label">Octave</div>
         <select id="octSel" class="control">
           <option value="3">3</option>
           <option value="4" selected>4</option>
@@ -71,16 +64,17 @@ $isPro = $isLoggedIn && in_array($user['role'], ['pro','admin'], true);
     </div>
 
     <div class="section btnRow">
-      <button id="playChordBtn" class="btn primary">Spill akkord</button>
-      <button id="playScaleBtn" class="btn">Spill skala</button>
+      <button id="playChordBtn" class="btn primary">Play chord</button>
+      <button id="playScaleBtn" class="btn">Play scale</button>
       <button id="panicBtn" title="Stop all sound">⏹︎</button>
     </div>
 
     <div class="section hint">
-      Tips: <strong>Shift+klikk</strong> spiller den paralelle moll'en for valgte segment.
+      Tip: <strong>Shift+click</strong> plays the relative minor for the selected segment.
     </div>
   </aside>
 </main>
 
+<?php rs_updated_help('fifths'); ?>
 </body>
 </html>

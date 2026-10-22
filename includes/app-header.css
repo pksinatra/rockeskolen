@@ -1,0 +1,76 @@
+.rk-app-header{
+  width:100%;
+  background:rgba(2,3,18,.92);
+  border-bottom:1px solid rgba(255,255,255,.11);
+  color:#fff;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.rk-app-header__inner{
+  width:min(1180px, calc(100% - 32px));
+  min-height:76px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.rk-app-header__brand{
+  display:inline-flex;
+  align-items:center;
+  min-width:0;
+}
+
+.rk-app-header__brand img{
+  display:block;
+  width:min(210px, 42vw);
+  max-height:64px;
+  object-fit:contain;
+}
+
+.rk-app-header__nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.rk-app-header__nav a{
+  min-height:38px;
+  display:inline-flex;
+  align-items:center;
+  border:1px solid transparent;
+  border-radius:6px;
+  padding:7px 9px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:800;
+}
+
+.rk-app-header__nav a:hover,
+.rk-app-header__nav a[aria-current="page"]{
+  border-color:rgba(255,255,255,.2);
+  background:rgba(255,255,255,.07);
+}
+
+.rk-app-header__account{
+  background:linear-gradient(90deg,#ff0000,#cc0000);
+  border-color:rgba(255,255,255,.14) !important;
+  box-shadow:0 10px 24px rgba(255,0,0,.18);
+}
+
+@media (max-width:720px){
+  .rk-app-header__inner{
+    min-height:auto;
+    padding:12px 0;
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .rk-app-header__nav{
+    justify-content:flex-start;
+  }
+}

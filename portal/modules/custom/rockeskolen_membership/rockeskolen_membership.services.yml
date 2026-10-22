@@ -1,0 +1,30 @@
+services:
+  rockeskolen_membership.connection:
+    class: Drupal\rockeskolen_membership\MembershipConnection
+    arguments: ['@logger.channel.rockeskolen_membership']
+
+  logger.channel.rockeskolen_membership:
+    parent: logger.channel_base
+    arguments: ['rockeskolen_membership']
+
+  rockeskolen_membership.feide_subscriber:
+    class: Drupal\rockeskolen_membership\EventSubscriber\FeideMembershipSubscriber
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@database'
+      - '@rockeskolen_membership.connection'
+      - '@logger.channel.rockeskolen_membership'
+      - '@rockeskolen_membership.vip_grant_manager'
+      - '@rockeskolen_membership.school_entitlement_resolver'
+    tags:
+      - { name: event_subscriber }
+
+  rockeskolen_membership.vip_grant_manager:
+    class: Drupal\rockeskolen_membership\VipGrantManager
+    arguments:
+      - '@database'
+      - '@entity_type.manager'
+
+  rockeskolen_membership.school_entitlement_resolver:
+    class: Drupal\rockeskolen_membership\SchoolEntitlementResolver

@@ -1,0 +1,1708 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 30,
+    "results": [
+        {
+            "id": 308,
+            "type": "guitar_chord",
+            "name": "F#",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#",
+            "data": {
+                "symbol": "F#",
+                "bookSymbol": "F#",
+                "root": "F#",
+                "quality": "major",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "aliases": [
+                    "Gb"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Standard F# E-form barre (2. bånd)"
+                    },
+                    {
+                        "id": "fsharp-a-shape-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            11,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "F# A-form barre (9. bånd)"
+                    }
+                ],
+                "slug": "f#"
+            }
+        },
+        {
+            "id": 311,
+            "type": "guitar_chord",
+            "name": "F#aug",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#aug",
+            "data": {
+                "symbol": "F#aug",
+                "bookSymbol": "F#+",
+                "root": "F#",
+                "quality": "aug",
+                "family": "aug",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5"
+                ],
+                "aliases": [
+                    "F#+",
+                    "Gbaug",
+                    "Gb+"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpaug-open-x4322x",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            3,
+                            3,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "C##",
+                            "F#",
+                            "A#",
+                            "C##"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#aug"
+            }
+        },
+        {
+            "id": 310,
+            "type": "guitar_chord",
+            "name": "F#dim",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#dim",
+            "data": {
+                "symbol": "F#dim",
+                "bookSymbol": "F#dim",
+                "root": "F#",
+                "quality": "dim",
+                "family": "dim",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5"
+                ],
+                "aliases": [
+                    "F#°",
+                    "Gb°"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpdim-shape-2",
+                        "frets": [
+                            2,
+                            3,
+                            4,
+                            2,
+                            -1,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            3,
+                            1,
+                            0,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "F#",
+                            "A",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#dim"
+            }
+        },
+        {
+            "id": 309,
+            "type": "guitar_chord",
+            "name": "F#m",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m",
+            "data": {
+                "symbol": "F#m",
+                "bookSymbol": "F#m",
+                "root": "F#",
+                "quality": "minor",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "aliases": [
+                    "Gbm"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpm-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#m E-form barre (2. bånd)"
+                    },
+                    {
+                        "id": "fsharpm-a-shape-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            11,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "F#m A-form barre (9. bånd)"
+                    }
+                ],
+                "slug": "f#m"
+            }
+        },
+        {
+            "id": 322,
+            "type": "guitar_chord",
+            "name": "F#11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#11",
+            "data": {
+                "symbol": "F#11",
+                "bookSymbol": "F#11",
+                "root": "F#",
+                "quality": "major",
+                "family": "11",
+                "formulaDegrees": [
+                    "1",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [
+                    "Gb11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp11-shape-2",
+                        "frets": [
+                            2,
+                            2,
+                            2,
+                            1,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            2,
+                            1,
+                            2,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "G#",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#11"
+            }
+        },
+        {
+            "id": 323,
+            "type": "guitar_chord",
+            "name": "F#13",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#13",
+            "data": {
+                "symbol": "F#13",
+                "bookSymbol": "F#13",
+                "root": "F#",
+                "quality": "major",
+                "family": "13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [
+                    "Gb13"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp13-shape-2",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            3,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#13"
+            }
+        },
+        {
+            "id": 347,
+            "type": "guitar_chord",
+            "name": "F#13sus4",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#13sus4",
+            "data": {
+                "symbol": "F#13sus4",
+                "bookSymbol": "F#13sus4",
+                "root": "F#",
+                "quality": "major",
+                "family": "13sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-13sus4-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            9,
+                            12,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "B",
+                            "D#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#13sus4"
+            }
+        },
+        {
+            "id": 338,
+            "type": "guitar_chord",
+            "name": "F#5",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#5",
+            "data": {
+                "symbol": "F#5",
+                "bookSymbol": "F#5",
+                "root": "F#",
+                "quality": "major",
+                "family": "5",
+                "formulaDegrees": [
+                    "1",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-5-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            11,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#5 Power chord (A-root)"
+                    }
+                ],
+                "slug": "f#5"
+            }
+        },
+        {
+            "id": 312,
+            "type": "guitar_chord",
+            "name": "F#6",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#6",
+            "data": {
+                "symbol": "F#6",
+                "bookSymbol": "F#6",
+                "root": "F#",
+                "quality": "major",
+                "family": "6",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [
+                    "Gb6"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp6-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            3,
+                            4,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "D#",
+                            "F#"
+                        ],
+                        "source": "F#6 basert på F6-form transponert"
+                    }
+                ],
+                "slug": "f#6"
+            }
+        },
+        {
+            "id": 339,
+            "type": "guitar_chord",
+            "name": "F#6\/9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#6-9",
+            "data": {
+                "symbol": "F#6\/9",
+                "bookSymbol": "F#6\/9",
+                "root": "F#",
+                "quality": "major",
+                "family": "69",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-69-a9",
+                        "frets": [
+                            -1,
+                            11,
+                            11,
+                            11,
+                            11,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "D#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#6-9"
+            }
+        },
+        {
+            "id": 314,
+            "type": "guitar_chord",
+            "name": "F#7",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7",
+            "data": {
+                "symbol": "F#7",
+                "bookSymbol": "F#7",
+                "root": "F#",
+                "quality": "major",
+                "family": "7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [
+                    "Gb7"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            2,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#7 E-form barre"
+                    }
+                ],
+                "slug": "f#7"
+            }
+        },
+        {
+            "id": 325,
+            "type": "guitar_chord",
+            "name": "F#7#9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7#9",
+            "data": {
+                "symbol": "F#7#9",
+                "bookSymbol": "F#7(#9)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [
+                    "Gb7#9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7#9-shape-2",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            2,
+                            5,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            2,
+                            2,
+                            3,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G##",
+                            "E"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#7#9"
+            }
+        },
+        {
+            "id": 349,
+            "type": "guitar_chord",
+            "name": "F#7(#5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7-#5",
+            "data": {
+                "symbol": "F#7(#5)",
+                "bookSymbol": "F#7(#5)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-7#5-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            12,
+                            9,
+                            11,
+                            10
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C##",
+                            "E",
+                            "A#",
+                            "C##"
+                        ],
+                        "source": "F#7(#5) 7#5 (A-root)"
+                    }
+                ],
+                "slug": "f#7-#5"
+            }
+        },
+        {
+            "id": 348,
+            "type": "guitar_chord",
+            "name": "F#7(b5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7-b5",
+            "data": {
+                "symbol": "F#7(b5)",
+                "bookSymbol": "F#7(b5)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-7b5-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            9,
+                            11,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "E",
+                            "A#",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#7-b5"
+            }
+        },
+        {
+            "id": 324,
+            "type": "guitar_chord",
+            "name": "F#7b9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7b9",
+            "data": {
+                "symbol": "F#7b9",
+                "bookSymbol": "F#7(b9)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [
+                    "Gb7b9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7b9-shape-2",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            0,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            2,
+                            0,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#7b9"
+            }
+        },
+        {
+            "id": 345,
+            "type": "guitar_chord",
+            "name": "F#7sus2",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7sus2",
+            "data": {
+                "symbol": "F#7sus2",
+                "bookSymbol": "F#7sus2",
+                "root": "F#",
+                "quality": "major",
+                "family": "7sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-7sus2-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#7sus2"
+            }
+        },
+        {
+            "id": 344,
+            "type": "guitar_chord",
+            "name": "F#7sus4",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7sus4",
+            "data": {
+                "symbol": "F#7sus4",
+                "bookSymbol": "F#7sus4",
+                "root": "F#",
+                "quality": "major",
+                "family": "7sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-7sus4-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            9,
+                            12,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "B",
+                            "C#"
+                        ],
+                        "source": "F#7sus4 7sus4 (A-root)"
+                    }
+                ],
+                "slug": "f#7sus4"
+            }
+        },
+        {
+            "id": 321,
+            "type": "guitar_chord",
+            "name": "F#9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#9",
+            "data": {
+                "symbol": "F#9",
+                "bookSymbol": "F#9",
+                "root": "F#",
+                "quality": "major",
+                "family": "9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [
+                    "Gb9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp9-shape-2",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#9 tett voicing"
+                    }
+                ],
+                "slug": "f#9"
+            }
+        },
+        {
+            "id": 346,
+            "type": "guitar_chord",
+            "name": "F#9sus4",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#9sus4",
+            "data": {
+                "symbol": "F#9sus4",
+                "bookSymbol": "F#9sus4",
+                "root": "F#",
+                "quality": "major",
+                "family": "9sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-9sus4-a9",
+                        "frets": [
+                            -1,
+                            11,
+                            11,
+                            11,
+                            12,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "F#",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#9sus4"
+            }
+        },
+        {
+            "id": 320,
+            "type": "guitar_chord",
+            "name": "F#add9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#add9",
+            "data": {
+                "symbol": "F#add9",
+                "bookSymbol": "F#add9",
+                "root": "F#",
+                "quality": "major",
+                "family": "add9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [
+                    "Gbadd9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpadd9-open",
+                        "frets": [
+                            2,
+                            4,
+                            -1,
+                            3,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "A#",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#add9"
+            }
+        },
+        {
+            "id": 317,
+            "type": "guitar_chord",
+            "name": "F#m(maj7)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m-maj7",
+            "data": {
+                "symbol": "F#m(maj7)",
+                "bookSymbol": "F#m(maj7)",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m(maj7)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [
+                    "Gbm(maj7)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmmaj7-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            3,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            3,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#m(maj7) E-form type"
+                    }
+                ],
+                "slug": "f#m-maj7"
+            }
+        },
+        {
+            "id": 313,
+            "type": "guitar_chord",
+            "name": "F#m6",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m6",
+            "data": {
+                "symbol": "F#m6",
+                "bookSymbol": "F#m6",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m6",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [
+                    "Gbm6"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpm6-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            2,
+                            4,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "D#",
+                            "F#"
+                        ],
+                        "source": "F#m6 tett voicing"
+                    }
+                ],
+                "slug": "f#m6"
+            }
+        },
+        {
+            "id": 340,
+            "type": "guitar_chord",
+            "name": "F#m6\/9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m6-9",
+            "data": {
+                "symbol": "F#m6\/9",
+                "bookSymbol": "F#m6\/9",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m69",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-m69-a9",
+                        "frets": [
+                            -1,
+                            11,
+                            11,
+                            11,
+                            10,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "D#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#m6-9"
+            }
+        },
+        {
+            "id": 315,
+            "type": "guitar_chord",
+            "name": "F#m7",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m7",
+            "data": {
+                "symbol": "F#m7",
+                "bookSymbol": "F#m7",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [
+                    "Gbm7"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpm7-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            2,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#m7 E-form barre"
+                    }
+                ],
+                "slug": "f#m7"
+            }
+        },
+        {
+            "id": 341,
+            "type": "guitar_chord",
+            "name": "F#m7(b5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m7-b5",
+            "data": {
+                "symbol": "F#m7(b5)",
+                "bookSymbol": "F#m7(b5)",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m7b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-m7b5-a9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            9,
+                            10,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            3,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "E",
+                            "A",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#m7-b5"
+            }
+        },
+        {
+            "id": 343,
+            "type": "guitar_chord",
+            "name": "F#m9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m9",
+            "data": {
+                "symbol": "F#m9",
+                "bookSymbol": "F#m9",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-m9-a9",
+                        "frets": [
+                            -1,
+                            11,
+                            11,
+                            11,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#m9"
+            }
+        },
+        {
+            "id": 316,
+            "type": "guitar_chord",
+            "name": "F#maj7",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#maj7",
+            "data": {
+                "symbol": "F#maj7",
+                "bookSymbol": "F#maj7",
+                "root": "F#",
+                "quality": "major",
+                "family": "maj7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [
+                    "Gbmaj7"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmaj7-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            3,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#maj7 E-form type"
+                    }
+                ],
+                "slug": "f#maj7"
+            }
+        },
+        {
+            "id": 342,
+            "type": "guitar_chord",
+            "name": "F#maj9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#maj9",
+            "data": {
+                "symbol": "F#maj9",
+                "bookSymbol": "F#maj9",
+                "root": "F#",
+                "quality": "major",
+                "family": "maj9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "fsharp-maj9-a9",
+                        "frets": [
+                            -1,
+                            11,
+                            11,
+                            11,
+                            11,
+                            13
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "E#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "f#maj9"
+            }
+        },
+        {
+            "id": 318,
+            "type": "guitar_chord",
+            "name": "F#sus2",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#sus2",
+            "data": {
+                "symbol": "F#sus2",
+                "bookSymbol": "F#sus2",
+                "root": "F#",
+                "quality": "major",
+                "family": "sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5"
+                ],
+                "aliases": [
+                    "Gbsus2"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpsus2-open",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            1,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "G#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#sus2 inspirert av Fsus2-form"
+                    }
+                ],
+                "slug": "f#sus2"
+            }
+        },
+        {
+            "id": 319,
+            "type": "guitar_chord",
+            "name": "F#sus4",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#sus4",
+            "data": {
+                "symbol": "F#sus4",
+                "bookSymbol": "F#sus4",
+                "root": "F#",
+                "quality": "major",
+                "family": "sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5"
+                ],
+                "aliases": [
+                    "Gbsus4"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpsus4-e-shape-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            4,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "B",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "F#sus4 E-form sus-variant"
+                    }
+                ],
+                "slug": "f#sus4"
+            }
+        }
+    ]
+}

@@ -3,6 +3,16 @@ byline:
     theme:
       css/byline.css: {}
 
+composers:
+  css:
+    theme:
+      css/composers.css: {}
+  js:
+    js/composers.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 article-series:
   css:
     theme:

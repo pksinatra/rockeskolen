@@ -1,0 +1,76 @@
+[
+  {
+    "lang": "nb",
+    "role": "guest",
+    "result": "pass"
+  },
+  {
+    "lang": "nb",
+    "role": "free",
+    "result": "pass"
+  },
+  {
+    "lang": "nb",
+    "role": "pro",
+    "result": "pass"
+  },
+  {
+    "lang": "nb",
+    "role": "vip",
+    "result": "pass"
+  },
+  {
+    "lang": "nb",
+    "role": "admin",
+    "result": "pass"
+  },
+  {
+    "lang": "en",
+    "role": "guest",
+    "result": "pass"
+  },
+  {
+    "lang": "en",
+    "role": "free",
+    "result": "pass"
+  },
+  {
+    "lang": "en",
+    "role": "pro",
+    "result": "pass"
+  },
+  {
+    "lang": "en",
+    "role": "vip",
+    "result": "pass"
+  },
+  {
+    "lang": "en",
+    "role": "admin",
+    "result": "pass"
+  },
+  {
+    "app": "guitar-chords",
+    "mobileOverflow": false
+  },
+  {
+    "app": "piano-chords",
+    "mobileOverflow": true
+  },
+  {
+    "app": "guitar-scales",
+    "mobileOverflow": false
+  },
+  {
+    "app": "piano-scales",
+    "mobileOverflow": true
+  },
+  {
+    "app": "fifths",
+    "mobileOverflow": false
+  },
+  {
+    "app": "tuner",
+    "mobileOverflow": false
+  }
+]

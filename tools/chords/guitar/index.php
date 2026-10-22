@@ -1,42 +1,37 @@
-<?php
-session_start();
-$user = $_SESSION['user_chordlink'] ?? null;
-$isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
-?>
-
-
+<?php require_once dirname(__DIR__, 2) . '/shared/bootstrap.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= rs_updated_lang() ?>">
 <head>
   <meta charset="UTF-8" />
-  <title>ChordLink – Gitar-akkordfinner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <?php chordlink_share_meta(['title' => 'Guitar Chords | ChordLink', 'description' => 'Find guitar chord shapes, variants, and playable voicings.', 'path' => '/tools/chords/guitar/', 'image' => '/images/tools/chordlink-tool-guitar-chords-v1.png', 'width' => 1652, 'height' => 952]); ?>
 
-  <link rel="stylesheet" href="./app.css?v=12">
+  <?php chordlink_app_header_styles(); ?>
+  <link rel="stylesheet" href="./app.css?v=20260927-1">
 
   <!-- PHP → JS flags (må ligge før ui.js) -->
 <script>
-  window.CL_IS_PRO = <?= $isPro ? 'true' : 'false' ?>;
-  window.CL_IS_LOGGED_IN = <?= $user ? 'true' : 'false' ?>;
-  window.CL_USER_PLAN = <?= json_encode($user['role'] ?? 'guest') ?>;
+  window.CL_IS_PRO = <?php echo $isPro ? 'true' : 'false'; ?>;
+  window.CL_IS_LOGGED_IN = <?php echo $user ? 'true' : 'false'; ?>;
   window.CL_UPGRADE_URL = "/members/upgrade.php";
 </script>
 
 </head>
 <body>
+  <?php chordlink_app_header('Guitar Chords'); ?>
   <div class="page">
     <div class="card">
       <div class="header">
         <div class="title-row">
           <div>
-            <h1>ChordLink – Gitar-akkordfinner</h1>
+            <h1>Guitar Chords</h1>
             <div class="sub">
-              Velg grunntone og akkordtype. Verktøyet laster grep fra <code>*.json</code> og viser standard lærebokgrep først.
+              Choose a root and chord type to see standard textbook shapes first.
             </div>
           </div>
           <div>
             <button id="themeBtn" type="button">
-              Tema: <span id="themeLabel"></span>
+              Theme: <span id="themeLabel"></span>
             </button>
           </div>
         </div>
@@ -44,7 +39,7 @@ $isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
 
       <div class="row">
         <div class="field">
-          <label for="root">Grunntone</label>
+          <label for="root">Root</label>
             <select id="root">
               <option value="C">C</option>
               <option value="C#">C♯ / D♭</option>
@@ -63,16 +58,16 @@ $isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
 
 
         <div class="field">
-          <label for="extension">Akkordtype</label>
+          <label for="extension">Chord type</label>
           <select id="extension">
-            <option value="maj">Dur (treklang)</option>
-            <option value="min">Moll (treklang)</option>
+            <option value="maj">Major (triad)</option>
+            <option value="min">Minor (triad)</option>
             <option value="5">5 (power)</option>
             <option value="6">6</option>
             <option value="m6">m6</option>
             <option value="69">6/9</option>
             <option value="m69">m6/9</option>
-            <option value="m7">m7 (moll7)</option>
+            <option value="m7">m7</option>
             <option value="7">7</option>
             <option value="7sus2">7sus2</option>
             <option value="7sus4">7sus4</option>
@@ -92,9 +87,11 @@ $isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
             <option value="11">11</option>
             <option value="13">13</option>
             <option value="13sus4">13sus4</option>
-            <option value="altered">Legacy: Altererte akkorder</option>
+            <option value="altered">Legacy: altered bucket</option>
           </select>
         </div>
+
+
         <div class="field">
           <label for="variantSelect">Variant</label>
           <select id="variantSelect"></select>
@@ -104,15 +101,20 @@ $isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
       <div class="row" style="align-items:center; justify-content:space-between;">
         <div>
           <button id="playBtn" type="button">
-            ▶ Spill akkord
+            ▶ Play chord
           </button>
-          <button id="debugToggle" class="secondary" type="button">
-            Debug
-          </button>
-          <!-- Harmonics toggle is injected by JS after Debug (for stability) -->
-        </div>
-        <div class="small-note">
-          Aktiv: <code id="fileNameInfo"></code>
+          <label class="small-note" style="margin-left:10px;">Sound
+            <select id="soundType">
+              <option value="acoustic_guitar" selected>Acoustic guitar (MP3)</option>
+              <option value="triangle">Triangle</option>
+              <option value="sine">Sine</option>
+              <option value="square">Square</option>
+              <option value="sawtooth">Sawtooth</option>
+            </select>
+          </label>
+          <label class="small-note" style="margin-left:10px;">Sustain <input id="sustain" type="range" min="20" max="180" value="80"></label>
+          <label class="small-note" style="margin-left:10px;">Volume <input id="volume" type="range" min="0" max="100" value="78"></label>
+          <label class="small-note" style="margin-left:10px;">Drive <input id="drive" type="range" min="0" max="40" value="0"></label>
         </div>
       </div>
 
@@ -129,16 +131,14 @@ $isPro = ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true));
 
       <div id="fretboard"></div>
       <div class="small-note" id="variantInfo"></div>
-      <pre id="debug"></pre>
-      <div id="rkUserStatus" class="rk-status"></div>
-
     </div>
   </div>
-<p>ChordLink © 2026 by OVERTONE WORKS AS</p>
+  <?php rs_updated_help('guitar-chords'); ?>
+<p>Rockeskolen · ChordLink © 2026 OVERTONE WORKS AS</p>
   <!-- Tone.js from CDN -->
   <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
 
   <!-- Stable full UI (clone of Beta Final + inlays/harmonics) -->
-  <script src="./ui.js?v=13"></script>
+  <script src="./ui.js?v=20260927-1"></script>
 </body>
 </html>

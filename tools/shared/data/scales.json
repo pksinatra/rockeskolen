@@ -1,0 +1,1056 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 38,
+    "results": [
+        {
+            "id": 641,
+            "type": "scale",
+            "name": "Augmented scale",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "augmented_hex",
+            "data": {
+                "group": "sym",
+                "name": "Augmented scale",
+                "aliases": [
+                    "Augmented hexatonic",
+                    "Symmetric #5"
+                ],
+                "intervals": [
+                    0,
+                    3,
+                    4,
+                    7,
+                    8,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 635,
+            "type": "scale",
+            "name": "Blues pentatonic",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "pent_blues",
+            "data": {
+                "group": "pent",
+                "name": "Blues pentatonic",
+                "aliases": [
+                    "Minor blues pentatonic"
+                ],
+                "intervals": [
+                    0,
+                    3,
+                    5,
+                    6,
+                    7,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "b3",
+                    "4",
+                    "b5",
+                    "5",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 661,
+            "type": "scale",
+            "name": "Chromatic scale",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "chromatic",
+            "data": {
+                "group": "chrom",
+                "name": "Chromatic scale",
+                "aliases": [
+                    "Chromatic scale"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 648,
+            "type": "scale",
+            "name": "Diminished Lydian",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "diminished_lydian",
+            "data": {
+                "group": "melmm",
+                "name": "Diminished Lydian",
+                "aliases": [
+                    "Diminished Lydian"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    6,
+                    7,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 637,
+            "type": "scale",
+            "name": "Dominant pentatonic",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "mix_pent",
+            "data": {
+                "group": "pent",
+                "name": "Dominant pentatonic",
+                "aliases": [
+                    "Mixolydian pentatonic"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    5,
+                    7,
+                    9,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "4",
+                    "5",
+                    "6",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 628,
+            "type": "scale",
+            "name": "Dorian",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "dorian",
+            "data": {
+                "group": "modes",
+                "name": "Dorian",
+                "aliases": [
+                    "Dorian mode"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    5,
+                    7,
+                    9,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "b3",
+                    "4",
+                    "5",
+                    "6",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 652,
+            "type": "scale",
+            "name": "Double harmonic major",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "double_harmonic",
+            "data": {
+                "group": "world",
+                "name": "Double harmonic major",
+                "aliases": [
+                    "Double harmonic major",
+                    "Byzantine",
+                    "Arabic"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    4,
+                    5,
+                    7,
+                    8,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 655,
+            "type": "scale",
+            "name": "Enigmatic",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "enigmatic",
+            "data": {
+                "group": "world",
+                "name": "Enigmatic",
+                "aliases": [
+                    "Enigmatic scale (Verdi)"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    4,
+                    6,
+                    8,
+                    10,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 638,
+            "type": "scale",
+            "name": "Half–Whole diminished",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "half_whole_dim",
+            "data": {
+                "group": "sym",
+                "name": "Half–Whole diminished",
+                "aliases": [
+                    "Half–Whole diminished",
+                    "Diminished dominant",
+                    "Auxiliary diminished blues"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    4,
+                    6,
+                    7,
+                    9,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 626,
+            "type": "scale",
+            "name": "Harmonic minor",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "harm_minor",
+            "data": {
+                "group": "common",
+                "name": "Harmonic minor",
+                "aliases": [
+                    "Harmonic minor"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    5,
+                    7,
+                    8,
+                    11
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "b3",
+                    "4",
+                    "5",
+                    "b6",
+                    "7"
+                ]
+            }
+        },
+        {
+            "id": 649,
+            "type": "scale",
+            "name": "Leading whole-tone",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "leading_whole_tone",
+            "data": {
+                "group": "melmm",
+                "name": "Leading whole-tone",
+                "aliases": [
+                    "Leading whole tone"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    8,
+                    9,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 632,
+            "type": "scale",
+            "name": "Locrian",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "locrian",
+            "data": {
+                "group": "modes",
+                "name": "Locrian",
+                "aliases": [
+                    "Locrian mode"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    5,
+                    6,
+                    8,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "b2",
+                    "b3",
+                    "4",
+                    "b5",
+                    "b6",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 660,
+            "type": "scale",
+            "name": "Locrian major",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "locrian_major",
+            "data": {
+                "group": "other",
+                "name": "Locrian major",
+                "aliases": [
+                    "Locrian major",
+                    "Locrian nat. 2"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    5,
+                    6,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 630,
+            "type": "scale",
+            "name": "Lydian",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "lydian",
+            "data": {
+                "group": "modes",
+                "name": "Lydian",
+                "aliases": [
+                    "Lydian mode",
+                    "Maj7#11"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    7,
+                    9,
+                    11
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "3",
+                    "#4",
+                    "5",
+                    "6",
+                    "7"
+                ]
+            }
+        },
+        {
+            "id": 644,
+            "type": "scale",
+            "name": "Lydian augmented",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "lydian_aug",
+            "data": {
+                "group": "melmm",
+                "name": "Lydian augmented",
+                "aliases": [
+                    "Lydian augmented",
+                    "Melodic minor mode 3"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    8,
+                    9,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 645,
+            "type": "scale",
+            "name": "Lydian dominant (overtone)",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "overtone",
+            "data": {
+                "group": "melmm",
+                "name": "Lydian dominant (overtone)",
+                "aliases": [
+                    "Lydian dominant",
+                    "Mixolydian #4",
+                    "Melodic minor mode 4"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    7,
+                    9,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 646,
+            "type": "scale",
+            "name": "Lydian minor",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "lydian_minor",
+            "data": {
+                "group": "melmm",
+                "name": "Lydian minor",
+                "aliases": [
+                    "Lydian minor"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    7,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 624,
+            "type": "scale",
+            "name": "Major",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "major",
+            "data": {
+                "group": "common",
+                "name": "Major",
+                "aliases": [
+                    "Ionian",
+                    "Diatonic major",
+                    "Major scale"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    5,
+                    7,
+                    9,
+                    11
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                ]
+            }
+        },
+        {
+            "id": 633,
+            "type": "scale",
+            "name": "Major pentatonic",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "major_pent",
+            "data": {
+                "group": "pent",
+                "name": "Major pentatonic",
+                "aliases": [
+                    "Major pentatonic",
+                    "Diatonic pentatonic"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    7,
+                    9
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "3",
+                    "5",
+                    "6"
+                ]
+            }
+        },
+        {
+            "id": 627,
+            "type": "scale",
+            "name": "Melodic minor (ascending)",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "mel_minor",
+            "data": {
+                "group": "common",
+                "name": "Melodic minor (ascending)",
+                "aliases": [
+                    "Melodic minor"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    5,
+                    7,
+                    9,
+                    11
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "b3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                ]
+            }
+        },
+        {
+            "id": 634,
+            "type": "scale",
+            "name": "Minor pentatonic",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "minor_pent",
+            "data": {
+                "group": "pent",
+                "name": "Minor pentatonic",
+                "aliases": [
+                    "Minor pentatonic"
+                ],
+                "intervals": [
+                    0,
+                    3,
+                    5,
+                    7,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "b3",
+                    "4",
+                    "5",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 631,
+            "type": "scale",
+            "name": "Mixolydian",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "mixolydian",
+            "data": {
+                "group": "modes",
+                "name": "Mixolydian",
+                "aliases": [
+                    "Mixolydian",
+                    "Dominant scale"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    5,
+                    7,
+                    9,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 625,
+            "type": "scale",
+            "name": "Natural minor",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "nat_minor",
+            "data": {
+                "group": "common",
+                "name": "Natural minor",
+                "aliases": [
+                    "Pure minor",
+                    "Aeolian",
+                    "Natural minor"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    5,
+                    7,
+                    8,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "b3",
+                    "4",
+                    "5",
+                    "b6",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 658,
+            "type": "scale",
+            "name": "Neapolitan major",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "neap_major",
+            "data": {
+                "group": "world",
+                "name": "Neapolitan major",
+                "aliases": [
+                    "Neapolitan major"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 659,
+            "type": "scale",
+            "name": "Neapolitan minor",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "neap_minor",
+            "data": {
+                "group": "world",
+                "name": "Neapolitan minor",
+                "aliases": [
+                    "Neapolitan minor"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    5,
+                    7,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 636,
+            "type": "scale",
+            "name": "Neutral pentatonic",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "neutral_pent",
+            "data": {
+                "group": "pent",
+                "name": "Neutral pentatonic",
+                "aliases": [
+                    "Neutral pentatonic"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    5,
+                    7,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "2",
+                    "4",
+                    "5",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 643,
+            "type": "scale",
+            "name": "Nine-tone scale",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "nine_tone",
+            "data": {
+                "group": "sym",
+                "name": "Nine-tone scale",
+                "aliases": [
+                    "Nine-tone scale"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    4,
+                    6,
+                    7,
+                    8,
+                    9,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 654,
+            "type": "scale",
+            "name": "Pelog",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "pelog",
+            "data": {
+                "group": "world",
+                "name": "Pelog",
+                "aliases": [
+                    "Javanese pelog"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    6,
+                    10,
+                    11
+                ]
+            }
+        },
+        {
+            "id": 629,
+            "type": "scale",
+            "name": "Phrygian",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "phrygian",
+            "data": {
+                "group": "modes",
+                "name": "Phrygian",
+                "aliases": [
+                    "Phrygian mode"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    5,
+                    7,
+                    8,
+                    10
+                ],
+                "degrees": [
+                    "1",
+                    "b2",
+                    "b3",
+                    "4",
+                    "5",
+                    "b6",
+                    "b7"
+                ]
+            }
+        },
+        {
+            "id": 656,
+            "type": "scale",
+            "name": "Prometheus",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "prometheus",
+            "data": {
+                "group": "world",
+                "name": "Prometheus",
+                "aliases": [
+                    "Prometheus scale (Scriabin)"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    9,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 657,
+            "type": "scale",
+            "name": "Prometheus Neapolitan",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "prometheus_neap",
+            "data": {
+                "group": "world",
+                "name": "Prometheus Neapolitan",
+                "aliases": [
+                    "Prometheus Neapolitan"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    4,
+                    6,
+                    9,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 650,
+            "type": "scale",
+            "name": "Romanian minor",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "romanian_minor",
+            "data": {
+                "group": "world",
+                "name": "Romanian minor",
+                "aliases": [
+                    "Romanian minor",
+                    "Ukrainian Dorian"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    6,
+                    7,
+                    9,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 653,
+            "type": "scale",
+            "name": "Spanish eight-tone",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "spanish_eight",
+            "data": {
+                "group": "world",
+                "name": "Spanish eight-tone",
+                "aliases": [
+                    "Spanish eight-tone"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    4,
+                    5,
+                    6,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 651,
+            "type": "scale",
+            "name": "Spanish gypsy (Phrygian dominant)",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "phrygian_dom",
+            "data": {
+                "group": "world",
+                "name": "Spanish gypsy (Phrygian dominant)",
+                "aliases": [
+                    "Phrygian dominant",
+                    "Spanish gypsy",
+                    "Harmonic minor mode 5"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    4,
+                    5,
+                    7,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 647,
+            "type": "scale",
+            "name": "Super Locrian (altered)",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "altered",
+            "data": {
+                "group": "melmm",
+                "name": "Super Locrian (altered)",
+                "aliases": [
+                    "Altered scale",
+                    "Diminished whole-tone",
+                    "Melodic minor mode 7"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    3,
+                    4,
+                    6,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 642,
+            "type": "scale",
+            "name": "Symmetric six-tone",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "symmetric_six",
+            "data": {
+                "group": "sym",
+                "name": "Symmetric six-tone",
+                "aliases": [
+                    "Six-tone symmetrical"
+                ],
+                "intervals": [
+                    0,
+                    1,
+                    4,
+                    5,
+                    8,
+                    9
+                ]
+            }
+        },
+        {
+            "id": 640,
+            "type": "scale",
+            "name": "Whole-tone scale",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "whole_tone",
+            "data": {
+                "group": "sym",
+                "name": "Whole-tone scale",
+                "aliases": [
+                    "Whole tone",
+                    "Auxiliary augmented"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    8,
+                    10
+                ]
+            }
+        },
+        {
+            "id": 639,
+            "type": "scale",
+            "name": "Whole–Half diminished",
+            "root_note": null,
+            "instrument": "general",
+            "slug": "whole_half_dim",
+            "data": {
+                "group": "sym",
+                "name": "Whole–Half diminished",
+                "aliases": [
+                    "Whole–Half diminished",
+                    "Auxiliary diminished"
+                ],
+                "intervals": [
+                    0,
+                    2,
+                    3,
+                    5,
+                    6,
+                    8,
+                    9,
+                    11
+                ]
+            }
+        }
+    ]
+}

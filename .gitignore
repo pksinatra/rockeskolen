@@ -1,3 +1,23 @@
 members/config.local.php
 members/config.php.save
 members/debug.txt
+.DS_Store
+assets/.DS_Store
+audio/guitars/**/*.wav
+audio/guitars/**/.DS_Store
+audio/keys/**/*.wav
+audio/keys/**/.DS_Store
+
+# Drupal portal: keep generated/vendor/core/files out of git.
+# Track only the reproducible Composer manifest and Rockeskolen custom code.
+/portal/*
+!/portal/composer.json
+!/portal/composer.lock
+!/portal/modules/
+/portal/modules/*
+!/portal/modules/custom/
+!/portal/modules/custom/**
+!/portal/themes/
+/portal/themes/*
+!/portal/themes/custom/
+!/portal/themes/custom/**

@@ -1,40 +1,29 @@
+<?php require_once dirname(__DIR__, 2) . '/shared/bootstrap.php'; ?>
 <!DOCTYPE html>
-<?php
-require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
-// require_login(); // demo is public
-$user = current_user();
-$isPro =
-    ($user && in_array($user['role'], ['pro','admin'], true))
-    || isset($_COOKIE['rockeskolen_pro']);
-// Optional: force demo mode with ?demo=1
-if (isset($_GET['demo']) && $_GET['demo'] === '1') {
-  $isPro = false;
-}
-?>
-
-
-<html lang="no">
+<html lang="<?= rs_updated_lang() ?>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Skalaer på gitar</title>
-  <link rel="stylesheet" href="guitarscales.css">
+  <?php chordlink_share_meta(['title' => 'Guitar Scales | ChordLink', 'description' => 'Study guitar scales across the full neck or in a focused position.', 'path' => '/tools/scales/guitar/', 'image' => '/images/tools/chordlink-tool-guitar-scales-v1.png']); ?>
+  <?php chordlink_app_header_styles(); ?>
+  <link rel="stylesheet" href="guitarscales.css?v=20260927-1">
 </head>
 <body>
+<?php chordlink_app_header('Guitar Scales'); ?>
 
 <div class="page">
   <div class="card">
     <div class="header">
       <div>
-        <h1>🎸 Skalaer på gitar</h1>
+        <h1>🎸 Guitar Scales</h1>
         <p class="sub">
-          Velg grunntone og skala. Vis enten tonenavn eller intervaller på gitarhalsen.
-        </p>
+  Choose root note and scale. Display note names or intervals on the fretboard.
+</p>
       </div>
     </div>
 <div class="toolbar">
   <div class="field">
-    <label for="rootSelect">Grunntone</label>
+    <label for="rootSelect">Root note</label>
     <select id="rootSelect">
       <option value="C">C</option>
       <option value="C#">C# / Db</option>
@@ -52,35 +41,62 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
   </div>
 
   <div class="field">
-    <label for="scaleSelect">Skala</label>
+    <label for="scaleSelect">Scale</label>
     <select id="scaleSelect"></select>
   </div>
 
   <div class="field">
-    <label for="viewMode">Visning</label>
+    <label for="viewMode">View</label>
 <select id="viewMode">
-  <option value="full">Hele halsen</option>
-  <option value="open">5-bånd</option>
+  <option value="full">Full neck</option>
+  <option value="open">5 frets</option>
 </select>
   </div>
 
+
+  <div class="field">
+    <label for="soundType">Sound</label>
+    <select id="soundType">
+      <option value="acoustic_guitar" selected>Acoustic guitar (MP3)</option>
+      <option value="triangle">Triangle</option>
+      <option value="sine">Sine</option>
+      <option value="square">Square</option>
+      <option value="sawtooth">Sawtooth</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="octaveCount">Octaves</label>
+    <select id="octaveCount">
+      <option value="1" selected>1 octave</option>
+      <option value="2">2 octaves</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="scaleTempo">Tempo <span id="tempoValue">120 BPM</span></label>
+    <input id="scaleTempo" type="range" min="50" max="220" step="1" value="120">
+  </div>
+
 <div class="gs-controls-right">
-  <button id="toggleLabelsBtn" class="gs-btn">Intervaller</button>
-  <button id="noteStyleBtn" class="gs-btn">Vis ♯ / ♭</button>
+  <button id="toggleLabelsBtn" class="gs-btn">Intervals</button>
+  <button id="noteStyleBtn" class="gs-btn">Show ♯ / ♭</button>
+  <button id="playScaleBtn" class="gs-btn">Play scale</button>
 </div>
 </div>
 <div class="statusbar">
-  <span id="statusText">Laster skalaer...</span>
+  <span id="statusText">Loading scales...</span>
 </div>
 
 
 <div id="guitarboard"></div>
   </div>
 </div>
+<?php rs_updated_help('guitar-scales'); ?>
 <script>
 window.CL_IS_PRO = <?= $isPro ? 'true' : 'false' ?>;
 window.CL_IS_LOGGED_IN = <?= $user ? 'true' : 'false' ?>;
 </script>
-<script src="guitarscales.js"></script>
+<script src="guitarscales.js?v=20260927-1"></script>
 </body>
 </html>

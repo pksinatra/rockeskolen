@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 require_login();
 
 $u = current_user();
-$isPro = in_array($u['role'], ['pro','admin'], true);
+$isPro = has_rockeskolen_access($u);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,10 +86,10 @@ $isPro = in_array($u['role'], ['pro','admin'], true);
         </a>
       <?php else: ?>
         <a href="/members/upgrade.php" class="btn">
-          Unlock Pro version
+          Lås opp med VIP
         </a>
         <div class="small" style="margin-top:6px;">
-          Available with ChordLink Pro
+          Denne artikkelen er med i VIP. Lås opp alt innhold for 299 kr i året. <a href="/members/upgrade.php">Bli VIP</a> Elev eller lærer? <a href="https://portal.rockeskolen.com/user/login">Logg inn med FEIDE</a>
         </div>
       <?php endif; ?>
     </div>

@@ -1,0 +1,10 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function rockeskolen_instrumentstil_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'rockeskolen_instrumentstil/instrumentleksjon';
+}

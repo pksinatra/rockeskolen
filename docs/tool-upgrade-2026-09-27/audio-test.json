@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "app": "guitar-chords",
+      "audioControl": "pass",
+      "failedRequests": []
+    },
+    {
+      "app": "piano-chords",
+      "audioControl": "pass",
+      "failedRequests": []
+    },
+    {
+      "app": "guitar-scales",
+      "audioControl": "pass",
+      "failedRequests": []
+    },
+    {
+      "app": "piano-scales",
+      "audioControl": "pass",
+      "failedRequests": []
+    },
+    {
+      "app": "fifths",
+      "audioControl": "pass",
+      "failedRequests": []
+    },
+    {
+      "app": "tuner",
+      "audioControl": "pass",
+      "failedRequests": []
+    }
+  ],
+  "microphone": "simulated browser device; no physical microphone or listening test"
+}

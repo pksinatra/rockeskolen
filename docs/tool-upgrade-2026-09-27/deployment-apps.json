@@ -1,0 +1,182 @@
+[
+  {
+    "file": "tools/updated/fifths/app.css",
+    "sha256": "ff424ff2e12eaa4f85da6489cf34f1d5b4af75b69b1b0b112b80baaa4c7d3866"
+  },
+  {
+    "file": "tools/updated/fifths/index.php",
+    "sha256": "0c263233a54c76ded33367d2b95e206e931d844ce8e1266871b27b2e691fb23f"
+  },
+  {
+    "file": "tools/updated/fifths/ui.js",
+    "sha256": "5511dcc3ce58962f970dc35fae815b66541efd7559eda0e243daf7ba2609fdec"
+  },
+  {
+    "file": "tools/updated/guitar-chords/app.css",
+    "sha256": "9b5a8262bdc27c57324335a2070a494ba0e298d1ee09951e36e7564a015f5e34"
+  },
+  {
+    "file": "tools/updated/guitar-chords/index.php",
+    "sha256": "57ff0415e3632ab33604aeec11ca0eb65edf157c955cf1b29986ce21c7c731b4"
+  },
+  {
+    "file": "tools/updated/guitar-chords/ui.js",
+    "sha256": "c86f9e6964303a2b2383f2b7759164979e47e52743e076a550bb6f46f79cc295"
+  },
+  {
+    "file": "tools/updated/guitar-scales/app.css",
+    "sha256": "95579240cd8a2575d7deac1a7e1986defd45c3bf9fbf0025a7e74309bea758a3"
+  },
+  {
+    "file": "tools/updated/guitar-scales/index.php",
+    "sha256": "4d3de39d94af9f98a71b97260f16605edc681c4876e859bba589eaa3caf6a201"
+  },
+  {
+    "file": "tools/updated/guitar-scales/ui.js",
+    "sha256": "a1d33c1d69f053cb466a595cbca8a6b80b5b7e6aedfbb6a653bf7034b3f5c884"
+  },
+  {
+    "file": "tools/updated/piano-chords/app.css",
+    "sha256": "7f223d3bfa1dd5bbc8e394d0c1084ac18facd699498e9d9aab171e3df026248b"
+  },
+  {
+    "file": "tools/updated/piano-chords/index.php",
+    "sha256": "553118987e75d8c69edd6be4bef1a23d49bcff51a7f953ce13e70dd0eaba9ac4"
+  },
+  {
+    "file": "tools/updated/piano-chords/ui.js",
+    "sha256": "4301174d54ea93e6cc2ba43e59db78a882ed1ef6772a79c7734ddfd222698204"
+  },
+  {
+    "file": "tools/updated/piano-scales/app.css",
+    "sha256": "3999cd96176714df6be1c3a571e5805426ebad6354a1f755ea683c087d364e9a"
+  },
+  {
+    "file": "tools/updated/piano-scales/index.php",
+    "sha256": "46fc7259c223c05bd38ab40a9f786e335023bc7528153d4c1dc56372c27ebfde"
+  },
+  {
+    "file": "tools/updated/piano-scales/ui.js",
+    "sha256": "1708a92e425dafa78d3476c85944ff0fd2310d29575f787b840df5ca85a06c89"
+  },
+  {
+    "file": "tools/updated/shared/bootstrap.php",
+    "sha256": "37af59beba7ded694987813b7f4bb0c89581160cc59037bb4a286f6d2df42075"
+  },
+  {
+    "file": "tools/updated/shared/data/chord-formulas.json",
+    "sha256": "011376c5cbebffc28c904fb265e615c391fd501c5c11d89af29e1d10364ffdb8"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-0.json",
+    "sha256": "e7d15263503f7cfacaa8dd19702f86b4354c1791896317689e13ce83475f2471"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-1.json",
+    "sha256": "87cf3a9dce851bfd849ad1c631da872aa498193e39871210919043bc6db9f5e2"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-10.json",
+    "sha256": "226dbbc28ff1584477dd0418a12dce1bfdc8f65abcb0d03dd141393b95341a9b"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-11.json",
+    "sha256": "1e1e5a93af794d4945e3e1789f3223b7e0eff4f190254347dd7b9817affe0955"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-2.json",
+    "sha256": "22722b25149445b9b0765fb0911972c551f63a86f549175e1dfccc9dac39b95a"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-3.json",
+    "sha256": "77111757a7eb75883bc5a34ffa318ff776d65c10db7dd0ba261b9002d865cb53"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-4.json",
+    "sha256": "adf794c92dd1ae18c9f39e7c4db5af51cdd362064181dffdc04766e54c8d45d0"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-5.json",
+    "sha256": "aee82b17fd3e45aab035175e978f311ff1867cc3dc20c343f2ba7aba39a6ad03"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-6.json",
+    "sha256": "abf047f815f2613385f57889df81355ab1216bbaf8f6d10260dd975bb9ccfeb9"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-7.json",
+    "sha256": "47ee984a3516c6722c1b33a9c30376dfa3a95df029133868e2718d0cb47cfd06"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-8.json",
+    "sha256": "ccf50a71114a6deeb056d33d0bf5818339016604f65ec81fbbbbbde4e293fd3c"
+  },
+  {
+    "file": "tools/updated/shared/data/guitar-9.json",
+    "sha256": "9cdfb758f9f33aa8cf5eab4b34000e5951dbdaccdd469218ee5ff4e37831b542"
+  },
+  {
+    "file": "tools/updated/shared/data/scales.json",
+    "sha256": "14a56266fe01fcdc1c33dc51ee8531e03f863ea6f457f6b1f69131965dc76546"
+  },
+  {
+    "file": "tools/updated/shared/help.json",
+    "sha256": "c7d58def14e9be5187396fed87b1f988b1455006e53229af14f9740bc38885c8"
+  },
+  {
+    "file": "tools/updated/shared/language.js",
+    "sha256": "3daa161c2e9f7ffdedc6b8b6e7deadf7346985b330ce8c3a91f652caf5c98a95"
+  },
+  {
+    "file": "tools/updated/shared/music.php",
+    "sha256": "0c05d777608bc517c69f15ed77930b92b345d82fa1418213fba26b3bc8a759d6"
+  },
+  {
+    "file": "tools/updated/shared/site.css",
+    "sha256": "2fe14b15f743c9cdc19a2bb32c8e050c01c75dbb6bba3715fd4f1db9a606d67c"
+  },
+  {
+    "file": "tools/updated/shared/translations.json",
+    "sha256": "695204548925e214e85f136737abf4e0695b3b67e43e89806a4992375c9b93ae"
+  },
+  {
+    "file": "tools/updated/tuner/app.css",
+    "sha256": "1d41a34be8f94b1707d92d385c4c86153cec76facd258b8f92d038952f924c42"
+  },
+  {
+    "file": "tools/updated/tuner/index.php",
+    "sha256": "44b5982bc7a7ca7c5bf7fe92195269ba7a389d954be4dd2d39ddcabb965fff59"
+  },
+  {
+    "file": "tools/updated/tuner/mic-buttons.css",
+    "sha256": "7ba6287150d5ae913424108a9f5ce1deac3e52045e04cd8d93c4bade642b6955"
+  },
+  {
+    "file": "tools/updated/tuner/samples/guitar/a2.mp3",
+    "sha256": "399aa3ffefbffa6080bbfd8ce9c3908fef24ed20bf5d097ad1974651c4c18c2f"
+  },
+  {
+    "file": "tools/updated/tuner/samples/guitar/b3.mp3",
+    "sha256": "bb8bf2fa6a38ce240a66ae87fa3a5087ec8df5b6b125577bee3db9f48a855762"
+  },
+  {
+    "file": "tools/updated/tuner/samples/guitar/d3.mp3",
+    "sha256": "f5541137072886a2522f603e267585d4cccd025ecc716408b95d06f8a7968d4d"
+  },
+  {
+    "file": "tools/updated/tuner/samples/guitar/e2.mp3",
+    "sha256": "c77eab645cf1a20344babf2e6497f0fc6d11965e4b5ac8f55a8e777102123ee9"
+  },
+  {
+    "file": "tools/updated/tuner/samples/guitar/e4.mp3",
+    "sha256": "327ef4ebf064be48faa962bdbac23821c49ed16aa34c4a232b09ecaad7df297d"
+  },
+  {
+    "file": "tools/updated/tuner/samples/guitar/g3.mp3",
+    "sha256": "c348dbb566c2395c3b53174814939ba02cfc2c911e44be33202e9721ab7bf937"
+  },
+  {
+    "file": "tools/updated/tuner/tuner.js",
+    "sha256": "38ee9c9303a85a53bd985233c48572c0f20ebe2f2589758001f72c08b67639d5"
+  }
+]

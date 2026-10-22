@@ -1,0 +1,1940 @@
+{
+    "success": true,
+    "source": "mysql",
+    "count": 30,
+    "results": [
+        {
+            "id": 39,
+            "type": "guitar_chord",
+            "name": "A",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a",
+            "data": {
+                "symbol": "A",
+                "bookSymbol": "A",
+                "root": "A",
+                "quality": "major",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-open-1",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Standard åpen A-dur"
+                    },
+                    {
+                        "id": "a-e-shape-5",
+                        "frets": [
+                            5,
+                            7,
+                            7,
+                            6,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C#",
+                            "E",
+                            "A"
+                        ],
+                        "source": "A-dur E-form barre (5. bånd)"
+                    }
+                ],
+                "slug": "a"
+            }
+        },
+        {
+            "id": 42,
+            "type": "guitar_chord",
+            "name": "Aaug",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "aaug",
+            "data": {
+                "symbol": "Aaug",
+                "bookSymbol": "A+",
+                "root": "A",
+                "quality": "aug",
+                "family": "aug",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5"
+                ],
+                "aliases": [
+                    "A+"
+                ],
+                "variants": [
+                    {
+                        "id": "aaug-x03221",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            2,
+                            2,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "A",
+                            "C#",
+                            "E#"
+                        ],
+                        "source": "Aaug åpen-aktig voicing (x03221)"
+                    },
+                    {
+                        "id": "aaug-xx7665",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "E#",
+                            "A"
+                        ],
+                        "source": "Aaug forflyttet +-form (xx7665)"
+                    }
+                ],
+                "slug": "aaug"
+            }
+        },
+        {
+            "id": 41,
+            "type": "guitar_chord",
+            "name": "Adim",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "adim",
+            "data": {
+                "symbol": "Adim",
+                "bookSymbol": "Adim",
+                "root": "A",
+                "quality": "dim",
+                "family": "dim",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5"
+                ],
+                "aliases": [
+                    "A°"
+                ],
+                "variants": [
+                    {
+                        "id": "adim-x0121x",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            2,
+                            1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "A",
+                            "C"
+                        ],
+                        "source": "Adim kompakt voicing (x0121x)"
+                    }
+                ],
+                "slug": "adim"
+            }
+        },
+        {
+            "id": 40,
+            "type": "guitar_chord",
+            "name": "Am",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am",
+            "data": {
+                "symbol": "Am",
+                "bookSymbol": "Am",
+                "root": "A",
+                "quality": "minor",
+                "family": "plain",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "am-open-1",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            3,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Standard åpen A-moll"
+                    },
+                    {
+                        "id": "am-e-shape-5",
+                        "frets": [
+                            5,
+                            7,
+                            7,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Am E-form barre (5. bånd)"
+                    }
+                ],
+                "slug": "am"
+            }
+        },
+        {
+            "id": 53,
+            "type": "guitar_chord",
+            "name": "A11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a11",
+            "data": {
+                "symbol": "A11",
+                "bookSymbol": "A11",
+                "root": "A",
+                "quality": "major",
+                "family": "11",
+                "formulaDegrees": [
+                    "1",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a11-x02033",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            0,
+                            3,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "D",
+                            "G"
+                        ],
+                        "source": "A11 åpen cluster-variant"
+                    },
+                    {
+                        "id": "a11-5x5533",
+                        "frets": [
+                            5,
+                            -1,
+                            5,
+                            4,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            3,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "A",
+                            "G",
+                            "B",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a11"
+            }
+        },
+        {
+            "id": 54,
+            "type": "guitar_chord",
+            "name": "A13",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a13",
+            "data": {
+                "symbol": "A13",
+                "bookSymbol": "A13",
+                "root": "A",
+                "quality": "major",
+                "family": "13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a13-x02024",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a13-5x5677",
+                        "frets": [
+                            5,
+                            -1,
+                            5,
+                            6,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "G",
+                            "C#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "A13 kompakt voicing med rot på 6. streng"
+                    }
+                ],
+                "slug": "a13"
+            }
+        },
+        {
+            "id": 84,
+            "type": "guitar_chord",
+            "name": "A13sus4",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a13sus4",
+            "data": {
+                "symbol": "A13sus4",
+                "bookSymbol": "A13sus4",
+                "root": "A",
+                "quality": "major",
+                "family": "13sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-13sus4-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a13sus4"
+            }
+        },
+        {
+            "id": 75,
+            "type": "guitar_chord",
+            "name": "A5",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a5",
+            "data": {
+                "symbol": "A5",
+                "bookSymbol": "A5",
+                "root": "A",
+                "quality": "major",
+                "family": "5",
+                "formulaDegrees": [
+                    "1",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-5-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A"
+                        ],
+                        "source": "A5 Power chord (A-root)"
+                    }
+                ],
+                "slug": "a5"
+            }
+        },
+        {
+            "id": 43,
+            "type": "guitar_chord",
+            "name": "A6",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a6",
+            "data": {
+                "symbol": "A6",
+                "bookSymbol": "A6",
+                "root": "A",
+                "quality": "major",
+                "family": "6",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a6-open-x02222",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "A6 åpen variant (x02222)"
+                    }
+                ],
+                "slug": "a6"
+            }
+        },
+        {
+            "id": 76,
+            "type": "guitar_chord",
+            "name": "A6\/9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a6-9",
+            "data": {
+                "symbol": "A6\/9",
+                "bookSymbol": "A6\/9",
+                "root": "A",
+                "quality": "major",
+                "family": "69",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-69-a0",
+                        "frets": [
+                            -1,
+                            2,
+                            2,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "B",
+                            "E",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a6-9"
+            }
+        },
+        {
+            "id": 45,
+            "type": "guitar_chord",
+            "name": "A7",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7",
+            "data": {
+                "symbol": "A7",
+                "bookSymbol": "A7",
+                "root": "A",
+                "quality": "major",
+                "family": "7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7-open-x02020",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            0,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Standard åpen A7"
+                    },
+                    {
+                        "id": "a7-e-shape-5",
+                        "frets": [
+                            5,
+                            7,
+                            5,
+                            6,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C#",
+                            "E",
+                            "A"
+                        ],
+                        "source": "A7 E-form barre"
+                    }
+                ],
+                "slug": "a7"
+            }
+        },
+        {
+            "id": 56,
+            "type": "guitar_chord",
+            "name": "A7#9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7#9",
+            "data": {
+                "symbol": "A7#9",
+                "bookSymbol": "A7(#9)",
+                "root": "A",
+                "quality": "major",
+                "family": "7#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7#9-5x567x",
+                        "frets": [
+                            8,
+                            -1,
+                            7,
+                            6,
+                            8,
+                            -1
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            2,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "B#",
+                            "A",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a7#9"
+            }
+        },
+        {
+            "id": 86,
+            "type": "guitar_chord",
+            "name": "A7(#5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7-#5",
+            "data": {
+                "symbol": "A7(#5)",
+                "bookSymbol": "A7(#5)",
+                "root": "A",
+                "quality": "major",
+                "family": "7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-7#5-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            0,
+                            2,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "G",
+                            "C#",
+                            "E#"
+                        ],
+                        "source": "A7(#5) 7#5 (A-root)"
+                    }
+                ],
+                "slug": "a7-#5"
+            }
+        },
+        {
+            "id": 85,
+            "type": "guitar_chord",
+            "name": "A7(b5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7-b5",
+            "data": {
+                "symbol": "A7(b5)",
+                "bookSymbol": "A7(b5)",
+                "root": "A",
+                "quality": "major",
+                "family": "7b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-7b5-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            0,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a7-b5"
+            }
+        },
+        {
+            "id": 55,
+            "type": "guitar_chord",
+            "name": "A7b9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7b9",
+            "data": {
+                "symbol": "A7b9",
+                "bookSymbol": "A7(b9)",
+                "root": "A",
+                "quality": "major",
+                "family": "7b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7b9-5x5665",
+                        "frets": [
+                            5,
+                            -1,
+                            5,
+                            6,
+                            5,
+                            6
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            1,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "G",
+                            "C#",
+                            "E",
+                            "Bb"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a7b9"
+            }
+        },
+        {
+            "id": 82,
+            "type": "guitar_chord",
+            "name": "A7sus2",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7sus2",
+            "data": {
+                "symbol": "A7sus2",
+                "bookSymbol": "A7sus2",
+                "root": "A",
+                "quality": "major",
+                "family": "7sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-7sus2-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a7sus2"
+            }
+        },
+        {
+            "id": 81,
+            "type": "guitar_chord",
+            "name": "A7sus4",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7sus4",
+            "data": {
+                "symbol": "A7sus4",
+                "bookSymbol": "A7sus4",
+                "root": "A",
+                "quality": "major",
+                "family": "7sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-7sus4-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "D",
+                            "E"
+                        ],
+                        "source": "A7sus4 7sus4 (A-root)"
+                    }
+                ],
+                "slug": "a7sus4"
+            }
+        },
+        {
+            "id": 52,
+            "type": "guitar_chord",
+            "name": "A9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a9",
+            "data": {
+                "symbol": "A9",
+                "bookSymbol": "A9",
+                "root": "A",
+                "quality": "major",
+                "family": "9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a9-x02022",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            4,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "B",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a9-5x5675",
+                        "frets": [
+                            5,
+                            -1,
+                            5,
+                            6,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            1,
+                            2,
+                            4,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "G",
+                            "C#",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a9"
+            }
+        },
+        {
+            "id": 83,
+            "type": "guitar_chord",
+            "name": "A9sus4",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a9sus4",
+            "data": {
+                "symbol": "A9sus4",
+                "bookSymbol": "A9sus4",
+                "root": "A",
+                "quality": "major",
+                "family": "9sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-9sus4-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            4,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            2,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "B",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "a9sus4"
+            }
+        },
+        {
+            "id": 51,
+            "type": "guitar_chord",
+            "name": "Aadd9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "aadd9",
+            "data": {
+                "symbol": "Aadd9",
+                "bookSymbol": "Aadd9",
+                "root": "A",
+                "quality": "major",
+                "family": "add9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "aadd9-open-x02420",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            4,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "B",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Aadd9 åpen variant (x02420)"
+                    },
+                    {
+                        "id": "aadd9-x02200",
+                        "frets": [
+                            -1,
+                            2,
+                            2,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "B",
+                            "E",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "aadd9"
+            }
+        },
+        {
+            "id": 48,
+            "type": "guitar_chord",
+            "name": "Am(maj7)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am-maj7",
+            "data": {
+                "symbol": "Am(maj7)",
+                "bookSymbol": "Am(maj7)",
+                "root": "A",
+                "quality": "minor",
+                "family": "m(maj7)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "ammaj7-open-x02110",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Am(maj7) åpen variant (x02110)"
+                    },
+                    {
+                        "id": "ammaj7-e-shape-5",
+                        "frets": [
+                            5,
+                            7,
+                            6,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            3,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Am(maj7) E-form type"
+                    }
+                ],
+                "slug": "am-maj7"
+            }
+        },
+        {
+            "id": 44,
+            "type": "guitar_chord",
+            "name": "Am6",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am6",
+            "data": {
+                "symbol": "Am6",
+                "bookSymbol": "Am6",
+                "root": "A",
+                "quality": "minor",
+                "family": "m6",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "am6-x02212",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Am6 åpen variant (x02212)"
+                    }
+                ],
+                "slug": "am6"
+            }
+        },
+        {
+            "id": 77,
+            "type": "guitar_chord",
+            "name": "Am6\/9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am6-9",
+            "data": {
+                "symbol": "Am6\/9",
+                "bookSymbol": "Am6\/9",
+                "root": "A",
+                "quality": "minor",
+                "family": "m69",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "6",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-m69-a0",
+                        "frets": [
+                            -1,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "B",
+                            "E",
+                            "A",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "am6-9"
+            }
+        },
+        {
+            "id": 46,
+            "type": "guitar_chord",
+            "name": "Am7",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am7",
+            "data": {
+                "symbol": "Am7",
+                "bookSymbol": "Am7",
+                "root": "A",
+                "quality": "minor",
+                "family": "m7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "am7-open-x02010",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Standard åpen Am7"
+                    },
+                    {
+                        "id": "am7-e-shape-5",
+                        "frets": [
+                            5,
+                            7,
+                            5,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Am7 E-form barre"
+                    }
+                ],
+                "slug": "am7"
+            }
+        },
+        {
+            "id": 78,
+            "type": "guitar_chord",
+            "name": "Am7(b5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am7-b5",
+            "data": {
+                "symbol": "Am7(b5)",
+                "bookSymbol": "Am7(b5)",
+                "root": "A",
+                "quality": "minor",
+                "family": "m7b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-m7b5-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            0,
+                            1,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "am7-b5"
+            }
+        },
+        {
+            "id": 80,
+            "type": "guitar_chord",
+            "name": "Am9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am9",
+            "data": {
+                "symbol": "Am9",
+                "bookSymbol": "Am9",
+                "root": "A",
+                "quality": "minor",
+                "family": "m9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-m9-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            4,
+                            1,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            4,
+                            1,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "B",
+                            "C",
+                            "G"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "am9"
+            }
+        },
+        {
+            "id": 47,
+            "type": "guitar_chord",
+            "name": "Amaj7",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "amaj7",
+            "data": {
+                "symbol": "Amaj7",
+                "bookSymbol": "Amaj7",
+                "root": "A",
+                "quality": "major",
+                "family": "maj7",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "amaj7-open-x02120",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            1,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Standard åpen Amaj7"
+                    },
+                    {
+                        "id": "amaj7-xx7654",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            4,
+                            3,
+                            2,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Amaj7 kompakt voicing (xx7654)"
+                    }
+                ],
+                "slug": "amaj7"
+            }
+        },
+        {
+            "id": 79,
+            "type": "guitar_chord",
+            "name": "Amaj9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "amaj9",
+            "data": {
+                "symbol": "Amaj9",
+                "bookSymbol": "Amaj9",
+                "root": "A",
+                "quality": "major",
+                "family": "maj9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a-maj9-a0",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            4,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "B",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                    }
+                ],
+                "slug": "amaj9"
+            }
+        },
+        {
+            "id": 49,
+            "type": "guitar_chord",
+            "name": "Asus2",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "asus2",
+            "data": {
+                "symbol": "Asus2",
+                "bookSymbol": "Asus2",
+                "root": "A",
+                "quality": "major",
+                "family": "sus2",
+                "formulaDegrees": [
+                    "1",
+                    "2",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "asus2-open-x02200",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Standard Asus2 (x02200)"
+                    }
+                ],
+                "slug": "asus2"
+            }
+        },
+        {
+            "id": 50,
+            "type": "guitar_chord",
+            "name": "Asus4",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "asus4",
+            "data": {
+                "symbol": "Asus4",
+                "bookSymbol": "Asus4",
+                "root": "A",
+                "quality": "major",
+                "family": "sus4",
+                "formulaDegrees": [
+                    "1",
+                    "4",
+                    "5"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "asus4-open-x02230",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Standard Asus4 (x02230)"
+                    },
+                    {
+                        "id": "asus4-e-shape-5",
+                        "frets": [
+                            5,
+                            7,
+                            7,
+                            7,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            4,
+                            4,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "D",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Asus4 E-form barre"
+                    }
+                ],
+                "slug": "asus4"
+            }
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+name: Scale Embed
+type: module
+description: Inline piano scale embed for Rockeskolen
+core_version_requirement: ^10 || ^11

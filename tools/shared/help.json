@@ -1,0 +1,74 @@
+{
+  "guitar-chords": [
+    [
+      "Choose a root and chord type. Select a variant to compare shapes.",
+      "Press Play chord to hear the strings. Adjust sound, sustain, volume and drive.",
+      "X means muted; an open circle means an open string. Numbers show fingers."
+    ],
+    [
+      "Velg grunntone og akkordtype. Bytt variant for å sammenligne grep.",
+      "Trykk Spill akkord for å høre strengene. Juster lyd, etterklang, volum og vreng.",
+      "X betyr dempet streng; en åpen sirkel betyr løs streng. Tall viser fingre."
+    ]
+  ],
+  "piano-chords": [
+    [
+      "Choose a root and chord type. Use the octave anchor to place the chord.",
+      "Play the chord, click individual keys or try the inversion buttons.",
+      "Notes and intervals show how the chord is built."
+    ],
+    [
+      "Velg grunntone og akkordtype. Bruk utgangsoktaven til å plassere akkorden.",
+      "Spill akkorden, trykk på enkelttangenter eller prøv omvendingene.",
+      "Toner og intervaller viser hvordan akkorden er bygd opp."
+    ]
+  ],
+  "guitar-scales": [
+    [
+      "Choose a root and scale. Show the full neck or five frets.",
+      "Switch between notes and intervals, or sharp and flat names.",
+      "Choose one or two octaves, set the tempo and play the scale."
+    ],
+    [
+      "Velg grunntone og skala. Vis hele gitarhalsen eller fem bånd.",
+      "Bytt mellom toner og intervaller, eller kryss- og b-navn.",
+      "Velg én eller to oktaver, sett tempo og spill skalaen."
+    ]
+  ],
+  "piano-scales": [
+    [
+      "Choose a root and scale type. The keyboard shows its notes.",
+      "Play the scale in one direction or up and down.",
+      "Compare the notes, intervals and alternative scale names."
+    ],
+    [
+      "Velg grunntone og skalatype. Klaviaturet viser tonene.",
+      "Spill skalaen én vei eller opp og ned.",
+      "Sammenlign toner, intervaller og alternative skalanavn."
+    ]
+  ],
+  "fifths": [
+    [
+      "Click a segment to select a key. Choose major or minor.",
+      "The panel shows related keys, chords and scale notes.",
+      "Play a chord or scale. Shift-click plays the relative minor; Stop silences playback."
+    ],
+    [
+      "Klikk på et felt for å velge toneart. Velg dur eller moll.",
+      "Panelet viser beslektede tonearter, akkorder og skalatoner.",
+      "Spill akkord eller skala. Shift-klikk spiller parallelltonearten i moll; Stopp stanser lyden."
+    ]
+  ],
+  "tuner": [
+    [
+      "Choose a tuning fork or instrument, then select a reference note.",
+      "Play a reference tone or enable the microphone to measure your instrument.",
+      "The meter shows whether the note is flat, sharp or in tune. Stop ends playback and microphone listening."
+    ],
+    [
+      "Velg stemmegaffel eller instrument og deretter en referansetone.",
+      "Spill en referansetone eller slå på mikrofonen for å måle instrumentet.",
+      "Måleren viser om tonen er for lav, for høy eller rent stemt. Stopp stanser både lyd og mikrofon."
+    ]
+  ]
+}

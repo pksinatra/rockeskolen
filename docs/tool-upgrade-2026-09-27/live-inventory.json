@@ -1,0 +1,254 @@
+[
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/",
+    "status": "200 https://rockeskolen.com/tools/",
+    "title": "Verktøy | Rockeskolen",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/chordflow/",
+    "status": "200 https://rockeskolen.com/tools/chordflow/",
+    "title": "ChordFlow by ChordLink",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/chordprog/",
+    "status": "200 https://rockeskolen.com/tools/chordprog/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/chordplay/",
+    "status": "200 https://rockeskolen.com/tools/chordplay/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/noted/",
+    "status": "200 https://rockeskolen.com/tools/noted/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/wheels/chords/",
+    "status": "200 https://rockeskolen.com/tools/wheels/chords/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/charts/",
+    "status": "200 https://rockeskolen.com/tools/charts/",
+    "title": "Index of /tools/charts",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/visualizers/piano/",
+    "status": "200 https://rockeskolen.com/tools/visualizers/piano/",
+    "title": "Pianovisualisering | Rockeskolen",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/tuners/fork/",
+    "status": "200 https://rockeskolen.com/tools/tuners/fork/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/tuners/pro/",
+    "status": "200 https://rockeskolen.com/tools/tuners/pro/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/chordlog/",
+    "status": "200 https://www.rockeskolen.com/tools/chordlog/",
+    "title": "ChordLog",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/symbols/",
+    "status": "200 https://rockeskolen.com/tools/symbols/",
+    "title": "Musikksymboler – søkbart oppslagsverk | Rockeskolen",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/instruments/piano/",
+    "status": "200 https://rockeskolen.com/tools/instruments/piano/",
+    "title": "Rockeskolen | To veier inn i musikken",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/instruments/piano_playable.php",
+    "status": "200 https://rockeskolen.com/tools/instruments/piano_playable.php",
+    "title": "ChordLink – Playable Piano",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/frequencer/",
+    "status": "200 https://rockeskolen.com/tools/frequencer/",
+    "title": "Frequencer",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/games/mahjong/",
+    "status": "200 https://rockeskolen.com/tools/games/mahjong/",
+    "title": "Notation Mahjong",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/generators/suno.php",
+    "status": "200 https://rockeskolen.com/tools/generators/suno.php",
+    "title": "AI Music Prompt Builder",
+    "error": null
+  },
+  {
+    "site": "rockeskolen.com",
+    "path": "/tools/soundlab/",
+    "status": "200 https://rockeskolen.com/tools/soundlab/",
+    "title": "Hør frekvensen | Rockeskolen",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/",
+    "status": "200 https://www.chordlink.net/tools/",
+    "title": "ChordLink Tools",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/chordflow/",
+    "status": "200 https://www.chordlink.net/tools/chordflow/",
+    "title": "ChordFlow by ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/chordprog/",
+    "status": "200 https://www.chordlink.net/tools/chordprog/",
+    "title": "ChordProg – 250 Chord Progressions | ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/chordplay/",
+    "status": "200 https://www.chordlink.net/tools/chordplay/",
+    "title": "ChordPlay | ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/noted/",
+    "status": "200 https://www.chordlink.net/tools/noted/",
+    "title": "Noted – Chords and notes | ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/wheels/chords/",
+    "status": "200 https://www.chordlink.net/tools/wheels/chords/",
+    "title": "Harmonic Orbit",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/charts/",
+    "status": "200 https://www.chordlink.net/tools/charts/",
+    "title": "Free Chord Charts for Piano and Guitar | ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/visualizers/piano/",
+    "status": "200 https://www.chordlink.net/tools/visualizers/piano/",
+    "title": "Piano Visualizer | ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/tuners/fork/",
+    "status": "200 https://www.chordlink.net/tools/tuners/fork/",
+    "title": "Simple Tuning Fork - ChordLink",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/tuners/pro/",
+    "status": "200 https://www.chordlink.net/tools/tuners/pro/",
+    "title": "ChordLink Tuner – Tuning fork, instrument tuners, and reference tones",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/chordlog/",
+    "status": "200 https://www.chordlink.net/tools/chordlog/",
+    "title": "ChordLog",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/symbols/",
+    "status": "200 https://www.chordlink.net/tools/symbols/",
+    "title": "ChordLink Symbols",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/instruments/piano/",
+    "status": "200 https://www.chordlink.net/tools/instruments/piano/",
+    "title": "ChordLink - Playable Piano",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/instruments/piano_playable.php",
+    "status": "200 https://www.chordlink.net/tools/instruments/piano/",
+    "title": "ChordLink - Playable Piano",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/frequencer/",
+    "status": "200 https://www.chordlink.net/tools/frequencer/",
+    "title": "ChordLink | Visual tools for chords, scales, and harmony",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/games/mahjong/",
+    "status": "200 https://www.chordlink.net/tools/games/mahjong/",
+    "title": "ChordLink | Visual tools for chords, scales, and harmony",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/generators/suno.php",
+    "status": "200 https://www.chordlink.net/tools/generators/suno.php",
+    "title": "ChordLink | Visual tools for chords, scales, and harmony",
+    "error": null
+  },
+  {
+    "site": "chordlink.net",
+    "path": "/tools/soundlab/",
+    "status": "200 https://www.chordlink.net/tools/soundlab/",
+    "title": "ChordLink | Visual tools for chords, scales, and harmony",
+    "error": null
+  }
+]

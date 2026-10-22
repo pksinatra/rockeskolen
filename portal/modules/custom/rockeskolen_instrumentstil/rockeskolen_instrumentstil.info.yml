@@ -1,0 +1,5 @@
+name: Rockeskolen Instrumentstil
+description: Egendefinert stil for instrumentleksikonet på Rockeskolen.
+type: module
+core_version_requirement: ^11
+package: Rockeskolen

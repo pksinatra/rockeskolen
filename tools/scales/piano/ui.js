@@ -1,37 +1,4 @@
-const SCALE_API_URL = "/api/scales/piano.php";
-
-const SCALE_NAME_NO = {
-
-  major: "Dur",
-  nat_minor: "Naturlig moll",
-  harmonic_minor: "Harmonisk moll",
-  melodic_minor: "Melodisk moll",
-
-  ionian: "Ionisk",
-  dorian: "Dorisk",
-  phrygian: "Frygisk",
-  lydian: "Lydisk",
-  mixolydian: "Miksolydisk",
-  aeolian: "Eolisk",
-  locrian: "Lokrisk",
-
-  major_pent: "Pentaton dur",
-  minor_pent: "Pentaton moll",
-  pent_blues: "Blues-pentaton",
-
-  whole: "Heltone",
-  chromatic: "Kromatisk",
-  diminished: "Diminuert",
-  augmented_hex: "Augmentert hexatonisk",
-
-  phrygian_dom: "Spansk sigøynerskala",
-
-  hungarian_minor: "Ungarsk moll",
-  arabian: "Arabisk",
-  persian: "Persisk",
-
-};
-
+const SCALE_API_URL = "/tools/shared/music.php";
 
 const N_SHARP=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 const N_FLAT =["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
@@ -41,14 +8,14 @@ const pcName = pc => (accPref==='flat' ? N_FLAT[pc] : N_SHARP[pc]);
 const noteName = m => pcName(mod(m,12)) + (Math.floor(m/12)-1);
 
 const SCALE_GROUPS = [
-  {id:"common", label:"Vanlige skalaer"},
-  {id:"modes",  label:"Kirketonearter / modale"},
-  {id:"pent",   label:"Pentatoniske"},
-  {id:"sym",    label:"Symmetriske / formiskede / heltone"},
-  {id:"melmm",  label:"Melodisk moll & jazz-moduser"},
-  {id:"world",  label:"World / eksotisk"},
-  {id:"other",  label:"Andre / eksperimentelle"},
-  {id:"chrom",  label:"Kromatisk"}
+  {id:"common", label:"Common scales"},
+  {id:"modes",  label:"Church modes / modal"},
+  {id:"pent",   label:"Pentatonic"},
+  {id:"sym",    label:"Symmetric / diminished / whole-tone"},
+  {id:"melmm",  label:"Melodic minor & jazz modes"},
+  {id:"world",  label:"World / exotic"},
+  {id:"other",  label:"Other / experimental"},
+  {id:"chrom",  label:"Chromatic"}
 ];
 
 let SCALES = {};
@@ -59,18 +26,33 @@ let currentScaleKey = null;      // ingen skala valgt ved start
 const MIN_MIDI=48, MAX_MIDI=84;
 const AC = new (window.AudioContext||window.webkitAudioContext)();
 const midiToFreq = m => 440*Math.pow(2,(m-69)/12);
+function getSoundSettings(){
+  const volumeEl=document.getElementById("volume");
+  const sustainEl=document.getElementById("sustain");
+  const soundTypeEl=document.getElementById("soundType");
+  return {
+    volume: Math.max(0, Math.min(1, (Number(volumeEl?.value ?? 75))/100)),
+    sustain: Math.max(0.2, (Number(sustainEl?.value ?? 55))/100 * 1.4),
+    wave: soundTypeEl?.value || "triangle"
+  };
+}
+
 function ping(m,offset=0){
   const t=AC.currentTime+offset;
   const o=AC.createOscillator();
   const g=AC.createGain();
-  o.type='triangle';
+  const cfg=getSoundSettings();
+  o.type=cfg.wave;
   o.frequency.value=midiToFreq(m);
   o.connect(g); g.connect(AC.destination);
   g.gain.setValueAtTime(0,t);
-  g.gain.linearRampToValueAtTime(0.22,t+0.01);
-  g.gain.linearRampToValueAtTime(0.12,t+0.18);
-  g.gain.exponentialRampToValueAtTime(0.0008,t+0.70);
-  o.start(t); o.stop(t+0.72);
+  const peak = 0.26 * cfg.volume;
+  const body = 0.14 * cfg.volume;
+  const rel = cfg.sustain;
+  g.gain.linearRampToValueAtTime(peak,t+0.01);
+  g.gain.linearRampToValueAtTime(body,t+0.16);
+  g.gain.exponentialRampToValueAtTime(0.0008,t+rel);
+  o.start(t); o.stop(t+rel+0.02);
 }
 
 // Piano
@@ -103,12 +85,6 @@ function renderOctave(oct){
   octWrap.appendChild(whites); octWrap.appendChild(blacks); return octWrap;
 }
 
-
-function scaleName(sc, key){
-  return SCALE_NAME_NO[key] || sc.name;
-}
-
-
 function renderTailC(oct){
   const octWrap=document.createElement('div');
   octWrap.className='oct tail';
@@ -122,7 +98,6 @@ function renderTailC(oct){
   octWrap.appendChild(whites);
   return octWrap;
 }
-
 
 function renderPiano(){
   const piano=document.getElementById('piano'); piano.innerHTML='';
@@ -176,7 +151,17 @@ function buildScaleMidiForPlay(){
   const rootMidi=getRootMidiAroundC4();
   const arr=sc.intervals.map(iv=>rootMidi+iv);
   arr.push(rootMidi+12);
-  return arr.filter(m=>m>=MIN_MIDI && m<=MAX_MIDI);
+  return normalizeScaleMidiSequence(arr.filter(m=>m>=MIN_MIDI && m<=MAX_MIDI));
+}
+function normalizeScaleMidiSequence(seq){
+  if(!Array.isArray(seq) || seq.length<2) return seq || [];
+  const out=[...seq];
+  const first=out[0];
+  const last=out[out.length-1];
+  if(mod(first,12)===mod(last,12) && last<=first){
+    out[out.length-1]=last+12;
+  }
+  return out;
 }
 function buildScaleMidiWholeKeyboard(){
   const sc=SCALES[currentScaleKey];
@@ -191,10 +176,23 @@ function buildScaleMidiWholeKeyboard(){
 
 function clearHighlights(){
   document.querySelectorAll('.white,.black').forEach(el=>{
-    el.classList.remove('active');
+    el.classList.remove('active','playing-note');
     const mark=el.querySelector('.mark');
     if(mark) mark.remove();
   });
+}
+function clearPlayedKeyHighlights(){
+  document.querySelectorAll('.white.playing-note,.black.playing-note').forEach(el=>{
+    el.classList.remove('playing-note');
+  });
+}
+function flashPlayedKey(midi, delaySeconds, durationMs=220){
+  window.setTimeout(()=>{
+    document.querySelectorAll(`.white[data-m="${midi}"],.black[data-m="${midi}"]`).forEach(el=>{
+      el.classList.add('playing-note');
+      window.setTimeout(()=>el.classList.remove('playing-note'), durationMs);
+    });
+  }, Math.max(0, delaySeconds * 1000));
 }
 function highlightCurrentScale(){
   clearHighlights();
@@ -235,7 +233,7 @@ function updateScale(){
 
   if (!currentScaleKey) {
     // Ingen skala valgt → tøm keyboard og info
-    clearHighlights();
+    clearKeyboardHighlights();
     if (infoEl) infoEl.textContent = "";
     return;
   }
@@ -247,13 +245,11 @@ function updateScale(){
   const aliasInfoEl=document.getElementById('aliasInfo');
 
   currentRootPc=parseInt(rootSel.value,10)||0;
-  const sc = SCALES[currentScaleKey];
+  const sc=SCALES[currentScaleKey] || SCALES.major;
   const rootName=pcName(currentRootPc);
 
-if (!currentScaleKey) {
-  scaleNameEl.textContent = "";
-  return;
-}
+  scaleNameEl.textContent = sc ? `${rootName} ${sc.name}` : `${rootName}`;
+
   const rootMidi=getRootMidiAroundC4();
   const baseMidis=(sc?.intervals||[]).map(iv=>rootMidi+iv).filter(m=>m>=MIN_MIDI && m<=MAX_MIDI);
   const displayMidis=[...baseMidis];
@@ -270,11 +266,11 @@ if (!currentScaleKey) {
   }).join('');
 
   degreeInfoEl.textContent = sc
-    ? `Intervaller (i halvtoner fra grunntone): ${sc.intervals.join(", ")}`
+    ? `Intervals (in semitones from the root): ${sc.intervals.join(", ")}`
     : "";
 
   if(sc?.aliases && sc.aliases.length){
-    aliasInfoEl.textContent = "Også kjent som: " + sc.aliases.join(", ");
+    aliasInfoEl.textContent = "Also known as: " + sc.aliases.join(", ");
   } else {
     aliasInfoEl.textContent = "";
   }
@@ -283,7 +279,8 @@ if (!currentScaleKey) {
 }
 
 function updateScaleToggleLabel() {
-  const lbl = document.getElementById('scaleToggleLabel');
+  const toggle = document.getElementById('scaleToggle');
+  const lbl = toggle ? toggle.querySelector('.label-main') : null;
   if (!lbl) return;
 
   if (!currentScaleKey) {
@@ -294,8 +291,6 @@ function updateScaleToggleLabel() {
   const sc = SCALES[currentScaleKey];
   lbl.textContent = sc ? sc.name : currentScaleKey;
 }
-
-
 
 
 function playCurrentScale(){
@@ -312,25 +307,15 @@ function playCurrentScale(){
   }
   highlightCurrentScale();
   let t=0, step=0.25;
-  seq.forEach(m=>{ ping(m,t); t+=step; });
+  clearPlayedKeyHighlights();
+  seq.forEach(m=>{
+    ping(m,t);
+    flashPlayedKey(m,t,220);
+    t+=step;
+  });
 }
 
-function updateScaleToggleLabel() {
-  const lbl = document.getElementById('scaleToggleLabel');
-  if (!lbl) return;
 
-  if (!currentScaleKey) {
-    lbl.textContent = "Select scale type";
-    return;
-  }
-
-  const sc = SCALES[currentScaleKey];
-  if (sc) {
-    lbl.textContent = sc.name;
-  } else {
-    lbl.textContent = currentScaleKey;
-  }
-}
 const CL_IS_PRO = window.CL_IS_PRO === true;
 
 const FREE_SCALE_KEYS = [
@@ -384,10 +369,11 @@ btn.addEventListener('click', () => {
   if (!el) return;
 
   el.innerHTML = `
-<a class="pro-cta" href="/members/upgrade.php">
-  <strong>Kun for medlemmer:</strong> <strong>${scaleName(sc, key)}</strong> er tilgjengelig med VIP medlemskap.<br>
-  <span class="pro-cta-sub">Se medlemskap</span>
-</a>
+    <a class="pro-cta" href="/members/upgrade.php" target="_top">
+      <strong>Pro only:</strong> <strong>${sc.name}</strong> is available in the Pro version.
+      Choose a free option, or
+      <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+    </a>
   `;
   el.style.display = "block";
 
@@ -398,7 +384,7 @@ btn.addEventListener('click', () => {
 
       } else {
         // Tilgjengelig for Free + Pro
-        btn.textContent = scaleName(sc, key);
+        btn.textContent = sc.name;
         btn.addEventListener('click',()=>{
 
           const proMsg = document.getElementById("scaleProMsg");
@@ -423,10 +409,27 @@ btn.addEventListener('click', () => {
 }
 
 async function loadScalesFromApi(){
-  const res = await fetch(SCALE_API_URL + "?action=list");
+  const res = await fetch(SCALE_API_URL + "?type=scale");
   const data = await res.json();
-  SCALES = data.scales || {};
+
+  if (!data.success || !Array.isArray(data.results)) {
+    throw new Error("Kunne ikke laste skalaer fra Music API");
+  }
+
+  SCALES = {};
+
+  data.results.forEach(row => {
+    SCALES[row.slug] = {
+      ...row.data,
+      name: row.name || row.data.name || row.slug,
+      group: row.data.group || "other",
+      intervals: row.data.intervals || [],
+      degrees: row.data.degrees || [],
+      aliases: row.data.aliases || []
+    };
+  });
 }
+
 
 document.addEventListener('DOMContentLoaded', async ()=>{
   buildRootSelector();
@@ -440,7 +443,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
   // Sjekk bare at vi faktisk har noen skalaer
   if (!SCALES || !Object.keys(SCALES).length) {
-    alert("Klarte ikke å laste skala-definisjoner fra serveren.");
+    alert(window.RS_TRANSLATE ? window.RS_TRANSLATE("Could not load scale definitions from the server.") : "Could not load scale definitions from the server.");
     return;
   }
 
@@ -450,12 +453,13 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   // Ingen skala valgt ennå → label: "Velg skalatype"
   updateScaleToggleLabel();
 
-
-clearHighlights(); // 👈 LEGG TIL DENNE
-
-
   // Viktig: IKKE kall updateScale() her.
   // Keyboardet skal være tomt til bruker velger en skala.
+currentScaleKey = null;
+updateScaleToggleLabel();
+clearKeyboardHighlights();
+
+
 });
 
 function clearKeyboardHighlights(){
@@ -465,6 +469,7 @@ function clearKeyboardHighlights(){
     if (mark) mark.remove();
   });
 }
+
 
   const rootSel=document.getElementById('root');
   const sharpBtn=document.getElementById('sharpBtn');
@@ -557,6 +562,36 @@ function initScaleEmbeds(){
   const WHITE_PCS_EMB = [0,2,4,5,7,9,11];
   const BLACK_AFTER_EMB = {0:1,2:3,4:null,5:6,7:8,9:10,11:null};
   const N_SHARP_EMB = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+  const ROOT_PC_EMB = {
+    C:0, "C#":1, DB:1, D:2, "D#":3, EB:3, E:4, F:5,
+    "F#":6, GB:6, G:7, "G#":8, AB:8, A:9, "A#":10, BB:10, B:11
+  };
+
+  function normalizeScaleKey(value){
+    const raw = String(value || "").trim();
+    const compact = raw.toLowerCase().replace(/[^a-z0-9]+/g, "");
+    const aliases = {
+      minor: "nat_minor",
+      naturalminor: "nat_minor",
+      majorpentatonic: "major_pent",
+      minorpentatonic: "minor_pent",
+      blues: "pent_blues"
+    };
+    return aliases[compact] || raw;
+  }
+
+  function findEmbeddedScale(scale){
+    const direct = normalizeScaleKey(scale);
+    if(SCALES[direct]) return SCALES[direct];
+    const compact = String(direct).toLowerCase().replace(/[^a-z0-9]+/g, "");
+    return Object.values(SCALES).find(sc => {
+      const values = [
+        sc?.name,
+        ...(Array.isArray(sc?.aliases) ? sc.aliases : [])
+      ].map(v => String(v || "").toLowerCase().replace(/[^a-z0-9]+/g, ""));
+      return values.includes(compact);
+    }) || null;
+  }
 
   function buildMiniKeyboard(container, octave, activePcs){
     container.innerHTML = '';
@@ -639,15 +674,28 @@ function initScaleEmbeds(){
       box.dataset.built='1';
 
       async function loadScale(){
-        const url = `${SCALE_API_URL}?root=${encodeURIComponent(root)}&scale=${encodeURIComponent(scale)}&oct=${encodeURIComponent(oct)}`;
-        const res = await fetch(url);
-        const data = await res.json();
-        if(data.error){
-          metaEl.textContent = data.error;
+        const sc = findEmbeddedScale(scale);
+        const rootPc = ROOT_PC_EMB[root.replace('♭', 'b').replace('♯', '#').toUpperCase()];
+        const octave = parseInt(oct, 10) || 4;
+
+        if(!sc || !Array.isArray(sc.intervals)){
+          metaEl.textContent = 'Scale not found in Music API data.';
           return null;
         }
-        const notes = data.notes || [];
-        metaEl.textContent = `${data.scaleName} • oktav ${data.octave}`;
+
+        if(!Number.isFinite(rootPc)){
+          metaEl.textContent = 'Invalid root note.';
+          return null;
+        }
+
+        const rootMidi = (octave + 1) * 12 + rootPc;
+        const notes = sc.intervals.map(interval => {
+          const midi = rootMidi + Number(interval);
+          return { midi, name: noteName(midi) };
+        }).filter(note => Number.isFinite(note.midi));
+        notes.push({ midi: rootMidi + 12, name: noteName(rootMidi + 12) });
+
+        metaEl.textContent = `${root} ${sc.name || scale} - octave ${octave}`;
         const pcs = new Set(notes.map(n => ((n.midi % 12) + 12) % 12));
         buildMiniKeyboard(keyboardHost, parseInt(oct,10), pcs);
         return notes;
@@ -668,4 +716,3 @@ function initScaleEmbeds(){
     }
   }
 }
-

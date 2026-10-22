@@ -1,9 +1,29 @@
 <!doctype html>
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
 <html lang="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ChordLink – Skala/Akkord (Noter + Pianoroll + Playback)</title>
+=======
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChordLink – Skala/akkord (noter + pianorull + avspilling)</title>
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
 
   <style>
     body { font-family: system-ui, sans-serif; margin: 20px; }
@@ -40,7 +60,19 @@
     <h2>Kontroll</h2>
 
     <div class="controls">
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
       <label>Mode
+=======
+      <label>Modus
+>>>>>>> theirs
+=======
+      <label>Modus
+>>>>>>> theirs
+=======
+      <label>Modus
+>>>>>>> theirs
         <select id="mode">
           <option value="scale">Skala (API)</option>
           <option value="chord">Akkord (parser)</option>
@@ -48,7 +80,19 @@
       </label>
 
       <span id="scaleFields" class="row">
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
         <label>Root <input id="root" type="text" value="C"></label>
+=======
+        <label>Grunntone <input id="root" type="text" value="C"></label>
+>>>>>>> theirs
+=======
+        <label>Grunntone <input id="root" type="text" value="C"></label>
+>>>>>>> theirs
+=======
+        <label>Grunntone <input id="root" type="text" value="C"></label>
+>>>>>>> theirs
         <label>Type <input id="type" type="text" value="major"></label>
       </span>
 
@@ -56,12 +100,33 @@
         <label>Akkord <input id="chord" type="text" value="Cmaj7"></label>
       </span>
 
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
       <label>Oct <input id="oct" type="number" value="4" min="0" max="8"></label>
       <label>Tempo <input id="tempo" type="number" value="90" min="30" max="220"></label>
 
       <button id="btnApply">Vis</button>
       <button id="btnPlay">Play</button>
       <button id="btnStop" disabled>Stop</button>
+=======
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+      <label>Oktav <input id="oct" type="number" value="4" min="0" max="8"></label>
+      <label>Tempo <input id="tempo" type="number" value="90" min="30" max="220"></label>
+
+      <button id="btnApply">Vis</button>
+      <button id="btnPlay">Spill</button>
+      <button id="btnStop" disabled>Stopp</button>
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
     </div>
 
     <div class="meta" style="margin-top:10px">
@@ -75,17 +140,53 @@
   </div>
 
   <div class="panel">
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
     <h2>Noter (SVG) — highlight + avspilling</h2>
+=======
+    <h2>Noter (SVG) — markering + avspilling</h2>
+>>>>>>> theirs
+=======
+    <h2>Noter (SVG) — markering + avspilling</h2>
+>>>>>>> theirs
+=======
+    <h2>Noter (SVG) — markering + avspilling</h2>
+>>>>>>> theirs
     <div id="notation"></div>
   </div>
 
   <div class="panel">
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
     <h2>Piano roll + keyboard — highlight + avspilling</h2>
+=======
+    <h2>Pianorull + tangenter — markering + avspilling</h2>
+>>>>>>> theirs
+=======
+    <h2>Pianorull + tangenter — markering + avspilling</h2>
+>>>>>>> theirs
+=======
+    <h2>Pianorull + tangenter — markering + avspilling</h2>
+>>>>>>> theirs
     <canvas id="roll"></canvas>
   </div>
 
   <div class="panel">
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
     <h2>Debug</h2>
+=======
+    <h2>Feilsøking</h2>
+>>>>>>> theirs
+=======
+    <h2>Feilsøking</h2>
+>>>>>>> theirs
+=======
+    <h2>Feilsøking</h2>
+>>>>>>> theirs
     <pre id="debug"></pre>
   </div>
 
@@ -96,7 +197,19 @@
   const VF = Vex.Flow;
 
   // ===== API (Skala) =====
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
   const SCALE_API_URL = "https://www.rockeskolen.com/api/scales/piano.php";
+=======
+  const SCALE_API_URL = "/api/scales/piano.php";
+>>>>>>> theirs
+=======
+  const SCALE_API_URL = "/api/scales/piano.php";
+>>>>>>> theirs
+=======
+  const SCALE_API_URL = "/api/scales/piano.php";
+>>>>>>> theirs
 
   // ===== DOM =====
   const modeEl = document.getElementById("mode");

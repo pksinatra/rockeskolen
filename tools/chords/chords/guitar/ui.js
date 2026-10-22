@@ -114,9 +114,8 @@ function showProBox(name) {
   if (!box) return;
 
   box.innerHTML = `
-    <strong>Pro only:</strong> <strong>${name}</strong> is available in the Pro version.
-    Choose a free option, or
-    <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+    <strong>${name}</strong> er med i VIP.
+    Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd.
   `;
 
   box.style.display = "block";
@@ -148,7 +147,7 @@ function showProBox(name) {
       opt.setAttribute("aria-disabled", "true");
       // Sett label med Pro-indikasjon
       const base = opt.dataset.label;
-      opt.textContent = base.includes("Pro") ? base : (base + "  • Pro");
+      opt.textContent = base.includes("VIP") ? base : (base + "  • VIP");
     } else {
       opt.removeAttribute("aria-disabled");
       opt.textContent = opt.dataset.label;
@@ -204,6 +203,8 @@ function showProBox(name) {
     const jsonCache = {};
     // ---- Audio (Tone.js) ----
     const TUNING = [40, 45, 50, 55, 59, 64]; // E2 A2 D3 G3 B3 E4
+    const SAMPLE_ROOT = "/audio/guitars/acoustic/";
+    const SAMPLE_NOTE_NAMES = ["c","c#","d","d#","e","f","f#","g","g#","a","a#","b"];
     let toneSynth = null;
     let toneLimiter = null;
     let toneDrive = null;
@@ -243,6 +244,20 @@ function showProBox(name) {
         out.push({ midi, stringIndex: i });
       }
       return out;
+    }
+
+    function midiToSampleName(midi) {
+      const note = SAMPLE_NOTE_NAMES[(midi + 1200) % 12];
+      const octave = Math.floor(midi / 12) - 1;
+      return note + octave + ".mp3";
+    }
+
+    function playGuitarSample(midi, delayMs, volume) {
+      window.setTimeout(function () {
+        const audio = new Audio(SAMPLE_ROOT + encodeURIComponent(midiToSampleName(midi)));
+        audio.volume = Math.max(0, Math.min(1, volume || 0.72));
+        audio.play().catch(function () {});
+      }, delayMs);
     }
 
     function normalizeCagedShape(value) {
@@ -1002,6 +1017,7 @@ function onVariantChange() {
           const t = now + i * (strumMs / 1000);
           toneSynth.triggerAttackRelease(f, dur, t, 0.95);
           flashFretboardNote(playedNotes[i].stringIndex, 0.05 + i * (strumMs / 1000), Math.max(160, strumMs + 180));
+          playGuitarSample(playedNotes[i].midi, i * strumMs, 0.72);
         });
       } catch (err) {
         console.error("Feil ved avspilling:", err);

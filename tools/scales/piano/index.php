@@ -1,25 +1,16 @@
-<?php
-session_start();
-$user = $_SESSION['user_chordlink'] ?? null;
-$isPro =
-    ($user && in_array($user['role'] ?? '', ['pro','vip','admin'], true))
-    || isset($_COOKIE['rockeskolen_pro']);
-// Optional: force demo mode with ?demo=1
-if (isset($_GET['demo']) && $_GET['demo'] === '1') {
-  $isPro = false;
-}
-?>
+<?php require_once dirname(__DIR__, 2) . '/shared/bootstrap.php'; ?>
 
 <!doctype html>
-<html lang="nb">
+<html lang="<?= rs_updated_lang() ?>">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<title>Skalaverktøy for Piano / Keyboard</title>
+<?php chordlink_share_meta(['title' => 'Piano Scales | ChordLink', 'description' => 'View scales across the keyboard and hear them up and down.', 'path' => '/tools/scales/piano/', 'image' => '/images/tools/chordlink-tool-piano-scales-v1.png']); ?>
 
-<link rel="stylesheet" href="./app.css">
+<?php chordlink_app_header_styles(); ?>
+<link rel="stylesheet" href="./app.css?v=20260927-1">
 <script>
   window.CL_IS_PRO = <?= $isPro ? 'true' : 'false' ?>;
 </script>
@@ -27,21 +18,22 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
 
 </head>
 <body>
+  <?php chordlink_app_header('Piano Scales'); ?>
   <div class="wrap">
-    <h1>🎹 Skalaverktøy for Piano / Keyboard</h1>
+    <h1>🎹 Piano Scales</h1>
 
     <div class="card">
       <div class="row">
         <label>
-          <span>Rot</span>
+          <span>Root</span>
           <select id="root"></select>
         </label>
 
         <label>
-          <span>Skala-type</span>
+          <span>Scale type</span>
           <div class="scale-picker" id="scalePicker">
             <button type="button" id="scaleToggle" class="scale-toggle">
-              <span class="label-main">Dur</span>
+              <span class="label-main">Major</span>
               <span class="chevron">▼</span>
             </button>
             <div id="scaleMenu" class="scale-menu"></div>
@@ -50,8 +42,8 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
         </label>
 
         <label>
-          <span>Fortegn</span>
-          <span class="switch" aria-label="Bytt mellom # og b">
+          <span>Accidentals</span>
+          <span class="switch" aria-label="Switch between # and b">
             <button type="button" id="sharpBtn" class="acc-btn acc-active">♯</button>
             <button type="button" id="flatBtn" class="acc-btn">♭</button>
           </span>
@@ -61,7 +53,7 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
           <span>&nbsp;</span>
           <span>
             <input type="checkbox" id="showAll" />
-            Vis over hele klaviaturet
+            Show across the whole keyboard
           </span>
         </label>
 
@@ -69,13 +61,30 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
           <span>&nbsp;</span>
           <span>
             <input type="checkbox" id="playUpDown" />
-            Spill opp og ned
+            Play up and down
           </span>
         </label>
 
-        <button class="primary" id="playScale">Spill skala</button>
-        <button id="clear">Nullstill</button>
+        <button class="primary" id="playScale">Play scale</button>
+        <button id="clear">Clear selection</button>
       </div>
+      <div class="row sound-row">
+        <label><span>Sound</span>
+          <select id="soundType">
+            <option value="triangle" selected>Triangle</option>
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+          </select>
+        </label>
+        <label><span>Sustain</span>
+          <input type="range" id="sustain" min="0" max="100" value="55" />
+        </label>
+        <label><span>Volume</span>
+          <input type="range" id="volume" min="0" max="100" value="75" />
+        </label>
+      </div>
+
 
       <div class="badges">
         <span id="scaleName" class="badge" style="font-weight:600"></span>
@@ -86,11 +95,12 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
     </div>
 <div id="scaleProMsg" style="display:none"></div>
     <div class="card">
-      <div id="piano" class="piano" aria-label="Klikkbare pianotangenter"></div>
+      <div id="piano" class="piano" tabindex="0" role="region" aria-label="Clickable piano"></div>
     </div>
   </div>
-<div id="scaleProMsg" style="display:none"></div>
-<script src="./ui.js"></script>
+
+<?php rs_updated_help('piano-scales'); ?>
+<script src="./ui.js?v=20260927-1"></script>
 <script>
   // Keeps the Scale type button label in sync with the selected menu item
   (function () {
@@ -107,29 +117,7 @@ if (isset($_GET['demo']) && $_GET['demo'] === '1') {
     });
   })();
 </script>
-<script>
-  // Ensure initial scale is rendered once the scale menu is actually built
-  (function () {
-    let tries = 0;
-    const timer = setInterval(() => {
-      tries++;
 
-      const menu = document.getElementById("scaleMenu");
-      if (!menu) { if (tries > 40) clearInterval(timer); return; }
-
-      const btn =
-        menu.querySelector(".selected, .active, [aria-current='true']") ||
-        menu.querySelector("button");
-
-      if (btn) {
-      //  btn.click();              // triggers the same code path as a real user click
-        clearInterval(timer);     // run once
-      }
-
-      if (tries > 40) clearInterval(timer); // ~2 seconds max (40 * 50ms)
-    }, 50);
-  })();
-</script>
 
 </body>
 </html>

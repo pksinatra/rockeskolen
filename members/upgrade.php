@@ -17,7 +17,7 @@ $prefillEmail = trim($_POST['email'] ?? ($user['email'] ?? ''));
 $formError = null;
 
 // Hvis bruker allerede er logget inn og har tilgang, send til konto
-if ($isLoggedIn && in_array(($user['role'] ?? ''), ['pro','vip','admin'], true)) {
+if ($isLoggedIn && in_array(($user['role'] ?? ''), ['vip','admin'], true)) {
     header("Location: /members/account.php");
     exit;
 }
@@ -31,12 +31,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
     if (!in_array($type, ['vip_monthly', 'vip_yearly'], true)) {
         $type = 'vip_monthly';
     }
+    if ($isLoggedIn) {
+        $email = (string)($user['email'] ?? '');
+    }
 
     if ($name === '') {
         $formError = 'Skriv inn navnet ditt.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $formError = 'Skriv inn en gyldig e-postadresse.';
     } else {
+        if (!$isLoggedIn) {
+            $existing = $pdo->prepare('SELECT id FROM ' . USER_TABLE . ' WHERE email = ? AND is_active = 1 LIMIT 1');
+            $existing->execute([strtolower($email)]);
+            if ($existing->fetchColumn()) {
+                $formError = 'Det finnes allerede en konto med denne e-postadressen. Logg inn før du kjøper VIP.';
+            }
+        }
+    }
+
+    if ($formError === null) {
         $_SESSION['pending_checkout'] = [
             'name'  => $name,
             'email' => $email,
@@ -54,15 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Bli VIP-medlem | Rockeskolen</title>
-  <link rel="stylesheet" href="/members/members.css?v=3">
+  <link rel="stylesheet" href="/members/members.css?v=4">
   <style>
     .hero {
       padding: 26px;
       border-radius: 18px;
       background:
-        radial-gradient(900px 400px at 0% 0%, rgba(255,92,122,.16), transparent 50%),
-        radial-gradient(900px 500px at 100% 0%, rgba(84,210,242,.14), transparent 50%),
-        radial-gradient(700px 500px at 50% 100%, rgba(178,139,255,.14), transparent 50%),
+        radial-gradient(900px 400px at 0% 0%, rgba(237,28,36,.24), transparent 52%),
+        radial-gradient(800px 500px at 100% 100%, rgba(137,8,13,.16), transparent 55%),
         rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: var(--shadow);
@@ -144,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
       border-radius:999px;
       font-size:12px;
       font-weight:700;
-      color:#061020;
+      color:#fff;
       background: var(--grad);
     }
 
@@ -169,8 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
     }
 
     .price-option.active {
-      border-color: rgba(178,139,255,0.55);
-      box-shadow: 0 0 0 3px rgba(178,139,255,0.14);
+      border-color: rgba(237,28,36,.72);
+      box-shadow: 0 0 0 3px rgba(237,28,36,.15);
       background: rgba(255,255,255,0.07);
     }
 
@@ -222,14 +234,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
 <div class="wrap">
   <div class="topbar">
     <div class="brand">
-      <div class="title">Rockeskolen</div>
+      <a href="/" aria-label="Rockeskolen"><img class="brand-logo" src="/images/rock-logo.png" alt="Rockeskolen"></a>
       <div class="sub">VIP-medlemskap</div>
     </div>
 
     <div class="row">
       <?php if ($isLoggedIn): ?>
         <a class="btn ghost" href="/members/account.php">Min konto</a>
-        <a class="btn" href="/members/logout.php">Logg ut</a>
+        <a class="btn logout" href="<?= htmlspecialchars(member_logout_url(), ENT_QUOTES, 'UTF-8') ?>">Logg ut av Rockeskolen</a>
       <?php else: ?>
         <a class="btn ghost" href="/members/login.php?redirect=/members/upgrade.php">Har du allerede konto?</a>
       <?php endif; ?>
@@ -237,14 +249,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
   </div>
 
   <section class="hero">
-    <div class="pricing-badge">Superpris akkurat nå</div>
+    <div class="pricing-badge">Introduksjonstilbud</div>
     <h1 class="hero-title">Bli VIP-medlem og få full tilgang med én gang</h1>
     <p class="hero-lead">
-      Lås opp alle akkorder, skalaer og verktøy i Rockeskolen. Dette er medlemskapet for deg som vil ha hele verktøykassa tilgjengelig – uten sperrer og uten omveier.
+      Lås opp alle akkorder, skalaer og verktøy i Rockeskolen for 39,90 kr/mnd eller 299 kr/år. Dette er medlemskapet for deg som vil ha hele verktøykassa tilgjengelig – uten sperrer og uten omveier.
     </p>
 
     <div class="cta-top">
-      <a class="btn primary" href="#checkout">Start VIP – 29 kr/mnd</a>
+      <a class="btn primary" href="#checkout">Start VIP – 39,90 kr/mnd</a>
       <?php if (!$isLoggedIn): ?>
         <a class="btn ghost" href="/members/login.php">Logg inn hvis du allerede er medlem</a>
       <?php endif; ?>
@@ -267,12 +279,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
 
   <div class="feature-item">
     <strong>Full tilgang til hele Rockeskolen</strong>
-    Åpne alle artikler, kurs, verktøy og ressurser – uten begrensninger.
+    Åpne alle artikler, verktøy og ressurser – uten begrensninger.
   </div>
 
   <div class="feature-item">
     <strong>Alt av verktøy – uten sperrer</strong>
     Bruk akkordfinner, skalaer og andre verktøy fritt, når du trenger det.
+  </div>
+
+  <div class="feature-item">
+    VIP inkluderer Pro-funksjonene i ChordLink.
   </div>
 
   <div class="feature-item">
@@ -324,9 +340,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
             <input type="radio" name="type" value="vip_monthly" <?= $selectedType === 'vip_monthly' ? 'checked' : '' ?>>
             <div class="price-line">
               <strong>VIP månedlig</strong>
-              <strong>29 kr / mnd</strong>
+              <strong>39,90 kr / mnd</strong>
             </div>
-            <div class="price-note">Lav terskel. Kom i gang med én gang.</div>
+            <div class="price-note">Introduksjonspris. Normalpris 49,90 kr/mnd. Du beholder 39,90 så lenge abonnementet er aktivt.</div>
           </label>
 
           <label class="price-option <?= $selectedType === 'vip_yearly' ? 'active' : '' ?>">

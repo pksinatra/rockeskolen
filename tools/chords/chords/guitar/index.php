@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 
 $user = current_user(); // kan være null (public)
-$isPro = ($user && in_array($user['role'], ['pro','admin'], true));
+$isPro = has_rockeskolen_access($user);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,6 +154,6 @@ $isPro = ($user && in_array($user['role'], ['pro','admin'], true));
   <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
 
   <!-- Stable full UI (clone of Beta Final + inlays/harmonics) -->
-  <script src="./ui.js?v=15"></script>
+  <script src="./ui.js?v=16"></script>
 </body>
 </html>

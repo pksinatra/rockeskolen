@@ -1,0 +1,235 @@
+:root {
+  color-scheme: dark;
+  --page: #080c14;
+  --panel: #fbfcff;
+  --ink: #162036;
+  --muted: #68738e;
+  --line: rgba(48, 61, 91, .14);
+  --violet: #7062ee;
+  --violet-soft: #a99afc;
+  --cyan: #4cc9f0;
+  --cyan-soft: #8de8ff;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--page);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body { padding: 0; }
+
+.cs-card {
+  width: min(920px, 100%);
+  padding: clamp(12px, 2.5vw, 20px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(145deg, #fff 0%, #fbfdff 58%, #f7f4ff 100%);
+  color: var(--ink);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .22);
+}
+
+.cs-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.cs-eyebrow {
+  margin: 0 0 3px;
+  color: var(--violet);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(17px, 3vw, 24px);
+  letter-spacing: -.025em;
+}
+
+.cs-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px 12px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cs-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend-dot.chord { background: var(--violet); box-shadow: 0 0 7px rgba(112, 98, 238, .5); }
+.legend-dot.melody { background: var(--cyan); box-shadow: 0 0 7px rgba(76, 201, 240, .55); }
+
+.cs-explanation {
+  margin: 9px 0 12px;
+  color: #4c5872;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.notation-panel,
+.keyboard-panel {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .72);
+}
+
+.notation-panel { border-radius: 15px 15px 8px 8px; }
+#grandStaff { min-width: 560px; min-height: 250px; }
+#grandStaff svg { display: block; width: 100%; overflow: visible; }
+
+#grandStaff .vf-stavenote { transition: fill .16s ease, stroke .16s ease, filter .16s ease; }
+#grandStaff .notation-chord { fill: #26314a; stroke: #26314a; }
+#grandStaff .notation-melody { fill: #26314a; stroke: #26314a; }
+#grandStaff .notation-chord.is-playing {
+  fill: var(--violet);
+  stroke: var(--violet);
+  filter: drop-shadow(0 0 3px rgba(112, 98, 238, .95)) drop-shadow(0 0 9px rgba(112, 98, 238, .7));
+}
+#grandStaff .notation-chord.is-playing * {
+  fill: var(--violet) !important;
+  stroke: var(--violet) !important;
+}
+#grandStaff .notation-melody.is-playing {
+  fill: var(--cyan);
+  stroke: var(--cyan);
+  filter: drop-shadow(0 0 3px rgba(76, 201, 240, .95)) drop-shadow(0 0 8px rgba(76, 201, 240, .7));
+}
+
+.keyboard-panel {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 8px 8px 15px 15px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.keyboard {
+  position: relative;
+  display: flex;
+  width: max-content;
+  height: 150px;
+}
+
+.key {
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  transition: background .16s ease, box-shadow .16s ease, transform .1s ease;
+}
+
+.key.white {
+  width: 44px;
+  height: 150px;
+  border: 1px solid rgba(25, 35, 59, .26);
+  border-radius: 0 0 7px 7px;
+  background: linear-gradient(180deg, #fff, #f7f9ff 65%, #edf1fb);
+  box-shadow: 0 7px 13px rgba(35, 46, 72, .12);
+}
+
+.key.black {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  width: 27px;
+  height: 92px;
+  border: 1px solid rgba(0, 0, 0, .62);
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(180deg, #373c50, #101522 78%, #080b12);
+  box-shadow: 0 9px 16px rgba(0, 0, 0, .24);
+}
+
+.key.chord-tone.white { background: linear-gradient(180deg, #fff, #f1eeff 56%, #ddd6ff); }
+.key.chord-tone.black { background: linear-gradient(180deg, #6258c9, #211d52); }
+.key.melody-tone.white { box-shadow: inset 0 -5px 0 rgba(76, 201, 240, .5), 0 7px 13px rgba(35, 46, 72, .12); }
+.key.melody-tone.black { box-shadow: inset 0 -4px 0 rgba(76, 201, 240, .7), 0 9px 16px rgba(0, 0, 0, .24); }
+
+.key.playing-chord {
+  background: linear-gradient(145deg, #8c7df8, #b4a8ff) !important;
+  box-shadow: 0 0 9px rgba(112, 98, 238, .95), 0 0 23px rgba(112, 98, 238, .68) !important;
+  transform: translateY(2px);
+}
+
+.key.playing-melody {
+  background: linear-gradient(145deg, #8de8ff, #4cc9f0) !important;
+  box-shadow: 0 0 9px rgba(76, 201, 240, .95), 0 0 23px rgba(76, 201, 240, .65) !important;
+  transform: translateY(2px);
+}
+
+.key-label {
+  position: absolute;
+  right: 4px;
+  bottom: 5px;
+  color: #737e95;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.tone-badge {
+  position: absolute;
+  bottom: 23px;
+  left: 50%;
+  z-index: 5;
+  transform: translateX(-50%);
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.tone-badge.chord { background: var(--violet); }
+.tone-badge.melody { background: #219fc7; }
+.key.black .tone-badge { top: 7px; bottom: auto; }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding-top: 10px;
+}
+
+.controls button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .92);
+  color: #26314a;
+  box-shadow: 0 3px 10px rgba(42, 53, 81, .06);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.controls button:hover { border-color: rgba(102, 92, 246, .38); box-shadow: 0 5px 16px rgba(74, 83, 132, .12); transform: translateY(-1px); }
+.controls button:focus-visible, .key:focus-visible { outline: 3px solid rgba(76, 201, 240, .38); outline-offset: 2px; }
+body.is-playing #playTogether { border-color: rgba(102, 92, 246, .48); box-shadow: 0 0 0 3px rgba(102, 92, 246, .1); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 620px) {
+  .cs-heading { display: block; }
+  .cs-legend { justify-content: flex-start; margin-top: 8px; }
+  .notation-panel { overflow-x: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key, .controls button, #grandStaff .vf-stavenote { transition: none; }
+}

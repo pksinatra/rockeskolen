@@ -1,0 +1,2 @@
+const {defineConfig,devices}=require('../frequencygenerator/node_modules/@playwright/test');
+module.exports=defineConfig({testDir:'.',testMatch:'layout.spec.cjs',workers:1,timeout:30000,use:{baseURL:'http://127.0.0.1:5180'},projects:[{name:'chromium',use:{...devices['Desktop Chrome']}},{name:'webkit',use:{...devices['Desktop Safari']}}],webServer:{command:'python3 -m http.server 5180 --bind 127.0.0.1 --directory preview',url:'http://127.0.0.1:5180',reuseExistingServer:false,stderr:'ignore'}});

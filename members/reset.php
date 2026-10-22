@@ -10,6 +10,8 @@ $stmt = $pdo->prepare(
   "SELECT id FROM " . USER_TABLE . "
    WHERE password_reset_token = ?
    AND password_reset_expires > NOW()
+   AND COALESCE(provider, 'local') <> 'feide'
+   AND (feide_id IS NULL OR feide_id = '')
    LIMIT 1"
 );
 $stmt->execute([$hash]);
@@ -29,8 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user) {
 
         $stmt = $pdo->prepare(
             "UPDATE " . USER_TABLE . "
-             SET password_hash = ?, password_reset_token = NULL, password_reset_expires = NULL
-             WHERE id = ?"
+             SET password_hash = ?, password_reset_token = NULL,
+                 password_reset_expires = NULL, password_setup_required = 0
+             WHERE id = ?
+               AND COALESCE(provider, 'local') <> 'feide'
+               AND (feide_id IS NULL OR feide_id = '')"
         );
         $stmt->execute([$hashPass, (int)$user['id']]);
 
@@ -47,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nytt passord | Rockeskolen</title>
-<link rel="stylesheet" href="/members/members.css?v=1">
+  <link rel="stylesheet" href="/members/members.css?v=4">
 </head>
 <body>
 

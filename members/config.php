@@ -11,7 +11,15 @@ if (is_file($localConfig)) {
     require $localConfig;
 }
 
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_set_cookie_params([
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax',
+        'path' => '/',
+    ]);
+    session_start();
+}
 
 // ---- Error reporting ----
 // Production: keep display_errors OFF (log instead).
@@ -42,12 +50,34 @@ if ($DB_HOST !== '' && $DB_NAME !== '' && $DB_USER !== '') {
 
 define('USER_TABLE', 'chordlink_users');
 define('PAYMENT_TABLE', 'chordlink_payments');
-define('PRO_ROLES', ['pro','vip','admin']);
-define('VIP_ROLES', ['vip','admin']);
+// Access matrix:
+// - Pro: all ChordLink tools, no Rockeskolen member content.
+// - VIP: all Rockeskolen member content and all ChordLink tools.
+define('CHORDLINK_ACCESS_ROLES', ['pro', 'vip', 'admin']);
+define('ROCKESKOLEN_ACCESS_ROLES', ['vip', 'admin']);
+// Backwards-compatible names used by existing tools and account pages.
+define('PRO_ROLES', CHORDLINK_ACCESS_ROLES);
+define('VIP_ROLES', ROCKESKOLEN_ACCESS_ROLES);
 
 
 function current_user() {
     return $_SESSION['user_chordlink'] ?? null;
+}
+
+/**
+ * Returns a short-lived, member-bound URL that logs out both systems.
+ */
+function member_logout_url(): string {
+    $user = current_user();
+    $userId = (int)($user['id'] ?? 0);
+    $secret = getenv('CHORDLINK_ROLE_SYNC_SECRET') ?: '';
+    if ($userId < 1 || $secret === '') {
+        return '/members/logout.php';
+    }
+    $timestamp = time();
+    $signature = hash_hmac('sha256', "logout:$userId:$timestamp", $secret);
+    return 'https://portal.rockeskolen.com/members/logout-all?mid=' . $userId
+        . '&ts=' . $timestamp . '&sig=' . rawurlencode($signature);
 }
 
 function set_current_user(array $row) {
@@ -114,6 +144,11 @@ function is_logged_in(): bool {
 }
 
 function has_chordlink_access(?array $u = null): bool {
+    if ($u === null || (!empty($u['id']) && !empty($_SESSION['user_chordlink']['id']) && (int) $u['id'] === (int) $_SESSION['user_chordlink']['id'])) {
+        refresh_user_from_db();
+        $u = current_user();
+    }
+
     $u = $u ?: current_user();
     if (!$u) return false;
     return in_array($u['role'], PRO_ROLES, true);
@@ -128,6 +163,11 @@ function safe_redirect(string $fallback = '/members/account.php'): string {
 }
 
 function has_rockeskolen_access(?array $u = null): bool {
+    if ($u === null || (!empty($u['id']) && !empty($_SESSION['user_chordlink']['id']) && (int) $u['id'] === (int) $_SESSION['user_chordlink']['id'])) {
+        refresh_user_from_db();
+        $u = current_user();
+    }
+
     $u = $u ?: current_user();
     if (!$u) return false;
     return in_array($u['role'], VIP_ROLES, true);
@@ -159,13 +199,27 @@ function require_pro() {
     }
 }
 
+function require_vip() {
+    require_login();
+    refresh_user_from_db();
+    $u = current_user();
+    if (!in_array($u['role'] ?? '', VIP_ROLES, true)) {
+        header("Location: /members/upgrade.php?reason=vip");
+        exit;
+    }
+}
+
 function is_pro_user(?array $u = null): bool {
     return has_chordlink_access($u);
 }
 
+function is_vip_user(?array $u = null): bool {
+    return has_rockeskolen_access($u);
+}
+
 function send_membership_email(string $to, string $plan, string $periodEnd): void {
 
-    $subject = "Your ChordLink Pro subscription";
+    $subject = "Ditt VIP-medlemskap hos Rockeskolen";
 
     $message = "
 Hei,
@@ -177,7 +231,7 @@ Plan: $plan
 Fornyes: $periodEnd
 
 Du kan redigere ditt medlemsskap her:
-https://www.rockeskolen.com/members/account.php
+https://rockeskolen.com/members/account.php
 
 Takk for at du er medlem hos oss.
 ";
@@ -192,5 +246,3 @@ Takk for at du er medlem hos oss.
 // ---- Stripe ----
 define('CHORDLINK_STRIPE_SECRET_KEY', getenv('CHORDLINK_STRIPE_SECRET_KEY') ?: '');
 define('CHORDLINK_STRIPE_WEBHOOK_SECRET', getenv('CHORDLINK_STRIPE_WEBHOOK_SECRET') ?: '');
-
-

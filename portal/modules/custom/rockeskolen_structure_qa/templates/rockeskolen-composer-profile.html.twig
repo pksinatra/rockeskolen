@@ -1,0 +1,13 @@
+<div class="rs-composer-profile">
+  <a class="rs-composer-profile__back" href="{{ path('view.komponister.page_1') }}">← Alle komponister</a>
+  <div class="rs-composer-profile__intro">{% for field in intro %}{{ field }}{% endfor %}</div>
+  {% if facts %}<section class="rs-composer-panel">
+    <h2>Liv og bakgrunn</h2>
+    {% if birth %}<div class="rs-composer-life" aria-label="Registrerte livsår"><span><small>Født</small>{{ birth }}</span><span class="rs-composer-life__line" aria-hidden="true"></span><span><small>{% if death %}Død{% else %}Dødsår{% endif %}</small>{{ death ?: 'Ikke oppgitt' }}</span></div>{% endif %}
+    <div class="rs-composer-facts">{% for field in facts %}{{ field }}{% endfor %}</div>
+  </section>{% endif %}
+  <div class="rs-composer-profile__body">{% for field in body %}{{ field }}{% endfor %}</div>
+  {% if listening %}<section class="rs-composer-panel rs-composer-panel--listen"><h2>Lytt og bli kjent med musikken</h2><div class="rs-composer-details">{% for field in listening %}{{ field }}{% endfor %}</div></section>{% endif %}
+  {% if connections %}<section class="rs-composer-panel"><h2>Påvirkning og samtid</h2><div class="rs-composer-details">{% for field in connections %}{{ field }}{% endfor %}</div></section>{% endif %}
+  {% if sources %}<section class="rs-composer-panel rs-composer-panel--sources"><h2>Kilder og videre lesning</h2>{% for field in sources %}{{ field }}{% endfor %}</section>{% endif %}
+</div>

@@ -160,7 +160,7 @@ function showProNotice(qualKey){
   const name = v ? v.name : qualKey;
 
   el.innerHTML = `
-    <a class="pro-cta pro-cta--promo" href="/members/upgrade.php" target="_top">The chord <strong>${name}</strong> is available in the Pro version. You can choose another chord, or <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.    </a>
+    <div class="pro-cta pro-cta--promo"><strong>${name}</strong> er med i VIP. Lås opp alle akkorder, skalaer og verktøy for 299 kr i året / 39,90 kr/mnd. <a href="/members/upgrade.php">Bli VIP</a><br>Elev eller lærer? <a href="https://portal.rockeskolen.com/user/login">Logg inn med FEIDE</a></div>
   `;
 
   card.style.display = "block";
@@ -261,7 +261,7 @@ qualSel.appendChild(ph);
     const allowed = isChordAllowed(k);
     const o = document.createElement("option");
     o.value = k;
-    o.textContent = allowed ? v.name : `${v.name} (Pro)`;
+    o.textContent = allowed ? v.name : `${v.name} (VIP)`;
 
     if(!allowed) o.classList.add("pro-option");
 

@@ -8,7 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $stmt = $pdo->prepare(
-            "SELECT id FROM " . USER_TABLE . " WHERE email = ? AND is_active = 1 LIMIT 1"
+            "SELECT id FROM " . USER_TABLE . "
+              WHERE email = ? AND is_active = 1
+                AND COALESCE(provider, 'local') <> 'feide'
+                AND (feide_id IS NULL OR feide_id = '')
+              LIMIT 1"
         );
         $stmt->execute([$email]);
 
@@ -42,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Glemt passord | Rockeskolen</title>
-  <link rel="stylesheet" href="/members/members.css?v=1">
+  <link rel="stylesheet" href="/members/members.css?v=4">
 </head>
 <body>
 

@@ -1,11 +1,14 @@
 # Global stylings. These CSS files will be loaded on every pages.
 global-styling:
-  version: 11.1.2
+  version: 11.1.5
   css:
     theme:
       css/tiny-slider.css: {}
       css/style.css: {}
       css/rockeskolen-qa.css: {}
+      css/category-navigation.css: {}
+      css/front.css: {}
+      css/frontcampaign.css: {}
 
 # Global Javascripts. These will be loaded on every pages.
 global-scripts:
@@ -113,3 +116,9 @@ theme-settings:
   css:
     theme:
       css/theme-settings.css: {}
+
+tool-visit:
+  version: 1.0
+  css:
+    theme:
+      css/tool-visit.css: {}

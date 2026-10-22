@@ -282,6 +282,13 @@
           <!-- String buttons -->
           <div class="controls" id="stringButtons" style="grid-template-columns: repeat(auto-fit, minmax(60px,1fr));"></div>
 
+          <div class="controls" style="grid-template-columns: 1fr;">
+            <select id="toneLayer" class="btn" title="Velg ekstra lydlag">
+              <option value="pure">Ren referansetone</option>
+              <option value="guitar">Ren tone + akustisk gitar (MP3)</option>
+            </select>
+          </div>
+
           <div class="controls">
             <input id="freq" type="range" min="27.5" max="1046.5" step="0.1" value="440" />
             <button id="play" class="btn primary">▶ Spill</button>
@@ -325,6 +332,7 @@
   const octDownBtn = document.getElementById('octDown');
   const octUpBtn = document.getElementById('octUp');
   const set440Btn = document.getElementById('set440');
+  const toneLayerEl = document.getElementById('toneLayer');
 
   const hzText = document.getElementById('hzText');
   const noteText = document.getElementById('noteText');
@@ -390,6 +398,9 @@
   let currentInstrument = "guitar";
   let octaveOffset = 0;
   const MAX_OCT = 2;
+  let selectedStringMidi = 64;
+  const SAMPLE_ROOT = "/audio/guitars/acoustic/";
+  const SAMPLE_NOTE_NAMES = ["c","c#","d","d#","e","f","f#","g","g#","a","a#","b"];
 
   // ---------- Audio (Web Audio API) ----------
   let audioCtx = null;
@@ -411,6 +422,31 @@
   // ---------- Helpers ----------
   function clampHz(v){
     return Math.min(MAX_HZ, Math.max(MIN_HZ, v));
+  }
+
+  function noteNameToMidi(note){
+    const match = String(note || "").match(/^([A-G]#?)(-?\d+)$/);
+    if (!match) return 69;
+    const idx = NOTE_NAMES.indexOf(match[1]);
+    return (Number(match[2]) + 1) * 12 + idx;
+  }
+
+  function midiToSampleName(midi){
+    const note = SAMPLE_NOTE_NAMES[(midi + 1200) % 12];
+    const octave = Math.floor(midi / 12) - 1;
+    return `${note}${octave}.mp3`;
+  }
+
+  function playGuitarSample(midi, volume = 0.9){
+    const audio = new Audio(SAMPLE_ROOT + encodeURIComponent(midiToSampleName(midi)));
+    audio.volume = Math.max(0, Math.min(1, volume));
+    audio.play().catch(() => {});
+  }
+
+  function maybePlayGuitarLayer(){
+    if (currentInstrument !== "guitar") return;
+    if (toneLayerEl?.value !== "guitar") return;
+    playGuitarSample(selectedStringMidi + octaveOffset * 12, 0.85);
   }
 
   function getBaseHz(){
@@ -493,8 +529,10 @@
         clearSet440Active();
         clearStringActive();
         btn.classList.add("active");
+        selectedStringMidi = noteNameToMidi(s.note);
 
         setFreq(s.hz); // setter base
+        maybePlayGuitarLayer();
         if (!isPlaying) start();
         else updateUI(); // oppdater oscillator
       });
@@ -588,6 +626,7 @@
 
     osc.connect(gain).connect(audioCtx.destination);
     osc.start();
+    maybePlayGuitarLayer();
 
     isPlaying = true;
     forkWrap.dataset.playing = "true";

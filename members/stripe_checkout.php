@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
 
 require __DIR__ . '/config.php';
@@ -11,7 +11,7 @@ require_once __DIR__ . '/../vendor/stripe/init.php';
 
 
 $PRICE = [
-  'vip_monthly' => 'price_1T3hFSQ77UW38jdQdJ9SiFSQ',
+  'vip_monthly' => 'price_1UDt9UQ77UW38jdQaDYKvQG6',
   'vip_yearly'  => 'price_1T3hG4Q77UW38jdQ8oHncOeq',
 ];
 
@@ -40,13 +40,18 @@ if ($u) {
         header("Location: /members/upgrade.php");
         exit;
     }
+
+    $existing = $pdo->prepare('SELECT id FROM ' . USER_TABLE . ' WHERE email = ? AND is_active = 1 LIMIT 1');
+    $existing->execute([strtolower($email)]);
+    if ($existing->fetchColumn()) {
+        header('Location: /members/login.php?redirect=' . rawurlencode('/members/upgrade.php'));
+        exit;
+    }
 }
 
 $mode = 'subscription';
 
-$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$host   = $_SERVER['HTTP_HOST'] ?? '';
-$base   = $scheme . '://' . $host;
+$base = 'https://rockeskolen.com';
 
 $successUrl = $base . "/members/stripe_complete.php?session_id={CHECKOUT_SESSION_ID}";
 $cancelUrl  = $base . "/members/upgrade.php?cancel=1";
@@ -66,11 +71,18 @@ $params = [
 'cancel_url'  => $cancelUrl,
   'customer_email' => $email,
   'client_reference_id' => (string)$userId,
-  'metadata' => [
+'metadata' => [
     'user_id' => (string)$userId,
     'type'    => $type,
     'name'    => $name,
     'email'   => $email
+  ],
+  'subscription_data' => [
+    'metadata' => [
+      'user_id' => (string)$userId,
+      'type'    => $type,
+      'email'   => $email,
+    ],
   ],
 ];
 
@@ -80,7 +92,8 @@ try {
   header("Location: " . $session->url, true, 303);
   exit;
 } catch (Exception $e) {
+  error_log('Stripe checkout creation error: ' . $e->getMessage());
   http_response_code(500);
-  echo "<pre>Stripe error:\n" . htmlspecialchars($e->getMessage()) . "</pre>";
+  echo 'Kunne ikke starte betalingen. Prøv igjen om litt.';
   exit;
 }

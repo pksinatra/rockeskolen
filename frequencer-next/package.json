@@ -1,0 +1,23 @@
+{
+  "name": "frequencer-beta",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "pnpm test && pnpm build && pnpm test:e2e && pnpm test:production",
+    "format": "prettier --write src tests *.ts package.json tsconfig.json",
+    "test:production": "FG_BUILD=1 playwright test tests/browser/modes.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^3.2.4"
+  },
+  "packageManager": "pnpm@11.19.0"
+}

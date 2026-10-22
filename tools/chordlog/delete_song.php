@@ -2,9 +2,11 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 
 $user = current_user();
+header('Content-Type: application/json');
 
 if (!$user) {
-    echo json_encode([]);
+    http_response_code(401);
+    echo json_encode(["success" => false, "error" => "Logg inn først."]);
     exit;
 }
 
@@ -23,9 +25,18 @@ if (!$id) {
     exit;
 }
 
-$pdo->beginTransaction();
-
 try {
+    $pdo->beginTransaction();
+
+    $stmt = $pdo->prepare("SELECT id FROM chordapp_songs WHERE id=? AND user_id=? LIMIT 1");
+    $stmt->execute([$id, $userId]);
+
+    if (!$stmt->fetchColumn()) {
+        $pdo->rollBack();
+        http_response_code(404);
+        echo json_encode(["success" => false, "error" => "Fant ikke låten"]);
+        exit;
+    }
 
     $stmt = $pdo->prepare("DELETE FROM chordapp_chords WHERE song_id = ?");
     $stmt->execute([$id]);
@@ -39,6 +50,8 @@ try {
 
 } catch (Exception $e) {
 
-    $pdo->rollBack();
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
     echo json_encode(["success" => false, "error" => $e->getMessage()]);
 }

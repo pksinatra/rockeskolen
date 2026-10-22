@@ -1,0 +1,22 @@
+[
+  {
+    "app": "piano-chords",
+    "dimensions": {
+      "page": 390,
+      "viewport": 390,
+      "keyboard": 968,
+      "view": 310
+    },
+    "passed": true
+  },
+  {
+    "app": "piano-scales",
+    "dimensions": {
+      "page": 390,
+      "viewport": 390,
+      "keyboard": 968,
+      "view": 336
+    },
+    "passed": true
+  }
+]
