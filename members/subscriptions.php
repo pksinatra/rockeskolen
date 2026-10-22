@@ -72,12 +72,13 @@ function sync_user_role_from_subscriptions(PDO $pdo, int $userId): string {
 
 /**
  * Returns whether a member currently has an active Stripe VIP entitlement.
+ * ChordLink Pro counts as VIP on Rockeskolen.
  */
 function has_active_vip_subscription(PDO $pdo, int $userId): bool {
     $stmt = $pdo->prepare(
         "SELECT 1 FROM chordlink_subscriptions
           WHERE user_id = ?
-            AND plan IN ('vip_monthly', 'vip_yearly')
+            AND plan IN ('vip_monthly', 'vip_yearly', 'pro_monthly', 'pro_yearly')
             AND status IN ('active', 'trialing')
             AND (current_period_end IS NULL OR current_period_end >= NOW())
           LIMIT 1"

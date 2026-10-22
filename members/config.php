@@ -51,10 +51,11 @@ if ($DB_HOST !== '' && $DB_NAME !== '' && $DB_USER !== '') {
 define('USER_TABLE', 'chordlink_users');
 define('PAYMENT_TABLE', 'chordlink_payments');
 // Access matrix:
-// - Pro: all ChordLink tools, no Rockeskolen member content.
+// - Pro (ChordLink subscription): all ChordLink tools, and VIP on Rockeskolen.
 // - VIP: all Rockeskolen member content and all ChordLink tools.
+// A paying member gets everything; Pro is only a ChordLink product name.
 define('CHORDLINK_ACCESS_ROLES', ['pro', 'vip', 'admin']);
-define('ROCKESKOLEN_ACCESS_ROLES', ['vip', 'admin']);
+define('ROCKESKOLEN_ACCESS_ROLES', ['pro', 'vip', 'admin']);
 // Backwards-compatible names used by existing tools and account pages.
 define('PRO_ROLES', CHORDLINK_ACCESS_ROLES);
 define('VIP_ROLES', ROCKESKOLEN_ACCESS_ROLES);

@@ -89,6 +89,9 @@ final class MembershipSsoController extends ControllerBase implements ContainerI
       user_login_finalize($account);
 
       if ($siteUrl !== NULL) {
+        // Drupal would append ?check_logged_in=1 to verify its own cookie,
+        // which means nothing on rockeskolen.com.
+        $request->getSession()->remove('check_logged_in');
         return new TrustedRedirectResponse($siteUrl, 303);
       }
       return new RedirectResponse(ReturnDestination::portalPath($destination), 303);

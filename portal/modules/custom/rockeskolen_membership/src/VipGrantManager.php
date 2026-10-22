@@ -51,12 +51,13 @@ final class VipGrantManager {
 
   /**
    * Reconciles the aggregate Stripe VIP entitlement of a linked member.
+   * ChordLink Pro counts as VIP on Rockeskolen.
    */
   public function syncStripeGrant(\PDO $pdo, int $membershipUserId, int $uid): bool {
     $statement = $pdo->prepare(
       "SELECT 1 FROM chordlink_subscriptions
         WHERE user_id = ?
-          AND plan IN ('vip_monthly', 'vip_yearly')
+          AND plan IN ('vip_monthly', 'vip_yearly', 'pro_monthly', 'pro_yearly')
           AND status IN ('active', 'trialing')
           AND (current_period_end IS NULL OR current_period_end >= NOW())
         LIMIT 1"

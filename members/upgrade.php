@@ -17,7 +17,7 @@ $prefillEmail = trim($_POST['email'] ?? ($user['email'] ?? ''));
 $formError = null;
 
 // Hvis bruker allerede er logget inn og har tilgang, send til konto
-if ($isLoggedIn && in_array(($user['role'] ?? ''), ['vip','admin'], true)) {
+if ($isLoggedIn && in_array(($user['role'] ?? ''), VIP_ROLES, true)) {
     header("Location: /members/account.php");
     exit;
 }
