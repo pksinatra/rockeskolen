@@ -1,22 +1,34 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 
 $errors = [];
 $email = '';
 
+// Every login passes through the portal, so the member is logged in and has
+// the same VIP status on both rockeskolen.com and portal.rockeskolen.com.
+// A login that started on rockeskolen.com returns there afterwards.
 $redirect = safe_redirect('/members/portal.php');
+// The form and its links keep the original target; only a successful login
+// is routed through the portal.
+$formRedirect = $redirect;
 $feideDestination = '/';
 $redirectPath = parse_url($redirect, PHP_URL_PATH);
+$siteReturn = null;
 if ($redirectPath === '/members/portal.php') {
     parse_str((string) parse_url($redirect, PHP_URL_QUERY), $portalQuery);
     $candidate = $portalQuery['destination'] ?? '/';
     if (is_string($candidate) && $candidate !== '' && $candidate[0] === '/' && !str_starts_with($candidate, '//')) {
         $feideDestination = $candidate;
     }
+    $portalReturn = rs_safe_return_path($portalQuery['return'] ?? null);
+    if ($portalReturn !== null) {
+        $feideDestination = '/members/account-bridge?return=' . rawurlencode($portalReturn);
+    }
+} else {
+    $siteReturn = rs_safe_return_path($redirect) ?? '/members/account.php';
+    $redirect = '/members/portal.php?return=' . rawurlencode($siteReturn);
+    // Feide logs in on the portal; the bridge then returns to this page.
+    $feideDestination = '/members/account-bridge?return=' . rawurlencode($siteReturn);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -41,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (!$u || !password_verify($pass, $u['password_hash'])) {
             $errors[] = "Feil e-postadresse eller passord.";
         } else {
+            session_regenerate_id(true);
             set_current_user($u);
             header("Location: " . $redirect);
             exit;
@@ -90,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $errors && $redirectPath === '/memb
 <p class="small">
 Registrer deg som gratis medlem hos Rockeskolen, og få begrenset tilgang.
 <br><br>
-<a class="link" href="/members/register.php<?= $redirect ? '?redirect=' . urlencode($redirect) : '' ?>">
+<a class="link" href="/members/register.php<?= $formRedirect ? '?redirect=' . urlencode($formRedirect) : '' ?>">
 Opprett konto
 </a>
 </p>
@@ -98,7 +111,7 @@ Opprett konto
       <?php endif; ?>
 
       <form method="post" style="margin-top:14px;">
-        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
+        <input type="hidden" name="redirect" value="<?= htmlspecialchars($formRedirect) ?>">
 
         <div class="grid">
           <div>
@@ -119,7 +132,7 @@ Opprett konto
 
       <div class="footer-links">
         <span>Ny her?</span>
-        <a class="link" href="/members/register.php<?= $redirect ? '?redirect=' . urlencode($redirect) : '' ?>">Opprett gratis medlemskonto</a>
+        <a class="link" href="/members/register.php<?= $formRedirect ? '?redirect=' . urlencode($formRedirect) : '' ?>">Opprett gratis medlemskonto</a>
       </div>
 
       <div class="small" style="margin-top:10px;">

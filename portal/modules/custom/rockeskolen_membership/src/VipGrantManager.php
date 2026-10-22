@@ -50,6 +50,27 @@ final class VipGrantManager {
   }
 
   /**
+   * Reconciles the aggregate Stripe VIP entitlement of a linked member.
+   */
+  public function syncStripeGrant(\PDO $pdo, int $membershipUserId, int $uid): bool {
+    $statement = $pdo->prepare(
+      "SELECT 1 FROM chordlink_subscriptions
+        WHERE user_id = ?
+          AND plan IN ('vip_monthly', 'vip_yearly')
+          AND status IN ('active', 'trialing')
+          AND (current_period_end IS NULL OR current_period_end >= NOW())
+        LIMIT 1"
+    );
+    $statement->execute([$membershipUserId]);
+    return $this->setGrant(
+      $uid,
+      'stripe',
+      'membership-' . $membershipUserId,
+      (bool) $statement->fetchColumn(),
+    );
+  }
+
+  /**
    * Deactivates every automated grant from one source for a user.
    */
   public function deactivateSourceForUser(int $uid, string $source): bool {

@@ -8,8 +8,10 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\rockeskolen_membership\AccessSynchronizer;
 use Drupal\rockeskolen_membership\MembershipConnection;
+use Drupal\rockeskolen_membership\ReturnDestination;
 use Drupal\rockeskolen_membership\VipGrantManager;
 use Drupal\user\UserInterface;
 use PDO;
@@ -51,6 +53,9 @@ final class MembershipSsoController extends ControllerBase implements ContainerI
       return $this->failure();
     }
 
+    // Set once the token is consumed. A login that started on rockeskolen.com
+    // is already valid there, so it returns there even if the portal fails.
+    $siteUrl = NULL;
     try {
       $pdo = $this->membershipConnection->get();
       $membership = $this->consumeToken(
@@ -61,25 +66,40 @@ final class MembershipSsoController extends ControllerBase implements ContainerI
       if ($membership === NULL) {
         return $this->failure();
       }
+      $destination = (string) $membership['destination'];
+      if (ReturnDestination::isMemberBound($destination)) {
+        // Portal-to-membership tokens are only valid on rockeskolen.com.
+        return $this->failure();
+      }
+      $siteUrl = ReturnDestination::siteUrl($destination);
 
       [$account, $newLink] = $this->loadOrCreateAccount(
         (int) $membership['user_id'],
         (string) $membership['email'],
         $pdo,
       );
+      // Stripe first: a paid VIP becomes a managed grant that ends with the
+      // subscription. Only VIP that Stripe does not explain is imported as a
+      // permanent (manually assigned) role.
+      $this->vipGrantManager->syncStripeGrant($pdo, (int) $membership['user_id'], (int) $account->id());
       if ($newLink) {
         AccessSynchronizer::importLegacyVip($account, (string) $membership['role']);
       }
-      $this->syncStripeVipGrant($pdo, (int) $membership['user_id'], (int) $account->id());
       AccessSynchronizer::applyToMembership($pdo, (int) $membership['user_id'], $account);
       user_login_finalize($account);
 
-      return new RedirectResponse($this->safeDestination((string) $membership['destination']), 303);
+      if ($siteUrl !== NULL) {
+        return new TrustedRedirectResponse($siteUrl, 303);
+      }
+      return new RedirectResponse(ReturnDestination::portalPath($destination), 303);
     }
     catch (\Throwable $exception) {
       $this->membershipLogger->error('Membership SSO failed: @message', [
         '@message' => $exception->getMessage(),
       ]);
+      if ($siteUrl !== NULL) {
+        return new TrustedRedirectResponse($siteUrl, 303);
+      }
       return $this->failure();
     }
   }
@@ -179,37 +199,6 @@ final class MembershipSsoController extends ControllerBase implements ContainerI
     );
     $link->execute([$membershipUserId, (int) $account->id()]);
     return [$account, TRUE];
-  }
-
-  /**
-   * Allows only an internal portal destination.
-   */
-  private function safeDestination(string $destination): string {
-    if ($destination === '' || $destination[0] !== '/' || str_starts_with($destination, '//')) {
-      return '/';
-    }
-    return $destination;
-  }
-
-  /**
-   * Reconciles the aggregate Stripe VIP entitlement on every member login.
-   */
-  private function syncStripeVipGrant(PDO $pdo, int $membershipUserId, int $uid): void {
-    $statement = $pdo->prepare(
-      "SELECT 1 FROM chordlink_subscriptions
-        WHERE user_id = ?
-          AND plan IN ('vip_monthly', 'vip_yearly')
-          AND status IN ('active', 'trialing')
-          AND (current_period_end IS NULL OR current_period_end >= NOW())
-        LIMIT 1"
-    );
-    $statement->execute([$membershipUserId]);
-    $this->vipGrantManager->setGrant(
-      $uid,
-      'stripe',
-      'membership-' . $membershipUserId,
-      (bool) $statement->fetchColumn(),
-    );
   }
 
   /**

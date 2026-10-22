@@ -8,6 +8,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\rockeskolen_membership\AccessSynchronizer;
 use Drupal\rockeskolen_membership\MembershipConnection;
+use Drupal\rockeskolen_membership\ReturnDestination;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -28,16 +29,17 @@ final class AccountBridgeController extends ControllerBase {
   }
 
   public function returnToAccount(Request $request): Response {
+    $returnPath = ReturnDestination::sitePath($request->query->get('return'));
     try {
       $uid = (int) $this->currentUser()->id();
       if ($uid < 1) {
-        return $this->failure();
+        return $this->failure($returnPath);
       }
 
       $pdo = $this->membershipConnection->get();
       $membershipUserId = $this->resolveMembershipUserId($pdo, $uid);
       if ($membershipUserId < 1) {
-        return $this->failure();
+        return $this->failure($returnPath);
       }
 
       $binding = (string) $request->cookies->get('rs_sso_browser', '');
@@ -55,10 +57,12 @@ final class AccountBridgeController extends ControllerBase {
           (token_hash, user_id, destination, ip_hash, expires_at)
          VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 MINUTE))'
       );
+      // The "rs:" prefix makes the token valid only on rockeskolen.com, which
+      // then continues to the requested page (default: the account page).
       $insert->execute([
         hash('sha256', $token),
         $membershipUserId,
-        '/members/account.php',
+        ReturnDestination::MEMBER_PREFIX . ($returnPath ?? '/members/account.php'),
         hash('sha256', $binding),
       ]);
 
@@ -86,11 +90,15 @@ final class AccountBridgeController extends ControllerBase {
         'Portal-to-membership account bridge failed: @message',
         ['@message' => $exception->getMessage()],
       );
-      return $this->failure();
+      return $this->failure($returnPath);
     }
   }
 
-  private function failure(): TrustedRedirectResponse {
+  private function failure(?string $returnPath = NULL): TrustedRedirectResponse {
+    // Without a membership session the page still opens, just logged out.
+    if ($returnPath !== NULL) {
+      return new TrustedRedirectResponse(ReturnDestination::SITE . $returnPath, 303);
+    }
     return new TrustedRedirectResponse('/user', 303);
   }
 

@@ -67,6 +67,7 @@ final class FeideMembershipSubscriber implements EventSubscriberInterface {
         return;
       }
       $membership = $this->loadLinkedMembership($pdo, $uid);
+      $newLink = FALSE;
       if ($membership === NULL) {
         $membership = $this->linkAndLoadMembership(
           $pdo,
@@ -74,6 +75,13 @@ final class FeideMembershipSubscriber implements EventSubscriberInterface {
           strtolower(trim((string) $account->getEmail())),
         );
         $this->linkDrupalAccount($pdo, (int) $membership['id'], $uid);
+        $newLink = TRUE;
+      }
+      // A Feide user may also pay with Stripe (same membership by e-mail).
+      // Same order as password SSO: Stripe grant first, then legacy VIP.
+      $this->vipGrantManager->syncStripeGrant($pdo, (int) $membership['id'], $uid);
+      if ($newLink) {
+        AccessSynchronizer::importLegacyVip($account, (string) $membership['role']);
       }
       // Feide proves identity, but Rockeskolen remains authoritative for
       // premium access. Revoke the legacy unconditional Feide grant and only

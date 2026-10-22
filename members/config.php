@@ -162,6 +162,8 @@ function safe_redirect(string $fallback = '/members/account.php'): string {
     return $r;
 }
 
+require_once __DIR__ . '/return_path.php';
+
 function has_rockeskolen_access(?array $u = null): bool {
     if ($u === null || (!empty($u['id']) && !empty($_SESSION['user_chordlink']['id']) && (int) $u['id'] === (int) $_SESSION['user_chordlink']['id'])) {
         refresh_user_from_db();

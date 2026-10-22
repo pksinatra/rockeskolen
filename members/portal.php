@@ -7,9 +7,16 @@ require_database();
 refresh_user_from_db();
 
 $user = current_user();
-$destination = $_GET['destination'] ?? '/';
-if (!is_string($destination) || $destination === '' || $destination[0] !== '/' || str_starts_with($destination, '//')) {
-    $destination = '/';
+// ?return= continues on rockeskolen.com after the portal login; otherwise
+// ?destination= is a page in the portal.
+$returnPath = rs_safe_return_path($_GET['return'] ?? null);
+if ($returnPath !== null) {
+    $destination = 'https://rockeskolen.com' . $returnPath;
+} else {
+    $destination = $_GET['destination'] ?? '/';
+    if (!is_string($destination) || $destination === '' || $destination[0] !== '/' || str_starts_with($destination, '//')) {
+        $destination = '/';
+    }
 }
 
 $token = bin2hex(random_bytes(32));

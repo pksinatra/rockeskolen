@@ -54,6 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'role'  => 'free',
             ]);
 
+            // Same as login: go through the portal so both systems know the
+            // new member, then back to the page the member came from.
+            if (parse_url($redirect, PHP_URL_PATH) !== '/members/portal.php') {
+                $redirect = '/members/portal.php?return='
+                    . rawurlencode(rs_safe_return_path($redirect) ?? '/members/account.php');
+            }
+            session_regenerate_id(true);
             header("Location: " . $redirect);
             exit;
         }

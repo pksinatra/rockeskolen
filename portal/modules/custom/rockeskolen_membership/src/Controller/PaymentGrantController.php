@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Drupal\rockeskolen_membership\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\rockeskolen_membership\AccessSynchronizer;
 use Drupal\rockeskolen_membership\MembershipConnection;
 use Drupal\rockeskolen_membership\VipGrantManager;
+use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,6 +67,13 @@ final class PaymentGrantController extends ControllerBase {
         'membership-' . $membershipUserId,
         $active,
       );
+      // The membership side has just recalculated the role from Stripe alone.
+      // Write the authoritative Drupal role back even when it did not change,
+      // so manual or school VIP is not left as "free" on rockeskolen.com.
+      $account = $this->entityTypeManager()->getStorage('user')->load($uid);
+      if ($account instanceof UserInterface) {
+        AccessSynchronizer::applyToMembership($pdo, $membershipUserId, $account);
+      }
       return new JsonResponse(['ok' => TRUE]);
     }
     catch (\Throwable $exception) {
