@@ -512,9 +512,9 @@ function showProNotice(name){
   }
 
   box.innerHTML = `
-    <strong>Pro only:</strong> <strong>${name}</strong> is available in the Pro version.
+    <strong>VIP only:</strong> <strong>${name}</strong> is available with VIP.
     Choose a free option, or
-    <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+    <span class="pro-cta-sub">upgrade to VIP to unlock all features</span>.
   `;
   box.style.display = "block";
   box.scrollIntoView({ behavior:"smooth", block:"center" });

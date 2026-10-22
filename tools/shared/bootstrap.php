@@ -3,13 +3,11 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/members/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/meta.php';
 function rs_updated_lang(): string {
-    $lang = $_GET['lang'] ?? $_COOKIE['rs_tools_lang'] ?? 'nb';
+    // Norsk er standard. Engelsk bare når ?lang=en står i URL-en; ingen cookie.
+    $lang = $_GET['lang'] ?? 'nb';
     return is_string($lang) && $lang === 'en' ? 'en' : 'nb';
 }
 $lang = rs_updated_lang();
-if (isset($_GET['lang']) && in_array($_GET['lang'], ['nb','en'], true)) {
-    setcookie('rs_tools_lang', $lang, ['expires' => time()+31536000, 'path' => '/tools/', 'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off', 'httponly' => true, 'samesite' => 'Lax']);
-}
 header('Cache-Control: private, no-store');
 $user = current_user();
 $isLoggedIn = (bool) $user;
@@ -67,7 +65,7 @@ function chordlink_app_header_styles(): void {
     global $user, $isPro;
     echo '<link rel="stylesheet" href="/tools/shared/site.css?v=20260927-1">';
     echo '<script>window.RS_LANG='.json_encode(rs_updated_lang()).';window.CL_IS_LOGGED_IN='.($user?'true':'false').';window.CL_IS_PRO='.($isPro?'true':'false').';window.CL_LOGGED_IN='.($user?'true':'false').';window.CL_UPGRADE_URL="/members/upgrade.php";</script>';
-    echo '<script src="/tools/shared/language.js?v=20260927-1" defer></script>';
+    echo '<script src="/tools/shared/language.js?v=20261022-1" defer></script>';
 }
 function chordlink_app_header(string $title): void {
     global $user;

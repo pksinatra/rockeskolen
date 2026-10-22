@@ -100,7 +100,7 @@
   </div>
 
 <?php rs_updated_help('piano-scales'); ?>
-<script src="./ui.js?v=20260927-1"></script>
+<script src="./ui.js?v=20261022-1"></script>
 <script>
   // Keeps the Scale type button label in sync with the selected menu item
   (function () {

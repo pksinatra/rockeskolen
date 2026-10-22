@@ -139,6 +139,6 @@
   <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
 
   <!-- Stable full UI (clone of Beta Final + inlays/harmonics) -->
-  <script src="./ui.js?v=20260927-1"></script>
+  <script src="./ui.js?v=20261022-1"></script>
 </body>
 </html>

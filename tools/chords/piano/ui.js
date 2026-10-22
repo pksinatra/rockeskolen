@@ -190,7 +190,7 @@ function showProNotice(qualKey){
   const name = v ? v.name : qualKey;
 
   el.innerHTML = `
-    <a class="pro-cta pro-cta--promo" href="/members/upgrade.php" target="_top">The chord <strong>${name}</strong> is available in the Pro version. You can choose another chord, or <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.    </a>
+    <a class="pro-cta pro-cta--promo" href="/members/upgrade.php" target="_top">The chord <strong>${name}</strong> is available with VIP. You can choose another chord, or <span class="pro-cta-sub">upgrade to VIP to unlock all features</span>.    </a>
   `;
 
   card.style.display = "block";
@@ -294,7 +294,7 @@ qualSel.appendChild(ph);
     const allowed = isChordAllowed(k);
     const o = document.createElement("option");
     o.value = k;
-    o.textContent = allowed ? v.name : `${v.name} (Pro)`;
+    o.textContent = allowed ? v.name : `${v.name} (VIP)`;
 
     if(!allowed) o.classList.add("pro-option");
 

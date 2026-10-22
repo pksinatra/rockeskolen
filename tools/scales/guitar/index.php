@@ -97,6 +97,6 @@
 window.CL_IS_PRO = <?= $isPro ? 'true' : 'false' ?>;
 window.CL_IS_LOGGED_IN = <?= $user ? 'true' : 'false' ?>;
 </script>
-<script src="ui.js?v=20260927-1"></script>
+<script src="ui.js?v=20261022-1"></script>
 </body>
 </html>

@@ -75,6 +75,6 @@
 </div>
   </div>
 <?php rs_updated_help('piano-chords'); ?>
-<script src="ui.js?v=20260927-1" defer></script>
+<script src="ui.js?v=20261022-1" defer></script>
 </body>
 </html>

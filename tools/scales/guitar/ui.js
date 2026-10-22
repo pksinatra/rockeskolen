@@ -426,7 +426,7 @@ function fillScaleSelect() {
 const name = sc.name_no || sc.name || key;
 
     if (!isScaleAllowed(key)) {
-      opt.textContent = name + " (PRO)";
+      opt.textContent = name + " (VIP)";
       opt.disabled = false;
       opt.classList.add("pro-option");
     } else {
@@ -602,18 +602,18 @@ if(!isScaleAllowed(scaleKey)){
   const scaleName = scale.name_no || scale.name;
 
   setStatus(`
-  🔒 The ${formatNote(root)} ${scaleName} scale is available for Pro members<br>
+  🔒 The ${formatNote(root)} ${scaleName} scale is available for VIP members<br>
   <a href="/members/upgrade.php" target="_top" style="color:#4dc3ff; font-weight:600;">
-    Upgrade to Pro
+    Upgrade to VIP
   </a>
   `);
 
 wrap.innerHTML = `
   <div class="msg">
     🔒 The <strong>${formatNote(root)} ${scaleName}</strong> scale
-    is only available for Pro members<br><br>
+    is only available for VIP members<br><br>
     <a href="/members/upgrade.php" target="_top" class="pro-cta pro-cta--promo">
-      Upgrade to Pro
+      Upgrade to VIP
     </a>
   </div>
 `;

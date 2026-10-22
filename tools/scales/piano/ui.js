@@ -363,16 +363,16 @@ function buildScaleMenu(){
       if (!allowed) {
         // Låst for Free-brukere
         btn.classList.add('locked-scale');
-        btn.textContent = sc.name + " (Pro)";
+        btn.textContent = sc.name + " (VIP)";
 btn.addEventListener('click', () => {
   const el = document.getElementById("scaleProMsg");
   if (!el) return;
 
   el.innerHTML = `
     <a class="pro-cta" href="/members/upgrade.php" target="_top">
-      <strong>Pro only:</strong> <strong>${sc.name}</strong> is available in the Pro version.
+      <strong>VIP only:</strong> <strong>${sc.name}</strong> is available with VIP.
       Choose a free option, or
-      <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+      <span class="pro-cta-sub">upgrade to VIP to unlock all features</span>.
     </a>
   `;
   el.style.display = "block";

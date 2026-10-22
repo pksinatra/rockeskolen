@@ -71,9 +71,9 @@ function showProBox(name) {
   if (!box) return;
 
   box.innerHTML = `
-    <strong>Pro only:</strong> <strong>${name}</strong> is available in the Pro version.
+    <strong>VIP only:</strong> <strong>${name}</strong> is available with VIP.
     Choose a free option, or
-    <span class="pro-cta-sub">upgrade to Pro to unlock all features</span>.
+    <span class="pro-cta-sub">upgrade to VIP to unlock all features</span>.
   `;
 
   box.style.display = "block";
@@ -105,7 +105,7 @@ function showProBox(name) {
       opt.setAttribute("aria-disabled", "true");
       // Sett label med Pro-indikasjon
       const base = opt.dataset.label;
-      opt.textContent = base.includes("Pro") ? base : (base + "  • Pro");
+      opt.textContent = base.includes("VIP") ? base : (base + " (VIP)");
     } else {
       opt.removeAttribute("aria-disabled");
       opt.textContent = opt.dataset.label;
@@ -134,7 +134,7 @@ function showProBox(name) {
     if (!IS_PRO && isProOnly) {
       opt.setAttribute("aria-disabled", "true");
       const base = opt.dataset.label;
-      opt.textContent = base.includes("Pro") ? base : (base + "  • Pro");
+      opt.textContent = base.includes("VIP") ? base : (base + " (VIP)");
     } else {
       opt.removeAttribute("aria-disabled");
       opt.textContent = opt.dataset.label;
