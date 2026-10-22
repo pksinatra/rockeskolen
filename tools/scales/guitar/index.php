@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <?php chordlink_share_meta(['title' => 'Guitar Scales | ChordLink', 'description' => 'Study guitar scales across the full neck or in a focused position.', 'path' => '/tools/scales/guitar/', 'image' => '/images/tools/chordlink-tool-guitar-scales-v1.png']); ?>
   <?php chordlink_app_header_styles(); ?>
-  <link rel="stylesheet" href="guitarscales.css?v=20260927-1">
+  <link rel="stylesheet" href="app.css?v=20260927-1">
 </head>
 <body>
 <?php chordlink_app_header('Guitar Scales'); ?>
@@ -97,6 +97,6 @@
 window.CL_IS_PRO = <?= $isPro ? 'true' : 'false' ?>;
 window.CL_IS_LOGGED_IN = <?= $user ? 'true' : 'false' ?>;
 </script>
-<script src="guitarscales.js?v=20260927-1"></script>
+<script src="ui.js?v=20260927-1"></script>
 </body>
 </html>
