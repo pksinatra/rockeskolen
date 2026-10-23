@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Musikkteori fra bunnen – Durskalaen | Rockeskolens Musikkportal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f9; --surface:#ffffff; --ink:#151a2e; --muted:#555c75; --line:#dde0eb;
+  --accent:#5b3fe0; --accent-ink:#ffffff; --accent-soft:#ece8ff;
+  --ok:#17845a; --ok-soft:#e1f4ea; --warn:#a2461b; --warn-soft:#fbeadf;
+  --white-key:#fdfdff; --white-key-edge:#c9ccd8; --black-key:#1c1f2b;
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11131d; --surface:#1a1d2b; --ink:#edeff7; --muted:#9ca2ba; --line:#2b2f43;
+    --accent:#a08cff; --accent-ink:#11131d; --accent-soft:#2a2547;
+    --ok:#4fc890; --ok-soft:#173326; --warn:#f0a07a; --warn-soft:#3a2219;
+    --white-key:#eceef5; --white-key-edge:#8d91a3; --black-key:#0b0c12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11131d; --surface:#1a1d2b; --ink:#edeff7; --muted:#9ca2ba; --line:#2b2f43;
+  --accent:#a08cff; --accent-ink:#11131d; --accent-soft:#2a2547;
+  --ok:#4fc890; --ok-soft:#173326; --warn:#f0a07a; --warn-soft:#3a2219;
+  --white-key:#eceef5; --white-key-edge:#8d91a3; --black-key:#0b0c12;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.55}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem clamp(1rem,4vw,2.5rem);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.brand small{display:block;font-family:var(--body);font-weight:400;font-size:.8rem;color:var(--muted);letter-spacing:0}
+
+.course{max-width:1120px;margin:0 auto;padding:clamp(1.25rem,4vw,2.75rem) clamp(1rem,4vw,2.5rem) 3rem}
+.course-head h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,3.4rem);line-height:1.02;letter-spacing:-.025em;margin:0 0 .4rem}
+.course-head p{margin:0;color:var(--muted)}
+.progress{margin-top:1.25rem;max-width:520px}
+.progress-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);margin-bottom:.35rem}
+.progress-row strong{color:var(--ink)}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--ok);transition:width .4s ease}
+
+.layout{display:grid;grid-template-columns:250px 1fr;gap:clamp(1.25rem,3vw,2.5rem);margin-top:2rem;align-items:start}
+.lessons{list-style:none;margin:0;padding:0;position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem)}
+.lessons li+li{margin-top:.25rem}
+.lessons button{width:100%;display:grid;grid-template-columns:2rem 1fr;gap:.6rem;align-items:center;text-align:left;background:none;border:0;border-radius:10px;padding:.6rem .6rem;cursor:pointer}
+.lessons button:hover{background:var(--surface)}
+.lessons button[aria-current="step"]{background:var(--surface);box-shadow:inset 3px 0 0 var(--accent)}
+.lessons .num{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.9rem;border:2px solid var(--line);color:var(--muted)}
+.lessons .done .num{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.lessons .t{display:block;font-weight:700;line-height:1.25}
+.lessons .s{display:block;font-size:.82rem;color:var(--muted)}
+
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(1.1rem,3.5vw,2rem);min-width:0}
+.lesson h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.02em;line-height:1.1;margin:0 0 .75rem}
+.lesson .intro{max-width:62ch;margin:0 0 1.25rem}
+.lesson h3{font-size:1rem;margin:1.75rem 0 .6rem}
+
+.btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:.25rem 0 1rem}
+.btn{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:.55rem 1rem;cursor:pointer;font-weight:700;font-size:.95rem}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+.kb-wrap{overflow-x:auto;padding:.25rem 0 .5rem;margin:0 -.25rem}
+.kb{--kw:clamp(30px,5.6vw,46px);position:relative;display:flex;width:calc(var(--kw) * var(--n));height:calc(var(--kw) * 4.2);margin:0 .25rem;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.key{position:relative;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.key.w{width:var(--kw);height:100%;background:var(--white-key);border:1px solid var(--white-key-edge);border-top:0;border-radius:0 0 7px 7px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.4rem;font-size:.72rem;color:#6a6f83}
+.key.b{position:absolute;top:0;z-index:2;width:calc(var(--kw) * .62);height:60%;left:calc(var(--kw) * var(--i) + var(--kw) - var(--kw) * .31);background:var(--black-key);border-radius:0 0 5px 5px;box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.key.w.ref{background:var(--accent-soft);box-shadow:inset 0 -6px 0 var(--accent)}
+.key.b.ref{box-shadow:inset 0 -6px 0 var(--accent)}
+.key.on.w{background:var(--accent);color:var(--accent-ink)}
+.key.on.b{background:var(--accent)}
+.key.good.w{background:var(--ok);color:#fff}
+.key.good.b{background:var(--ok)}
+.key.bad.w{background:var(--warn);color:#fff}
+.key.bad.b{background:var(--warn)}
+.key.w.lbl-hide{color:transparent}
+
+.task{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:.75rem 1rem;margin:1rem 0;font-weight:700}
+.task small{display:block;font-weight:400;color:var(--muted);margin-top:.15rem}
+.fb{min-height:1.6em;margin:.5rem 0 0;max-width:62ch}
+.fb.ok{color:var(--ok);font-weight:700}
+.fb.no{color:var(--warn)}
+
+.steps{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .15rem;margin:.75rem 0 0;font-weight:700}
+.steps .n{min-width:2.3rem;text-align:center;padding:.3rem .4rem;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.steps .gap{font-size:.78rem;font-weight:700;padding:0 .3rem;color:var(--muted)}
+.steps .gap.half{color:var(--accent)}
+.steps .n.lit{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+.choices{display:grid;gap:.5rem;max-width:420px}
+.choice{text-align:left;border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:.7rem 1rem;cursor:pointer}
+.choice:hover{border-color:var(--accent)}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.wrong{border-color:var(--warn);background:var(--warn-soft)}
+
+.score{display:flex;gap:.4rem;margin:.75rem 0}
+.score i{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.score i.r{background:var(--ok)}
+.score i.x{background:var(--warn)}
+
+.complete{margin-top:1.5rem;padding:1rem 1.1rem;border-radius:12px;background:var(--ok-soft);display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;justify-content:space-between}
+.complete p{margin:0;font-weight:700;color:var(--ok)}
+
+.note{margin-top:2.5rem;font-size:.88rem;color:var(--muted);max-width:70ch}
+.reset{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.88rem}
+
+@media (max-width:760px){
+  .layout{grid-template-columns:1fr}
+  .lessons{position:static;display:flex;gap:.35rem;overflow-x:auto;padding-bottom:.25rem}
+  .lessons li+li{margin-top:0}
+  .lessons button{grid-template-columns:auto;justify-items:center;text-align:center;padding:.5rem .6rem;min-width:84px}
+  .lessons .t{font-size:.8rem;font-weight:700}
+  .lessons .s{display:none}
+  .lessons button[aria-current="step"]{box-shadow:inset 0 -3px 0 var(--accent)}
+}
+@media (prefers-reduced-motion: reduce){.bar span{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Rockeskolen<small>Rockeskolens Musikkportal</small></div>
+</header>
+
+<main class="course">
+  <div class="course-head">
+    <h1>Musikkteori fra bunnen</h1>
+    <p>Modul 1: Durskalaen. Fire korte leksjoner der du hører, ser og spiller.</p>
+    <div class="progress" aria-live="polite">
+      <div class="progress-row"><span id="progText">0 av 4 leksjoner fullført</span><strong id="progPct">0 %</strong></div>
+      <div class="bar"><span id="progBar"></span></div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav aria-label="Leksjoner"><ol class="lessons" id="lessonList"></ol></nav>
+    <section class="lesson" id="lesson" aria-live="polite"></section>
+  </div>
+
+  <p class="note">Dette er et eksempel på kursformatet i Rockeskolens Musikkportal. Her lagres progresjonen bare i nettleseren din. I musikkportalen lagres den på kontoen, og læreren kan følge elevenes progresjon. <button class="reset" id="reset" type="button">Nullstill progresjon</button></p>
+</main>
+
+<script>
+(function(){
+  const NAMES=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
+  const nm=m=>NAMES[m%12];
+  const isBlack=m=>[1,3,6,8,10].includes(m%12);
+  const MAJOR=[0,2,4,5,7,9,11,12];
+  const STORE='rs-kurs-teori-m1';
+
+  /* ---------- lyd ---------- */
+  let ctx=null;
+  function ac(){
+    if(!ctx){const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; ctx=new C();}
+    if(ctx.state==='suspended') ctx.resume();
+    return ctx;
+  }
+  function tone(m,delay=0,dur=0.7){
+    const c=ac(); if(!c) return;
+    const t=c.currentTime+delay, f=440*Math.pow(2,(m-69)/12);
+    const g=c.createGain(); g.connect(c.destination);
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(0.32,t+0.012);
+    g.gain.exponentialRampToValueAtTime(0.0008,t+dur);
+    [[ 'triangle',1,1],['sine',2,0.18],['sine',3,0.06]].forEach(([type,mult,vol])=>{
+      const o=c.createOscillator(), og=c.createGain();
+      o.type=type; o.frequency.value=f*mult; og.gain.value=vol;
+      o.connect(og).connect(g); o.start(t); o.stop(t+dur+0.05);
+    });
+  }
+  let seqTimers=[];
+  function stopSeq(){seqTimers.forEach(clearTimeout); seqTimers=[];}
+  function playSeq(ms,gap,onStep,onEnd){
+    stopSeq();
+    ms.forEach((m,i)=>{
+      tone(m,i*gap,0.65);
+      seqTimers.push(setTimeout(()=>onStep&&onStep(m,i),i*gap*1000));
+    });
+    seqTimers.push(setTimeout(()=>onEnd&&onEnd(),ms.length*gap*1000+150));
+  }
+
+  /* ---------- klaviatur ---------- */
+  function keyboard(lo,hi,onPress,opts={}){
+    const wrap=document.createElement('div'); wrap.className='kb-wrap';
+    const kb=document.createElement('div'); kb.className='kb';
+    const keys={}; let wi=0;
+    for(let m=lo;m<=hi;m++){
+      const b=document.createElement('button'); b.type='button';
+      b.className='key '+(isBlack(m)?'b':'w');
+      b.setAttribute('aria-label',nm(m));
+      if(isBlack(m)){ b.style.setProperty('--i',wi-1); }
+      else { b.textContent=opts.labels===false?'':nm(m); wi++; }
+      b.addEventListener('pointerdown',e=>{e.preventDefault(); press(m);});
+      b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); press(m);}});
+      keys[m]=b; kb.appendChild(b);
+    }
+    kb.style.setProperty('--n',wi);
+    wrap.appendChild(kb);
+    function press(m){ tone(m); flash(m,'on',220); onPress&&onPress(m); }
+    function flash(m,cls,ms){ const k=keys[m]; if(!k) return; k.classList.add(cls); setTimeout(()=>k.classList.remove(cls),ms); }
+    return {
+      el:wrap, flash,
+      set(m,cls,on=true){ keys[m]&&keys[m].classList.toggle(cls,on); },
+      clear(cls){ Object.values(keys).forEach(k=>k.classList.remove(cls)); }
+    };
+  }
+
+  /* ---------- progresjon ---------- */
+  let done=[false,false,false,false];
+  try{ const s=JSON.parse(localStorage.getItem(STORE)||'null'); if(Array.isArray(s)&&s.length===4) done=s.map(Boolean); }catch(e){}
+  function save(){ try{ localStorage.setItem(STORE,JSON.stringify(done)); }catch(e){} }
+  function markDone(i){ done[i]=true; save(); renderNav(); renderProgress(); }
+
+  /* ---------- hjelpere ---------- */
+  const h=(tag,props={},...kids)=>{
+    const e=document.createElement(tag);
+    Object.entries(props).forEach(([k,v])=>{ if(k==='class') e.className=v; else if(k.startsWith('on')) e.addEventListener(k.slice(2),v); else if(v!==false&&v!=null) e.setAttribute(k,v===true?'':v); });
+    kids.flat().forEach(c=>{ if(c!=null) e.append(c.nodeType?c:document.createTextNode(c)); });
+    return e;
+  };
+  function completeBox(i,text){
+    const next=i<3?h('button',{class:'btn primary',type:'button',onclick:()=>go(i+1)},'Neste leksjon'):h('span',{},'Modul 1 er fullført.');
+    return h('div',{class:'complete'},h('p',{},text),next);
+  }
+
+  /* ---------- leksjoner ---------- */
+  const LESSONS=[
+    {title:'Halvtoner og heltoner', sub:'Avstanden mellom to toner', render:lesson1},
+    {title:'Mønsteret i durskalaen', sub:'Hel, hel, halv …', render:lesson2},
+    {title:'Bygg G-dur', sub:'Bruk mønsteret selv', render:lesson3},
+    {title:'Hør forskjellen', sub:'Lytteprøve', render:lesson4}
+  ];
+
+  function lesson1(root,i){
+    root.append(
+      h('h2',{},'Halvtoner og heltoner'),
+      h('p',{class:'intro'},'Alle tangentene på pianoet, både hvite og svarte, ligger en halvtone fra naboen sin. To halvtoner blir en heltone. Mellom E og F, og mellom B og C, finnes det ingen svart tangent. Der er nabotonen hvit.'),
+      h('div',{class:'btns'},
+        h('button',{class:'btn',type:'button',onclick:()=>demo([64,65])},'Hør en halvtone (E–F)'),
+        h('button',{class:'btn',type:'button',onclick:()=>demo([65,67])},'Hør en heltone (F–G)')
+      )
+    );
+    const tasks=[
+      {ref:64,ans:5,q:'Trykk tonen som ligger en halvtone over E.',hint:'En halvtone er nærmeste nabo. Fra E finnes det ingen svart tangent, så nabotonen er hvit.'},
+      {ref:65,ans:7,q:'Trykk tonen som ligger en heltone over F.',hint:'En heltone er to halvtoner: hopp over den svarte tangenten rett over F.'},
+      {ref:71,ans:0,q:'Trykk tonen som ligger en halvtone over B.',hint:'Mellom B og C er det ingen svart tangent.'}
+    ];
+    let t=0;
+    const task=h('div',{class:'task'}); const fb=h('p',{class:'fb'});
+    const kb=keyboard(60,76,onKey);
+    root.append(h('h3',{},'Prøv selv'),task,kb.el,fb);
+    function show(){
+      kb.clear('ref'); kb.set(tasks[t].ref,'ref');
+      task.replaceChildren(tasks[t].q,h('small',{},`Oppgave ${t+1} av ${tasks.length}. Den markerte tangenten er ${nm(tasks[t].ref)}.`));
+    }
+    function demo(ms){ playSeq(ms,0.55,m=>kb.flash(m,'on',450)); }
+    function onKey(m){
+      if(t>=tasks.length) return;
+      const cur=tasks[t];
+      if(m%12===cur.ans && m>cur.ref){
+        kb.flash(m,'good',600); fb.className='fb ok'; fb.textContent=`Riktig, det er ${nm(m)}.`;
+        t++;
+        if(t<tasks.length) setTimeout(show,700);
+        else { kb.clear('ref'); task.replaceChildren('Alle oppgavene er løst.'); markDone(i); root.append(completeBox(i,'Leksjonen er fullført.')); }
+      } else {
+        kb.flash(m,'bad',600); fb.className='fb no'; fb.textContent=`Det var ${nm(m)}. ${cur.hint}`;
+      }
+    }
+    show();
+  }
+
+  function lesson2(root,i){
+    const scale=MAJOR.map(x=>60+x);
+    root.append(
+      h('h2',{},'Mønsteret i durskalaen'),
+      h('p',{class:'intro'},'En durskala har sju toner før grunntonen kommer igjen. Avstanden mellom tonene følger alltid det samme mønsteret: hel, hel, halv, hel, hel, hel, halv. Spill C-dur og se hvor halvtonene havner.')
+    );
+    const kb=keyboard(60,76,null);
+    const steps=h('div',{class:'steps','aria-label':'C-dur med avstander'});
+    const gaps=['hel','hel','halv','hel','hel','hel','halv'];
+    const nodes=scale.map(m=>h('span',{class:'n'},nm(m)));
+    nodes.forEach((n,k)=>{ steps.append(n); if(k<gaps.length) steps.append(h('span',{class:'gap'+(gaps[k]==='halv'?' half':'')},gaps[k])); });
+    const playBtn=h('button',{class:'btn primary',type:'button',onclick:()=>{
+      nodes.forEach(n=>n.classList.remove('lit')); kb.clear('on');
+      playSeq(scale,0.42,(m,k)=>{ kb.flash(m,'on',380); nodes[k].classList.add('lit'); });
+    }},'Spill C-dur');
+    root.append(h('div',{class:'btns'},playBtn),kb.el,steps);
+
+    root.append(h('h3',{},'Spørsmål'),h('p',{style:'margin:0 0 .75rem'},'Mellom hvilke trinn i durskalaen ligger halvtonene?'));
+    const opts=[['Mellom trinn 2–3 og 6–7',false],['Mellom trinn 3–4 og 7–8',true],['Mellom trinn 4–5 og 7–8',false]];
+    const fb=h('p',{class:'fb'});
+    const ch=h('div',{class:'choices'});
+    let solved=false;
+    opts.forEach(([txt,ok])=>{
+      const b=h('button',{class:'choice',type:'button',onclick:()=>{
+        if(solved) return;
+        if(ok){ b.classList.add('right'); solved=true; fb.className='fb ok'; fb.textContent='Riktig. E–F og B–C er halvtoner i C-dur, og det er trinn 3–4 og 7–8.'; markDone(i); root.append(completeBox(i,'Leksjonen er fullført.')); }
+        else { b.classList.add('wrong'); fb.className='fb no'; fb.textContent='Ikke helt. Spill skalaen igjen og se hvor det står «halv».'; }
+      }},txt);
+      ch.append(b);
+    });
+    root.append(ch,fb);
+  }
+
+  function lesson3(root,i){
+    const target=MAJOR.map(x=>67+x);
+    const gaps=['hel','hel','halv','hel','hel','hel','halv'];
+    root.append(
+      h('h2',{},'Bygg G-dur'),
+      h('p',{class:'intro'},'Start på den markerte G-en og spill durskalaen tone for tone, med mønsteret hel, hel, halv, hel, hel, hel, halv. Ett av trinnene krever en svart tangent. Finn ut hvilket.')
+    );
+    let pos=0;
+    const task=h('div',{class:'task'}); const fb=h('p',{class:'fb'});
+    const kb=keyboard(60,84,onKey);
+    const built=h('div',{class:'steps','aria-label':'Tonene du har spilt'});
+    const restart=h('button',{class:'btn',type:'button',onclick:reset},'Begynn på nytt');
+    root.append(task,h('div',{class:'btns'},restart),kb.el,built,fb);
+    function reset(){
+      pos=0; kb.clear('good'); kb.clear('ref'); kb.set(67,'ref'); built.replaceChildren(); fb.textContent=''; update();
+    }
+    function update(){
+      if(pos===0) task.replaceChildren('Trykk G for å starte.',h('small',{},'Tone 1 av 8'));
+      else if(pos<8) task.replaceChildren(`Neste steg er en ${gaps[pos-1]}tone opp fra ${nm(target[pos-1])}.`,h('small',{},`Tone ${pos+1} av 8`));
+    }
+    function onKey(m){
+      if(pos>=8) return;
+      if(m===target[pos]){
+        kb.set(m,'good'); built.append(h('span',{class:'n lit'},nm(m))); fb.textContent='';
+        pos++;
+        if(pos===8){
+          task.replaceChildren('G-dur er ferdig bygd.');
+          fb.className='fb ok'; fb.textContent='Det svarte trinnet var F♯. Derfor har G-dur ett kryss.';
+          setTimeout(()=>playSeq(target,0.38,mm=>kb.flash(mm,'on',340)),400);
+          markDone(i); root.append(completeBox(i,'Leksjonen er fullført.'));
+        } else update();
+      } else {
+        kb.flash(m,'bad',600); fb.className='fb no';
+        fb.textContent= pos===0 ? `Det var ${nm(m)}. Start på den markerte G-en.` : `Det var ${nm(m)}. Fra ${nm(target[pos-1])} skal du gå en ${gaps[pos-1]}tone opp.`;
+      }
+    }
+    reset();
+  }
+
+  function lesson4(root,i){
+    root.append(
+      h('h2',{},'Hør forskjellen'),
+      h('p',{class:'intro'},'Du hører en skala. Er det en riktig durskala, eller er én av tonene senket en halvtone? Svar riktig på minst fire av fem for å fullføre leksjonen.')
+    );
+    const ROUNDS=5, PASS=4;
+    let round=0, results=[], cur=null, answered=false;
+    const status=h('div',{class:'task'});
+    const dots=h('div',{class:'score','aria-hidden':'true'});
+    const kb=keyboard(60,84,null,{labels:true});
+    const playBtn=h('button',{class:'btn primary',type:'button',onclick:play},'Spill skalaen');
+    const yes=h('button',{class:'btn',type:'button',onclick:()=>answer(false)},'Riktig durskala');
+    const no=h('button',{class:'btn',type:'button',onclick:()=>answer(true)},'En tone er feil');
+    const nextBtn=h('button',{class:'btn',type:'button',onclick:next},'Neste');
+    const fb=h('p',{class:'fb'});
+    root.append(status,dots,h('div',{class:'btns'},playBtn,yes,no,nextBtn),kb.el,fb);
+
+    function newRound(){
+      const root0=[60,62,65,67][Math.floor(Math.random()*4)];
+      const altered=Math.random()<0.5;
+      const degree=[2,5,6][Math.floor(Math.random()*3)];
+      const notes=MAJOR.map((x,k)=>root0+x-(altered&&k===degree?1:0));
+      cur={root0,altered,degree,notes}; answered=false;
+      status.replaceChildren(`Runde ${round+1} av ${ROUNDS}`,h('small',{},'Trykk «Spill skalaen» og lytt.'));
+      yes.disabled=no.disabled=false; nextBtn.disabled=true; fb.textContent=''; kb.clear('good'); kb.clear('bad');
+      drawDots();
+    }
+    function drawDots(){ dots.replaceChildren(...Array.from({length:ROUNDS},(_,k)=>h('i',{class:results[k]===true?'r':results[k]===false?'x':''}))); }
+    function play(){ kb.clear('on'); playSeq(cur.notes,0.42,m=>kb.flash(m,'on',360)); }
+    function answer(saysAltered){
+      if(answered) return; answered=true;
+      const ok=saysAltered===cur.altered; results.push(ok); drawDots();
+      yes.disabled=no.disabled=true; nextBtn.disabled=false;
+      const name=nm(cur.root0)+'-dur';
+      if(cur.altered){
+        const wrongNote=cur.notes[cur.degree], rightNote=wrongNote+1;
+        kb.set(wrongNote,'bad'); kb.set(rightNote,'good');
+        fb.className=ok?'fb ok':'fb no';
+        fb.textContent=(ok?'Riktig. ':'Ikke denne gangen. ')+`Trinn ${cur.degree+1} var senket: ${nm(wrongNote)} i stedet for ${nm(rightNote)} i ${name}.`;
+      } else {
+        cur.notes.forEach(m=>kb.set(m,'good'));
+        fb.className=ok?'fb ok':'fb no';
+        fb.textContent=(ok?'Riktig. ':'Ikke denne gangen. ')+`Det var en riktig ${name}.`;
+      }
+      if(results.length===ROUNDS) finish();
+    }
+    function next(){ round++; if(round<ROUNDS) newRound(); }
+    function finish(){
+      nextBtn.disabled=true;
+      const score=results.filter(Boolean).length;
+      if(score>=PASS){
+        status.replaceChildren(`${score} av ${ROUNDS} riktige.`);
+        markDone(i); root.append(completeBox(i,'Leksjonen er fullført.'));
+      } else {
+        status.replaceChildren(`${score} av ${ROUNDS} riktige. Du trenger ${PASS} for å fullføre.`);
+        root.append(h('div',{class:'btns'},h('button',{class:'btn primary',type:'button',onclick:()=>go(i)},'Prøv igjen')));
+      }
+    }
+    newRound();
+  }
+
+  /* ---------- navigasjon ---------- */
+  let current=0;
+  const list=document.getElementById('lessonList');
+  const lessonEl=document.getElementById('lesson');
+  function renderNav(){
+    list.replaceChildren(...LESSONS.map((L,k)=>{
+      const b=h('button',{type:'button',class:done[k]?'done':'',onclick:()=>go(k)},
+        h('span',{class:'num','aria-hidden':'true'},done[k]?'✓':String(k+1)),
+        h('span',{},h('span',{class:'t'},L.title),h('span',{class:'s'},done[k]?'Fullført':L.sub))
+      );
+      if(k===current) b.setAttribute('aria-current','step');
+      return h('li',{},b);
+    }));
+  }
+  function renderProgress(){
+    const n=done.filter(Boolean).length, pct=Math.round(n/4*100);
+    document.getElementById('progText').textContent=`${n} av 4 leksjoner fullført`;
+    document.getElementById('progPct').textContent=`${pct} %`;
+    document.getElementById('progBar').style.width=pct+'%';
+  }
+  function go(k){
+    stopSeq(); current=k; renderNav();
+    lessonEl.replaceChildren(); LESSONS[k].render(lessonEl,k);
+    if(location.hash!=='#leksjon-'+(k+1)) history.replaceState(null,'','#leksjon-'+(k+1));
+    if(window.innerWidth<760) lessonEl.scrollIntoView({block:'start'});
+  }
+  document.getElementById('reset').addEventListener('click',()=>{ done=[false,false,false,false]; save(); renderProgress(); go(0); });
+
+  const m=/^#leksjon-([1-4])$/.exec(location.hash);
+  const startAt=m?Number(m[1])-1:Math.max(0,done.findIndex(d=>!d));
+  current=startAt===-1?0:startAt;
+  renderProgress(); renderNav(); lessonEl.replaceChildren(); LESSONS[current].render(lessonEl,current);
+})();
+</script>
+</body>
+</html>

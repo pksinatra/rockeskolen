@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gi ut din egen musikk – Før utgivelsen | Rockeskolens Musikkportal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f4f9; --surface:#ffffff; --ink:#151a2e; --muted:#555c75; --line:#dde0eb;
+  --accent:#5b3fe0; --accent-ink:#ffffff; --accent-soft:#ece8ff;
+  --ok:#17845a; --ok-soft:#e1f4ea; --warn:#a2461b; --warn-soft:#fbeadf;
+  --white-key:#fdfdff; --white-key-edge:#c9ccd8; --black-key:#1c1f2b;
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11131d; --surface:#1a1d2b; --ink:#edeff7; --muted:#9ca2ba; --line:#2b2f43;
+    --accent:#a08cff; --accent-ink:#11131d; --accent-soft:#2a2547;
+    --ok:#4fc890; --ok-soft:#173326; --warn:#f0a07a; --warn-soft:#3a2219;
+    --white-key:#eceef5; --white-key-edge:#8d91a3; --black-key:#0b0c12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11131d; --surface:#1a1d2b; --ink:#edeff7; --muted:#9ca2ba; --line:#2b2f43;
+  --accent:#a08cff; --accent-ink:#11131d; --accent-soft:#2a2547;
+  --ok:#4fc890; --ok-soft:#173326; --warn:#f0a07a; --warn-soft:#3a2219;
+  --white-key:#eceef5; --white-key-edge:#8d91a3; --black-key:#0b0c12;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.55}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem clamp(1rem,4vw,2.5rem);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.brand small{display:block;font-family:var(--body);font-weight:400;font-size:.8rem;color:var(--muted);letter-spacing:0}
+
+.course{max-width:1120px;margin:0 auto;padding:clamp(1.25rem,4vw,2.75rem) clamp(1rem,4vw,2.5rem) 3rem}
+.course-head h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,3.4rem);line-height:1.02;letter-spacing:-.025em;margin:0 0 .4rem}
+.course-head p{margin:0;color:var(--muted)}
+.progress{margin-top:1.25rem;max-width:520px}
+.progress-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);margin-bottom:.35rem}
+.progress-row strong{color:var(--ink)}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--ok);transition:width .4s ease}
+
+.layout{display:grid;grid-template-columns:250px 1fr;gap:clamp(1.25rem,3vw,2.5rem);margin-top:2rem;align-items:start}
+.lessons{list-style:none;margin:0;padding:0;position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem)}
+.lessons li+li{margin-top:.25rem}
+.lessons button{width:100%;display:grid;grid-template-columns:2rem 1fr;gap:.6rem;align-items:center;text-align:left;background:none;border:0;border-radius:10px;padding:.6rem .6rem;cursor:pointer}
+.lessons button:hover{background:var(--surface)}
+.lessons button[aria-current="step"]{background:var(--surface);box-shadow:inset 3px 0 0 var(--accent)}
+.lessons .num{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.9rem;border:2px solid var(--line);color:var(--muted)}
+.lessons .done .num{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.lessons .t{display:block;font-weight:700;line-height:1.25}
+.lessons .s{display:block;font-size:.82rem;color:var(--muted)}
+
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(1.1rem,3.5vw,2rem);min-width:0}
+.lesson h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.02em;line-height:1.1;margin:0 0 .75rem}
+.lesson .intro{max-width:62ch;margin:0 0 1.25rem}
+.lesson h3{font-size:1rem;margin:1.75rem 0 .6rem}
+
+.btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:.25rem 0 1rem}
+.btn{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:.55rem 1rem;cursor:pointer;font-weight:700;font-size:.95rem}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+.kb-wrap{overflow-x:auto;padding:.25rem 0 .5rem;margin:0 -.25rem}
+.kb{--kw:clamp(30px,5.6vw,46px);position:relative;display:flex;width:calc(var(--kw) * var(--n));height:calc(var(--kw) * 4.2);margin:0 .25rem;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.key{position:relative;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.key.w{width:var(--kw);height:100%;background:var(--white-key);border:1px solid var(--white-key-edge);border-top:0;border-radius:0 0 7px 7px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.4rem;font-size:.72rem;color:#6a6f83}
+.key.b{position:absolute;top:0;z-index:2;width:calc(var(--kw) * .62);height:60%;left:calc(var(--kw) * var(--i) + var(--kw) - var(--kw) * .31);background:var(--black-key);border-radius:0 0 5px 5px;box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.key.w.ref{background:var(--accent-soft);box-shadow:inset 0 -6px 0 var(--accent)}
+.key.b.ref{box-shadow:inset 0 -6px 0 var(--accent)}
+.key.on.w{background:var(--accent);color:var(--accent-ink)}
+.key.on.b{background:var(--accent)}
+.key.good.w{background:var(--ok);color:#fff}
+.key.good.b{background:var(--ok)}
+.key.bad.w{background:var(--warn);color:#fff}
+.key.bad.b{background:var(--warn)}
+.key.w.lbl-hide{color:transparent}
+
+.task{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:.75rem 1rem;margin:1rem 0;font-weight:700}
+.task small{display:block;font-weight:400;color:var(--muted);margin-top:.15rem}
+.fb{min-height:1.6em;margin:.5rem 0 0;max-width:62ch}
+.fb.ok{color:var(--ok);font-weight:700}
+.fb.no{color:var(--warn)}
+
+.steps{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .15rem;margin:.75rem 0 0;font-weight:700}
+.steps .n{min-width:2.3rem;text-align:center;padding:.3rem .4rem;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.steps .gap{font-size:.78rem;font-weight:700;padding:0 .3rem;color:var(--muted)}
+.steps .gap.half{color:var(--accent)}
+.steps .n.lit{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+.choices{display:grid;gap:.5rem;max-width:420px}
+.choice{text-align:left;border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:.7rem 1rem;cursor:pointer}
+.choice:hover{border-color:var(--accent)}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.wrong{border-color:var(--warn);background:var(--warn-soft)}
+
+.score{display:flex;gap:.4rem;margin:.75rem 0}
+.score i{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.score i.r{background:var(--ok)}
+.score i.x{background:var(--warn)}
+
+.complete{margin-top:1.5rem;padding:1rem 1.1rem;border-radius:12px;background:var(--ok-soft);display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;justify-content:space-between}
+.complete p{margin:0;font-weight:700;color:var(--ok)}
+
+.note{margin-top:2.5rem;font-size:.88rem;color:var(--muted);max-width:70ch}
+.reset{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.88rem}
+
+@media (max-width:760px){
+  .layout{grid-template-columns:1fr}
+  .lessons{position:static;display:flex;gap:.35rem;overflow-x:auto;padding-bottom:.25rem}
+  .lessons li+li{margin-top:0}
+  .lessons button{grid-template-columns:auto;justify-items:center;text-align:center;padding:.5rem .6rem;min-width:84px}
+  .lessons .t{font-size:.8rem;font-weight:700}
+  .lessons .s{display:none}
+  .lessons button[aria-current="step"]{box-shadow:inset 0 -3px 0 var(--accent)}
+}
+@media (prefers-reduced-motion: reduce){.bar span{transition:none}}
+.sort{display:grid;gap:.5rem;max-width:560px;margin:.5rem 0}
+.sort-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding:.55rem .75rem;border:1.5px solid var(--line);border-radius:10px;background:var(--bg)}
+.sort-row.right{border-color:var(--ok);background:var(--ok-soft)}
+.sort-row.wrong{border-color:var(--warn);background:var(--warn-soft)}
+.sort-row .lbl{font-weight:700}
+.sort-row .pair{display:flex;gap:.35rem}
+.sort-row .pair .btn{padding:.35rem .8rem;font-size:.88rem}
+.split{display:grid;gap:.6rem;max-width:420px;margin:.75rem 0}
+.split-row{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:.5rem}
+.split-row output{min-width:3.6rem;text-align:center;font-weight:700;font-size:1.15rem}
+.step-btn{width:2.4rem;height:2.4rem;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;font-weight:700;font-size:1.1rem}
+.step-btn:hover{border-color:var(--accent)}
+.sum{font-weight:700;margin:.25rem 0}
+.timeline{list-style:none;margin:1rem 0 0;padding:0;max-width:600px;border-left:3px solid var(--line)}
+.timeline li{position:relative;padding:.1rem 0 1rem 1.25rem}
+.timeline li::before{content:"";position:absolute;left:-8px;top:.45rem;width:13px;height:13px;border-radius:50%;background:var(--surface);border:3px solid var(--accent)}
+.timeline li.release::before{background:var(--accent)}
+.timeline time{display:block;font-size:.85rem;color:var(--muted)}
+.timeline span{font-weight:700}
+.order{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+.order .btn.placed{background:var(--ok);border-color:var(--ok);color:#fff}
+.picked{list-style:none;counter-reset:p;margin:.5rem 0;padding:0}
+.picked li{counter-increment:p;padding:.25rem 0;font-weight:700}
+.picked li::before{content:counter(p) ". ";color:var(--ok)}
+input[type=date]{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:.45rem .7rem}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Rockeskolen<small>Rockeskolens Musikkportal</small></div>
+</header>
+
+<main class="course">
+  <div class="course-head">
+    <h1>Gi ut din egen musikk</h1>
+    <p>Modul 1: Før utgivelsen. Rettigheter, fordeling og en plan fram til utgivelsesdagen.</p>
+    <div class="progress" aria-live="polite">
+      <div class="progress-row"><span id="progText">0 av 4 leksjoner fullført</span><strong id="progPct">0 %</strong></div>
+      <div class="bar"><span id="progBar"></span></div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav aria-label="Leksjoner"><ol class="lessons" id="lessonList"></ol></nav>
+    <section class="lesson" id="lesson" aria-live="polite"></section>
+  </div>
+
+  <p class="note">Dette er et eksempel på kursformatet i Rockeskolens Musikkportal. Her lagres progresjonen bare i nettleseren din. I musikkportalen lagres den på kontoen, og læreren kan følge elevenes progresjon. <button class="reset" id="reset" type="button">Nullstill progresjon</button></p>
+</main>
+
+<script>
+(function(){
+  const STORE='rs-kurs-utgivelse-m1';
+
+  /* ---------- lyd ---------- */
+  let ctx=null;
+  function ac(){
+    if(!ctx){const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; ctx=new C();}
+    if(ctx.state==='suspended') ctx.resume();
+    return ctx;
+  }
+  function note(m,delay,dur,type,vol){
+    const c=ac(); if(!c) return;
+    const t=c.currentTime+delay, f=440*Math.pow(2,(m-69)/12);
+    const o=c.createOscillator(), g=c.createGain();
+    o.type=type; o.frequency.value=f; o.connect(g); g.connect(c.destination);
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(vol,t+0.01);
+    g.gain.exponentialRampToValueAtTime(0.0008,t+dur);
+    o.start(t); o.stop(t+dur+0.05);
+  }
+  /* En enkel, egen melodi: samme verk, to innspillinger */
+  const MELODY=[[67,1],[69,1],[71,2],[74,1],[72,1],[71,2],[69,1],[71,1],[72,1],[69,1],[67,4]];
+  const BASS=[[43,4],[48,4],[50,4],[43,4]];
+  function playVersion(v){
+    const beat=v===1?0.34:0.24;
+    let t=0;
+    MELODY.forEach(([m,d])=>{
+      if(v===1) note(m,t,d*beat*1.4,'triangle',0.3);
+      else { note(m+12,t,d*beat*0.9,'square',0.07); note(m,t,d*beat*0.9,'sawtooth',0.05); }
+      t+=d*beat;
+    });
+    if(v===2){
+      let tb=0; BASS.forEach(([m,d])=>{ for(let k=0;k<d;k++){ note(m,tb,beat*0.8,'triangle',0.28); tb+=beat; } });
+      for(let k=0;k<16;k++) note(k%2?84:96,k*beat,0.04,'square',0.03);
+    }
+  }
+
+  /* ---------- progresjon ---------- */
+  let done=[false,false,false,false];
+  try{ const s=JSON.parse(localStorage.getItem(STORE)||'null'); if(Array.isArray(s)&&s.length===4) done=s.map(Boolean); }catch(e){}
+  function save(){ try{ localStorage.setItem(STORE,JSON.stringify(done)); }catch(e){} }
+  function markDone(i){ done[i]=true; save(); renderNav(); renderProgress(); }
+
+  /* ---------- hjelpere ---------- */
+  const h=(tag,props={},...kids)=>{
+    const e=document.createElement(tag);
+    Object.entries(props).forEach(([k,v])=>{ if(k==='class') e.className=v; else if(k.startsWith('on')) e.addEventListener(k.slice(2),v); else if(v!==false&&v!=null) e.setAttribute(k,v===true?'':v); });
+    kids.flat().forEach(c=>{ if(c!=null) e.append(c.nodeType?c:document.createTextNode(c)); });
+    return e;
+  };
+  function completeBox(i,text){
+    const next=i<3?h('button',{class:'btn primary',type:'button',onclick:()=>go(i+1)},'Neste leksjon'):h('span',{},'Modul 1 er fullført.');
+    return h('div',{class:'complete'},h('p',{},text),next);
+  }
+  const shuffle=a=>{a=a.slice(); for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1)); [a[k],a[j]]=[a[j],a[k]];} return a;};
+
+  /* ---------- leksjoner ---------- */
+  const LESSONS=[
+    {title:'Låten og innspillingen', sub:'To ting som eies hver for seg', render:lesson1},
+    {title:'TONO og Gramo', sub:'Hvem betaler deg?', render:lesson2},
+    {title:'Fordel låten', sub:'Hvem skrev hva', render:lesson3},
+    {title:'Lag en utgivelsesplan', sub:'Fra master til utgivelsesdag', render:lesson4}
+  ];
+
+  function lesson1(root,i){
+    root.append(
+      h('h2',{},'Låten og innspillingen'),
+      h('p',{class:'intro'},'Når du gir ut musikk, finnes det to ting som eies hver for seg. Verket er selve låten: melodien, akkordene og teksten. Innspillingen er lydfila, slik låten ble spilt inn, produsert og mikset. Hør den samme låten i to ulike innspillinger.'),
+      h('div',{class:'btns'},
+        h('button',{class:'btn',type:'button',onclick:()=>playVersion(1)},'Hør innspilling 1'),
+        h('button',{class:'btn',type:'button',onclick:()=>playVersion(2)},'Hør innspilling 2')
+      ),
+      h('p',{class:'intro'},'Melodien er den samme, altså samme verk. Lyden, tempoet og arrangementet er forskjellig, altså to ulike innspillinger.'),
+      h('h3',{},'Sorter: verket eller innspillingen?')
+    );
+    const items=shuffle([
+      ['Melodien','v'],['Teksten','v'],['Akkordene i refrenget','v'],
+      ['Lydfila du laster opp','i'],['Trommesporet slik det ble spilt inn','i'],['Miksen','i']
+    ]);
+    const fb=h('p',{class:'fb'}); const list=h('div',{class:'sort'});
+    let correct=0, finished=false;
+    items.forEach(([txt,ans])=>{
+      const row=h('div',{class:'sort-row'});
+      let locked=false;
+      const pick=val=>{
+        if(locked||finished) return;
+        if(val===ans){ locked=true; row.className='sort-row right'; correct++; fb.className='fb ok'; fb.textContent=`Riktig: ${txt.toLowerCase()} hører til ${ans==='v'?'verket':'innspillingen'}.`; check(); }
+        else { row.className='sort-row wrong'; fb.className='fb no'; fb.textContent= ans==='v' ? `${txt} er en del av selve låten, uansett hvem som spiller den inn.` : `${txt} finnes bare i denne bestemte innspillingen.`; }
+      };
+      row.append(h('span',{class:'lbl'},txt),h('span',{class:'pair'},
+        h('button',{class:'btn',type:'button',onclick:()=>pick('v')},'Verket'),
+        h('button',{class:'btn',type:'button',onclick:()=>pick('i')},'Innspillingen')));
+      list.append(row);
+    });
+    function check(){ if(correct===items.length){ finished=true; markDone(i); root.append(completeBox(i,'Leksjonen er fullført.')); } }
+    root.append(list,fb);
+  }
+
+  function lesson2(root,i){
+    root.append(
+      h('h2',{},'TONO og Gramo'),
+      h('p',{class:'intro'},'TONO forvalter rettighetene til dem som har skrevet låten: komponister, tekstforfattere og musikkforlag. Gramo forvalter rettighetene til dem som har spilt inn musikken: utøverne og den som eier innspillingen, når innspillingen spilles på radio, TV eller offentlige steder. Inntektene fra strømming av selve innspillingen kommer via distributøren.'),
+      h('h3',{},'Hvem betaler?')
+    );
+    const Q=shuffle([
+      ['Du skrev teksten. Låten spilles på radio.','TONO','Teksten er en del av verket, og verket hører til TONO.'],
+      ['Du spilte bass på innspillingen. Den spilles på radio.','Gramo','Du er utøver på innspillingen, og det hører til Gramo.'],
+      ['Innspillingen strømmes på en strømmetjeneste. Hvem betaler ut for selve innspillingen?','Distributøren','Distributøren samler inn og betaler ut for innspillingen på strømmetjenestene.'],
+      ['Et annet band spiller låten din på en konsert.','TONO','Ingen innspilling er involvert, bare verket. Det hører til TONO.'],
+      ['Bandet eier masteren. Innspillingen spilles på et kjøpesenter.','Gramo','Offentlig avspilling av en innspilling hører til Gramo.']
+    ]);
+    const OPTS=['TONO','Gramo','Distributøren'];
+    let k=0, score=0;
+    const status=h('div',{class:'task'}); const dots=h('div',{class:'score','aria-hidden':'true'});
+    const ch=h('div',{class:'choices'}); const fb=h('p',{class:'fb'});
+    const nextBtn=h('button',{class:'btn',type:'button',onclick:()=>{k++; k<Q.length?show():finish();}},'Neste');
+    const res=[];
+    root.append(status,dots,ch,fb,h('div',{class:'btns'},nextBtn));
+    function drawDots(){ dots.replaceChildren(...Q.map((_,n)=>h('i',{class:res[n]===true?'r':res[n]===false?'x':''}))); }
+    function show(){
+      const [q,ans,why]=Q[k]; let answered=false; nextBtn.disabled=true; fb.textContent='';
+      status.replaceChildren(q,h('small',{},`Spørsmål ${k+1} av ${Q.length}`));
+      ch.replaceChildren(...OPTS.map(o=>{
+        const b=h('button',{class:'choice',type:'button',onclick:()=>{
+          if(answered) return; answered=true;
+          const ok=o===ans; res.push(ok); if(ok) score++;
+          b.classList.add(ok?'right':'wrong');
+          if(!ok) [...ch.children].find(x=>x.textContent===ans).classList.add('right');
+          fb.className=ok?'fb ok':'fb no'; fb.textContent=(ok?'Riktig. ':`Riktig svar er ${ans}. `)+why;
+          nextBtn.disabled=false; nextBtn.textContent=k===Q.length-1?'Se resultatet':'Neste'; drawDots();
+        }},o);
+        return b;
+      }));
+      drawDots();
+    }
+    function finish(){
+      ch.replaceChildren(); fb.textContent=''; nextBtn.remove();
+      if(score>=4){ status.replaceChildren(`${score} av ${Q.length} riktige.`); markDone(i); root.append(completeBox(i,'Leksjonen er fullført.')); }
+      else { status.replaceChildren(`${score} av ${Q.length} riktige. Du trenger 4 for å fullføre.`); root.append(h('div',{class:'btns'},h('button',{class:'btn primary',type:'button',onclick:()=>go(i)},'Prøv igjen'))); }
+    }
+    show();
+  }
+
+  function lesson3(root,i){
+    root.append(
+      h('h2',{},'Fordel låten'),
+      h('p',{class:'intro'},'Før utgivelsen må dere bli enige om hvor stor del av verket hver låtskriver eier. Fordelingen bestemmer hvordan pengene fra TONO deles. Skriv den ned og meld den inn likt overalt.'),
+      h('div',{class:'task'},'Ane skrev hele teksten. Ane og Jonas skrev melodien og akkordene sammen, like mye hver. Sara spilte trommer på innspillingen, men var ikke med og skrev låten. Bandet er enige om at tekst og musikk teller halvparten hver.',h('small',{},'Fordel verket mellom de tre.'))
+    );
+    const people=['Ane','Jonas','Sara']; const val={Ane:0,Jonas:0,Sara:0};
+    const outs={}; const sum=h('p',{class:'sum'}); const fb=h('p',{class:'fb'});
+    const grid=h('div',{class:'split'});
+    people.forEach(p=>{
+      const o=h('output',{'aria-live':'polite'},'0 %'); outs[p]=o;
+      const ch=d=>{ val[p]=Math.max(0,Math.min(100,val[p]+d)); upd(); };
+      grid.append(h('div',{class:'split-row'},h('span',{class:'lbl',style:'font-weight:700'},p),
+        h('button',{class:'step-btn',type:'button','aria-label':`Mindre til ${p}`,onclick:()=>ch(-5)},'−'),o,
+        h('button',{class:'step-btn',type:'button','aria-label':`Mer til ${p}`,onclick:()=>ch(5)},'+')));
+    });
+    let solved=false;
+    const checkBtn=h('button',{class:'btn primary',type:'button',onclick:check},'Sjekk fordelingen');
+    function upd(){ people.forEach(p=>outs[p].textContent=val[p]+' %'); const s=val.Ane+val.Jonas+val.Sara; sum.textContent=`Sum: ${s} %`; sum.style.color=s===100?'var(--ok)':'var(--muted)'; }
+    function check(){
+      if(solved) return;
+      const s=val.Ane+val.Jonas+val.Sara;
+      if(s!==100){ fb.className='fb no'; fb.textContent='Summen må bli nøyaktig 100 %.'; return; }
+      if(val.Ane===75&&val.Jonas===25&&val.Sara===0){
+        solved=true; fb.className='fb ok';
+        fb.textContent='Riktig. Ane får hele tekstdelen (50 %) og halve musikkdelen (25 %), til sammen 75 %. Jonas får 25 %. Sara skrev ikke låten, men får sin del gjennom Gramo som utøver på innspillingen.';
+        markDone(i); root.append(completeBox(i,'Leksjonen er fullført.'));
+      } else if(val.Sara>0){ fb.className='fb no'; fb.textContent='Sara var ikke med og skrev låten. Hennes bidrag ligger i innspillingen, ikke i verket.'; }
+      else { fb.className='fb no'; fb.textContent='Del først i to: teksten er 50 % og musikken 50 %. Fordel deretter hver halvdel på dem som skrev den.'; }
+    }
+    upd();
+    root.append(grid,sum,h('div',{class:'btns'},checkBtn),fb,
+      h('p',{class:'intro',style:'margin-top:1rem;font-size:.95rem;color:var(--muted)'},'Mange band avtaler også lik fordeling uansett hvem som skrev hva. Begge deler er greit. Det viktigste er at avtalen er skriftlig før utgivelsen.'));
+  }
+
+  function lesson4(root,i){
+    root.append(
+      h('h2',{},'Lag en utgivelsesplan'),
+      h('p',{class:'intro'},'En utgivelse tar flere uker å forberede. Sett først stegene i riktig rekkefølge. Velg deretter en dato, så får du en plan med datoer.'),
+      h('h3',{},'Sett stegene i rekkefølge')
+    );
+    const STEPS=['Skriftlig avtale om fordelingen','Miks og master','Cover og metadata','Last opp til distributøren','Send låten til vurdering hos strømmetjenestene'];
+    let pos=0;
+    const picked=h('ol',{class:'picked'}); const fb=h('p',{class:'fb'});
+    const order=h('div',{class:'order'});
+    shuffle(STEPS).forEach(s=>{
+      const b=h('button',{class:'btn',type:'button',onclick:()=>{
+        if(b.classList.contains('placed')) return;
+        if(s===STEPS[pos]){ b.classList.add('placed'); b.disabled=true; picked.append(h('li',{},s)); pos++; fb.textContent='';
+          if(pos===STEPS.length){ fb.className='fb ok'; fb.textContent='Riktig rekkefølge.'; markDone(i); showPlan(); root.append(completeBox(i,'Leksjonen er fullført.')); } }
+        else { fb.className='fb no'; fb.textContent= pos===0 ? 'Begynn med det som må være avklart før alt annet.' : `Hva må være ferdig rett etter «${STEPS[pos-1].toLowerCase()}»?`; }
+      }},s);
+      order.append(b);
+    });
+    root.append(order,picked,fb);
+
+    function showPlan(){
+      const d0=new Date(); d0.setDate(d0.getDate()+56+((5-d0.getDay()+7)%7));
+      const iso=d=>d.toISOString().slice(0,10);
+      const input=h('input',{type:'date',value:iso(d0),'aria-label':'Utgivelsesdato'});
+      const tl=h('ol',{class:'timeline'}); const tip=h('p',{class:'fb'});
+      const PLAN=[
+        [56,'Bestem dato og skriv avtalen om fordelingen'],
+        [42,'Miks og master er ferdig'],
+        [35,'Cover og metadata er klart: artistnavn, låttittel og alle bidragsytere'],
+        [28,'Last opp til distributøren'],
+        [21,'Send låten til vurdering hos strømmetjenestene, senest sju dager før'],
+        [14,'Meld verket til TONO'],
+        [0,'Utgivelsesdag']
+      ];
+      const fmt=d=>d.toLocaleDateString('nb-NO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+      function draw(){
+        const r=new Date(input.value+'T12:00:00'); if(isNaN(r)) return;
+        tl.replaceChildren(...PLAN.map(([off,txt])=>{ const d=new Date(r); d.setDate(d.getDate()-off);
+          return h('li',{class:off===0?'release':''},h('time',{datetime:iso(d)},fmt(d)),h('span',{},txt)); }));
+        tip.className='fb'; tip.textContent= r.getDay()===5 ? '' : 'Tips: Mange velger fredag som utgivelsesdag, fordi spillelister for ny musikk ofte oppdateres da.';
+      }
+      input.addEventListener('change',draw); draw();
+      root.append(h('h3',{},'Din plan'),h('label',{},'Utgivelsesdato ',input),tl,tip);
+    }
+  }
+
+  /* ---------- navigasjon ---------- */
+  let current=0;
+  const list=document.getElementById('lessonList');
+  const lessonEl=document.getElementById('lesson');
+  function renderNav(){
+    list.replaceChildren(...LESSONS.map((L,k)=>{
+      const b=h('button',{type:'button',class:done[k]?'done':'',onclick:()=>go(k)},
+        h('span',{class:'num','aria-hidden':'true'},done[k]?'✓':String(k+1)),
+        h('span',{},h('span',{class:'t'},L.title),h('span',{class:'s'},done[k]?'Fullført':L.sub))
+      );
+      if(k===current) b.setAttribute('aria-current','step');
+      return h('li',{},b);
+    }));
+  }
+  function renderProgress(){
+    const n=done.filter(Boolean).length, pct=Math.round(n/4*100);
+    document.getElementById('progText').textContent=`${n} av 4 leksjoner fullført`;
+    document.getElementById('progPct').textContent=`${pct} %`;
+    document.getElementById('progBar').style.width=pct+'%';
+  }
+  function go(k){
+    current=k; renderNav();
+    lessonEl.replaceChildren(); LESSONS[k].render(lessonEl,k);
+    if(location.hash!=='#leksjon-'+(k+1)) history.replaceState(null,'','#leksjon-'+(k+1));
+    if(window.innerWidth<760) lessonEl.scrollIntoView({block:'start'});
+  }
+  document.getElementById('reset').addEventListener('click',()=>{ done=[false,false,false,false]; save(); renderProgress(); go(0); });
+
+  const m=/^#leksjon-([1-4])$/.exec(location.hash);
+  const first=done.findIndex(d=>!d);
+  current=m?Number(m[1])-1:(first===-1?0:first);
+  renderProgress(); renderNav(); LESSONS[current].render(lessonEl,current);
+})();
+</script>
+</body>
+</html>
