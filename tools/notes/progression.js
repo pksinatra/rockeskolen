@@ -48,13 +48,29 @@
     const rootMidi = 48 + pcs[chord.root];
     return chord.intervals.map(i => rootMidi + i);
   }
-  function toneName(midi) {
+  // Akkordtonene staves fra grunntonens bokstav (ters = to bokstavtrinn opp osv.),
+  // slik at akkorden Ab gir notene A♭–C–E♭ og D7 gir D–F♯–A–C.
+  const LETTERS = 'CDEFGAB';
+  const NATURAL = { C:0, D:2, E:4, F:5, G:7, A:9, B:11 };
+  const LETTER_STEP = { 0:0, 2:1, 3:2, 4:2, 5:3, 6:4, 7:4, 8:4, 10:6, 11:6, 14:1 };
+  function spelledNotes(symbol) {
+    const chord = parseChord(symbol);
+    const rootLetter = chord.root[0];
+    return midiNotes(symbol).map((midi, i) => {
+      const letter = LETTERS[(LETTERS.indexOf(rootLetter) + LETTER_STEP[chord.intervals[i]]) % 7];
+      let acc = ((midi % 12) - NATURAL[letter] + 18) % 12 - 6;
+      const oct = Math.floor((midi - acc) / 12) - 1;
+      const sign = acc > 0 ? '#'.repeat(acc) : 'b'.repeat(-acc);
+      return { midi, name: letter + sign, oct, sign };
+    });
+  }
+  function toneName(midi, symbol) {
+    if (symbol) {
+      const n = spelledNotes(symbol).find(x => x.midi === midi);
+      if (n && n.sign.length < 2) return n.name + n.oct;
+    }
     const names = flatKeys.has(params.get('key') || 'C') ? flatNames : sharpNames;
     return names[midi % 12] + (Math.floor(midi / 12) - 1);
-  }
-  function noteKey(midi) {
-    const name = sharpNames[midi % 12].replace('#','').toLowerCase();
-    return `${name}/${Math.floor(midi / 12) - 1}`;
   }
   function renderPresets() {
     const nav = document.getElementById('presets');
@@ -97,7 +113,9 @@
     const stave = new Vex.Flow.Stave(10, 28, width - 20).addClef('treble').addTimeSignature(`${activePreset.chords.length}/4`);
     stave.setContext(ctx).draw();
     const notes = activePreset.chords.map((symbol,i) => {
-      const note = new Vex.Flow.StaveNote({ clef:'treble', keys:midiNotes(symbol).map(noteKey), duration:'q' });
+      const spelled = spelledNotes(symbol);
+      const note = new Vex.Flow.StaveNote({ clef:'treble', keys:spelled.map(n => `${n.name.toLowerCase()}/${n.oct}`), duration:'q' });
+      spelled.forEach((n, k) => { if (n.sign) note.addModifier(new Vex.Flow.Accidental(n.sign), k); });
       if (i === active) note.setStyle({ fillStyle:'#7c3aed', strokeStyle:'#7c3aed' });
       return note.addModifier(new Vex.Flow.Annotation(symbol).setVerticalJustification(Vex.Flow.Annotation.VerticalJustify.TOP));
     });
@@ -128,7 +146,7 @@
         const midis = midiNotes(symbol);
         renderCards(i); renderNotation(i); renderPiano(midis);
         document.getElementById('status').textContent = `${strings.playing}: ${activePreset.roman[i] ? activePreset.roman[i] + ' · ' : ''}${symbol}`;
-        synth.triggerAttackRelease(midis.map(toneName), beat * .82 / 1000);
+        synth.triggerAttackRelease(midis.map(m => toneName(m, symbol)), beat * .82 / 1000);
       }, i * beat));
     });
     timers.push(setTimeout(() => {
