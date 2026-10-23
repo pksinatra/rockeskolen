@@ -22,3 +22,6 @@ audio/keys/**/.DS_Store
 /portal/themes/*
 !/portal/themes/custom/
 !/portal/themes/custom/**
+
+# Lokale Claude Code-innstillinger
+.claude/settings.local.json
