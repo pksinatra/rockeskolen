@@ -131,7 +131,7 @@
   }
   async function startAudio() {
     await Tone.start();
-    if (!synth) synth = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'triangle'}, envelope:{attack:.015,decay:.16,sustain:.32,release:.75} }).toDestination();
+    if (!synth) synth = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'triangle'}, envelope:{attack:.05,decay:.16,sustain:.32,release:.75} }).toDestination();
   }
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
   function stop(showStatus = true) {
