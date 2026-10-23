@@ -25,3 +25,6 @@ audio/keys/**/.DS_Store
 
 # Lokale Claude Code-innstillinger
 .claude/settings.local.json
+
+# ChordLink har eget repo (pksinatra/chordlink)
+chordlink/
