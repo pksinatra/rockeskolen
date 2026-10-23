@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_schema().
+ */
+function rs_kurs_schema(): array {
+  $schema['rs_course_progress'] = [
+    'description' => 'Best result per lesson and completed lessons, one row per user and course.',
+    'fields' => [
+      'uid' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'course' => ['type' => 'int', 'size' => 'small', 'unsigned' => TRUE, 'not null' => TRUE],
+      // Bit n set: lesson n + 1 is completed.
+      'done' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0],
+      // One byte per lesson: best result 0–100, 255 = not attempted.
+      'scores' => ['type' => 'blob', 'mysql_type' => 'varbinary(32)', 'not null' => TRUE],
+      'updated' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+    ],
+    'primary key' => ['uid', 'course'],
+    'indexes' => ['course' => ['course']],
+  ];
+  return $schema;
+}

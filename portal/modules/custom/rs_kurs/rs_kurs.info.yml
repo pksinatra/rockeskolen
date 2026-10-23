@@ -1,0 +1,7 @@
+name: Rockeskolen Kurs
+type: module
+description: 'Kurs i Rockeskolens Musikkportal med kompakt lagring av progresjon per bruker.'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:user

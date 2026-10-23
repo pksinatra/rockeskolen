@@ -1,0 +1,55 @@
+rs_kurs.course:
+  path: '/kurs/{slug}'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::page'
+  requirements:
+    _access: 'TRUE'
+    slug: '[a-z0-9-]+'
+  options:
+    no_cache: TRUE
+
+rs_kurs.lesson_script:
+  path: '/kurs/{slug}/leksjon/{lesson}'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::lessonScript'
+  requirements:
+    _access: 'TRUE'
+    slug: '[a-z0-9-]+'
+    lesson: '\d+'
+  options:
+    no_cache: TRUE
+
+rs_kurs.progress_get:
+  path: '/api/kurs/{course}/progress'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::getProgress'
+  methods: [GET]
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    course: '\d+'
+  options:
+    no_cache: TRUE
+
+rs_kurs.progress_post:
+  path: '/api/kurs/{course}/progress'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::postProgress'
+  methods: [POST]
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _csrf_request_header_token: 'TRUE'
+    course: '\d+'
+  options:
+    no_cache: TRUE
+
+rs_kurs.progress_sync:
+  path: '/api/kurs/{course}/progress/sync'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::syncProgress'
+  methods: [POST]
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _csrf_request_header_token: 'TRUE'
+    course: '\d+'
+  options:
+    no_cache: TRUE
