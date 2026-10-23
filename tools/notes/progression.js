@@ -130,12 +130,16 @@
     if (active < 0) document.getElementById('status').textContent = strings.ready;
   }
   async function startAudio() {
+    if (!synth) {
+      // Større lydbuffer («playback») gir færre klikk på nettbrett og mobil; dette er avspilling, ikke et instrument.
+      Tone.setContext(new Tone.Context({ latencyHint: 'playback' }));
+    }
     await Tone.start();
     if (!synth) {
-      // Flere akkordtoner samtidig summeres; lavere volum og en limiter hindrer klipping (skurring).
+      // Flere akkordtoner summeres; lavt volum, limiter og myke kurver gir ren lyd uten skurr og klikk.
       const limiter = new Tone.Limiter(-3).toDestination();
-      synth = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'triangle'}, envelope:{attack:.05,decay:.16,sustain:.32,release:.75} }).connect(limiter);
-      synth.volume.value = -9;
+      synth = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'triangle'}, envelope:{attack:.05,attackCurve:'sine',decay:.2,sustain:.35,release:.9,releaseCurve:'exponential'} }).connect(limiter);
+      synth.volume.value = -15;
     }
   }
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
