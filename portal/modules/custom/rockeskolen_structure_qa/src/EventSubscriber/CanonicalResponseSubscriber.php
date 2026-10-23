@@ -73,6 +73,12 @@ final class CanonicalResponseSubscriber implements EventSubscriberInterface {
     $content_image = $path !== '/' && $page_entity instanceof \Drupal\node\NodeInterface
       ? $this->imageFromContent($content)
       : NULL;
+    $media_image = $path !== '/' && $page_entity instanceof \Drupal\node\NodeInterface
+      ? $this->imageFromNode($page_entity)
+      : NULL;
+    if ($media_image !== NULL) {
+      $content_image = $media_image;
+    }
     if ($content_image !== NULL) {
       $image = $content_image['url'];
       $image_alt = $content_image['alt'] !== '' ? $content_image['alt'] : $title;
@@ -91,6 +97,12 @@ final class CanonicalResponseSubscriber implements EventSubscriberInterface {
       return;
     }
 
+    $article_times = $path !== '/' && $page_entity instanceof \Drupal\node\NodeInterface
+      ? [
+        'published' => date('c', (int) $page_entity->getCreatedTime()),
+        'modified' => date('c', (int) $page_entity->getChangedTime()),
+      ]
+      : NULL;
     $meta = $this->buildMeta(
       $title,
       $description,
@@ -100,6 +112,7 @@ final class CanonicalResponseSubscriber implements EventSubscriberInterface {
       $image_type,
       $image_width,
       $image_height,
+      $article_times,
     );
     $content = str_replace('</head>', $meta . '</head>', $content);
     $response->setContent($this->normalizeProductNames($content));
@@ -718,10 +731,56 @@ HTML;
     if ($description === '') {
       return NULL;
     }
-    if (mb_strlen($description) > 160) {
-      $description = rtrim(mb_substr($description, 0, 157), " \t\n\r\0\x0B,.;:") . '…';
+    return $this->shortenDescription($description);
+  }
+
+  /**
+   * Shortens to at most 160 characters, ending on a whole sentence if one fits.
+   */
+  private function shortenDescription(string $description): string {
+    if (mb_strlen($description) <= 160) {
+      return $description;
     }
-    return $description;
+    $head = mb_substr($description, 0, 160);
+    if (preg_match('/^(.{40,}[.!?])\s/us', $head . ' ', $match) === 1) {
+      return $match[1];
+    }
+    $cut = mb_substr($head, 0, 157);
+    $space = mb_strrpos($cut, ' ');
+    if ($space !== FALSE && $space > 100) {
+      $cut = mb_substr($cut, 0, $space);
+    }
+    return rtrim($cut, " \t\n\r\0\x0B,.;:–-") . '…';
+  }
+
+  /**
+   * Uses the article's own image file, in a format all sharing services read.
+   */
+  private function imageFromNode(\Drupal\node\NodeInterface $node): ?array {
+    if (!$node->hasField('field_bilde') || $node->get('field_bilde')->isEmpty()) {
+      return NULL;
+    }
+    $media = $node->get('field_bilde')->entity;
+    if (!$media || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
+      return NULL;
+    }
+    $item = $media->get('field_media_image')->first();
+    $file = $item?->entity;
+    // WebP and very large files are not read by every service; use the page image then.
+    if (!$file || !in_array($file->getMimeType(), ['image/jpeg', 'image/png'], TRUE) || (int) $file->getSize() > 5000000) {
+      return NULL;
+    }
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    if (!str_starts_with($url, 'https://portal.rockeskolen.com/')) {
+      return NULL;
+    }
+    return [
+      'url' => $url,
+      'alt' => trim((string) $item->alt),
+      'type' => $file->getMimeType(),
+      'width' => (int) $item->width ?: 1200,
+      'height' => (int) $item->height ?: 630,
+    ];
   }
 
   /**
@@ -777,6 +836,7 @@ HTML;
     string $image_type,
     int $image_width,
     int $image_height,
+    ?array $article_times = NULL,
   ): string {
     $escape = static fn(string $value): string => htmlspecialchars(
       $value,
@@ -791,13 +851,17 @@ HTML;
       'image_alt',
       'image_type',
     ));
+    $og_type = $article_times === NULL ? 'website' : 'article';
+    $article_meta = $article_times === NULL ? '' : "\n"
+      . '<meta property="article:published_time" content="' . $escape($article_times['published']) . '" />' . "\n"
+      . '<meta property="article:modified_time" content="' . $escape($article_times['modified']) . '" />';
 
     return <<<HTML
 <meta name="description" content="{$values['description']}" />
 <link rel="canonical" href="{$values['canonical']}" />
 <meta property="og:locale" content="nb_NO" />
 <meta property="og:site_name" content="Rockeskolen" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="{$og_type}" />{$article_meta}
 <meta property="og:title" content="{$values['title']}" />
 <meta property="og:description" content="{$values['description']}" />
 <meta property="og:url" content="{$values['canonical']}" />
