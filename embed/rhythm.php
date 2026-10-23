@@ -47,6 +47,6 @@ $no = $lang === 'no';
       <p id="status" role="status"></p>
     </footer>
   </main>
-  <script src="rhythm.js?v=20261023-3"></script>
+  <script src="rhythm.js?v=20261023-4"></script>
 </body>
 </html>

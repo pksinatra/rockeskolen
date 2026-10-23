@@ -45,6 +45,6 @@ $lang = ($_GET['lang'] ?? 'en') === 'no' ? 'no' : 'en';
       <p id="status" role="status"></p>
     </footer>
   </main>
-  <script src="progression.js?v=20261023-4"></script>
+  <script src="progression.js?v=20261023-5"></script>
 </body>
 </html>

@@ -131,7 +131,12 @@
   }
   async function startAudio() {
     await Tone.start();
-    if (!synth) synth = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'triangle'}, envelope:{attack:.05,decay:.16,sustain:.32,release:.75} }).toDestination();
+    if (!synth) {
+      // Flere akkordtoner samtidig summeres; lavere volum og en limiter hindrer klipping (skurring).
+      const limiter = new Tone.Limiter(-3).toDestination();
+      synth = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'triangle'}, envelope:{attack:.05,decay:.16,sustain:.32,release:.75} }).connect(limiter);
+      synth.volume.value = -9;
+    }
   }
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
   function stop(showStatus = true) {

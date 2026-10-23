@@ -206,10 +206,15 @@
   }
 
   // ---------- lyd ----------
-  let ctx = null, noise = null;
+  let ctx = null, noise = null, master = null;
   function audio() {
     if (!ctx) {
       ctx = new (window.AudioContext || window.webkitAudioContext)();
+      // Felles utgang: lavere nivå og kompressor, så samtidige slag ikke klipper.
+      const comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -12; comp.knee.value = 6; comp.ratio.value = 8;
+      master = ctx.createGain(); master.gain.value = 0.6;
+      master.connect(comp); comp.connect(ctx.destination);
       noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
       const d = noise.getChannelData(0);
       for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
@@ -222,7 +227,7 @@
     g.gain.setValueAtTime(0.0001, t);
     g.gain.exponentialRampToValueAtTime(peak, t + 0.003);
     g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
-    g.connect(ctx.destination);
+    g.connect(master);
     return g;
   }
   function noiseHit(t, type, freq, peak, decay) {
