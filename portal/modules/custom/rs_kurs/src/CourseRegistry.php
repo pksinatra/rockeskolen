@@ -22,6 +22,18 @@ final class CourseRegistry {
         ['title' => 'Hør forskjellen', 'sub' => 'Lytteprøve'],
       ],
     ],
+    2 => [
+      'slug' => 'rytme',
+      'title' => 'Rytme',
+      'module' => 'Modul 1: Puls, takt og notverdier. Fire korte leksjoner der du lytter, teller og spiller.',
+      'storage' => 'rs-kurs-rytme-m1',
+      'lessons' => [
+        ['title' => 'Pulsen', 'sub' => 'Det jevne slaget i musikken'],
+        ['title' => 'Takt og betoning', 'sub' => '3/4 eller 4/4?'],
+        ['title' => 'Notverdier', 'sub' => 'Hvor lenge varer tonen?'],
+        ['title' => 'Hør rytmen', 'sub' => 'Lytteprøve'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'title' => 'Gi ut din egen musikk',
