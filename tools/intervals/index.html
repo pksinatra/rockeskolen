@@ -949,7 +949,7 @@
       const blob = new Blob([illustrationSvg()], { type: 'image/svg+xml;charset=utf-8' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = `chordlink-interval-${interval.short.replaceAll('/', '-')}.svg`;
+      link.download = `rockeskolen-interval-${interval.short.replaceAll('/', '-')}.svg`;
       link.click();
       URL.revokeObjectURL(link.href);
       $('generatorStatus').textContent = t('downloadedSvg');
