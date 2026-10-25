@@ -51,5 +51,6 @@ $no = $lang === 'no';
     </footer>
   </main>
   <script src="mode.js?v=20261025-1"></script>
+  <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>

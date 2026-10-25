@@ -48,5 +48,6 @@ $no = $lang === 'no';
     </footer>
   </main>
   <script src="rhythm.js?v=20261023-4"></script>
+  <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>

@@ -46,5 +46,6 @@ $lang = ($_GET['lang'] ?? 'en') === 'no' ? 'no' : 'en';
     </footer>
   </main>
   <script src="progression.js?v=20261023-6"></script>
+  <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>

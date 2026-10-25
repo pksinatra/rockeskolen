@@ -47,5 +47,6 @@ if (!in_array($lang, ['en', 'no'], true)) {
   </main>
 
   <script src="/tools/notes/chordscale.js?v=20260901-5"></script>
+  <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>

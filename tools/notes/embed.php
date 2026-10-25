@@ -32,5 +32,6 @@ $output = in_array($output, ['notation', 'piano', 'both'], true) ? $output : 'no
 
   <script src="notes.js?v=20260909-1"></script>
   <script src="pianoroll.js?v=20260901-2"></script>
+  <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>

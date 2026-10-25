@@ -37,3 +37,7 @@ theory-paths:
   css:
     theme:
       css/theory-paths.css: {}
+
+embed-height:
+  js:
+    js/embed-height.js: {}
