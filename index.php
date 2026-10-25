@@ -8,11 +8,11 @@ require_once __DIR__ . '/includes/meta.php';
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php rs_render_meta(
     'Spill. Utforsk. Lag musikk. | Rockeskolen',
-    'Rockeskolen er en læringsarena for musikalsk utvikling og kreativitet. I Rockeskolens Musikkportal finner du kunnskap, veiledning og verktøy som hjelper deg å utvikle dine egne musikalske ideer, samarbeide med andre og finne ditt eget uttrykk.',
+    'Rockeskolen er en digital læringsarena for musikalsk utvikling og kreativitet.',
     'https://rockeskolen.com/'
 ); ?>
   <link rel="stylesheet" href="/includes/site.css?v=5">
-  <link rel="stylesheet" href="/includes/home.css?v=20261015-2">
+  <link rel="stylesheet" href="/includes/home.css?v=20261025-1">
 </head>
 <body class="rs-home">
   <main class="home-gateway">
@@ -27,9 +27,12 @@ require_once __DIR__ . '/includes/meta.php';
       <div class="home-hero__content">
         <p class="eyebrow">Rockeskolens digitale læringsarena</p>
         <h1 id="home-title">Spill. Utforsk.<br>Lag musikk.</h1>
-        <p class="home-hero__lead">Rockeskolen er en læringsarena for musikalsk utvikling og kreativitet. I Rockeskolens Musikkportal finner du kunnskap, veiledning og verktøy som hjelper deg å utvikle dine egne musikalske ideer, samarbeide med andre og finne ditt eget uttrykk.</p>
+        <p class="home-hero__lead">Rockeskolen er en digital læringsarena for musikalsk utvikling og kreativitet. Her finner du kunnskap, veiledning og verktøy som hjelper deg å utvikle dine egne musikalske ideer, samarbeide med andre og finne ditt eget uttrykk.</p>
         <p class="home-hero__closing">For musikk skal være både morsomt, spennende og lærerikt.</p>
-        <a class="home-hero__cta" href="https://portal.rockeskolen.com">Utforsk musikkportalen <span aria-hidden="true">→</span></a>
+        <div class="home-hero__actions">
+          <a class="home-hero__cta" href="https://portal.rockeskolen.com">Til musikkportalen <span aria-hidden="true">→</span></a>
+          <a class="home-hero__cta home-hero__cta--secondary" href="https://portal.rockeskolen.com/kurs">Se kursene <span aria-hidden="true">→</span></a>
+        </div>
       </div>
       <div class="home-hero__image">
         <img src="/images/workshops.jpg" alt="Musiker arbeider med gitar og keyboard i Rockeskolens studio" width="987" height="1280" fetchpriority="high">
@@ -39,8 +42,8 @@ require_once __DIR__ . '/includes/meta.php';
     <footer class="home-footer">
       <span>Rockeskolen</span>
       <span>Musikk på nett og i virkeligheten.</span>
+      <a href="https://portal.rockeskolen.com/kurs">Nettkurs</a>
       <a href="/workshop/">Kurs og workshops</a>
-      <a href="/skoler/">For skoler</a>
     </footer>
   </main>
 </body>
