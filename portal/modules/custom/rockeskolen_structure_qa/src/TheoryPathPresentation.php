@@ -108,10 +108,10 @@ final class TheoryPathPresentation {
   }
 
   /**
-   * Strips a trailing emoji or symbol from an article title.
+   * Strips a leading or trailing emoji or symbol from an article title.
    */
   private static function plainTitle(string $title): string {
-    return trim((string) preg_replace('/[\s\x{FE0F}\x{200D}\p{So}\p{Sk}]+$/u', '', $title)) ?: $title;
+    return trim((string) preg_replace('/^[\s\x{FE0F}\x{200D}\p{So}\p{Sk}]+|[\s\x{FE0F}\x{200D}\p{So}\p{Sk}]+$/u', '', $title)) ?: $title;
   }
 
   /**
