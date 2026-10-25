@@ -41,7 +41,7 @@ Git og FTP er to separate publiseringsløp. En Git-push publiserer ikke nødvend
 
 ## 4. Kanoniske verktøyadresser
 
-Disse seks URL-ene er faste og skal alltid brukes:
+Disse sju URL-ene er faste og skal alltid brukes:
 
 | Verktøy | Lokal mappe | Kanonisk URL | FTP-mappe |
 |---|---|---|---|
@@ -51,6 +51,7 @@ Disse seks URL-ene er faste og skal alltid brukes:
 | Gitarskalaer | `tools/scales/guitar/` | `/tools/scales/guitar/` | `/www/tools/scales/guitar/` |
 | Kvintsirkelen | `tools/circles/fifths/` | `/tools/circles/fifths/` | `/www/tools/circles/fifths/` |
 | Tuner | `tools/tuners/` | `/tools/tuners/` | `/www/tools/tuners/` |
+| Intervaller | `tools/intervals/` | `/tools/intervals/` | `/www/tools/intervals/` |
 
 ### Regler for `/tools/updated/`
 
@@ -352,3 +353,8 @@ Det gjelder både musikalsk samspill og måten Rockeskolen utvikler innhold, ver
   - Notebilder og notelinjer bruker ♭/♯.
   - Dette presiserer regelen om B♭/Bb i kapittel 2. Er det uklart om noe er en akkord/toneart eller en enkelttone, spør brukeren.
 - **Nye embeds:** Alle nye interaktive elementer til artikler legges direkte i `/embed/` (lokalt `embed/`, FTP `/www/embed/`), for eksempel `embed/rhythm.php` og `embed/interval.php`. Eksisterende embeds andre steder, som `/tools/notes/`, blir liggende der de er og skal ikke flyttes.
+
+## Faste regler fra brukeren (25. oktober 2026)
+
+- **Intervallverktøyet** ligger på `/tools/intervals/` (lokalt `tools/intervals/`, FTP `/www/tools/intervals/`). Det er hentet fra chordlink.net/tools/intervals/ og tilpasset Rockeskolen: Rockeskolens toppfelt og delingsdata via `tools/shared/bootstrap.php`, norsk som standard og engelsk bare med `?lang=en`, og lydfilene i `/audio/`. Endringer gjøres i Rockeskolens kopi, aldri i ChordLink.
+- **Verktøyoversikten** styres av `includes/content.php` (`rs_tools()`). Den samme listen vises på rockeskolen.com/tools/ og på musikkportalens Verktøy-side. Produksjonsversjonen av filen er autoritativ; hent den før endringer.
