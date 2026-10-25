@@ -17,6 +17,13 @@ function rockeskolen_structure_qa_preprocess_views_view(array &$variables): void
 }
 
 /**
+ * Implements hook_preprocess_views_view_fields().
+ */
+function rockeskolen_structure_qa_preprocess_views_view_fields(array &$variables): void {
+  \Drupal\rockeskolen_structure_qa\TheoryPathPresentation::fields($variables);
+}
+
+/**
  * Implements hook_theme().
  */
 function rockeskolen_structure_qa_theme(): array {

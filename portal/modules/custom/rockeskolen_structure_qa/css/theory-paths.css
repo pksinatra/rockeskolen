@@ -1,0 +1,60 @@
+/* Learning-path line on each topic card at /musikkteori. */
+.path-musikkteori .view-musikkteori .rs-theory-path {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.rs-theory-path .field-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rs-theory-path__meta {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.rs-theory-path__label {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(232, 93, 63, 0.16);
+  color: #ff8a70;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rs-theory-path__start,
+.rs-theory-path__course {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rs-theory-path__start span {
+  display: block;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rs-theory-path__start:hover,
+.rs-theory-path__start:focus-visible,
+.rs-theory-path__course:hover,
+.rs-theory-path__course:focus-visible {
+  text-decoration: underline;
+}
+
+.rs-theory-path__course {
+  color: var(--theory-gold, #f6c453);
+  font-size: 13px;
+}

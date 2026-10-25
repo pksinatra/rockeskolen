@@ -32,3 +32,8 @@ homepage-practice:
   css:
     theme:
       css/homepage-practice.css: {}
+
+theory-paths:
+  css:
+    theme:
+      css/theory-paths.css: {}
