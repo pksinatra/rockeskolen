@@ -51,3 +51,8 @@ page-header:
   css:
     theme:
       css/page-header.css: {}
+
+primary-menu:
+  css:
+    theme:
+      css/primary-menu.css: {}

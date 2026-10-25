@@ -192,9 +192,7 @@ final class CanonicalResponseSubscriber implements EventSubscriberInterface {
 <ul class="menu main-menu" data-rockeskolen-primary-nav>
   <li class="menu-item menu-item-level-1"><a href="/musikk-i-praksis">Musikk i praksis</a></li>
   <li class="menu-item menu-item-level-1"><a href="/verktoy">Verktøy</a></li>
-  <li class="menu-item menu-item-level-1 menu-item-has-children">
-    <a href="/musikkteori">Musikkteori</a>
-  </li>
+  <li class="menu-item menu-item-level-1"><a href="/musikkteori">Musikkteori</a></li>
   <li class="menu-item menu-item-level-1 menu-item-has-children">
     <a href="#">Oppslag</a>
     <ul class="submenu">

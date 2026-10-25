@@ -94,6 +94,7 @@ function rockeskolen_structure_qa_page_attachments(array &$attachments): void {
   $attachments['#attached']['library'][] = 'rockeskolen_structure_qa/embed-height';
   $attachments['#attached']['library'][] = 'rockeskolen_structure_qa/card-links';
   $attachments['#attached']['library'][] = 'rockeskolen_structure_qa/page-header';
+  $attachments['#attached']['library'][] = 'rockeskolen_structure_qa/primary-menu';
   if (\Drupal::service('path.matcher')->isFrontPage()) {
     $attachments['#attached']['library'][] = 'rockeskolen_structure_qa/homepage-practice';
   }

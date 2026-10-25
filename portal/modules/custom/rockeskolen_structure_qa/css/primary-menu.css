@@ -1,0 +1,10 @@
+/*
+ * «Oppslag» i hovedmenyen har ingen egen side og vises derfor som <span>.
+ * Den får samme utseende og høyde som de andre menypunktene.
+ */
+.region-primary-menu .menu > li > span {
+  display: block;
+  padding: 0.5rem 0;
+  color: #fff;
+  cursor: default;
+}
