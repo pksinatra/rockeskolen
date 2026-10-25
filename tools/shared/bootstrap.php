@@ -59,7 +59,7 @@ function chordlink_share_meta(array $meta): void {
     $title = $copy ? ($lang === 'en' ? $copy[2] : $copy[0]) : str_replace('ChordLink', 'Rockeskolen', (string) ($meta['title'] ?? 'Rockeskolen'));
     $description = $copy ? ($lang === 'en' ? $copy[3] : $copy[1]) : (string) ($meta['description'] ?? 'Praktiske musikkverktøy fra Rockeskolen.');
     $canonical = 'https://rockeskolen.com' . $path . ($lang === 'en' ? '?lang=en' : '');
-    rs_render_meta($title, $description, $canonical, 'https://rockeskolen.com/images/share/rockeskolen-2026.jpg', $title);
+    rs_render_meta($title, $description, $canonical, 'https://rockeskolen.com/images/share/rockeskolen-2026.jpg', $title, 'website', $lang === 'en' ? 'en_US' : 'nb_NO');
 }
 function chordlink_app_header_styles(): void {
     global $user, $isPro;

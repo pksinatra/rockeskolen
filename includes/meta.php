@@ -11,7 +11,8 @@ function rs_render_meta(
     string $canonical,
     string $image = 'https://rockeskolen.com/images/share/rockeskolen-2026.jpg',
     string $imageAlt = 'Rockeskolens Musikkportal – musikkunnskap, verktøy og skaperglede',
-    string $type = 'website'
+    string $type = 'website',
+    string $locale = 'nb_NO'
 ): void {
     $escape = static fn(string $value): string => htmlspecialchars(
         $value,
@@ -22,7 +23,7 @@ function rs_render_meta(
   <title><?= $escape($title) ?></title>
   <meta name="description" content="<?= $escape($description) ?>">
   <link rel="canonical" href="<?= $escape($canonical) ?>">
-  <meta property="og:locale" content="nb_NO">
+  <meta property="og:locale" content="<?= $escape($locale) ?>">
   <meta property="og:site_name" content="Rockeskolen">
   <meta property="og:type" content="<?= $escape($type) ?>">
   <meta property="og:title" content="<?= $escape($title) ?>">

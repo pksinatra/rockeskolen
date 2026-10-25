@@ -105,7 +105,7 @@ function rs_tools(): array {
             'short_description' => 'Hør, se og test intervaller – med quiz for gehøret.',
             'body' => "Intervallverktøyet viser avstanden mellom to toner på klaviaturet, og du kan høre den melodisk eller harmonisk. Du kan også øve på skalatrinn og høre hvordan samme meloditone får ny funksjon over skiftende akkorder.\n\nQuizen gir ti tilfeldige intervaller. Den passer for gehørtrening i timen og på egen hånd.",
             'show_on_home' => false,
-            'sort_order' => 55,
+            'sort_order' => 5,
         ],
         [
             'title' => 'ChordLog',

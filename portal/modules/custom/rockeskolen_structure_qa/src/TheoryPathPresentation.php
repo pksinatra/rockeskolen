@@ -28,6 +28,13 @@ final class TheoryPathPresentation {
     120 => 'rytme',
   ];
 
+  /**
+   * Tools to practise a topic in, keyed by musikkteori term ID.
+   */
+  private const TOOLS = [
+    36 => ['url' => 'https://rockeskolen.com/tools/intervals/', 'label' => 'Øv i intervallverktøyet'],
+  ];
+
   public static function fields(array &$variables): void {
     $view = $variables['view'];
     $term = $variables['row']->_entity ?? NULL;
@@ -79,6 +86,11 @@ final class TheoryPathPresentation {
     $html = '<p class="rs-theory-path__meta"><span class="rs-theory-path__label">Læringssti</span> ' . Html::escape($meta) . '</p>'
       . '<a class="rs-theory-path__start" href="' . Html::escape($first_url->getGeneratedUrl()) . '">'
       . '<span>Start med del 1</span> ' . Html::escape(self::plainTitle($first->label())) . '</a>';
+
+    if (isset(self::TOOLS[(int) $term->id()])) {
+      $tool = self::TOOLS[(int) $term->id()];
+      $html .= '<a class="rs-theory-path__course" href="' . Html::escape($tool['url']) . '">' . Html::escape($tool['label']) . '</a>';
+    }
 
     $course = self::course((int) $term->id(), $cache);
     if ($course !== NULL) {

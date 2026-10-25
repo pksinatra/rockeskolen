@@ -666,7 +666,7 @@ HTML;
     // Tools whose code unlocks more with VIP; the others are free to use.
     // Tools not listed in either are shown without an access label.
     $vip_extended = ['Pianoakkorder', 'Gitarakkorder', 'Pianoskalaer', 'Gitarskalaer', 'Kvintsirkelen', 'Pianovisualisering', 'ChordLog'];
-    $free = ['Tuner og stemmetoner', 'Tuner', 'Musikksymboler', 'ChordProg', 'Intervaller'];
+    $free = ['Tuner og stemmetoner', 'Tuner', 'Musikksymboler', 'ChordProg'];
     $escape = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $cards = '';
     foreach ($tools as $tool) {
