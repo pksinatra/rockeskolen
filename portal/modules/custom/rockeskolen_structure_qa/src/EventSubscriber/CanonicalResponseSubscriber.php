@@ -715,6 +715,9 @@ HTML;
    * Returns concise search and sharing copy for the portal's public sections.
    */
   private function descriptionForPath(string $path): string {
+    if ($path === '/kurs') {
+      return 'Korte kurs i musikkteori og musikk i praksis der du lytter, prøver og løser oppgaver. Første leksjon er åpen for alle.';
+    }
     if (preg_match('#^/kurs/([a-z0-9-]+)$#', $path, $match) && class_exists('\\Drupal\\rs_kurs\\CourseRegistry')) {
       $course = \Drupal\rs_kurs\CourseRegistry::bySlug($match[1]);
       if ($course !== NULL) {
