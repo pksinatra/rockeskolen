@@ -41,3 +41,8 @@ theory-paths:
 embed-height:
   js:
     js/embed-height.js: {}
+
+card-links:
+  css:
+    theme:
+      css/card-links.css: {}

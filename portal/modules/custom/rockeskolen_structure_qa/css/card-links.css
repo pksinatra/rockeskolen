@@ -1,0 +1,38 @@
+/*
+ * Hele kortet er klikkbart: hovedlenken (tittelen) strekkes over hele kortet,
+ * mens andre lenker i kortet legges over og kan klikkes hver for seg.
+ * ::before brukes fordi noen titler allerede har en pil i ::after.
+ */
+.rs-series-card,
+.rs-practice-card,
+.rs-practice-series-card,
+.rs-composer-card,
+.rs-tool-card,
+.view-musikkteori .views-view-responsive-grid__item-inner,
+.view-verktoy .views-view-responsive-grid__item-inner {
+  position: relative;
+  cursor: pointer;
+}
+
+.rs-series-card__title a::before,
+.rs-practice-card h3 a::before,
+.rs-practice-series-card h3 a::before,
+.rs-composer-card h3 a::before,
+.rs-tool-card > a::before,
+.view-musikkteori .views-field-name a::before,
+.view-verktoy .views-field-title a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.rs-practice-series-card__cta,
+.rs-composer-card__link,
+.rs-theory-path a,
+.view-musikkteori .views-field-view-taxonomy-term a,
+.view-verktoy .views-view-responsive-grid__item-inner .contextual,
+.view-musikkteori .views-view-responsive-grid__item-inner .contextual {
+  position: relative;
+  z-index: 2;
+}
