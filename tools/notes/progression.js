@@ -72,15 +72,18 @@
     const names = flatKeys.has(params.get('key') || 'C') ? flatNames : sharpNames;
     return names[midi % 12] + (Math.floor(midi / 12) - 1);
   }
+  // En egen progresjon fra artikkelen står først, så man kan komme tilbake til den.
+  const choices = activePreset.id === 'custom' ? [activePreset, ...presets] : presets;
   function renderPresets() {
     const nav = document.getElementById('presets');
     nav.innerHTML = '';
-    presets.forEach(preset => {
+    choices.forEach(preset => {
       const button = document.createElement('button');
       button.className = 'preset' + (preset.id === activePreset.id ? ' active' : '');
       button.type = 'button';
-      button.textContent = `${preset.roman.join('–')} · ${preset[lang]}`;
-      button.onclick = () => { stop(false); activePreset = preset; renderAll(); };
+      button.textContent = preset.id === 'custom' ? preset.chords.join('–') : `${preset.roman.join('–')} · ${preset[lang]}`;
+      // Et trykk på en progresjon spiller den med en gang.
+      button.onclick = () => { activePreset = preset; play(); };
       nav.append(button);
     });
   }
