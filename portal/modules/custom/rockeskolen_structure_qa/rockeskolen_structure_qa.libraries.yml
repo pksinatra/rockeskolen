@@ -46,3 +46,8 @@ card-links:
   css:
     theme:
       css/card-links.css: {}
+
+page-header:
+  css:
+    theme:
+      css/page-header.css: {}

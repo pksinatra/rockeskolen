@@ -1,0 +1,19 @@
+/*
+ * Sider med egen stor overskrift (Musikkteori og Verktøy): tittelbåndet blir en
+ * smal linje med brødsmulesti, så tittelen ikke står to ganger. Sidetittelen
+ * beholdes for skjermlesere og søkemotorer.
+ */
+.path-musikkteori #page-header,
+.path-verktoy #page-header {
+  padding: 0.4rem 0 0.2rem;
+}
+
+.path-musikkteori #page-header h1.page-title,
+.path-verktoy #page-header h1.page-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
