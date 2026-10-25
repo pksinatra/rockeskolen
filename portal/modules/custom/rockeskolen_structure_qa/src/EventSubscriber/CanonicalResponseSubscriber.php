@@ -694,6 +694,12 @@ HTML;
    * Returns concise search and sharing copy for the portal's public sections.
    */
   private function descriptionForPath(string $path): string {
+    if (preg_match('#^/kurs/([a-z0-9-]+)$#', $path, $match) && class_exists('\\Drupal\\rs_kurs\\CourseRegistry')) {
+      $course = \Drupal\rs_kurs\CourseRegistry::bySlug($match[1]);
+      if ($course !== NULL) {
+        return 'Kurs: ' . $course['title'] . '. ' . $course['module'];
+      }
+    }
     if ($path === '/komponister' || str_starts_with($path, '/komponister/')) {
       return 'Utforsk komponister, musikkhistorie og ideene som har formet musikken – fra tidlige mestre til vår egen tid.';
     }
