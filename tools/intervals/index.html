@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intervals | Rockeskolen</title>
+  <meta name="description" content="Explore musical intervals and test your ear in Rockeskolen’s Interval Quiz." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rockeskolen Interval Quiz" />
+  <meta property="og:description" content="How well can you recognize musical intervals? Take the quiz and share your result." />
+  <meta property="og:image" content="https://rockeskolen.com/images/share/rockeskolen-2026.jpg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://rockeskolen.com/images/share/rockeskolen-2026.jpg" />
+  <style>
+    :root {
+      --bg: #0f1117;
+      --panel: #171a23;
+      --panel-2: #202433;
+      --text: #f4f5f8;
+      --muted: #a8aebb;
+      --line: rgba(255,255,255,.11);
+      --accent: #f4c95d;
+      --good: #5bd88f;
+      --bad: #ff6b6b;
+      --blue: #79a9ff;
+      --black-key: #11131a;
+      --white-key: #f2f2f0;
+      --white-key-text: #14151a;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 0%, #262b3c 0, var(--bg) 45%, #090a0f 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    .page { width: min(1180px, calc(100% - 28px)); margin: 0 auto; padding: 24px 0 60px; }
+    header {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .hero, .card {
+      background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero { padding: 30px; position: relative; overflow: hidden; }
+    .hero:after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -110px auto;
+      width: 330px;
+      height: 330px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(244,201,93,.22), rgba(244,201,93,0) 68%);
+      pointer-events: none;
+    }
+    .eyebrow { color: var(--accent); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; }
+    h1 { margin: 8px 0 10px; font-size: clamp(34px, 6vw, 72px); line-height: .92; letter-spacing: -0.06em; }
+    .lead { color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 680px; margin: 0; }
+    .score-card { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+    .big-score { font-size: 58px; font-weight: 900; letter-spacing: -.05em; line-height: 1; }
+    .score-label { color: var(--muted); margin-top: 7px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .card { padding: 22px; }
+    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    h2 { margin: 0; font-size: 23px; letter-spacing: -.035em; }
+    .hint { color: var(--muted); font-size: 14px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .lang-switch { margin-top: 18px; display: inline-flex; gap: 8px; align-items: center; color: var(--muted); font-size: 13px; position: relative; z-index: 2; }
+    .lang-switch a { color: var(--muted); text-decoration: none; border: 1px solid var(--line); padding: 7px 10px; border-radius: 999px; background: rgba(255,255,255,.04); }
+    .lang-switch a.active { color: #ffe7a0; border-color: var(--accent); background: rgba(244,201,93,.14); }
+    button, select {
+      font: inherit;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 11px 15px;
+      cursor: pointer;
+      transition: transform .08s ease, border-color .12s ease, background .12s ease;
+    }
+    label { color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+    select { appearance: none; padding-right: 34px; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+    button:hover, select:hover { border-color: rgba(244,201,93,.55); background: rgba(255,255,255,.09); }
+    button:active { transform: translateY(1px); }
+    button:disabled { opacity: .52; cursor: not-allowed; }
+    .primary { background: var(--accent); color: #17130a; border-color: rgba(244,201,93,.9); font-weight: 800; }
+    button.next-attention:not(:disabled) { color:#211a08; background:var(--accent); border-color:#fff0b5; font-weight:850; animation:nextAttention 1.05s ease-in-out infinite; }
+    @keyframes nextAttention { 0%,100%{transform:translateY(0);box-shadow:0 0 0 0 rgba(244,201,93,.15)} 50%{transform:translateY(-2px);box-shadow:0 0 0 5px rgba(244,201,93,.14),0 0 25px rgba(244,201,93,.56)} }
+    @media (prefers-reduced-motion:reduce) { button.next-attention:not(:disabled){animation:none;box-shadow:0 0 0 3px rgba(244,201,93,.28),0 0 20px rgba(244,201,93,.42)} }
+    .ghost { color: var(--muted); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 9px; }
+    .interval-legend { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .interval-legend strong { color: var(--text); }
+    .interval-pill { position: relative; flex: 0 0 52px; width: 52px; min-width: 52px; min-height: 64px; padding: 9px 3px; border-radius: 10px; line-height: 1.05; overflow: hidden; }
+    .interval-pill strong { font-size: 13px; }
+    .interval-pill br + span { display: block; margin: 4px -2px 0; font-size: 8px !important; line-height: 1.08; overflow-wrap: normal; word-break: normal; }
+    .interval-pill.key-white { --muted: #5c616d; color: #171a23; background: linear-gradient(155deg,#f0f1f3,#bfc3ca); border-color: rgba(255,255,255,.68); box-shadow: inset 0 -8px 12px rgba(20,23,31,.12); }
+    .interval-pill.key-white:hover { color: #101218; background: linear-gradient(155deg,#fff,#d5d8dd); border-color: #fff; }
+    .interval-pill.key-black { --muted: #9da4b2; color: #f4f5f8; background: linear-gradient(155deg,#363b49,#11131a); border-color: rgba(255,255,255,.16); box-shadow: inset 0 -8px 13px rgba(0,0,0,.28); }
+    .interval-pill .tone-key { display: block; width: 16px; height: 4px; border-radius: 99px; margin: 0 auto 6px; background: currentColor; opacity: .32; }
+    .interval-pill.active { border-color: var(--accent); color: #ffe7a0; background: linear-gradient(145deg,rgba(244,201,93,.28),rgba(67,55,22,.72)); box-shadow: 0 0 0 1px rgba(244,201,93,.3),0 0 22px rgba(244,201,93,.24); }
+    .interval-pill.key-white.active { --muted: #594812; color: #211a08; background: linear-gradient(155deg,#ffe9a0,#e5b93f); border-color: #fff0b5; box-shadow: inset 0 0 0 2px rgba(255,255,255,.48),inset 0 -9px 14px rgba(117,80,0,.16),0 0 0 2px rgba(244,201,93,.38),0 0 27px rgba(244,201,93,.58); transform: translateY(-2px); }
+    .interval-pill.key-black.active { background: linear-gradient(155deg,#725f25,#2f270f); border-color: #ffe38a; box-shadow: inset 0 0 0 1px rgba(255,231,160,.2),0 0 0 2px rgba(244,201,93,.3),0 0 25px rgba(244,201,93,.48); transform: translateY(-2px); }
+    .interval-pill.active .tone-key { opacity: .82; }
+    .answer-btn.correct { background: rgba(91,216,143,.22); border-color: var(--good); color: #bff8d4; }
+    .answer-btn.wrong { background: rgba(255,107,107,.18); border-color: var(--bad); color: #ffc4c4; }
+    .piano-wrap { overflow-x: auto; padding: 16px 0 2px; }
+    .piano {
+      position: relative;
+      height: 190px;
+      min-width: 790px;
+      user-select: none;
+      padding-left: 2px;
+    }
+    .white-key {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 52px;
+      height: 180px;
+      background: linear-gradient(#fff, var(--white-key));
+      border: 1px solid #c9cad1;
+      border-radius: 0 0 10px 10px;
+      color: var(--white-key-text);
+      padding-bottom: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 1;
+      box-shadow: inset 0 -10px 18px rgba(0,0,0,.08);
+    }
+    .black-key {
+      position: absolute;
+      top: 0;
+      width: 34px;
+      height: 112px;
+      background: linear-gradient(#343846, var(--black-key));
+      border: 1px solid #000;
+      border-radius: 0 0 8px 8px;
+      z-index: 3;
+      color: #e9e9ee;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 9px;
+      font-size: 10px;
+      font-weight: 700;
+      box-shadow: 0 9px 16px rgba(0,0,0,.35);
+    }
+    .white-key::after, .black-key::after { content:""; position:absolute; inset:3px; border-radius:inherit; pointer-events:none; opacity:0; z-index:4; }
+    .key-label { position:relative; z-index:5; }
+    .white-key.on, .black-key.on { outline: 4px solid rgba(244,201,93,.82); outline-offset: -4px; animation: noteGlow 2.15s cubic-bezier(.18,.72,.24,1); }
+    .white-key.root, .black-key.root { outline: 4px solid rgba(121,169,255,.75); outline-offset: -4px; }
+    .white-key.target, .black-key.target { outline: 4px solid rgba(91,216,143,.78); outline-offset: -4px; }
+    .white-key.root.on, .black-key.root.on { animation-name: rootGlow; }
+    .white-key.target.on, .black-key.target.on { animation-name: targetGlow; }
+    .white-key.root.on::after, .black-key.root.on::after { --fill-rgb:121,169,255; animation:keyFill 2.15s cubic-bezier(.16,.72,.28,1) forwards; }
+    .white-key.target.on::after, .black-key.target.on::after { --fill-rgb:91,216,143; animation:keyFill 2.15s cubic-bezier(.16,.72,.28,1) forwards; }
+    @keyframes noteGlow { 0%{filter:brightness(1);box-shadow:0 0 0 rgba(244,201,93,0)} 18%{filter:brightness(1.3);box-shadow:0 0 30px rgba(244,201,93,.9)} 100%{filter:brightness(1);box-shadow:0 0 4px rgba(244,201,93,0)} }
+    @keyframes rootGlow { 0%{filter:brightness(1);box-shadow:0 0 0 rgba(121,169,255,0)} 18%{filter:brightness(1.32);box-shadow:0 0 34px rgba(121,169,255,.95)} 100%{filter:brightness(1);box-shadow:0 0 5px rgba(121,169,255,0)} }
+    @keyframes targetGlow { 0%{filter:brightness(1);box-shadow:0 0 0 rgba(91,216,143,0)} 18%{filter:brightness(1.32);box-shadow:0 0 34px rgba(91,216,143,.95)} 100%{filter:brightness(1);box-shadow:0 0 5px rgba(91,216,143,0)} }
+    @keyframes keyFill { 0%{opacity:0;background:rgba(var(--fill-rgb),0);box-shadow:inset 0 0 0 rgba(var(--fill-rgb),0)} 16%{opacity:1;background:linear-gradient(to top,rgba(var(--fill-rgb),.9),rgba(var(--fill-rgb),.48));box-shadow:inset 0 0 24px rgba(var(--fill-rgb),.95),0 0 24px rgba(var(--fill-rgb),.62)} 42%{opacity:.78;background:linear-gradient(to top,rgba(var(--fill-rgb),.72),rgba(var(--fill-rgb),.3));box-shadow:inset 0 0 18px rgba(var(--fill-rgb),.7),0 0 16px rgba(var(--fill-rgb),.38)} 100%{opacity:0;background:rgba(var(--fill-rgb),0);box-shadow:inset 0 0 3px rgba(var(--fill-rgb),0),0 0 2px rgba(var(--fill-rgb),0)} }
+    .status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .mini {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .mini b { display: block; font-size: 20px; margin-bottom: 4px; }
+    .mini span { color: var(--muted); font-size: 13px; }
+    .quiz-main {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .quiz-panel { background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+    .round { font-size: 40px; font-weight: 900; letter-spacing: -.05em; margin: 8px 0 4px; }
+    .feedback { min-height: 28px; margin-top: 14px; color: var(--muted); }
+    .feedback.good { color: var(--good); }
+    .feedback.bad { color: var(--bad); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--accent); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    td { color: var(--muted); }
+    td strong { color: var(--text); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .share-box { display: none; margin-top: 16px; padding: 16px; border-radius: 18px; background: rgba(244,201,93,.10); border: 1px solid rgba(244,201,93,.28); }
+    .share-box.show { display: block; }
+    .share-image { display: block; width: 100%; margin: 12px 0 14px; border-radius: 13px; border: 1px solid rgba(255,255,255,.14); box-shadow: 0 12px 30px rgba(0,0,0,.28); }
+    .small { font-size: 13px; color: var(--muted); line-height: 1.45; }
+    .mode-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0 0 18px; padding: 8px; }
+    .module-nav { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 0 18px; padding:8px; }
+    .module-tab { border-radius:15px; text-align:left; padding:17px 18px; }
+    .module-tab strong,.module-tab span{display:block}.module-tab span{margin-top:3px;color:var(--muted);font-size:12px}.module-tab.active{border-color:var(--accent);background:rgba(244,201,93,.14);color:#ffe7a0}
+    .mode-tab { border-radius: 15px; text-align: left; padding: 15px 17px; }
+    .mode-tab strong, .mode-tab span { display: block; }
+    .mode-tab span { color: var(--muted); font-size: 12px; margin-top: 3px; }
+    .mode-tab.active { border-color: var(--accent); background: rgba(244,201,93,.14); color: #ffe7a0; }
+    .sound-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 0 0 18px; padding: 13px 18px; }
+    .sound-bar label { font-weight: 750; color: var(--text); }
+    .sound-bar select { min-width: 230px; }
+    .mode-panel[hidden] { display: none; }
+    [data-module-panel][hidden], [data-scale-panel][hidden] { display:none; }
+    .degree-toggle[aria-pressed="true"],.degree-answer.correct{border-color:var(--good);background:rgba(91,216,143,.18);color:#c9f8da}.degree-answer.wrong{border-color:var(--bad);background:rgba(255,107,107,.18);color:#ffd0d0}
+    .degree-buttons{display:grid;grid-template-columns:repeat(7,minmax(58px,1fr));gap:8px}.degree-buttons button{min-height:58px;border-radius:12px;font-weight:850}.session-errors{margin:12px 0 0;color:var(--muted);font-size:13px}.scale-explanation{margin:0 0 18px;padding:16px 18px;border:1px solid rgba(121,169,255,.25);border-radius:16px;background:rgba(121,169,255,.07);color:var(--muted);line-height:1.55}.scale-result{margin-top:14px;padding:15px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.04)}
+    .harmonic-legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 0;color:var(--muted);font-size:13px}.harmonic-legend span{display:inline-flex;align-items:center;gap:7px}.legend-mark{width:18px;height:18px;border-radius:5px;border:3px solid currentColor;display:inline-block}.legend-melody{color:#5bd88f}.legend-chord{color:#79a9ff}.legend-shared{color:#f4c95d;border-style:double}.white-key.chord-note,.black-key.chord-note{outline:4px solid rgba(121,169,255,.78);outline-offset:-4px}.white-key.melody-note,.black-key.melody-note{outline:4px dashed rgba(91,216,143,.92);outline-offset:-5px}.white-key.shared-note,.black-key.shared-note{outline:6px double rgba(244,201,93,.95);outline-offset:-6px}.harmonic-status{grid-template-columns:repeat(4,1fr)}.context-badge{display:inline-flex;padding:4px 9px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:750}.context-badge.diatonic{color:#bff8d4;border-color:rgba(91,216,143,.5)}.context-badge.borrowed{color:#ffe7a0;border-color:rgba(244,201,93,.55)}
+    .optional-panel{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:12px 15px;background:rgba(255,255,255,.025)}.optional-panel summary{cursor:pointer;color:var(--text);font-weight:800}.harmonic-primary-controls select{min-width:112px}
+    .learn-layout, .generator-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; align-items: start; }
+    .description { margin-top: 16px; padding: 18px; border-radius: 18px; background: rgba(121,169,255,.08); border: 1px solid rgba(121,169,255,.25); }
+    .description h3 { margin: 0 0 7px; font-size: 20px; }
+    .description p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .reference-section { margin-top:18px; padding:18px; border-radius:18px; background:rgba(121,169,255,.055); border:1px solid rgba(121,169,255,.2); }
+    .reference-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px; }
+    .reference-head h3 { margin:0; font-size:20px; }
+    .learning-guidance { margin:6px 0 10px; color:var(--muted); line-height:1.5; max-width:900px; }
+    .reference-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .reference-card { padding:14px; border-radius:14px; background:rgba(255,255,255,.045); border:1px solid var(--line); }
+    .reference-card.favorite { border-color:rgba(244,201,93,.5); background:rgba(244,201,93,.07); }
+    .reference-title { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+    .reference-title h4 { margin:0; font-size:16px; }
+    .favorite-button { padding:5px 9px; min-width:38px; color:var(--accent); }
+    .reference-meta { margin:6px 0 3px; font-size:13px; }
+    .reference-location,.reference-note { margin:3px 0; color:var(--muted); font-size:12px; line-height:1.4; }
+    .reference-actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+    .reference-actions button { padding:8px 11px; font-size:13px; }
+    .field-stack { display: grid; gap: 13px; }
+    .field-stack label { display: grid; gap: 6px; align-items: stretch; }
+    .field-stack select { width: 100%; }
+    .illustration-stage { min-height: 310px; display: grid; place-items: center; border-radius: 18px; overflow: hidden; background: #f4f1e8; padding: 22px; }
+    .illustration-stage.dark { background: #10131b; }
+    .illustration-stage.transparent { background-color: #fff; background-image: linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%); background-size: 20px 20px; background-position: 0 0,0 10px,10px -10px,-10px 0; }
+    .illustration-stage svg { width: 100%; height: auto; display: block; }
+    .mode-kicker { color: var(--accent); font-weight: 800; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 7px; }
+    @media (max-width: 860px) {
+      header, .quiz-main, .two-col, .learn-layout, .generator-layout { grid-template-columns: 1fr; }
+      .mode-nav { grid-template-columns: 1fr; }
+      .module-nav{grid-template-columns:1fr}.degree-buttons{grid-template-columns:repeat(4,1fr)}
+      .sound-bar { align-items: stretch; flex-direction: column; }
+      .sound-bar select { width: 100%; }
+      .status, .harmonic-status { grid-template-columns: 1fr; }
+      .hero { padding: 23px; }
+      .card { padding: 18px; }
+      .big-score { font-size: 48px; }
+      .reference-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <section class="hero">
+        <div class="eyebrow">Rockeskolen</div>
+        <h1 data-i18n="headline">Intervals</h1>
+        <p class="lead" data-i18n="lead">Explore and understand musical intervals — then test your ear in the quiz.</p>
+      </section>
+      <section class="score-card hero">
+        <div>
+          <div class="eyebrow" data-i18n="latestResult">Latest result</div>
+          <div class="big-score" id="latestScore">—/10</div>
+          <div class="score-label" id="scoreLabel" data-i18n="startScoreHint">Start a quiz to get your score.</div>
+        </div>
+        <button class="primary" id="jumpQuiz" data-i18n="jumpQuiz">Open interval quiz</button>
+      </section>
+    </header>
+
+    <nav class="card module-nav" aria-label="Learning module" data-i18n-aria="moduleNavAria">
+      <button class="module-tab active" data-module="intervals" aria-pressed="true"><strong data-i18n="moduleIntervals">Intervals</strong><span data-i18n="moduleIntervalsHint">Distance between two pitches</span></button>
+      <button class="module-tab" data-module="scale-degrees" aria-pressed="false"><strong data-i18n="moduleScaleDegrees">Scale Degrees</strong><span data-i18n="moduleScaleDegreesHint">A note's position within a key</span></button>
+      <button class="module-tab" data-module="harmonic-context" aria-pressed="false"><strong data-i18n="moduleHarmonicContext">Harmonic Context</strong><span data-i18n="moduleHarmonicContextHint">A scale degree over changing chords</span></button>
+    </nav>
+
+    <div class="card sound-bar">
+      <div><strong data-i18n="soundTitle">Sound</strong><div class="small" data-i18n="soundHint">Used in learning and quizzes</div></div>
+      <label><span class="sr-only" data-i18n="soundTitle">Sound</span>
+        <select id="soundSelect" aria-label="Choose sound">
+          <option value="synth-triangle" data-i18n="soundWarmSynth">Warm synth</option>
+          <option value="synth-sine" data-i18n="soundPureTone">Pure tone</option>
+          <option value="synth-sawtooth" data-i18n="soundBrightSynth">Bright synth</option>
+          <option value="sample-piano" data-i18n="soundPiano">Sampled piano</option>
+          <option value="sample-guitar" data-i18n="soundGuitar">Sampled acoustic guitar</option>
+        </select>
+      </label>
+    </div>
+
+    <div data-module-panel="intervals">
+    <nav class="card mode-nav" aria-label="Interval mode" data-i18n-aria="modeNavAria">
+      <button class="mode-tab active" data-mode="learn" aria-pressed="true"><strong data-i18n="modeLearn">Explore & learn</strong><span data-i18n="modeLearnHint">Find and understand intervals</span></button>
+      <button class="mode-tab" data-mode="quiz" aria-pressed="false"><strong data-i18n="modeQuiz">Quiz</strong><span data-i18n="modeQuizHint">Test your musical ear</span></button>
+    </nav>
+
+    <section class="card mode-panel" data-mode-panel="learn">
+      <div class="section-title">
+        <h2 data-i18n="exploreTitle">Explore and learn</h2>
+        <span class="hint" data-i18n="exploreHint">Blue = root, green = interval note</span>
+      </div>
+      <div class="controls" style="margin-bottom: 14px;">
+        <label><span data-i18n="rootLabel">Root</span>
+          <select id="rootSelect" aria-label="Select root note"></select>
+        </label>
+        <label><span data-i18n="accidentalLabel">Accidentals</span>
+          <select id="accidentalSelect" aria-label="Choose sharps or flats">
+            <option value="sharp">♯</option>
+            <option value="flat">♭</option>
+          </select>
+        </label>
+        <label><span data-i18n="playbackLabel">Playback</span>
+          <select id="modeSelect" aria-label="Select playback mode">
+            <option value="melodic" data-i18n="modeMelodic">Melodic up</option>
+            <option value="harmonic" data-i18n="modeHarmonic">Harmonic</option>
+            <option value="down" data-i18n="modeDown">Melodic down</option>
+          </select>
+        </label>
+        <button class="primary" id="playSelected" data-i18n="playSelected">Play selected interval</button>
+        <button class="ghost" id="playRoot" data-i18n="playRoot">Play root</button>
+      </div>
+      <div class="pill-row" id="intervalButtons"></div>
+      <p class="interval-legend" data-i18n="intervalLegend">P = perfect · m = minor · M = major · A = augmented · d = diminished</p>
+      <div class="status">
+        <div class="mini"><b id="selectedName">Perfect unison</b><span data-i18n="selectedInterval">Selected interval</span></div>
+        <div class="mini"><b id="selectedSemis">0 semitones</b><span data-i18n="distance">Distance</span></div>
+        <div class="mini"><b id="selectedExample">C → C</b><span data-i18n="currentExample">Current example</span></div>
+      </div>
+      <div class="piano-wrap"><div class="piano" id="piano"></div></div>
+      <article class="description" aria-live="polite">
+        <div class="mode-kicker" data-i18n="aboutInterval">About the interval</div>
+        <h3 id="intervalDescriptionTitle">Perfect unison (P1)</h3>
+        <p id="intervalDescription"></p>
+      </article>
+      <section class="reference-section" aria-labelledby="referenceTitle">
+        <div class="reference-head"><div><div class="mode-kicker" data-i18n="earTraining">Ear training</div><h3 id="referenceTitle" data-i18n="referenceMelodies">Reference Melodies</h3></div><button id="referenceFilter" type="button" data-i18n="showFavorites">Favorites</button></div>
+        <p class="learning-guidance" data-i18n="learningGuidance">Listen to the interval, then think of a familiar melody that uses the same distance between two notes. Try singing the interval yourself. With practice, you will start recognizing it without needing the reference melody.</p>
+        <p class="reference-note" data-i18n="directionPractice">Practise ascending and descending intervals separately.</p>
+        <div class="reference-grid" id="referenceGrid"></div>
+      </section>
+      <div class="section-title" style="margin-top:24px;">
+        <h2 data-i18n="intervalListTitle">Interval reference</h2>
+        <span class="hint" data-i18n="intervalListHint">Standard simple intervals, one octave</span>
+      </div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th data-i18n="tableSemitones">Semitones</th><th data-i18n="tableInterval">Interval</th><th data-i18n="tableCue">Common cue</th></tr></thead>
+        <tbody id="intervalTable"></tbody>
+      </table></div>
+    </section>
+
+    <section class="card mode-panel" data-mode-panel="quiz" id="quizCard" hidden>
+      <div class="section-title">
+        <h2 data-i18n="quizTitle">Take the quiz</h2>
+        <span class="hint" data-i18n="quizHint">10 random intervals, one answer per round</span>
+      </div>
+      <div class="quiz-main">
+        <div class="quiz-panel">
+          <div class="eyebrow" data-i18n="quizMode">Quiz mode</div>
+          <div class="round" id="roundText" data-i18n="ready">Ready?</div>
+          <p class="small" id="quizHelp" data-i18n="quizHelpReady">Press Start Quiz, listen, then choose the interval you heard.</p>
+          <div class="controls">
+            <button class="primary" id="startQuiz" data-i18n="startQuiz">Start quiz</button>
+            <button id="listenQuiz" disabled data-i18n="listen">Listen</button>
+            <button id="nextRound" disabled data-i18n="next">Next</button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <div class="share-box" id="shareBox">
+            <strong id="shareHeadline" data-i18n="niceScore">Nice score!</strong>
+            <p id="shareText" class="small"></p>
+            <img class="share-image" src="/images/share/rockeskolen-2026.jpg" alt="Rockeskolen interval quiz" data-i18n-alt="shareImageAlt" />
+            <div class="controls">
+              <button class="primary" id="shareResult" data-i18n="shareCopy">Share / copy result</button>
+              <button id="restartQuiz" data-i18n="tryAgain">Try again</button>
+            </div>
+          </div>
+        </div>
+        <div class="quiz-panel">
+          <div class="eyebrow" data-i18n="chooseAnswer">Choose your answer</div>
+          <div class="pill-row" id="answerButtons" style="margin-top: 12px;"></div>
+          <p class="interval-legend" data-i18n="intervalLegend">P = perfect · m = minor · M = major · A = augmented · d = diminished</p>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <section data-module-panel="scale-degrees" hidden>
+      <nav class="card mode-nav" aria-label="Scale degree mode" data-i18n-aria="scaleModeNavAria">
+        <button class="mode-tab active" data-scale-mode="learn" aria-pressed="true"><strong data-i18n="scaleLearn">Learn</strong><span data-i18n="scaleLearnHint">Hear and sing every degree</span></button>
+        <button class="mode-tab" data-scale-mode="practice" aria-pressed="false"><strong data-i18n="scalePractice">Practice</strong><span data-i18n="scalePracticeHint">Choose which degrees to train</span></button>
+        <button class="mode-tab" data-scale-mode="quiz" aria-pressed="false"><strong data-i18n="scaleQuiz">Quiz</strong><span data-i18n="scaleQuizHint">Ten questions without hints</span></button>
+      </nav>
+
+      <section class="card" data-scale-panel="learn">
+        <div class="section-title"><h2 data-i18n="scaleLearnTitle">Learn scale degrees</h2><span class="hint" data-i18n="scaleLearnSubtitle">Major scale</span></div>
+        <p class="scale-explanation" data-i18n="scaleDegreeExplanation">An interval describes the distance between pitches. A scale degree identifies a note's position within a key and tonal center.</p>
+        <div class="controls">
+          <label><span data-i18n="keyLabel">Key</span><select id="scaleLearnKey"></select></label>
+          <label><span data-i18n="degreeLabel">Scale degree</span><select id="scaleLearnDegree"></select></label>
+          <button class="primary" id="playDegree" data-i18n="playTonicDegree">Play tonic + degree</button>
+          <button id="playScalePath" data-i18n="playScaleToDegree">Play scale to degree</button>
+          <button id="playTonalContext" data-i18n="playTonalContext">Establish key</button>
+        </div>
+        <div class="status">
+          <div class="mini"><b id="scaleDegreeName">I · Tonic</b><span data-i18n="degreeNameLabel">Degree</span></div>
+          <div class="mini"><b id="scaleDegreeNote">C</b><span data-i18n="noteNameLabel">Note</span></div>
+          <div class="mini"><b id="scaleDegreeInterval">P1</b><span data-i18n="intervalFromTonic">Interval from tonic</span></div>
+        </div>
+        <div class="piano-wrap"><div class="piano" id="scalePiano"></div></div>
+        <article class="description"><div class="mode-kicker" data-i18n="singIt">Sing it</div><p data-i18n="scaleSingGuidance">Listen first, then sing the tonic and target degree yourself. Practise in several keys so the degree remains recognizable after transposition.</p></article>
+      </section>
+
+      <section class="card" data-scale-panel="practice" hidden>
+        <div class="section-title"><h2 data-i18n="scalePracticeTitle">Practise scale degrees</h2><span class="hint" data-i18n="scalePracticeSubtitle">Immediate feedback and optional hints</span></div>
+        <div class="controls"><label><span data-i18n="keyLabel">Key</span><select id="scalePracticeKey"></select></label><button id="establishScalePractice" data-i18n="playTonalContext">Establish key</button><button class="primary" id="startScalePractice" data-i18n="startPractice">Start practice</button><button id="repeatScalePractice" disabled data-i18n="repeatTarget">Repeat question</button><button id="hintScalePractice" disabled data-i18n="playHint">Hint: play scale</button><button id="compareScalePractice" disabled data-i18n="compareAnswers">Compare answers</button></div>
+        <p class="small" data-i18n="choosePracticeDegrees">Choose the degrees to include:</p><div class="degree-buttons" id="practiceDegreeToggles"></div>
+        <div class="quiz-panel" style="margin-top:16px"><div class="round" id="scalePracticeRound">—</div><p class="small" id="scalePracticeHelp" data-i18n="practiceReady">Choose degrees, then start practice.</p><div class="degree-buttons" id="scalePracticeAnswers"></div><div class="feedback" id="scalePracticeFeedback"></div><p class="session-errors" id="scalePracticeErrors"></p></div>
+      </section>
+
+      <section class="card" data-scale-panel="quiz" hidden>
+        <div class="section-title"><h2 data-i18n="scaleQuizTitle">Scale degree quiz</h2><span class="hint" data-i18n="scaleQuizSubtitle">10 questions · major keys</span></div>
+        <div class="quiz-main"><div class="quiz-panel"><div class="round" id="scaleQuizRound" data-i18n="ready">Ready?</div><p class="small" id="scaleQuizHelp" data-i18n="scaleQuizReady">Start the quiz, listen to the key and identify the target degree.</p><div class="controls"><button class="primary" id="startScaleQuiz" data-i18n="startQuiz">Start quiz</button><button id="repeatScaleQuiz" disabled data-i18n="repeatQuestion">Replay question</button><button id="nextScaleQuiz" disabled data-i18n="next">Next</button></div><div class="feedback" id="scaleQuizFeedback"></div><div class="scale-result" id="scaleQuizResult" hidden></div></div><div class="quiz-panel"><div class="eyebrow" data-i18n="chooseDegree">Choose scale degree</div><div class="degree-buttons" id="scaleQuizAnswers" style="margin-top:12px"></div></div></div>
+      </section>
+    </section>
+
+    <section data-module-panel="harmonic-context" hidden>
+      <nav class="card mode-nav" aria-label="Harmonic context mode" data-i18n-aria="harmonicModeNavAria">
+        <button class="mode-tab active" data-harmonic-mode="explore" aria-pressed="true"><strong data-i18n="harmonicExplore">Explore</strong><span data-i18n="harmonicExploreHint">Keep the melody, change the harmony</span></button>
+        <button class="mode-tab" data-harmonic-mode="quiz" aria-pressed="false"><strong data-i18n="harmonicQuiz">Quiz</strong><span data-i18n="harmonicQuizHint">Find the scale degree, not the chord tone</span></button>
+      </nav>
+
+      <section class="card" data-harmonic-panel="explore">
+        <div class="section-title"><h2 data-i18n="harmonicExploreTitle">Explore harmonic context</h2><span class="hint" data-i18n="harmonicExploreSubtitle">The scale degree stays fixed when the chord changes</span></div>
+        <p class="scale-explanation" data-i18n="harmonicPrinciple">A scale degree belongs to the key. Its relationship to the chord can change without changing its scale degree.</p>
+        <div class="controls harmonic-primary-controls">
+          <label><span data-i18n="melodyNote">Melody note</span><select id="harmonicMelodyNote"></select></label>
+          <label><span data-i18n="melodyOctave">Octave</span><select id="harmonicMelodyOctave"><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option></select></label>
+          <label><span data-i18n="chordLabel">Chord</span><select id="harmonicChordRootNote"></select></label>
+          <label><span class="sr-only" data-i18n="chordQuality">Chord quality</span><select id="harmonicChordQuality"></select></label>
+        </div>
+        <div class="controls" style="margin-top:12px"><button id="establishHarmonicKey" data-i18n="playTonalContext">Establish key</button><button id="playHarmonicMelody" data-i18n="playMelody">Play melody note</button><button id="playHarmonicChord" data-i18n="playChord">Play chord</button><button class="primary" id="playHarmonicTogether" data-i18n="playTogether">Play together</button><button id="changeHarmonicChord" data-i18n="changeChord">Change chord, keep melody</button><button id="replayHarmonic" data-i18n="replayExample">Replay example</button></div>
+        <div class="status harmonic-status"><div class="mini"><b id="harmonicMelodyValue">G4</b><span data-i18n="selectedMelody">Selected melody note</span></div><div class="mini"><b id="harmonicChordValue">C</b><span data-i18n="selectedChord">Selected chord</span></div><div class="mini"><b id="harmonicRelationshipValue">Perfect fifth</b><span data-i18n="chordRelationship">Interval from chord root</span></div><div class="mini"><b id="harmonicFunctionValue">Chord tone</b><span data-i18n="noteFunction">Note function</span></div></div>
+        <p id="harmonicMainExplanation" class="scale-explanation" aria-live="polite"></p>
+        <details class="optional-panel"><summary data-i18n="keyAnalysis">Key &amp; Harmonic Analysis</summary><div class="controls" style="margin-top:12px"><label><span data-i18n="keyLabel">Key</span><select id="harmonicAnalysisKey"></select></label></div><p id="harmonicAnalysisText" class="small"></p></details>
+        <details class="optional-panel"><summary data-i18n="advancedOptions">Advanced Options</summary><div class="controls" style="margin-top:12px"><label><span data-i18n="inversion">Inversion</span><select id="harmonicInversion"><option value="0" data-i18n="rootPosition">Root position</option><option value="1" data-i18n="firstInversion">First inversion</option><option value="2" data-i18n="secondInversion">Second inversion</option></select></label></div></details>
+        <p id="harmonicClassification" class="small" aria-live="polite"></p>
+        <div class="piano-wrap"><div class="piano" id="harmonicPiano"></div></div>
+        <div class="harmonic-legend"><span><i class="legend-mark legend-melody"></i><span data-i18n="legendMelody">Melody note · dashed</span></span><span><i class="legend-mark legend-chord"></i><span data-i18n="legendChord">Chord note · solid</span></span><span><i class="legend-mark legend-shared"></i><span data-i18n="legendShared">Shared note · double</span></span></div>
+      </section>
+
+      <section class="card" data-harmonic-panel="quiz" hidden>
+        <div class="section-title"><h2 data-i18n="harmonicQuizTitle">Harmonic context quiz</h2><span class="hint" data-i18n="harmonicQuizSubtitle">10 questions · identify the scale degree in the key</span></div>
+        <div class="controls"><label><span data-i18n="difficulty">Difficulty</span><select id="harmonicDifficulty"><option value="easy" data-i18n="difficultyEasy">Easy</option><option value="medium" data-i18n="difficultyMedium">Medium</option><option value="advanced" data-i18n="difficultyAdvanced">Advanced</option></select></label><button class="primary" id="startHarmonicQuiz" data-i18n="startQuiz">Start quiz</button><button id="repeatHarmonicQuiz" disabled data-i18n="repeatQuestion">Replay question</button><button id="nextHarmonicQuiz" disabled data-i18n="next">Next</button></div>
+        <div class="quiz-main" style="margin-top:16px"><div class="quiz-panel"><div class="round" id="harmonicQuizRound" data-i18n="ready">Ready?</div><p class="small" id="harmonicQuizHelp" data-i18n="harmonicQuizReady">Listen to the chord and melody note. Identify the interval from the chord root.</p><div class="feedback" id="harmonicQuizFeedback"></div><div class="scale-result" id="harmonicQuizResult" hidden></div></div><div class="quiz-panel"><div class="eyebrow" data-i18n="chooseInterval">Choose interval from chord root</div><div class="degree-buttons" id="harmonicQuizAnswers" style="margin-top:12px"></div></div></div>
+        <div class="piano-wrap" id="harmonicQuizPianoWrap" hidden><div class="piano" id="harmonicQuizPiano"></div></div>
+      </section>
+    </section>
+
+  </main>
+
+  <script src="./scale-degrees.js?v=20261018-2"></script>
+  <script src="./harmonic-context.js?v=20261018-2"></script>
+  <script>
+    const FALLBACK_LOCALE = {
+      meta: { lang: 'en', title: 'Intervals | Rockeskolen' },
+      ui: {
+        prototype: 'Rockeskolen', headline: 'Intervals', lead: 'Explore and understand musical intervals — then test your ear in the quiz.',
+        latestResult: 'Latest result', startScoreHint: 'Start a quiz to get your score.', jumpQuiz: 'Open interval quiz', languageLabel: 'Language', languageEnglish: 'English', languageNorwegian: 'Norsk',
+        modeLearn: 'Explore & learn', modeLearnHint: 'Find and understand intervals', modeIllustrate: 'Illustration', modeIllustrateHint: 'Generate graphics for articles', modeQuiz: 'Quiz', modeQuizHint: 'Test your musical ear', modeNavAria: 'Choose tool mode',
+        moduleNavAria: 'Choose learning module', moduleIntervals: 'Intervals', moduleIntervalsHint: 'Distance between two pitches', moduleScaleDegrees: 'Scale Degrees', moduleScaleDegreesHint: "A note's position within a key", moduleHarmonicContext: 'Harmonic Context', moduleHarmonicContextHint: 'A scale degree over changing chords', melodyNote: 'Melody note', melodyOctave: 'Octave', chordLabel: 'Chord', selectedMelody: 'Selected melody note', selectedChord: 'Selected chord', noteFunction: 'Note function', keyAnalysis: 'Key & Harmonic Analysis', advancedOptions: 'Advanced Options', melodyScaleDegree: 'Melody scale degree', romanChord: 'Roman chord', chromaticNote: 'Chromatic note', notDiatonic: 'No diatonic Roman numeral', harmonicModeNavAria: 'Choose harmonic context mode', harmonicExplore: 'Explore', harmonicExploreHint: 'Keep the melody, change the harmony', harmonicQuiz: 'Quiz', harmonicQuizHint: 'Find the scale degree, not the chord tone', harmonicExploreTitle: 'Explore harmonic context', harmonicExploreSubtitle: 'The scale degree stays fixed when the chord changes', harmonicPrinciple: 'A scale degree belongs to the key. Its relationship to the chord can change without changing its scale degree.', melodyDegree: 'Melody degree', chordRoot: 'Chord root', chordQuality: 'Chord quality', inversion: 'Inversion', rootPosition: 'Root position', firstInversion: 'First inversion', secondInversion: 'Second inversion', playMelody: 'Play melody note', playChord: 'Play chord', playTogether: 'Play together', changeChord: 'Change chord, keep melody', replayExample: 'Replay example', currentKey: 'Current key', melodyAndDegree: 'Melody · scale degree', currentChord: 'Current chord', chordRelationship: 'Relationship to chord root', legendMelody: 'Melody note · dashed', legendChord: 'Chord note · solid', legendShared: 'Shared note · double', diatonicHarmony: 'Diatonic harmony', borrowedHarmony: 'Borrowed or chromatic harmony', chordTone: 'Chord tone', nonChordTone: 'Non-chord tone', harmonicQuizTitle: 'Harmonic context quiz', harmonicQuizSubtitle: '10 questions · identify the scale degree in the key', harmonicQuizReady: "Listen to the established key, chord and melody note. Identify the melody note's scale degree in the key.", difficulty: 'Difficulty', difficultyEasy: 'Easy', difficultyMedium: 'Medium', difficultyAdvanced: 'Advanced', harmonicFeedback: '{degree} · {note} over {chord}: {relationship} ({classification}).', difficultContexts: 'Difficult chord contexts', suggestedPractice: 'Suggested degrees to practise', qualityMajor: 'Major', qualityMinor: 'Minor', qualityDiminished: 'Diminished', qualitySus2: 'Sus2', qualitySus4: 'Sus4', qualityAdd9: 'Add9', qualityMajor7: 'Major seventh', qualityMinor7: 'Minor seventh', qualityDominant7: 'Dominant seventh', relationRoot: 'Root', relationMinorSecond: 'Minor second', relationMajorSecond: 'Major second / ninth', relationMinorThird: 'Minor third', relationMajorThird: 'Major third', relationPerfectFourth: 'Perfect fourth / eleventh', relationTritone: 'Tritone', relationPerfectFifth: 'Perfect fifth', relationMinorSixth: 'Minor sixth', relationMajorSixth: 'Major sixth / thirteenth', relationMinorSeventh: 'Minor seventh', relationMajorSeventh: 'Major seventh', scaleModeNavAria: 'Choose scale degree mode', scaleLearn: 'Learn', scaleLearnHint: 'Hear and sing every degree', scalePractice: 'Practice', scalePracticeHint: 'Choose which degrees to train', scaleQuiz: 'Quiz', scaleQuizHint: 'Ten questions without hints',
+        soundTitle: 'Sound', soundHint: 'Used in Explore & learn and Quiz', soundAria: 'Choose sound', soundWarmSynth: 'Warm synth', soundPureTone: 'Pure tone', soundBrightSynth: 'Bright synth', soundPiano: 'Sampled piano', soundGuitar: 'Sampled acoustic guitar',
+        exploreTitle: 'Explore and learn', exploreHint: 'Blue = root, green = interval note', rootLabel: 'Root', rootAria: 'Select root note', accidentalLabel: 'Accidentals', accidentalAria: 'Choose sharps or flats', playbackLabel: 'Playback', playbackAria: 'Select playback mode', modeMelodic: 'Melodic up', modeHarmonic: 'Harmonic', modeDown: 'Melodic down', playSelected: 'Play selected interval', playRoot: 'Play root', intervalLegend: 'P = perfect · m = minor · M = major · A = augmented · d = diminished', selectedInterval: 'Selected interval', distance: 'Distance', currentExample: 'Current example', aboutInterval: 'About the interval', intervalDescription: '{name} spans {semitones}. Its characteristic sound is often described as {cue}. From {root}, the interval note is {target}.', earTraining: 'Ear training', referenceMelodies: 'Reference Melodies', learningGuidance: 'Listen to the interval, then think of a familiar melody that uses the same distance between two notes. Try singing the interval yourself. With practice, you will start recognizing it without needing the reference melody.', directionPractice: 'Practise ascending and descending intervals separately.', showFavorites: 'Favorites', showAll: 'Show all', ascending: 'Ascending', descending: 'Descending', repeated: 'Repeated notes', playIntervalRef: 'Play interval', playReferenceInterval: 'Play reference interval', favorite: 'Favorite', unfavorite: 'Remove favorite', intervalLocation: 'Interval location', intervalOnly: 'Plays the verified two-note interval; no song recording or transcription is used.', noVerifiedReferences: 'Verified references for this interval are still being researched.',
+        illustrateTitle: 'Generate an interval illustration', illustrateHint: 'SVG for Rockeskolen articles and teaching material', illustrationRoot: 'Root note', illustrationInterval: 'Interval', illustrationTheme: 'Style', illustrationLabels: 'Labels', themeLight: 'Light', themeDark: 'Dark', themeTransparent: 'Transparent', labelsFull: 'Notes + interval', labelsNotes: 'Notes only', labelsNone: 'No labels', downloadSvg: 'Download SVG', copySvg: 'Copy SVG', copiedSvg: 'SVG copied', generatorHelp: 'Scalable and ready to place in an article.', downloadedSvg: 'SVG downloaded.',
+        quizTitle: 'Take the quiz', quizHint: '10 random intervals, one answer per round', quizMode: 'Quiz mode', ready: 'Ready?', quizHelpReady: 'Press Start Quiz, listen, then choose the interval you heard.', startQuiz: 'Start quiz', listen: 'Listen', next: 'Next', showResult: 'Show result', chooseAnswer: 'Choose your answer', listenCarefully: 'Listen carefully, then choose the interval.', correctPrefix: 'Correct:', wrongPrefix: 'Not quite. It was', finished: 'Finished', youScored: 'You scored {score} out of 10.', niceScore: 'Nice score!', shareCopy: 'Share / copy result', copied: 'Copied!', tryAgain: 'Try again', copyPrompt: 'Copy your result:',
+        intervalListTitle: 'Interval reference', intervalListHint: 'Standard simple intervals, one octave', tableSemitones: 'Semitones', tableInterval: 'Interval', tableCue: 'Common cue',
+        prototypeNotesTitle: 'Prototype notes', prototypeNotesText: 'This prototype uses synthesized tones through Web Audio. For the finished Rockeskolen version, the same logic can be connected to the existing playable piano component, better samples, MIDI output, user stats, and a real share card.', shareHookTitle: 'Share hook', shareHookText: 'A good social prompt could be: “I scored 8/10 on the Rockeskolen Interval Quiz. Can you beat me?” The result should be short, visual, and easy to share.',
+        shareTitle: 'Rockeskolen Interval Quiz', shareImageAlt: 'Rockeskolen Interval Quiz with glowing notes and piano keys', shareScore0: 'I got 0 out of 10 right in Rockeskolen’s Interval Quiz. My ears must have taken the day off. Can you do better?', shareScore1: 'I got 1 out of 10 right in Rockeskolen’s Interval Quiz, so I may need an ear-training course. Can you do better?', shareScore2: 'I got 2 out of 10 right in Rockeskolen’s Interval Quiz. At least it is a beginning. Can you beat me?', shareScore3: 'I got 3 out of 10 right in Rockeskolen’s Interval Quiz. My ears are warming up. Can you beat me?', shareScore4: 'I got 4 out of 10 right in Rockeskolen’s Interval Quiz. Almost halfway — time for another round. Can you beat me?', shareScore5: 'I got 5 out of 10 right in Rockeskolen’s Interval Quiz. Right in the middle! Can you beat me?', shareScore6: 'I got 6 out of 10 right in Rockeskolen’s Interval Quiz. My musical ear is starting to show. Can you beat me?', shareScore7: 'I got 7 out of 10 right in Rockeskolen’s Interval Quiz. A pretty solid musical ear! Can you beat me?', shareScore8: 'I got 8 out of 10 right in Rockeskolen’s Interval Quiz. These ears are getting sharp. Can you beat me?', shareScore9: 'I got 9 out of 10 right in Rockeskolen’s Interval Quiz. Just one interval from perfection! Can you beat me?', shareScore10: 'I got a perfect 10 out of 10 in Rockeskolen’s Interval Quiz. I must have absolute pitch! Can you match it?', scoreLow: 'Good start — try again and beat it.', scoreMid: 'Solid middle score. Keep training.', scoreGood: 'Strong result. Very decent ear training.', scoreGreat: 'Brilliant ears. That is share-worthy.', oneSemitone: '1 semitone', manySemitones: '{count} semitones', semitoneShort: 'st'
+      },
+      intervals: [
+        { name: 'Perfect unison', short: 'P1', semis: 0, cue: 'Same note' }, { name: 'Minor 2nd', short: 'm2', semis: 1, cue: 'Very tense, Jaws-like' }, { name: 'Major 2nd', short: 'M2', semis: 2, cue: 'Step up, scale movement' }, { name: 'Minor 3rd', short: 'm3', semis: 3, cue: 'Sad/minor color' }, { name: 'Major 3rd', short: 'M3', semis: 4, cue: 'Bright/major color' }, { name: 'Perfect 4th', short: 'P4', semis: 5, cue: 'Open, hymn-like' }, { name: 'Tritone', short: 'A4/d5', semis: 6, cue: 'Unstable, suspense' }, { name: 'Perfect 5th', short: 'P5', semis: 7, cue: 'Power chord, stable' }, { name: 'Minor 6th', short: 'm6', semis: 8, cue: 'Dark, dramatic lift' }, { name: 'Major 6th', short: 'M6', semis: 9, cue: 'Warm, open lift' }, { name: 'Minor 7th', short: 'm7', semis: 10, cue: 'Bluesy, dominant color' }, { name: 'Major 7th', short: 'M7', semis: 11, cue: 'Dreamy, unresolved' }, { name: 'Perfect octave', short: 'P8', semis: 12, cue: 'Same note, higher' }
+      ]
+    };
+
+    const localeAliases = { nb: 'no', nn: 'no', no: 'no', en: 'en' };
+    let L = FALLBACK_LOCALE;
+    let intervals = FALLBACK_LOCALE.intervals;
+    let selectedInterval = intervals[0];
+    let audioCtx = null;
+    const activeAudioSources = new Set();
+    const sampleCache = new Map();
+    let quiz = { active: false, round: 0, score: 0, current: null, answered: false, answers: [] };
+    let referenceData = [];
+    let showFavoriteReferencesOnly = false;
+    const accidentalPreferenceKey = 'rockeskolen.intervalAccidental.v1';
+    const referenceFavoritesKey = 'rockeskolen.intervalReferenceFavorites.v1';
+    let referenceFavorites = new Set();
+    try {
+      const storedReferenceFavorites = JSON.parse(localStorage.getItem(referenceFavoritesKey) || '[]');
+      if (Array.isArray(storedReferenceFavorites)) referenceFavorites = new Set(storedReferenceFavorites);
+    } catch (_) {
+      localStorage.removeItem(referenceFavoritesKey);
+    }
+
+    const $ = id => document.getElementById(id);
+    const t = (key, vars = {}) => {
+      let value = (L.ui && L.ui[key]) || FALLBACK_LOCALE.ui[key] || key;
+      Object.entries(vars).forEach(([k, v]) => value = value.replaceAll(`{${k}}`, v));
+      return value;
+    };
+    const shareTextForScore = score => t(`shareScore${Math.max(0, Math.min(10, score))}`);
+
+    function requestedLang() {
+      const raw = new URLSearchParams(window.location.search).get('lang') || 'no';
+      return localeAliases[String(raw).toLowerCase()] || 'no';
+    }
+
+    async function loadReferenceData() {
+      try {
+        const response = await fetch('./data/reference-melodies.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Reference library unavailable');
+        const data = await response.json();
+        referenceData = (data.references || []).filter(item => item.verificationStatus === 'verified');
+      } catch (error) {
+        console.warn('Could not load reference melodies.', error);
+        referenceData = [];
+      }
+    }
+
+    function directionLabel(direction) {
+      return direction === 'ascending' ? `↑ ${t('ascending')}` : direction === 'descending' ? `↓ ${t('descending')}` : `↔ ${t('repeated')}`;
+    }
+
+    function referencePair(reference) {
+      const root = getRootMidi();
+      if (reference.direction === 'descending') return [root + reference.semitones, root];
+      if (reference.direction === 'repeated') return [root, root];
+      return [root, root + reference.semitones];
+    }
+
+    async function playReferenceInterval(reference) {
+      ensureAudio();
+      const [first, second] = referencePair(reference);
+      const sound = selectedSound();
+      if (sound.startsWith('sample-')) await Promise.all([loadSample(first, sound), loadSample(second, sound)]).catch(() => {});
+      const now = audioCtx.currentTime + .035;
+      clearHighlights();
+      highlightPair(first, second);
+      playTone(first, now, .55, .16, sound);
+      playTone(second, now + .62, .75, .16, sound);
+    }
+
+    function toggleReferenceFavorite(id) {
+      if (referenceFavorites.has(id)) referenceFavorites.delete(id); else referenceFavorites.add(id);
+      localStorage.setItem(referenceFavoritesKey, JSON.stringify([...referenceFavorites]));
+      renderReferenceMelodies();
+    }
+
+    function renderReferenceMelodies() {
+      const grid = $('referenceGrid');
+      if (!grid) return;
+      const lang = requestedLang();
+      let items = referenceData.filter(item => Number(item.semitones) === Number(selectedInterval.semis));
+      if (!items.length) {
+        grid.replaceChildren();
+        const message = document.createElement('p');
+        message.className = 'muted';
+        message.textContent = t('noVerifiedReferences');
+        grid.appendChild(message);
+        $('referenceFilter').hidden = true;
+        return;
+      }
+      items.sort((a, b) => Number(referenceFavorites.has(b.id)) - Number(referenceFavorites.has(a.id)));
+      const hasFavorites = items.some(item => referenceFavorites.has(item.id));
+      if (showFavoriteReferencesOnly && hasFavorites) items = items.filter(item => referenceFavorites.has(item.id));
+      $('referenceFilter').hidden = !hasFavorites;
+      $('referenceFilter').textContent = showFavoriteReferencesOnly ? t('showAll') : t('showFavorites');
+      grid.innerHTML = '';
+      items.forEach(reference => {
+        const favorite = referenceFavorites.has(reference.id);
+        const card = document.createElement('article');
+        card.className = `reference-card${favorite ? ' favorite' : ''}`;
+        const localizedDescription = (reference.description && (reference.description[lang] || reference.description.en)) || '';
+        card.innerHTML = `<div class="reference-title"><div><h4></h4><p class="reference-meta"></p></div><button class="favorite-button" type="button" aria-label="${favorite ? t('unfavorite') : t('favorite')}" aria-pressed="${favorite}">${favorite ? '★' : '☆'}</button></div><p class="reference-location"></p><p class="reference-note"></p><div class="reference-actions"><button class="primary play-reference" type="button"></button><button class="play-pair" type="button"></button></div>`;
+        card.querySelector('h4').textContent = reference.title;
+        card.querySelector('.reference-meta').textContent = `${directionLabel(reference.direction)}${reference.attribution ? ` · ${reference.attribution}` : ''}`;
+        card.querySelector('.reference-location').textContent = `${t('intervalLocation')}: ${reference.location}`;
+        card.querySelector('.reference-note').textContent = `${localizedDescription} ${t('intervalOnly')}`;
+        card.querySelector('.favorite-button').onclick = () => toggleReferenceFavorite(reference.id);
+        card.querySelector('.play-reference').textContent = t('playReferenceInterval');
+        card.querySelector('.play-reference').onclick = () => playReferenceInterval(reference);
+        card.querySelector('.play-pair').textContent = t('playIntervalRef');
+        card.querySelector('.play-pair').onclick = () => playReferenceInterval(reference);
+        grid.appendChild(card);
+      });
+    }
+
+    async function loadLocale() {
+      const lang = requestedLang();
+      try {
+        const response = await fetch(`./lang/${lang}.json`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Missing locale: ${lang}`);
+        L = await response.json();
+      } catch (error) {
+        console.warn('Could not load external locale JSON. Falling back to English.', error);
+        L = FALLBACK_LOCALE;
+      }
+      intervals = L.intervals || FALLBACK_LOCALE.intervals;
+      selectedInterval = intervals[0];
+      document.documentElement.lang = (L.meta && L.meta.lang) || lang;
+      document.title = (L.meta && L.meta.title) || FALLBACK_LOCALE.meta.title;
+    }
+
+    function applyStaticText() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (L.ui && L.ui[key]) el.textContent = L.ui[key];
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
+      document.querySelectorAll('[data-i18n-alt]').forEach(el => el.setAttribute('alt', t(el.dataset.i18nAlt)));
+      $('rootSelect').setAttribute('aria-label', t('rootAria'));
+      $('accidentalSelect').setAttribute('aria-label', t('accidentalAria'));
+      $('modeSelect').setAttribute('aria-label', t('playbackAria'));
+      $('soundSelect').setAttribute('aria-label', t('soundAria'));
+      document.querySelectorAll('[data-lang-link]').forEach(a => {
+        const target = a.dataset.langLink;
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', target);
+        a.href = url.pathname + url.search;
+        a.classList.toggle('active', target === ((L.meta && L.meta.lang) || 'en'));
+      });
+    }
+
+    const notes = [
+      { n: 'C3', midi: 48, type: 'white' }, { n: 'C#3', midi: 49, type: 'black', pos: 35 },
+      { n: 'D3', midi: 50, type: 'white' }, { n: 'D#3', midi: 51, type: 'black', pos: 87 },
+      { n: 'E3', midi: 52, type: 'white' },
+      { n: 'F3', midi: 53, type: 'white' }, { n: 'F#3', midi: 54, type: 'black', pos: 191 },
+      { n: 'G3', midi: 55, type: 'white' }, { n: 'G#3', midi: 56, type: 'black', pos: 243 },
+      { n: 'A3', midi: 57, type: 'white' }, { n: 'A#3', midi: 58, type: 'black', pos: 295 },
+      { n: 'B3', midi: 59, type: 'white' },
+      { n: 'C4', midi: 60, type: 'white' }, { n: 'C#4', midi: 61, type: 'black', pos: 399 },
+      { n: 'D4', midi: 62, type: 'white' }, { n: 'D#4', midi: 63, type: 'black', pos: 451 },
+      { n: 'E4', midi: 64, type: 'white' },
+      { n: 'F4', midi: 65, type: 'white' }, { n: 'F#4', midi: 66, type: 'black', pos: 555 },
+      { n: 'G4', midi: 67, type: 'white' }, { n: 'G#4', midi: 68, type: 'black', pos: 607 },
+      { n: 'A4', midi: 69, type: 'white' }, { n: 'A#4', midi: 70, type: 'black', pos: 659 },
+      { n: 'B4', midi: 71, type: 'white' },
+      { n: 'C5', midi: 72, type: 'white' }, { n: 'C#5', midi: 73, type: 'black', pos: 763 },
+      { n: 'D5', midi: 74, type: 'white' }, { n: 'D#5', midi: 75, type: 'black', pos: 815 },
+      { n: 'E5', midi: 76, type: 'white' }, { n: 'F5', midi: 77, type: 'white' }, { n: 'F#5', midi: 78, type: 'black', pos: 919 },
+      { n: 'G5', midi: 79, type: 'white' }, { n: 'G#5', midi: 80, type: 'black', pos: 971 },
+      { n: 'A5', midi: 81, type: 'white' }, { n: 'A#5', midi: 82, type: 'black', pos: 1023 },
+      { n: 'B5', midi: 83, type: 'white' }, { n: 'C6', midi: 84, type: 'white' }
+    ];
+
+    const roots = notes.filter(x => x.midi >= 48 && x.midi <= 60);
+    const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const flatNoteNames = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭', 'A', 'B♭', 'B'];
+
+    function midiToFreq(midi) { return 440 * Math.pow(2, (midi - 69) / 12); }
+    function midiName(midi) { return noteNames[((midi % 12) + 12) % 12] + Math.floor(midi / 12 - 1); }
+    function cleanName(n) { return n.replace('#', '♯'); }
+    function displayMidiName(midi, includeOctave = true) {
+      const names = $('accidentalSelect') && $('accidentalSelect').value === 'flat' ? flatNoteNames : noteNames.map(name => cleanName(name));
+      const pitch = names[((midi % 12) + 12) % 12];
+      return includeOctave ? pitch + Math.floor(midi / 12 - 1) : pitch;
+    }
+
+    function ensureAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function selectedSound() { return $('soundSelect') ? $('soundSelect').value : 'synth-triangle'; }
+
+    function sampleUrl(midi, sound = selectedSound()) {
+      const instrument = sound === 'sample-guitar' ? 'guitars/acoustic' : 'keys/piano';
+      return `/audio/${instrument}/${encodeURIComponent(midiName(midi).toLowerCase())}.mp3`;
+    }
+
+    async function loadSample(midi, sound = selectedSound()) {
+      ensureAudio();
+      const url = sampleUrl(midi, sound);
+      if (!sampleCache.has(url)) {
+        sampleCache.set(url, fetch(url)
+          .then(response => {
+            if (!response.ok) throw new Error(`Sample unavailable: ${url}`);
+            return response.arrayBuffer();
+          })
+          .then(data => audioCtx.decodeAudioData(data))
+          .catch(error => {
+            sampleCache.delete(url);
+            throw error;
+          }));
+      }
+      return sampleCache.get(url);
+    }
+
+    function stopActivePlayback() {
+      activeAudioSources.forEach(source => { try { source.stop(); } catch (_) {} });
+      activeAudioSources.clear();
+      document.querySelectorAll('.on').forEach(el => el.classList.remove('on'));
+    }
+
+    async function playTone(midi, start, duration, gainLevel = 0.16, sound = selectedSound(), visual = true) {
+      ensureAudio();
+      if (sound.startsWith('sample-')) {
+        try {
+          const buffer = await loadSample(midi, sound);
+          const source = audioCtx.createBufferSource();
+          const gain = audioCtx.createGain();
+          const playAt = Math.max(start, audioCtx.currentTime + 0.015);
+          const ringTime = buffer.duration;
+          source.buffer = buffer;
+          gain.gain.setValueAtTime(Math.min(0.8, gainLevel * 3.2), playAt);
+          gain.gain.setValueAtTime(Math.min(0.8, gainLevel * 3.2), playAt + Math.max(0, ringTime - 0.14));
+          gain.gain.exponentialRampToValueAtTime(0.0001, playAt + ringTime);
+          source.connect(gain).connect(audioCtx.destination);
+          activeAudioSources.add(source);
+          source.onended = () => activeAudioSources.delete(source);
+          source.start(playAt);
+          source.stop(playAt + ringTime + 0.02);
+          if (visual) setTimeout(() => flashKey(midi, Math.min(ringTime, 2.2) * 1000), Math.max(0, (playAt - audioCtx.currentTime) * 1000));
+          return;
+        } catch (error) {
+          console.warn('Falling back to synthesized tone.', error);
+          sound = 'synth-triangle';
+        }
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = sound.replace('synth-', '') || 'triangle';
+      osc.frequency.value = midiToFreq(midi);
+      const playAt = Math.max(start, audioCtx.currentTime + 0.01);
+      const ringTime = Math.max(duration, sound === 'synth-triangle' ? 1.28 : (sound === 'synth-sine' ? 1.7 : 2.05));
+      const synthGain = sound === 'synth-sawtooth' ? gainLevel * .55 : (sound === 'synth-triangle' ? gainLevel * .82 : gainLevel);
+      gain.gain.setValueAtTime(0.0001, playAt);
+      gain.gain.exponentialRampToValueAtTime(synthGain, playAt + 0.035);
+      gain.gain.exponentialRampToValueAtTime(synthGain * .58, playAt + Math.min(.48, ringTime * .38));
+      gain.gain.exponentialRampToValueAtTime(0.0001, playAt + ringTime);
+      if (sound === 'synth-triangle') {
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1250, playAt);
+        filter.Q.setValueAtTime(0.45, playAt);
+        osc.connect(filter).connect(gain).connect(audioCtx.destination);
+      } else {
+        osc.connect(gain).connect(audioCtx.destination);
+      }
+      osc.start(playAt);
+      osc.stop(playAt + ringTime + 0.03);
+      activeAudioSources.add(osc);
+      osc.onended = () => activeAudioSources.delete(osc);
+      if (visual) setTimeout(() => flashKey(midi, Math.min(ringTime, 2.2) * 1000), Math.max(0, (playAt - audioCtx.currentTime) * 1000));
+    }
+
+    function getRootMidi() { return parseInt($('rootSelect').value, 10); }
+
+    async function playInterval(interval = selectedInterval, root = getRootMidi(), mode = $('modeSelect').value) {
+      ensureAudio();
+      const target = mode === 'down' ? root - interval.semis : root + interval.semis;
+      const sound = selectedSound();
+      if (sound.startsWith('sample-')) {
+        await Promise.all([loadSample(root, sound), loadSample(target, sound)]).catch(() => {});
+      }
+      const now = audioCtx.currentTime + 0.035;
+      clearHighlights();
+      highlightPair(root, target);
+      if (mode === 'harmonic') {
+        playTone(root, now, 1.05, 0.12, sound);
+        playTone(target, now, 1.05, 0.12, sound);
+      } else {
+        playTone(root, now, 0.55, 0.16, sound);
+        playTone(target, now + 0.62, 0.75, 0.16, sound);
+      }
+    }
+
+    function flashKey(midi, ms) {
+      document.querySelectorAll(`[data-midi="${midi}"]`).forEach(el => {
+        el.classList.add('on');
+        setTimeout(() => el.classList.remove('on'), ms);
+      });
+    }
+
+    function clearHighlights() {
+      document.querySelectorAll('.root,.target').forEach(el => el.classList.remove('root', 'target'));
+    }
+    function highlightPair(root, target) {
+      clearHighlights();
+      const r = document.querySelector(`[data-midi="${root}"]`);
+      const t = document.querySelector(`[data-midi="${target}"]`);
+      if (r) r.classList.add('root');
+      if (t) t.classList.add('target');
+    }
+
+    function selectPianoKey(note) {
+      const distance = note.midi - getRootMidi();
+      const interval = intervals.find(item => item.semis === distance);
+      if (interval) selectInterval(interval, false);
+      ensureAudio();
+      playTone(note.midi, audioCtx.currentTime + .02, .55);
+    }
+
+    function renderPiano() {
+      const piano = $('piano');
+      piano.innerHTML = '';
+      notes.filter(n => n.type === 'white').forEach(note => {
+        const key = document.createElement('button');
+        key.className = 'white-key';
+        key.dataset.midi = note.midi;
+        key.innerHTML = `<span class="key-label">${displayMidiName(note.midi)}</span>`;
+        key.onclick = () => selectPianoKey(note);
+        piano.appendChild(key);
+      });
+      notes.filter(n => n.type === 'black').forEach(note => {
+        const key = document.createElement('button');
+        key.className = 'black-key';
+        key.dataset.midi = note.midi;
+        key.style.left = note.pos + 'px';
+        key.innerHTML = `<span class="key-label">${displayMidiName(note.midi, false)}</span>`;
+        key.onclick = () => selectPianoKey(note);
+        piano.appendChild(key);
+      });
+    }
+
+    function renderRoots() {
+      const sel = $('rootSelect');
+      const selectedMidi = Number(sel.value || 60);
+      sel.innerHTML = '';
+      roots.forEach(note => {
+        const opt = document.createElement('option');
+        opt.value = note.midi;
+        opt.textContent = displayMidiName(note.midi);
+        if (note.midi === selectedMidi) opt.selected = true;
+        sel.appendChild(opt);
+      });
+    }
+
+    function semitoneText(count) {
+      return count === 1 ? t('oneSemitone') : t('manySemitones', { count });
+    }
+
+    function isWhiteKey(midi) {
+      return [0, 2, 4, 5, 7, 9, 11].includes(((midi % 12) + 12) % 12);
+    }
+
+    function renderIntervalButtons() {
+      const row = $('intervalButtons');
+      row.innerHTML = '';
+      const root = getRootMidi();
+      intervals.forEach(interval => {
+        const b = document.createElement('button');
+        const targetIsWhite = isWhiteKey(root + interval.semis);
+        b.className = `interval-pill ${targetIsWhite ? 'key-white' : 'key-black'}`;
+        b.innerHTML = `<span class="tone-key" aria-hidden="true"></span><strong>${interval.short}</strong><br><span style="font-size:12px;color:var(--muted)">${semitoneText(interval.semis)}</span>`;
+        b.title = interval.name;
+        b.onclick = () => selectInterval(interval, true);
+        row.appendChild(b);
+      });
+    }
+
+    function selectInterval(interval, shouldPlay = false) {
+      selectedInterval = interval;
+      [...document.querySelectorAll('.interval-pill')].forEach((b, i) => b.classList.toggle('active', intervals[i] === interval));
+      const root = getRootMidi();
+      const target = root + interval.semis;
+      $('selectedName').textContent = interval.name;
+      $('selectedSemis').textContent = semitoneText(interval.semis);
+      $('selectedExample').textContent = `${displayMidiName(root)} → ${displayMidiName(target)}`;
+      $('intervalDescriptionTitle').textContent = `${interval.name} (${interval.short})`;
+      $('intervalDescription').textContent = t('intervalDescription', {
+        name: interval.name,
+        semitones: semitoneText(interval.semis),
+        cue: String(interval.cue || '').toLowerCase(),
+        root: displayMidiName(root),
+        target: displayMidiName(target)
+      });
+      highlightPair(root, target);
+      renderReferenceMelodies();
+      if (shouldPlay) playInterval(interval);
+    }
+
+    function renderIntervalTable() {
+      $('intervalTable').innerHTML = intervals.map(i => `<tr><td><strong>${i.semis}</strong></td><td><strong>${i.name}</strong> <span class="small">(${i.short})</span></td><td>${i.cue}</td></tr>`).join('');
+    }
+
+    function setMode(mode) {
+      document.querySelectorAll('[data-mode-panel]').forEach(panel => panel.hidden = panel.dataset.modePanel !== mode);
+      document.querySelectorAll('[data-mode]').forEach(button => {
+        const active = button.dataset.mode === mode;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      const url = new URL(window.location.href);
+      if (mode === 'learn') url.searchParams.delete('mode'); else url.searchParams.set('mode', mode);
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+    }
+
+    function renderIllustrationControls() {
+      $('illustrationRoot').innerHTML = roots.map(note => `<option value="${note.midi}"${note.n === 'C4' ? ' selected' : ''}>${cleanName(note.n)}</option>`).join('');
+      $('illustrationInterval').innerHTML = intervals.map(interval => `<option value="${interval.semis}">${interval.short} — ${interval.name}</option>`).join('');
+    }
+
+    function illustrationSvg() {
+      const root = Number($('illustrationRoot').value || 60);
+      const interval = intervals.find(item => item.semis === Number($('illustrationInterval').value)) || intervals[0];
+      const target = root + interval.semis;
+      const theme = $('illustrationTheme').value;
+      const labels = $('illustrationLabels').value;
+      const dark = theme === 'dark';
+      const transparent = theme === 'transparent';
+      const bg = transparent ? 'none' : (dark ? '#10131b' : '#f4f1e8');
+      const ink = dark ? '#f4f5f8' : '#171a23';
+      const muted = dark ? '#a8aebb' : '#5e6470';
+      const rootName = cleanName(midiName(root));
+      const targetName = cleanName(midiName(target));
+      const showNotes = labels !== 'none';
+      const showFull = labels === 'full';
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="${interval.name}: ${rootName} to ${targetName}">
+  <rect width="800" height="400" rx="34" fill="${bg}"/>
+  <path d="M190 204 H610" stroke="${muted}" stroke-width="5" stroke-linecap="round"/>
+  <path d="M190 204 C280 92 520 92 610 204" fill="none" stroke="#f4c95d" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="190" cy="204" r="74" fill="#79a9ff"/><circle cx="610" cy="204" r="74" fill="#5bd88f"/>
+  ${showNotes ? `<text x="190" y="219" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="44" font-weight="800" fill="#10131b">${rootName}</text><text x="610" y="219" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="44" font-weight="800" fill="#10131b">${targetName}</text>` : ''}
+  ${showFull ? `<text x="400" y="82" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="800" fill="${ink}">${interval.name} · ${interval.short}</text><text x="400" y="326" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="23" fill="${muted}">${semitoneText(interval.semis)}</text>` : ''}
+</svg>`;
+    }
+
+    function renderIllustration() {
+      const stage = $('illustrationStage');
+      stage.className = `illustration-stage ${$('illustrationTheme').value}`;
+      stage.innerHTML = illustrationSvg();
+    }
+
+    function downloadIllustration() {
+      const interval = intervals.find(item => item.semis === Number($('illustrationInterval').value)) || intervals[0];
+      const blob = new Blob([illustrationSvg()], { type: 'image/svg+xml;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `chordlink-interval-${interval.short.replaceAll('/', '-')}.svg`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      $('generatorStatus').textContent = t('downloadedSvg');
+    }
+
+    async function copyIllustration() {
+      try {
+        await navigator.clipboard.writeText(illustrationSvg());
+        $('generatorStatus').textContent = t('copiedSvg');
+      } catch (error) {
+        window.prompt(t('copyPrompt'), illustrationSvg());
+      }
+    }
+
+    function renderAnswers() {
+      const row = $('answerButtons');
+      row.innerHTML = '';
+      intervals.forEach(interval => {
+        const b = document.createElement('button');
+        b.className = 'answer-btn';
+        b.dataset.semis = interval.semis;
+        b.textContent = `${interval.short} — ${interval.name}`;
+        b.disabled = !quiz.active || quiz.answered;
+        b.onclick = () => answerQuiz(interval, b);
+        row.appendChild(b);
+      });
+    }
+
+    function startQuiz() {
+      quiz = { active: true, round: 0, score: 0, current: null, answered: false, answers: [] };
+      $('shareBox').classList.remove('show');
+      $('startQuiz').disabled = true;
+      $('listenQuiz').disabled = false;
+      $('nextRound').disabled = true;
+      $('nextRound').classList.remove('next-attention');
+      $('nextRound').textContent = t('next');
+      nextQuizRound();
+    }
+
+    function randomItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    function nextQuizRound() {
+      if (quiz.round >= 10) return finishQuiz();
+      quiz.round++;
+      quiz.answered = false;
+      const interval = randomItem(intervals.filter(i => i.semis !== 0));
+      const possibleRoots = roots.filter(r => r.midi + interval.semis <= 72);
+      const root = randomItem(possibleRoots).midi;
+      quiz.current = { interval, root };
+      $('roundText').textContent = `${quiz.round}/10`;
+      $('quizHelp').textContent = t('listenCarefully');
+      $('feedback').textContent = '';
+      $('feedback').className = 'feedback';
+      $('nextRound').disabled = true;
+      $('nextRound').classList.remove('next-attention');
+      $('nextRound').textContent = t('next');
+      renderAnswers();
+      playInterval(interval, root, 'melodic');
+    }
+
+    function answerQuiz(interval, clicked) {
+      if (!quiz.active || quiz.answered) return;
+      quiz.answered = true;
+      const correct = interval.semis === quiz.current.interval.semis;
+      if (correct) quiz.score++;
+      quiz.answers.push({ heard: quiz.current.interval.name, picked: interval.name, correct });
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = true;
+        if (parseInt(btn.dataset.semis, 10) === quiz.current.interval.semis) btn.classList.add('correct');
+      });
+      if (!correct) clicked.classList.add('wrong');
+      $('feedback').textContent = correct ? `${t('correctPrefix')} ${quiz.current.interval.name}.` : `${t('wrongPrefix')} ${quiz.current.interval.name}.`;
+      $('feedback').className = 'feedback ' + (correct ? 'good' : 'bad');
+      $('nextRound').disabled = false;
+      $('nextRound').classList.add('next-attention');
+      if (quiz.round === 10) $('nextRound').textContent = t('showResult');
+    }
+
+    function finishQuiz() {
+      quiz.active = false;
+      $('startQuiz').disabled = false;
+      $('listenQuiz').disabled = true;
+      $('nextRound').disabled = true;
+      $('nextRound').classList.remove('next-attention');
+      $('nextRound').textContent = t('next');
+      renderAnswers();
+      $('latestScore').textContent = `${quiz.score}/10`;
+      let label = t('scoreLow');
+      if (quiz.score >= 9) label = t('scoreGreat');
+      else if (quiz.score >= 7) label = t('scoreGood');
+      else if (quiz.score >= 5) label = t('scoreMid');
+      $('scoreLabel').textContent = label;
+      $('roundText').textContent = t('finished');
+      $('quizHelp').textContent = t('youScored', { score: quiz.score });
+      $('feedback').textContent = '';
+      $('shareHeadline').textContent = label;
+      $('shareText').textContent = shareTextForScore(quiz.score);
+      $('shareBox').classList.add('show');
+    }
+
+    async function shareResult() {
+      const text = $('shareText').textContent;
+      const url = new URL(location.href);
+      url.hash = '';
+      url.search = '';
+      if (requestedLang() === 'en') url.searchParams.set('lang', 'en');
+      url.searchParams.set('mode', 'quiz');
+      url.searchParams.set('card', 'v4');
+      url.searchParams.set('score', String(quiz.score));
+      if (navigator.share) {
+        try {
+          const shareData = { title: t('shareTitle'), text, url: url.href };
+          const response = await fetch('/images/share/rockeskolen-2026.jpg');
+          if (response.ok) {
+            const file = new File([await response.blob()], 'rockeskolen-intervallquiz.jpg', { type: 'image/jpeg' });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) shareData.files = [file];
+          }
+          await navigator.share(shareData);
+          return;
+        } catch (e) { if (e && e.name === 'AbortError') return; }
+      }
+      try {
+        await navigator.clipboard.writeText(`${text}\n${url.href}`);
+        $('shareResult').textContent = t('copied');
+        setTimeout(() => $('shareResult').textContent = t('shareCopy'), 1300);
+      } catch (e) {
+        window.prompt(t('copyPrompt'), text);
+      }
+    }
+
+    const ScaleDegrees = window.ChordLinkScaleDegrees;
+    let scalePractice = { active: false, round: 0, answered: false, current: null, picked: null, errors: {} };
+    let scaleQuiz = { active: false, round: 0, score: 0, answered: false, current: null, answers: [] };
+
+    function scaleDegreeName(number) { return t(`degreeName${number}`); }
+    function selectedScaleKey(selectId) { return ScaleDegrees.keyById($(selectId).value); }
+
+    function populateScaleKeySelect(selectId) {
+      const select = $(selectId);
+      select.innerHTML = ScaleDegrees.majorKeys.map(key => `<option value="${key.id}">${key.notes[0]} ${t('majorKey')}</option>`).join('');
+    }
+
+    function populateScaleDegreeSelect() {
+      $('scaleLearnDegree').innerHTML = ScaleDegrees.degrees.map(degree => `<option value="${degree.number}">${degree.roman} · ${scaleDegreeName(degree.number)}</option>`).join('');
+    }
+
+    function scaleKeyboardName(midi, includeOctave = true) {
+      const key = $('scaleLearnKey').value ? selectedScaleKey('scaleLearnKey') : ScaleDegrees.majorKeys[0];
+      const relative = ((midi - ScaleDegrees.tonicMidi(key)) % 12 + 12) % 12;
+      const degreeIndex = ScaleDegrees.majorOffsets.indexOf(relative);
+      let pitch = degreeIndex >= 0 ? key.notes[degreeIndex] : null;
+      if (!pitch) {
+        const preferFlats = key.id.includes('b');
+        pitch = (preferFlats ? flatNoteNames : noteNames.map(name => cleanName(name)))[((midi % 12) + 12) % 12];
+      }
+      return includeOctave ? pitch + Math.floor(midi / 12 - 1) : pitch;
+    }
+
+    function renderScalePiano() {
+      const piano = $('scalePiano');
+      piano.innerHTML = '';
+      notes.filter(note => note.type === 'white').forEach(note => {
+        const key = document.createElement('button');
+        key.className = 'white-key';
+        key.dataset.midi = note.midi;
+        key.innerHTML = `<span class="key-label">${scaleKeyboardName(note.midi)}</span>`;
+        key.onclick = () => playTone(note.midi, (audioCtx ? audioCtx.currentTime : 0) + .02, .55);
+        piano.appendChild(key);
+      });
+      notes.filter(note => note.type === 'black').forEach(note => {
+        const key = document.createElement('button');
+        key.className = 'black-key';
+        key.dataset.midi = note.midi;
+        key.style.left = note.pos + 'px';
+        key.innerHTML = `<span class="key-label">${scaleKeyboardName(note.midi, false)}</span>`;
+        key.onclick = () => playTone(note.midi, (audioCtx ? audioCtx.currentTime : 0) + .02, .55);
+        piano.appendChild(key);
+      });
+    }
+
+    function clearScaleHighlights() {
+      $('scalePiano').querySelectorAll('.root,.target,.on').forEach(key => key.classList.remove('root', 'target', 'on'));
+    }
+
+    function highlightScalePair(root, target) {
+      clearScaleHighlights();
+      const rootKey = $('scalePiano').querySelector(`[data-midi="${root}"]`);
+      const targetKey = $('scalePiano').querySelector(`[data-midi="${target}"]`);
+      if (rootKey) rootKey.classList.add('root');
+      if (targetKey) targetKey.classList.add('target');
+    }
+
+    async function playScaleSequence(midis, options = {}) {
+      stopActivePlayback();
+      ensureAudio();
+      const sound = selectedSound();
+      const visual = options.visual !== false;
+      const gap = options.gap || .48;
+      if (sound.startsWith('sample-')) await Promise.all([...new Set(midis)].map(midi => loadSample(midi, sound))).catch(() => {});
+      const now = audioCtx.currentTime + .045;
+      midis.forEach((midi, index) => playTone(midi, now + index * gap, .38, .14, sound, visual));
+    }
+
+    function updateScaleLearn() {
+      const key = selectedScaleKey('scaleLearnKey');
+      const number = Number($('scaleLearnDegree').value || 1);
+      const degree = ScaleDegrees.degrees[number - 1];
+      $('scaleDegreeName').textContent = `${degree.roman} · ${scaleDegreeName(number)}`;
+      $('scaleDegreeNote').textContent = key.notes[number - 1];
+      $('scaleDegreeInterval').textContent = degree.interval;
+      renderScalePiano();
+      highlightScalePair(ScaleDegrees.tonicMidi(key), ScaleDegrees.degreeMidi(key, number));
+    }
+
+    function renderDegreeButtons(containerId, handler, toggle = false) {
+      const container = $(containerId);
+      container.innerHTML = '';
+      ScaleDegrees.degrees.forEach(degree => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.degree = degree.number;
+        button.className = toggle ? 'degree-toggle' : 'degree-answer';
+        button.textContent = degree.roman;
+        button.setAttribute('aria-label', `${t('degreeLabel')} ${degree.roman}: ${scaleDegreeName(degree.number)}`);
+        if (toggle) button.setAttribute('aria-pressed', 'true');
+        button.onclick = () => handler(degree, button);
+        container.appendChild(button);
+      });
+    }
+
+    function chosenPracticeDegrees() {
+      return [...$('practiceDegreeToggles').querySelectorAll('[aria-pressed="true"]')].map(button => Number(button.dataset.degree));
+    }
+
+    function renderScaleAnswers(containerId, state, answerHandler) {
+      renderDegreeButtons(containerId, answerHandler);
+      $(containerId).querySelectorAll('button').forEach(button => button.disabled = !state.active || state.answered);
+    }
+
+    function makeScaleQuestion(key, degreeNumber) { return { key, degreeNumber, tonic: ScaleDegrees.tonicMidi(key), target: ScaleDegrees.degreeMidi(key, degreeNumber) }; }
+
+    function playScaleQuestion(question) {
+      clearScaleHighlights();
+      playScaleSequence([...ScaleDegrees.tonalContext(question.key), question.target], { visual: false, gap: .4 });
+    }
+
+    function playScalePracticeTarget(question) {
+      clearScaleHighlights();
+      playScaleSequence([question.tonic, question.target], { visual: false, gap: .62 });
+    }
+
+    function nextScalePractice() {
+      const chosen = chosenPracticeDegrees();
+      if (!chosen.length) {
+        $('scalePracticeHelp').textContent = t('selectOneDegree');
+        return;
+      }
+      scalePractice.active = true;
+      scalePractice.answered = false;
+      scalePractice.picked = null;
+      scalePractice.round++;
+      const key = selectedScaleKey('scalePracticeKey');
+      const degreeNumber = randomItem(chosen);
+      scalePractice.current = makeScaleQuestion(key, degreeNumber);
+      $('scalePracticeRound').textContent = `${t('practiceQuestion')} ${scalePractice.round}`;
+      $('scalePracticeHelp').textContent = t('identifyDegree');
+      $('scalePracticeFeedback').textContent = '';
+      $('scalePracticeFeedback').className = 'feedback';
+      $('compareScalePractice').disabled = true;
+      $('repeatScalePractice').disabled = false;
+      $('hintScalePractice').disabled = false;
+      $('startScalePractice').textContent = t('nextPractice');
+      renderScaleAnswers('scalePracticeAnswers', scalePractice, answerScalePractice);
+      playScalePracticeTarget(scalePractice.current);
+    }
+
+    function answerScalePractice(degree) {
+      if (!scalePractice.active || scalePractice.answered) return;
+      scalePractice.answered = true;
+      scalePractice.picked = degree.number;
+      const correct = degree.number === scalePractice.current.degreeNumber;
+      if (!correct) scalePractice.errors[scalePractice.current.degreeNumber] = (scalePractice.errors[scalePractice.current.degreeNumber] || 0) + 1;
+      $('scalePracticeFeedback').textContent = correct ? `${t('correctPrefix')} ${ScaleDegrees.degrees[degree.number - 1].roman} · ${scaleDegreeName(degree.number)}.` : `${t('wrongPrefix')} ${ScaleDegrees.degrees[scalePractice.current.degreeNumber - 1].roman} · ${scaleDegreeName(scalePractice.current.degreeNumber)}.`;
+      $('scalePracticeFeedback').className = `feedback ${correct ? 'good' : 'bad'}`;
+      $('scalePracticeAnswers').querySelectorAll('button').forEach(button => {
+        button.disabled = true;
+        const number = Number(button.dataset.degree);
+        if (number === scalePractice.current.degreeNumber) button.classList.add('correct');
+        if (!correct && number === degree.number) button.classList.add('wrong');
+      });
+      $('compareScalePractice').disabled = correct;
+      highlightScalePair(scalePractice.current.tonic, scalePractice.current.target);
+      const errorItems = Object.entries(scalePractice.errors).map(([number, count]) => `${ScaleDegrees.degrees[number - 1].roman}: ${count}`).join(' · ');
+      $('scalePracticeErrors').textContent = errorItems ? `${t('incorrectThisSession')}: ${errorItems}` : t('noIncorrectYet');
+    }
+
+    function startScaleQuiz() {
+      scaleQuiz = { active: true, round: 0, score: 0, answered: false, current: null, answers: [] };
+      $('scaleQuizResult').hidden = true;
+      $('startScaleQuiz').disabled = true;
+      nextScaleQuizQuestion();
+    }
+
+    function nextScaleQuizQuestion() {
+      if (scaleQuiz.round >= 10) return finishScaleQuiz();
+      scaleQuiz.round++;
+      scaleQuiz.answered = false;
+      const key = randomItem(ScaleDegrees.majorKeys);
+      const degreeNumber = randomItem(ScaleDegrees.degrees).number;
+      scaleQuiz.current = makeScaleQuestion(key, degreeNumber);
+      $('scaleQuizRound').textContent = `${scaleQuiz.round}/10`;
+      $('scaleQuizHelp').textContent = t('identifyDegree');
+      $('scaleQuizFeedback').textContent = '';
+      $('scaleQuizFeedback').className = 'feedback';
+      $('repeatScaleQuiz').disabled = false;
+      $('nextScaleQuiz').disabled = true;
+      $('nextScaleQuiz').classList.remove('next-attention');
+      renderScaleAnswers('scaleQuizAnswers', scaleQuiz, answerScaleQuiz);
+      clearScaleHighlights();
+      playScaleQuestion(scaleQuiz.current);
+    }
+
+    function answerScaleQuiz(degree) {
+      if (!scaleQuiz.active || scaleQuiz.answered) return;
+      scaleQuiz.answered = true;
+      const correct = degree.number === scaleQuiz.current.degreeNumber;
+      if (correct) scaleQuiz.score++;
+      scaleQuiz.answers.push({ correct: scaleQuiz.current.degreeNumber, picked: degree.number });
+      $('scaleQuizAnswers').querySelectorAll('button').forEach(button => {
+        button.disabled = true;
+        const number = Number(button.dataset.degree);
+        if (number === scaleQuiz.current.degreeNumber) button.classList.add('correct');
+        if (!correct && number === degree.number) button.classList.add('wrong');
+      });
+      $('scaleQuizFeedback').textContent = correct ? `${t('correctPrefix')} ${ScaleDegrees.degrees[degree.number - 1].roman}.` : `${t('wrongPrefix')} ${ScaleDegrees.degrees[scaleQuiz.current.degreeNumber - 1].roman}.`;
+      $('scaleQuizFeedback').className = `feedback ${correct ? 'good' : 'bad'}`;
+      $('nextScaleQuiz').disabled = false;
+      $('nextScaleQuiz').classList.add('next-attention');
+      if (scaleQuiz.round === 10) $('nextScaleQuiz').textContent = t('showResult');
+    }
+
+    function finishScaleQuiz() {
+      scaleQuiz.active = false;
+      stopActivePlayback();
+      $('repeatScaleQuiz').disabled = true;
+      $('nextScaleQuiz').disabled = true;
+      $('nextScaleQuiz').classList.remove('next-attention');
+      $('startScaleQuiz').disabled = false;
+      $('startScaleQuiz').textContent = t('tryAgain');
+      const confusions = {};
+      scaleQuiz.answers.filter(answer => answer.correct !== answer.picked).forEach(answer => {
+        const label = `${ScaleDegrees.degrees[answer.picked - 1].roman} → ${ScaleDegrees.degrees[answer.correct - 1].roman}`;
+        confusions[label] = (confusions[label] || 0) + 1;
+      });
+      const confusionText = Object.entries(confusions).sort((a, b) => b[1] - a[1]).map(([pair, count]) => `${pair} (${count})`).join(', ');
+      $('scaleQuizHelp').textContent = t('scaleQuizScore', { score: scaleQuiz.score });
+      $('scaleQuizResult').innerHTML = `<strong>${t('scaleQuizScore', { score: scaleQuiz.score })}</strong><p class="small">${confusionText ? `${t('commonConfusions')}: ${confusionText}` : t('noConfusions')}</p>`;
+      $('scaleQuizResult').hidden = false;
+    }
+
+    const Harmonic = window.ChordLinkHarmonicContext;
+    const harmonicQualityIds = Object.keys(Harmonic.qualities);
+    let harmonicQuiz = { active: false, round: 0, score: 0, answered: false, current: null, answers: [] };
+
+    function qualityLabel(id) { return t(`quality${id.charAt(0).toUpperCase()}${id.slice(1)}`); }
+    function relationshipLabel(nameKey) { return t(`relation${nameKey.charAt(0).toUpperCase()}${nameKey.slice(1)}`); }
+    function harmonicExampleFromControls() {
+      const melodyMidi = Number($('harmonicMelodyNote').value) + (Number($('harmonicMelodyOctave').value) + 1) * 12;
+      const rootMidi = Number($('harmonicChordRootNote').value);
+      return {
+        key: selectedScaleKey('harmonicAnalysisKey'),
+        melodyMidi,
+        rootMidi,
+        qualityId: $('harmonicChordQuality').value,
+        inversion: Number($('harmonicInversion').value)
+      };
+    }
+    function harmonicMelodyMidi(example) { return example.melodyMidi; }
+    function harmonicChordMidis(example) { return Harmonic.chordMidiFromRoot(example.rootMidi, example.qualityId, example.inversion); }
+    function harmonicNoteName(key, degree, midi) { return `${key.notes[degree - 1]}${Math.floor(midi / 12 - 1)}`; }
+    function chromaticNoteName(midi) {
+      const names = $('accidentalSelect') && $('accidentalSelect').value === 'flat' ? flatNoteNames : noteNames.map(cleanName);
+      return `${names[Harmonic.mod12(midi)]}${Math.floor(midi / 12 - 1)}`;
+    }
+    function harmonicDetails(example) {
+      const melody = harmonicMelodyMidi(example);
+      const relation = Harmonic.relationshipFromRoot(melody, example.rootMidi);
+      const chordTone = Harmonic.isChordToneFromRoot(melody, example.rootMidi, example.qualityId);
+      const melodyPitchClass = Harmonic.mod12(melody);
+      const scaleDegreeIndex = ScaleDegrees.majorOffsets.findIndex(offset => Harmonic.mod12(ScaleDegrees.tonicMidi(example.key) + offset) === melodyPitchClass);
+      const melodyDegree = scaleDegreeIndex >= 0 ? scaleDegreeIndex + 1 : null;
+      const rootDegreeIndex = example.rootDegree ? example.rootDegree - 1 : ScaleDegrees.majorOffsets.findIndex(offset => Harmonic.mod12(ScaleDegrees.tonicMidi(example.key) + offset) === Harmonic.mod12(example.rootMidi));
+      const rootName = rootDegreeIndex >= 0 ? example.key.notes[rootDegreeIndex] : chromaticNoteName(example.rootMidi).replace(/[0-9]+$/, '');
+      return {
+        melody,
+        relation,
+        chordTone,
+        melodyDegree,
+        chord: Harmonic.chordSymbolFromRoot(rootName, example.qualityId),
+        diatonic: Harmonic.isDiatonicFromRoot(ScaleDegrees, example.key, example.rootMidi, example.qualityId)
+      };
+    }
+    function harmonicRoman(example, details) {
+      if (!example.rootDegree || !details.diatonic) return t('notDiatonic');
+      const base = ScaleDegrees.degrees[example.rootDegree - 1].roman;
+      const quality = Harmonic.qualities[example.qualityId];
+      const numeral = ['minor', 'minor7'].includes(example.qualityId) ? base.toLowerCase() : base;
+      return `${numeral}${example.qualityId === 'diminished' ? '°' : (quality.family === 'seventh' ? '7' : '')}`;
+    }
+    function harmonicKeyboardName(midi, key, includeOctave = true) {
+      const pc = Harmonic.mod12(midi);
+      const degreeIndex = ScaleDegrees.majorOffsets.findIndex(offset => Harmonic.mod12(ScaleDegrees.tonicMidi(key) + offset) === pc);
+      const pitch = degreeIndex >= 0 ? key.notes[degreeIndex] : (key.id.includes('b') ? flatNoteNames : noteNames.map(cleanName))[pc];
+      return includeOctave ? `${pitch}${Math.floor(midi / 12 - 1)}` : pitch;
+    }
+    function renderHarmonicPiano(containerId, example, reveal = true) {
+      const piano = $(containerId);
+      piano.innerHTML = '';
+      const chord = harmonicChordMidis(example);
+      const melody = harmonicMelodyMidi(example);
+      notes.filter(note => note.type === 'white').forEach(note => {
+        const key = document.createElement('button');
+        key.type = 'button'; key.className = 'white-key'; key.dataset.midi = note.midi;
+        key.innerHTML = `<span class="key-label">${harmonicKeyboardName(note.midi, example.key)}</span>`;
+        piano.appendChild(key);
+      });
+      notes.filter(note => note.type === 'black').forEach(note => {
+        const key = document.createElement('button');
+        key.type = 'button'; key.className = 'black-key'; key.dataset.midi = note.midi; key.style.left = `${note.pos}px`;
+        key.innerHTML = `<span class="key-label">${harmonicKeyboardName(note.midi, example.key, false)}</span>`;
+        piano.appendChild(key);
+      });
+      if (!reveal) return;
+      piano.querySelectorAll('[data-midi]').forEach(key => {
+        const midi = Number(key.dataset.midi);
+        const inChord = chord.includes(midi);
+        const isMelody = midi === melody;
+        if (inChord && isMelody) { key.classList.add('shared-note'); key.setAttribute('aria-label', `${harmonicKeyboardName(midi, example.key)}: ${t('legendShared')}`); }
+        else if (isMelody) { key.classList.add('melody-note'); key.setAttribute('aria-label', `${harmonicKeyboardName(midi, example.key)}: ${t('legendMelody')}`); }
+        else if (inChord) { key.classList.add('chord-note'); key.setAttribute('aria-label', `${harmonicKeyboardName(midi, example.key)}: ${t('legendChord')}`); }
+      });
+    }
+    function updateHarmonicExplore() {
+      const example = harmonicExampleFromControls();
+      const details = harmonicDetails(example);
+      $('harmonicMelodyValue').textContent = chromaticNoteName(details.melody);
+      $('harmonicChordValue').textContent = details.chord;
+      $('harmonicRelationshipValue').textContent = relationshipLabel(details.relation.nameKey);
+      $('harmonicFunctionValue').textContent = details.chordTone ? t('chordTone') : t('nonChordTone');
+      $('harmonicMainExplanation').textContent = `${chromaticNoteName(details.melody)} ${t(`relation${details.relation.nameKey.charAt(0).toUpperCase()}${details.relation.nameKey.slice(1)}`).toLowerCase()} ${details.chord}.`;
+      $('harmonicClassification').innerHTML = `<span class="context-badge ${details.diatonic ? 'diatonic' : 'borrowed'}">${details.diatonic ? t('diatonicHarmony') : t('borrowedHarmony')}</span> · ${details.chordTone ? t('chordTone') : t('nonChordTone')}`;
+      const analysisDegree = details.melodyDegree ? ScaleDegrees.degrees[details.melodyDegree - 1].roman : t('chromaticNote');
+      const rootDegreeIndex = ScaleDegrees.majorOffsets.findIndex(offset => Harmonic.mod12(ScaleDegrees.tonicMidi(example.key) + offset) === Harmonic.mod12(example.rootMidi));
+      const romanChord = rootDegreeIndex >= 0 && details.diatonic ? `${ScaleDegrees.degrees[rootDegreeIndex].roman}${Harmonic.qualities[example.qualityId].suffix}` : t('notDiatonic');
+      $('harmonicAnalysisText').textContent = `${t('melodyScaleDegree')}: ${analysisDegree} · ${t('romanChord')}: ${romanChord} · ${details.diatonic ? t('diatonicHarmony') : t('borrowedHarmony')}`;
+      renderHarmonicPiano('harmonicPiano', example, true);
+    }
+    async function playHarmonicExample(example, mode = 'together', includeContext = false) {
+      stopActivePlayback(); ensureAudio();
+      const sound = selectedSound();
+      const chord = harmonicChordMidis(example);
+      const melody = harmonicMelodyMidi(example);
+      const context = includeContext ? ScaleDegrees.tonalContext(example.key) : [];
+      const all = [...context, ...chord, melody];
+      if (sound.startsWith('sample-')) await Promise.all([...new Set(all)].map(midi => loadSample(midi, sound))).catch(() => {});
+      const now = audioCtx.currentTime + .045;
+      context.forEach((midi, index) => playTone(midi, now + index * .34, .3, .11, sound, false));
+      const exampleAt = now + (context.length ? context.length * .34 + .5 : 0);
+      if (mode === 'melody') playTone(melody, exampleAt, .85, .16, sound, true);
+      if (mode === 'chord' || mode === 'together') chord.forEach(midi => playTone(midi, exampleAt, 1.35, .055, sound, true));
+      if (mode === 'together') playTone(melody, exampleAt, .95, .16, sound, true);
+    }
+    function changeHarmonicChord() {
+      const current = Number($('harmonicChordRootNote').value) - 48;
+      const next = current % 12 + 1;
+      $('harmonicChordRootNote').value = String(48 + next);
+      $('harmonicChordQuality').value = 'major';
+      updateHarmonicExplore();
+      playHarmonicExample(harmonicExampleFromControls(), 'together');
+    }
+    const harmonicAnswerSemitones = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    function renderHarmonicAnswers() {
+      const container = $('harmonicQuizAnswers'); container.innerHTML = '';
+      harmonicAnswerSemitones.forEach(semitones => {
+        const button = document.createElement('button');
+        button.type = 'button'; button.dataset.semitones = String(semitones); button.className = 'degree-answer';
+        const nameKey = Harmonic.relationshipFromRoot(semitones, 0).nameKey;
+        button.textContent = relationshipLabel(nameKey);
+        button.setAttribute('aria-label', `${button.textContent} · ${semitones} ${t('semitones')}`);
+        button.onclick = () => answerHarmonicQuiz(semitones);
+        container.appendChild(button);
+      });
+      $('harmonicQuizAnswers').querySelectorAll('button').forEach(button => button.disabled = !harmonicQuiz.active || harmonicQuiz.answered);
+    }
+    function makeHarmonicQuestion() {
+      const difficulty = $('harmonicDifficulty').value;
+      const key = randomItem(ScaleDegrees.majorKeys);
+      const rootDegree = randomItem(ScaleDegrees.degrees).number;
+      let qualityId = Harmonic.diatonicTriads[rootDegree - 1];
+      let inversion = 0;
+      if (difficulty === 'medium') {
+        qualityId = Harmonic.diatonicSevenths[rootDegree - 1];
+        inversion = Math.floor(Math.random() * 3);
+      } else if (difficulty === 'advanced') {
+        qualityId = randomItem(harmonicQualityIds);
+        inversion = Math.floor(Math.random() * 3);
+      }
+      const example = { key, melodyDegree: randomItem(ScaleDegrees.degrees).number, rootDegree, qualityId, inversion, difficulty };
+      example.melodyMidi = ScaleDegrees.degreeMidi(key, example.melodyDegree) + 12;
+      example.rootMidi = 48 + Harmonic.mod12(ScaleDegrees.tonicMidi(key) + ScaleDegrees.majorOffsets[rootDegree - 1]);
+      return Harmonic.validateExample(ScaleDegrees, key, example.melodyDegree, rootDegree, qualityId, inversion) ? example : makeHarmonicQuestion();
+    }
+    function startHarmonicQuiz() {
+      harmonicQuiz = { active: true, round: 0, score: 0, answered: false, current: null, answers: [] };
+      $('harmonicQuizResult').hidden = true;
+      $('startHarmonicQuiz').disabled = true;
+      $('nextHarmonicQuiz').textContent = t('next');
+      nextHarmonicQuizQuestion();
+    }
+    function nextHarmonicQuizQuestion() {
+      if (harmonicQuiz.round >= 10) return finishHarmonicQuiz();
+      harmonicQuiz.round++;
+      harmonicQuiz.answered = false;
+      harmonicQuiz.current = makeHarmonicQuestion();
+      $('harmonicQuizRound').textContent = `${harmonicQuiz.round}/10`;
+      $('harmonicQuizHelp').textContent = t('harmonicQuizReady');
+      $('harmonicQuizFeedback').textContent = '';
+      $('harmonicQuizFeedback').className = 'feedback';
+      $('repeatHarmonicQuiz').disabled = false;
+      $('nextHarmonicQuiz').disabled = true;
+      $('nextHarmonicQuiz').classList.remove('next-attention');
+      $('harmonicQuizPianoWrap').hidden = true;
+      renderHarmonicPiano('harmonicQuizPiano', harmonicQuiz.current, false);
+      renderHarmonicAnswers();
+      playHarmonicExample(harmonicQuiz.current, 'together', false);
+    }
+    function answerHarmonicQuiz(degree) {
+      if (!harmonicQuiz.active || harmonicQuiz.answered) return;
+      harmonicQuiz.answered = true;
+      const example = harmonicQuiz.current;
+      const details = harmonicDetails(example);
+      const correctSemitones = details.relation.semitones;
+      const correct = degree === correctSemitones;
+      if (correct) harmonicQuiz.score++;
+      harmonicQuiz.answers.push({ picked: degree, correct: correctSemitones, chord: details.chord, rootDegree: example.rootDegree, qualityId: example.qualityId });
+      $('harmonicQuizAnswers').querySelectorAll('button').forEach(button => {
+        button.disabled = true;
+        const number = Number(button.dataset.semitones);
+        if (number === correctSemitones) button.classList.add('correct');
+        if (!correct && number === degree) button.classList.add('wrong');
+      });
+      const classification = details.chordTone ? t('chordTone') : t('nonChordTone');
+      $('harmonicQuizFeedback').textContent = `${correct ? t('correctPrefix') : t('wrongPrefix')} ${t('harmonicFeedback', { note: harmonicNoteName(example.key, example.melodyDegree, details.melody), key: `${example.key.notes[0]} ${t('majorKey')}`, chord: details.chord, roman: harmonicRoman(example, details), relationship: `${relationshipLabel(details.relation.nameKey)} · ${t('manySemitones', { count: details.relation.semitones })}`, classification })}`;
+      $('harmonicQuizFeedback').className = `feedback ${correct ? 'good' : 'bad'}`;
+      $('harmonicQuizPianoWrap').hidden = false;
+      renderHarmonicPiano('harmonicQuizPiano', example, true);
+      $('nextHarmonicQuiz').disabled = false;
+      $('nextHarmonicQuiz').classList.add('next-attention');
+      if (harmonicQuiz.round === 10) $('nextHarmonicQuiz').textContent = t('showResult');
+    }
+    function finishHarmonicQuiz() {
+      harmonicQuiz.active = false; stopActivePlayback();
+      $('repeatHarmonicQuiz').disabled = true; $('nextHarmonicQuiz').disabled = true; $('nextHarmonicQuiz').classList.remove('next-attention');
+      $('startHarmonicQuiz').disabled = false; $('startHarmonicQuiz').textContent = t('tryAgain');
+      const errors = harmonicQuiz.answers.filter(answer => answer.picked !== answer.correct);
+      const intervalCounts = {}; const contexts = {}; const confusions = {};
+      errors.forEach(answer => {
+        const correctInterval = relationshipLabel(Harmonic.relationshipFromRoot(answer.correct, 0).nameKey);
+        intervalCounts[correctInterval] = (intervalCounts[correctInterval] || 0) + 1;
+        contexts[answer.chord] = (contexts[answer.chord] || 0) + 1;
+        const pickedName = relationshipLabel(Harmonic.relationshipFromRoot(answer.picked, 0).nameKey);
+        const correctName = relationshipLabel(Harmonic.relationshipFromRoot(answer.correct, 0).nameKey);
+        const pair = `${pickedName} → ${correctName}`;
+        confusions[pair] = (confusions[pair] || 0) + 1;
+      });
+      const list = object => Object.entries(object).sort((a, b) => b[1] - a[1]).map(([label, count]) => `${label} (${count})`).join(', ');
+      const suggested = Object.keys(intervalCounts).sort((a, b) => intervalCounts[b] - intervalCounts[a]).join(', ');
+      $('harmonicQuizHelp').textContent = t('scaleQuizScore', { score: harmonicQuiz.score });
+      $('harmonicQuizResult').innerHTML = `<strong>${t('scaleQuizScore', { score: harmonicQuiz.score })}</strong><p class="small">${t('incorrectThisSession')}: ${list(intervalCounts) || '—'}</p><p class="small">${t('commonConfusions')}: ${list(confusions) || t('noConfusions')}</p><p class="small">${t('difficultContexts')}: ${list(contexts) || '—'}</p><p class="small">${t('suggestedPractice')}: ${suggested || '—'}</p>`;
+      $('harmonicQuizResult').hidden = false;
+    }
+    function setHarmonicMode(mode) {
+      document.querySelectorAll('[data-harmonic-panel]').forEach(panel => panel.hidden = panel.dataset.harmonicPanel !== mode);
+      document.querySelectorAll('[data-harmonic-mode]').forEach(button => { const active = button.dataset.harmonicMode === mode; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
+      const url = new URL(window.location.href);
+      if (mode === 'explore') url.searchParams.delete('harmonicMode'); else url.searchParams.set('harmonicMode', mode);
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+      stopActivePlayback();
+      if (mode === 'explore') updateHarmonicExplore();
+    }
+    function initializeHarmonicContext() {
+      populateScaleKeySelect('harmonicAnalysisKey');
+      const noteSelect = $('harmonicMelodyNote');
+      const names = $('accidentalSelect') && $('accidentalSelect').value === 'flat' ? flatNoteNames : noteNames.map(cleanName);
+      noteSelect.innerHTML = names.map((name, pitchClass) => `<option value="${pitchClass}">${name}</option>`).join('');
+      noteSelect.value = '7';
+      $('harmonicChordRootNote').innerHTML = names.map((name, pitchClass) => `<option value="${48 + pitchClass}">${name}</option>`).join('');
+      $('harmonicChordRootNote').value = '48';
+      $('harmonicChordQuality').innerHTML = harmonicQualityIds.map(id => `<option value="${id}">${qualityLabel(id)}</option>`).join('');
+      $('harmonicChordQuality').value = 'major'; $('harmonicAnalysisKey').value = 'C';
+      renderHarmonicAnswers(); updateHarmonicExplore();
+    }
+
+    function setModule(module) {
+      document.querySelectorAll('[data-module-panel]').forEach(panel => panel.hidden = panel.dataset.modulePanel !== module);
+      document.querySelectorAll('[data-module]').forEach(button => {
+        const active = button.dataset.module === module;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      const url = new URL(window.location.href);
+      if (module === 'intervals') url.searchParams.delete('module'); else url.searchParams.set('module', module);
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+      stopActivePlayback();
+      if (module === 'scale-degrees') updateScaleLearn();
+      if (module === 'harmonic-context') updateHarmonicExplore();
+    }
+
+    function setScaleMode(mode) {
+      document.querySelectorAll('[data-scale-panel]').forEach(panel => panel.hidden = panel.dataset.scalePanel !== mode);
+      document.querySelectorAll('[data-scale-mode]').forEach(button => {
+        const active = button.dataset.scaleMode === mode;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      const url = new URL(window.location.href);
+      if (mode === 'learn') url.searchParams.delete('scaleMode'); else url.searchParams.set('scaleMode', mode);
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+      stopActivePlayback();
+      clearScaleHighlights();
+      if (mode === 'learn') updateScaleLearn();
+    }
+
+    function initializeScaleDegrees() {
+      ['scaleLearnKey', 'scalePracticeKey'].forEach(populateScaleKeySelect);
+      populateScaleDegreeSelect();
+      renderScalePiano();
+      renderDegreeButtons('practiceDegreeToggles', (degree, button) => {
+        const active = button.getAttribute('aria-pressed') !== 'true';
+        button.setAttribute('aria-pressed', String(active));
+      }, true);
+      renderScaleAnswers('scalePracticeAnswers', scalePractice, answerScalePractice);
+      renderScaleAnswers('scaleQuizAnswers', scaleQuiz, answerScaleQuiz);
+      updateScaleLearn();
+    }
+
+    function bindEvents() {
+      document.querySelectorAll('[data-module]').forEach(button => button.onclick = () => setModule(button.dataset.module));
+      document.querySelectorAll('[data-mode]').forEach(button => button.onclick = () => setMode(button.dataset.mode));
+      document.querySelectorAll('[data-scale-mode]').forEach(button => button.onclick = () => setScaleMode(button.dataset.scaleMode));
+      document.querySelectorAll('[data-harmonic-mode]').forEach(button => button.onclick = () => setHarmonicMode(button.dataset.harmonicMode));
+      $('playSelected').onclick = () => playInterval();
+      $('playRoot').onclick = () => playTone(getRootMidi(), (audioCtx ? audioCtx.currentTime : 0) + 0.02, 0.55);
+      $('rootSelect').onchange = () => { renderIntervalButtons(); selectInterval(selectedInterval, false); };
+      $('accidentalSelect').onchange = () => {
+        localStorage.setItem(accidentalPreferenceKey, $('accidentalSelect').value);
+        renderPiano();
+        renderScalePiano();
+        renderRoots();
+        renderIntervalButtons();
+        selectInterval(selectedInterval, false);
+        updateScaleLearn();
+      };
+      $('modeSelect').onchange = () => selectInterval(selectedInterval, false);
+      $('startQuiz').onclick = startQuiz;
+      $('restartQuiz').onclick = startQuiz;
+      $('listenQuiz').onclick = () => quiz.current && playInterval(quiz.current.interval, quiz.current.root, 'melodic');
+      $('nextRound').onclick = () => quiz.round >= 10 ? finishQuiz() : nextQuizRound();
+      $('jumpQuiz').onclick = () => { setModule('intervals'); setMode('quiz'); document.querySelector('[data-module-panel="intervals"] .mode-nav').scrollIntoView({ behavior: 'smooth' }); };
+      $('shareResult').onclick = shareResult;
+      $('referenceFilter').onclick = () => { showFavoriteReferencesOnly = !showFavoriteReferencesOnly; renderReferenceMelodies(); };
+      $('scaleLearnKey').onchange = updateScaleLearn;
+      $('scaleLearnDegree').onchange = updateScaleLearn;
+      $('playDegree').onclick = () => { const key = selectedScaleKey('scaleLearnKey'); const degree = Number($('scaleLearnDegree').value); highlightScalePair(ScaleDegrees.tonicMidi(key), ScaleDegrees.degreeMidi(key, degree)); playScaleSequence([ScaleDegrees.tonicMidi(key), ScaleDegrees.degreeMidi(key, degree)]); };
+      $('playScalePath').onclick = () => { const key = selectedScaleKey('scaleLearnKey'); playScaleSequence(ScaleDegrees.scalePath(key, Number($('scaleLearnDegree').value))); };
+      $('playTonalContext').onclick = () => { const key = selectedScaleKey('scaleLearnKey'); playScaleSequence(ScaleDegrees.tonalContext(key)); };
+      $('establishScalePractice').onclick = () => { const key = selectedScaleKey('scalePracticeKey'); playScaleSequence(ScaleDegrees.tonalContext(key), { visual: false, gap: .48 }); };
+      $('startScalePractice').onclick = nextScalePractice;
+      $('repeatScalePractice').onclick = () => scalePractice.current && playScalePracticeTarget(scalePractice.current);
+      $('hintScalePractice').onclick = () => scalePractice.current && playScaleSequence(ScaleDegrees.fullScale(scalePractice.current.key), { visual: false, gap: .22 });
+      $('compareScalePractice').onclick = () => scalePractice.current && playScaleSequence([scalePractice.current.tonic, ScaleDegrees.degreeMidi(scalePractice.current.key, scalePractice.picked), scalePractice.current.tonic, scalePractice.current.target], { visual: false, gap: .58 });
+      $('startScaleQuiz').onclick = startScaleQuiz;
+      $('repeatScaleQuiz').onclick = () => scaleQuiz.current && playScaleQuestion(scaleQuiz.current);
+      $('nextScaleQuiz').onclick = nextScaleQuizQuestion;
+      ['harmonicMelodyNote', 'harmonicMelodyOctave', 'harmonicChordRootNote', 'harmonicChordQuality', 'harmonicInversion', 'harmonicAnalysisKey'].forEach(id => $(id).onchange = updateHarmonicExplore);
+      $('establishHarmonicKey').onclick = () => playScaleSequence(ScaleDegrees.tonalContext(selectedScaleKey('harmonicAnalysisKey')), { visual: false, gap: .48 });
+      $('playHarmonicMelody').onclick = () => playHarmonicExample(harmonicExampleFromControls(), 'melody');
+      $('playHarmonicChord').onclick = () => playHarmonicExample(harmonicExampleFromControls(), 'chord');
+      $('playHarmonicTogether').onclick = () => playHarmonicExample(harmonicExampleFromControls(), 'together');
+      $('changeHarmonicChord').onclick = changeHarmonicChord;
+      $('replayHarmonic').onclick = () => playHarmonicExample(harmonicExampleFromControls(), 'together');
+      $('startHarmonicQuiz').onclick = startHarmonicQuiz;
+      $('repeatHarmonicQuiz').onclick = () => harmonicQuiz.current && playHarmonicExample(harmonicQuiz.current, 'together', false);
+      $('nextHarmonicQuiz').onclick = nextHarmonicQuizQuestion;
+    }
+
+    async function init() {
+      await loadLocale();
+      await loadReferenceData();
+      applyStaticText();
+      $('accidentalSelect').value = localStorage.getItem(accidentalPreferenceKey) === 'flat' ? 'flat' : 'sharp';
+      renderPiano();
+      renderRoots();
+      renderIntervalButtons();
+      renderIntervalTable();
+      renderAnswers();
+      initializeScaleDegrees();
+      initializeHarmonicContext();
+      bindEvents();
+      selectInterval(intervals[0], false);
+      const requestedMode = new URLSearchParams(window.location.search).get('mode');
+      setMode(['learn', 'quiz'].includes(requestedMode) ? requestedMode : 'learn');
+      const requestedModule = new URLSearchParams(window.location.search).get('module');
+      const requestedScaleMode = new URLSearchParams(window.location.search).get('scaleMode');
+      const requestedHarmonicMode = new URLSearchParams(window.location.search).get('harmonicMode');
+      setScaleMode(['learn', 'practice', 'quiz'].includes(requestedScaleMode) ? requestedScaleMode : 'learn');
+      setHarmonicMode(requestedHarmonicMode === 'quiz' ? 'quiz' : 'explore');
+      setModule(['scale-degrees', 'harmonic-context'].includes(requestedModule) ? requestedModule : 'intervals');
+    }
+
+    init();
+  </script>
+</body>
+</html>
