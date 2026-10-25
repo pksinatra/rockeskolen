@@ -40,10 +40,7 @@
         <h1 id="home-title">Spill. Utforsk.<br>Lag musikk.</h1>
         <p class="home-hero__lead">Rockeskolen er en digital læringsarena for musikalsk utvikling og kreativitet. Her finner du kunnskap, veiledning og verktøy som hjelper deg å utvikle dine egne musikalske ideer, samarbeide med andre og finne ditt eget uttrykk.</p>
         <p class="home-hero__closing">For musikk skal være både morsomt, spennende og lærerikt.</p>
-        <div class="home-hero__actions">
-          <a class="home-hero__cta" href="https://portal.rockeskolen.com">Til musikkportalen <span aria-hidden="true">→</span></a>
-          <a class="home-hero__cta home-hero__cta--secondary" href="https://portal.rockeskolen.com/kurs">Se kursene <span aria-hidden="true">→</span></a>
-        </div>
+        <a class="home-hero__cta" href="https://portal.rockeskolen.com">Til musikkportalen <span aria-hidden="true">→</span></a>
       </div>
       <div class="home-hero__image">
         <img src="/images/workshops.jpg" alt="Musiker arbeider med gitar og keyboard i Rockeskolens studio" width="987" height="1280" fetchpriority="high">
