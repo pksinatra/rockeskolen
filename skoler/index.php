@@ -1,31 +1,5 @@
 <?php
 require_once dirname(__DIR__) . '/includes/meta.php';
-
-session_start();
-$schoolForm = ['name' => '', 'email' => '', 'school' => '', 'students' => '', 'message' => ''];
-$schoolStatus = '';
-if (empty($_SESSION['school_contact_token'])) {
-    $_SESSION['school_contact_token'] = bin2hex(random_bytes(32));
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['school_contact'])) {
-    foreach ($schoolForm as $field => $value) {
-        $schoolForm[$field] = trim((string) ($_POST[$field] ?? ''));
-    }
-    $validEmail = filter_var($schoolForm['email'], FILTER_VALIDATE_EMAIL) !== false;
-    if ($schoolForm['name'] === '' || !$validEmail || $schoolForm['school'] === '' || $schoolForm['students'] === '' || $schoolForm['message'] === '') {
-        $schoolStatus = 'Fyll ut navn, e-post, skole, antall elever og melding.';
-    } else {
-        $email = str_replace(["\r", "\n"], '', $schoolForm['email']);
-        $body = "Navn: {$schoolForm['name']}\nE-post: {$email}\nSkole: {$schoolForm['school']}\nAntall elever: {$schoolForm['students']}\n\nMelding:\n{$schoolForm['message']}\n";
-        $headers = ['From: Rockeskolen <post@rockeskolen.com>', 'Reply-To: ' . $email, 'Content-Type: text/plain; charset=UTF-8'];
-        if (mail('post@rockeskolen.com', 'Tilbud om skoleabonnement', $body, implode("\r\n", $headers))) {
-            $schoolStatus = 'Takk! Forespørselen er sendt til Rockeskolen.';
-            $schoolForm = ['name' => '', 'email' => '', 'school' => '', 'students' => '', 'message' => ''];
-        } else {
-            $schoolStatus = 'Forespørselen kunne ikke sendes akkurat nå. Skriv gjerne direkte til post@rockeskolen.com.';
-        }
-    }
-}
 ?><!doctype html>
 <html lang="no">
 <head>
@@ -38,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['school_contact'])) {
     'https://rockeskolen.com/images/share/rockeskolen-2026.jpg',
     'Rockeskolens Musikkportal for skoler'
 ); ?>
-  <link rel="stylesheet" href="/includes/site.css?v=3">
+  <link rel="stylesheet" href="/includes/site.css?v=4">
 </head>
 <body>
   <header class="page-header">
@@ -91,6 +65,81 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['school_contact'])) {
       </div>
     </section>
 
+    <section class="section school-section" id="startpunkter" aria-labelledby="school-start">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Startpunkter</p>
+          <h2 id="school-start">Læringsstier i musikkteori.</h2>
+          <p>Musikkteori i musikkportalen er bygget som læringsstier: korte artikler i fast rekkefølge, med lyd og interaktive eksempler i hver del. Gå gjennom en artikkel i timen eller la elevene lese selv – og øv etterpå i kurset eller verktøyet som hører til. Kursene kan også brukes alene.</p>
+        </div>
+      </div>
+      <div class="start-grid">
+        <article class="start-step">
+          <p class="start-step-num">Trinn 1</p>
+          <h3>Grunnlag</h3>
+          <p>Puls, noter og tegn.</p>
+          <ul class="start-paths">
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/120">Rytme</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/279"><span>Start med del 1</span> Puls, tempo og BPM</a>
+            <div class="start-chips"><a class="start-chip" href="https://portal.rockeskolen.com/kurs/rytme">Kurs: Rytme</a></div>
+          </li>
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/34">Noter</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/163"><span>Start med del 1</span> Notelinjer og nøkler</a>
+          </li>
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/82">Fortegn og andre tegn</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/180"><span>Start med del 1</span> Fortegn (♯ ♭ ♮)</a>
+          </li>
+          </ul>
+        </article>
+        <article class="start-step">
+          <p class="start-step-num">Trinn 2</p>
+          <h3>Byggesteiner</h3>
+          <p>Fra intervall til akkord.</p>
+          <ul class="start-paths">
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/36">Intervaller</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/18"><span>Start med del 1</span> Hva er intervall?</a>
+            <div class="start-chips"><a class="start-chip" href="https://rockeskolen.com/tools/intervals/">Verktøy: Intervaller</a></div>
+          </li>
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/35">Skalaer</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/17"><span>Start med del 1</span> Hva er en skala?</a>
+            <div class="start-chips"><a class="start-chip" href="https://portal.rockeskolen.com/kurs/musikkteori">Kurs: Musikkteori fra bunnen</a><a class="start-chip" href="https://rockeskolen.com/tools/scales/piano/">Verktøy: Pianoskalaer</a></div>
+          </li>
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/37">Akkorder og harmoni</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/174"><span>Start med del 1</span> Hva er en akkord?</a>
+            <div class="start-chips"><a class="start-chip" href="https://rockeskolen.com/tools/chords/piano/">Verktøy: Pianoakkorder</a><a class="start-chip" href="https://rockeskolen.com/tools/chords/guitar/">Verktøy: Gitarakkorder</a></div>
+          </li>
+          </ul>
+        </article>
+        <article class="start-step">
+          <p class="start-step-num">Trinn 3</p>
+          <h3>Sammenheng</h3>
+          <p>Tonearter, melodi og form.</p>
+          <ul class="start-paths">
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/38">Tonearter</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/19"><span>Start med del 1</span> Hva er en toneart?</a>
+            <div class="start-chips"><a class="start-chip" href="https://rockeskolen.com/tools/circles/fifths/">Verktøy: Kvintsirkelen</a></div>
+          </li>
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/39">Melodi</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/20"><span>Start med del 1</span> Melodi</a>
+          </li>
+          <li class="start-path">
+            <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/40">Form og struktur</a>
+            <a class="start-path-first" href="https://portal.rockeskolen.com/node/21"><span>Start med del 1</span> Hva er form?</a>
+          </li>
+          </ul>
+        </article>
+      </div>
+      <p class="start-more">Til fordypning: <a href="https://portal.rockeskolen.com/taxonomy/term/78">Frekvenser</a> og <a href="https://portal.rockeskolen.com/node/229">kirketonearter</a>. Til praksis: <a href="https://portal.rockeskolen.com/artikkelserie/114">På bølgelengde – om samspill</a>, <a href="https://portal.rockeskolen.com/artikkelserie/110">Låtskriving – fra idé til ferdig låt</a> og kurset <a href="https://portal.rockeskolen.com/kurs/gi-ut-din-egen-musikk">Gi ut din egen musikk</a>. Se også <a href="https://portal.rockeskolen.com/musikkteori">alle læringsstiene</a> og <a href="https://portal.rockeskolen.com/verktoy">alle verktøyene</a>.</p>
+    </section>
+
     <section class="section school-section" aria-labelledby="pilot-how">
       <div class="section-head">
         <div>
@@ -110,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['school_contact'])) {
         <li>Tilgang for avtalt lærer og elevgruppe ut skoleåret</li>
         <li>FEIDE-innlogging der skolen bruker FEIDE</li>
         <li>Et kort digitalt oppstartsmøte og oppfølging i startfasen</li>
-        <li>Anbefalte startpunkter for undervisningen</li>
+        <li><a href="#startpunkter">Anbefalte startpunkter for undervisningen</a></li>
         <li>Direkte support og mulighet til å påvirke videre utvikling</li>
         <li>Evaluering etter prøvemånedene</li>
       </ul>
@@ -137,34 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['school_contact'])) {
           <a class="button secondary" href="https://portal.rockeskolen.com/user/login">Prøv innlogging</a>
         </div>
       </div>
-    </section>
-
-    <section class="section school-section" id="abonnement" aria-labelledby="subscription-title">
-      <div class="section-head"><div>
-        <p class="eyebrow">Etter piloten</p>
-        <h2 id="subscription-title">Abonnement for skoler</h2>
-        <p>Etter piloten kan skolen tegne abonnement for skoleåret. Alle elever og lærere får VIP-tilgang med FEIDE.</p>
-      </div></div>
-      <ul class="check-list">
-        <li>Gruppe eller klasse (opptil 30 elever): 1 490 kr per skoleår</li>
-        <li>Trinn (opptil 100 elever): 2 490 kr per skoleår</li>
-        <li>Hele skolen: 3 990 kr per skoleår</li>
-        <li>Kommuner og flere skoler: etter avtale</li>
-      </ul>
-      <form class="contact-form" method="post" action="/skoler/#abonnement">
-        <input type="hidden" name="school_contact" value="1">
-        <?php if ($schoolStatus !== ''): ?><div class="form-notice form-notice--success" role="status"><?php echo htmlspecialchars($schoolStatus, ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
-        <div class="contact-field-row">
-          <label>Navn <span aria-hidden="true">*</span><input name="name" required value="<?php echo htmlspecialchars($schoolForm['name'], ENT_QUOTES, 'UTF-8'); ?>"></label>
-          <label>E-post <span aria-hidden="true">*</span><input type="email" name="email" required value="<?php echo htmlspecialchars($schoolForm['email'], ENT_QUOTES, 'UTF-8'); ?>"></label>
-        </div>
-        <div class="contact-field-row">
-          <label>Skole <span aria-hidden="true">*</span><input name="school" required value="<?php echo htmlspecialchars($schoolForm['school'], ENT_QUOTES, 'UTF-8'); ?>"></label>
-          <label>Antall elever <span aria-hidden="true">*</span><input name="students" required value="<?php echo htmlspecialchars($schoolForm['students'], ENT_QUOTES, 'UTF-8'); ?>"></label>
-        </div>
-        <label>Melding <span aria-hidden="true">*</span><textarea name="message" required rows="5"><?php echo htmlspecialchars($schoolForm['message'], ENT_QUOTES, 'UTF-8'); ?></textarea></label>
-        <button class="button primary" type="submit">Be om tilbud</button>
-      </form>
     </section>
   </main>
 

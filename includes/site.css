@@ -600,3 +600,21 @@ h1 {
   .article-row, .footer-inner { align-items: flex-start; flex-direction: column; }
   .article-card { padding: 22px; }
 }
+
+/* Startpunkter for lærere på /skoler/: læringsstier i tre trinn. */
+.start-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.start-step { padding: 22px; background: rgba(255,255,255,.045); border: 1px solid var(--soft-line); }
+.start-step h3 { margin: 0 0 6px; font-size: 28px; line-height: 1.05; }
+.start-step > p { margin: 0 0 16px; color: var(--muted); line-height: 1.5; }
+.start-step-num { margin: 0 0 8px !important; color: var(--red) !important; font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.start-paths { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.start-path { display: grid; gap: 6px; padding-top: 14px; border-top: 1px solid var(--soft-line); }
+.start-path-name { color: #fff; font-size: 19px; font-weight: 900; text-decoration: none; }
+.start-path-first { color: var(--text); text-decoration: none; line-height: 1.4; }
+.start-path-first span { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
+.start-path-name:hover, .start-path-first:hover, .start-chip:hover { text-decoration: underline; }
+.start-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.start-chip { padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); font-size: 13px; font-weight: 700; text-decoration: none; }
+.start-more { margin: 18px 0 0; color: var(--muted); line-height: 1.6; }
+.start-more a, .check-list a { color: #fff; }
+@media (max-width: 900px) { .start-grid { grid-template-columns: 1fr; } }
