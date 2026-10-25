@@ -6,6 +6,7 @@ namespace Drupal\rs_kurs\Controller;
 
 use Drupal\Core\Access\CsrfRequestHeaderAccessCheck;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Render\Markup;
 use Drupal\rs_kurs\CourseAccess;
 use Drupal\rs_kurs\CoursePage;
 use Drupal\rs_kurs\CourseRegistry;
@@ -20,6 +21,48 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * Serves the course apps, their lessons and the progress API.
  */
 final class CourseController extends ControllerBase {
+
+  /**
+   * Lists all courses, grouped by area, inside the portal theme.
+   */
+  public function overview(): array {
+    $h = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    $groups = [];
+    foreach (CourseRegistry::all() as $course) {
+      $groups[$course['area'] ?? 'Kurs'][] = $course;
+    }
+    $html = '<div class="rs-kurs-overview">'
+      . '<p class="rs-kurs-lead">Korte kurs der du lytter, prøver og løser oppgaver. Kursene hører til læringsstiene, men kan også tas alene. Første leksjon er åpen for alle.</p>';
+    foreach ($groups as $area => $courses) {
+      $html .= '<section class="rs-kurs-group"><h2>' . $h($area) . '</h2><div class="rs-kurs-grid">';
+      foreach ($courses as $course) {
+        $count = CourseRegistry::lessonCount($course);
+        $lessons = '';
+        foreach ($course['lessons'] as $index => $lesson) {
+          $lessons .= '<li><span>' . ($index + 1) . '</span>' . $h($lesson['title']) . '</li>';
+        }
+        $path = isset($course['path'])
+          ? '<p class="rs-kurs-path">Hører til: <a href="' . $h($course['path']['url']) . '">' . $h($course['path']['title']) . '</a></p>'
+          : '';
+        $html .= '<article class="rs-kurs-card">'
+          . '<p class="rs-kurs-meta">' . $h($area) . ' · ' . $count . ' leksjoner</p>'
+          . '<h3><a href="/kurs/' . $h($course['slug']) . '">' . $h($course['title']) . '</a></h3>'
+          . '<p>' . $h($course['module']) . '</p>'
+          . '<ol class="rs-kurs-lessons">' . $lessons . '</ol>'
+          . $path
+          . '<span class="rs-kurs-start" aria-hidden="true">Start kurset →</span>'
+          . '</article>';
+      }
+      $html .= '</div></section>';
+    }
+    $html .= '</div>';
+
+    return [
+      '#markup' => Markup::create($html),
+      '#attached' => ['library' => ['rs_kurs/overview']],
+      '#cache' => ['max-age' => 3600],
+    ];
+  }
 
   /**
    * Renders the course shell. Lesson code is loaded per lesson.

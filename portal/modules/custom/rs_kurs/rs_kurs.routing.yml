@@ -1,3 +1,11 @@
+rs_kurs.overview:
+  path: '/kurs'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::overview'
+    _title: 'Kurs'
+  requirements:
+    _access: 'TRUE'
+
 rs_kurs.course:
   path: '/kurs/{slug}'
   defaults:

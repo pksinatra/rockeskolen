@@ -12,6 +12,8 @@ final class CourseRegistry {
   private const COURSES = [
     1 => [
       'slug' => 'musikkteori',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Skalaer', 'url' => '/taxonomy/term/35'],
       'title' => 'Musikkteori fra bunnen',
       'module' => 'Modul 1: Durskalaen. Fire korte leksjoner der du hører, ser og spiller.',
       'storage' => 'rs-kurs-teori-m1',
@@ -24,6 +26,8 @@ final class CourseRegistry {
     ],
     2 => [
       'slug' => 'rytme',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Rytme', 'url' => '/taxonomy/term/120'],
       'title' => 'Rytme',
       'module' => 'Modul 1: Puls, takt og notverdier. Fire korte leksjoner der du lytter, teller og spiller.',
       'storage' => 'rs-kurs-rytme-m1',
@@ -36,6 +40,8 @@ final class CourseRegistry {
     ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
+      'area' => 'Musikk i praksis',
+      'path' => ['title' => 'Gi ut din egen musikk', 'url' => '/gi-ut-din-egen-musikk'],
       'title' => 'Gi ut din egen musikk',
       'module' => 'Modul 1: Før utgivelsen. Rettigheter, fordeling og en plan fram til utgivelsesdagen.',
       'storage' => 'rs-kurs-utgivelse-m1',
@@ -59,6 +65,17 @@ final class CourseRegistry {
       }
     }
     return NULL;
+  }
+
+  /**
+   * All courses in order, each with its ID.
+   */
+  public static function all(): array {
+    $courses = [];
+    foreach (self::COURSES as $id => $course) {
+      $courses[] = ['id' => $id] + $course;
+    }
+    return $courses;
   }
 
   public static function lessonCount(array $course): int {
