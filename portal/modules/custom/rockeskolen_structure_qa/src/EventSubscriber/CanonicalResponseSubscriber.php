@@ -211,8 +211,25 @@ final class CanonicalResponseSubscriber implements EventSubscriberInterface {
 </ul>
 HTML;
 
-    $updated = preg_replace('/<ul class="menu main-menu">.*?<\/ul>/is', $navigation, $content, 1);
-    return is_string($updated) ? $updated : $content;
+    // Find the matching closing </ul> for the outer menu. A non-greedy
+    // regex stops at the first submenu and leaves duplicate items behind.
+    if (!preg_match('/<ul class="menu main-menu">/i', $content, $match, PREG_OFFSET_CAPTURE)) {
+      return $content;
+    }
+
+    $start = $match[0][1];
+    $menu_markup = substr($content, $start);
+    preg_match_all('/<\\/?ul\\b[^>]*>/i', $menu_markup, $tags, PREG_OFFSET_CAPTURE);
+    $depth = 0;
+    foreach ($tags[0] as [$tag, $offset]) {
+      $depth += str_starts_with(strtolower($tag), '</ul') ? -1 : 1;
+      if ($depth === 0) {
+        $end = $start + $offset + strlen($tag);
+        return substr($content, 0, $start) . $navigation . substr($content, $end);
+      }
+    }
+
+    return $content;
   }
 
   /**
