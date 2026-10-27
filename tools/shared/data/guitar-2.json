@@ -1,7 +1,7 @@
 {
     "success": true,
     "source": "mysql",
-    "count": 30,
+    "count": 50,
     "results": [
         {
             "id": 197,
@@ -162,11 +162,11 @@
                         "source": "Vanlig Daug-voicing (xx0332)"
                     },
                     {
-                        "id": "daug-a-shape-5",
+                        "id": "daug-a-gen-2",
                         "frets": [
                             -1,
                             5,
-                            4,
+                            0,
                             3,
                             3,
                             2
@@ -174,12 +174,40 @@
                         "fingers": [
                             0,
                             4,
-                            3,
-                            1,
+                            0,
                             2,
+                            3,
                             1
                         ],
                         "position": 2,
+                        "notes": [
+                            "D",
+                            "D",
+                            "A#",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "daug-e-gen-7",
+                        "frets": [
+                            10,
+                            9,
+                            8,
+                            7,
+                            7,
+                            -1
+                        ],
+                        "fingers": [
+                            4,
+                            3,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 7,
                         "notes": [
                             "D",
                             "F#",
@@ -187,7 +215,7 @@
                             "D",
                             "F#"
                         ],
-                        "source": "Caug-form transponert til D (A-form root på 5. streng)"
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "daug"
@@ -241,9 +269,172 @@
                             "F"
                         ],
                         "source": "Typisk D°-grep på A-strengen"
+                    },
+                    {
+                        "id": "ddim-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            1,
+                            3,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "D",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "ddim-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            12,
+                            10,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            3,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "D",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "ddim"
+            }
+        },
+        {
+            "id": 7668,
+            "type": "guitar_chord",
+            "name": "Ddim7",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "ddim7",
+            "data": {
+                "symbol": "Ddim7",
+                "bookSymbol": "Ddim7",
+                "root": "D",
+                "quality": "dim",
+                "family": "dim7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "bb7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "ddim7-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            4,
+                            0,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            4,
+                            1,
+                            2,
+                            0,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "F",
+                            "Cb",
+                            "Cb",
+                            "Ab"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "ddim7-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            12,
+                            10,
+                            12,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "D",
+                            "F",
+                            "Cb",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "ddim7-d-gen-12",
+                        "frets": [
+                            -1,
+                            -1,
+                            12,
+                            13,
+                            12,
+                            13
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 12,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "Cb",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "ddim7"
             }
         },
         {
@@ -404,6 +595,90 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d11-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d11-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d11-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            10,
+                            12,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "G",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d11"
@@ -460,9 +735,261 @@
                             "B"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d13-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d13-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            11,
+                            12,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d13-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            5,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            0,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "C",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d13"
+            }
+        },
+        {
+            "id": 7681,
+            "type": "guitar_chord",
+            "name": "D13#11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d13#11",
+            "data": {
+                "symbol": "D13#11",
+                "bookSymbol": "D13(#11)",
+                "root": "D",
+                "quality": "major",
+                "family": "13#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "#11",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d13sharp11-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            5,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d13sharp11-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            10,
+                            11,
+                            12,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C",
+                            "F#",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d13#11"
+            }
+        },
+        {
+            "id": 7683,
+            "type": "guitar_chord",
+            "name": "D13b9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d13b9",
+            "data": {
+                "symbol": "D13b9",
+                "bookSymbol": "D13(b9)",
+                "root": "D",
+                "quality": "major",
+                "family": "13b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d13b9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            4,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "Eb",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d13b9-e-gen-7",
+                        "frets": [
+                            10,
+                            -1,
+                            10,
+                            8,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "C",
+                            "Eb",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d13b9"
             }
         },
         {
@@ -515,6 +1042,90 @@
                             "B"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d13sus4-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d13sus4-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            10,
+                            12,
+                            12,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            2,
+                            2,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "G",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d13sus4-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            5,
+                            0,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            0,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "C",
+                            "B",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d13sus4"
@@ -564,6 +1175,89 @@
                             "D"
                         ],
                         "source": "D5 Power chord (A-root)"
+                    },
+                    {
+                        "id": "d5-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            2,
+                            3,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            0,
+                            1,
+                            2,
+                            4
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "D",
+                            "A",
+                            "D",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d5-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            3,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d5-e-gen-7",
+                        "frets": [
+                            10,
+                            -1,
+                            7,
+                            7,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d5"
@@ -616,6 +1310,90 @@
                             "F#"
                         ],
                         "source": "Vanlig D6-voicing (åpen)"
+                    },
+                    {
+                        "id": "d6-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            4,
+                            0,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            1,
+                            0,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "B",
+                            "B",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d6-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            4,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            0,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "B",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d6-e-gen-7",
+                        "frets": [
+                            10,
+                            9,
+                            7,
+                            7,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            3,
+                            2,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "A",
+                            "D",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d6"
@@ -624,13 +1402,13 @@
         {
             "id": 234,
             "type": "guitar_chord",
-            "name": "D6\/9",
+            "name": "D6/9",
             "root_note": "D",
             "instrument": "guitar",
             "slug": "d6-9",
             "data": {
-                "symbol": "D6\/9",
-                "bookSymbol": "D6\/9",
+                "symbol": "D6/9",
+                "bookSymbol": "D6/9",
                 "root": "D",
                 "quality": "major",
                 "family": "69",
@@ -670,6 +1448,89 @@
                             "B"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d6-9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d6-9-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            9,
+                            9,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "B",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d6-9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            4,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "B",
+                            "E",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d6-9"
@@ -750,9 +1611,314 @@
                             "A"
                         ],
                         "source": "D7 A-form barre"
+                    },
+                    {
+                        "id": "d7-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            11,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d7"
+            }
+        },
+        {
+            "id": 7679,
+            "type": "guitar_chord",
+            "name": "D7#11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7#11",
+            "data": {
+                "symbol": "D7#11",
+                "bookSymbol": "D7(#11)",
+                "root": "D",
+                "quality": "major",
+                "family": "7#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7sharp11-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            10,
+                            11,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C",
+                            "F#",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d7sharp11-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            5,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7sharp11-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            1,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "d7#11"
+            }
+        },
+        {
+            "id": 7686,
+            "type": "guitar_chord",
+            "name": "D7#5#9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7#5#9",
+            "data": {
+                "symbol": "D7#5#9",
+                "bookSymbol": "D7(#5,#9)",
+                "root": "D",
+                "quality": "major",
+                "family": "7#5#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7sharp5sharp9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7sharp5sharp9-e-gen-8",
+                        "frets": [
+                            10,
+                            8,
+                            8,
+                            11,
+                            11,
+                            8
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            3,
+                            3,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "D",
+                            "E#",
+                            "A#",
+                            "F#",
+                            "A#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d7#5#9"
+            }
+        },
+        {
+            "id": 7687,
+            "type": "guitar_chord",
+            "name": "D7#5b9",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7#5b9",
+            "data": {
+                "symbol": "D7#5b9",
+                "bookSymbol": "D7(#5,b9)",
+                "root": "D",
+                "quality": "major",
+                "family": "7#5b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7sharp5b9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            4,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "Eb",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7sharp5b9-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            10,
+                            11,
+                            11,
+                            11
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            4,
+                            4,
+                            4
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "F#",
+                            "A#",
+                            "Eb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d7#5b9"
             }
         },
         {
@@ -804,6 +1970,89 @@
                             "A"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d7sharp9-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            11,
+                            10,
+                            13
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            4
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#",
+                            "A",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d7sharp9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            6,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7sharp9-d-gen-11",
+                        "frets": [
+                            -1,
+                            -1,
+                            12,
+                            11,
+                            13,
+                            13
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            3
+                        ],
+                        "position": 11,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d7#9"
@@ -857,6 +2106,62 @@
                             "A#"
                         ],
                         "source": "D7(#5) 7#5 (A-root)"
+                    },
+                    {
+                        "id": "d7sharp5-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            3,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            3,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A#",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d7sharp5-e-gen-10",
+                        "frets": [
+                            10,
+                            13,
+                            10,
+                            11,
+                            11,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            1,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A#",
+                            "C",
+                            "F#",
+                            "A#",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d7-#5"
@@ -910,9 +2215,202 @@
                             "Ab"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d7b5-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            1,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d7b5-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            5,
+                            7,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7b5-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            10,
+                            11,
+                            13,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F#",
+                            "C",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d7-b5"
+            }
+        },
+        {
+            "id": 7682,
+            "type": "guitar_chord",
+            "name": "D7b13",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d7b13",
+            "data": {
+                "symbol": "D7b13",
+                "bookSymbol": "D7(b13)",
+                "root": "D",
+                "quality": "major",
+                "family": "7b13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b7",
+                    "b13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d7b13-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            8,
+                            5,
+                            7,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "Bb",
+                            "C",
+                            "F#",
+                            "Bb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7b13-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            3,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            3,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "Bb",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d7b13-e-gen-10",
+                        "frets": [
+                            10,
+                            13,
+                            10,
+                            11,
+                            11,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            1,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "Bb",
+                            "C",
+                            "F#",
+                            "Bb",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d7b13"
             }
         },
         {
@@ -965,6 +2463,90 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d7b9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "Eb",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7b9-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            11,
+                            10,
+                            11
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#",
+                            "A",
+                            "Eb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d7b9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            5,
+                            4,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            3,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "C",
+                            "Eb",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d7b9"
@@ -1018,6 +2600,90 @@
                             "A"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d7sus2-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            5,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "C",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d7sus2-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            5,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            0,
+                            3,
+                            1,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "D",
+                            "C",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7sus2-e-gen-7",
+                        "frets": [
+                            10,
+                            7,
+                            7,
+                            7,
+                            10,
+                            8
+                        ],
+                        "fingers": [
+                            3,
+                            1,
+                            1,
+                            1,
+                            4,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "E",
+                            "A",
+                            "D",
+                            "A",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d7sus2"
@@ -1071,6 +2737,90 @@
                             "A"
                         ],
                         "source": "D7sus4 7sus4 (A-root)"
+                    },
+                    {
+                        "id": "d7sus4-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            5,
+                            3,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            0,
+                            3,
+                            1,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "D",
+                            "C",
+                            "D",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d7sus4-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            10,
+                            12,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "G",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d7sus4-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            0,
+                            1,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d7sus4"
@@ -1126,9 +2876,312 @@
                             "A"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d9-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d9-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            11,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            4
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F#",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "d9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            5,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "C",
+                            "E",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "d9"
+            }
+        },
+        {
+            "id": 7680,
+            "type": "guitar_chord",
+            "name": "D9#11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d9#11",
+            "data": {
+                "symbol": "D9#11",
+                "bookSymbol": "D9(#11)",
+                "root": "D",
+                "quality": "major",
+                "family": "9#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d9sharp11-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d9sharp11-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            10,
+                            9,
+                            9,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d9#11"
+            }
+        },
+        {
+            "id": 7685,
+            "type": "guitar_chord",
+            "name": "D9(#5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d9(#5)",
+            "data": {
+                "symbol": "D9(#5)",
+                "bookSymbol": "D9(#5)",
+                "root": "D",
+                "quality": "major",
+                "family": "9#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d9sharp5-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            10,
+                            9,
+                            11,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            0
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d9(#5)"
+            }
+        },
+        {
+            "id": 7684,
+            "type": "guitar_chord",
+            "name": "D9(b5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "d9(b5)",
+            "data": {
+                "symbol": "D9(b5)",
+                "bookSymbol": "D9(b5)",
+                "root": "D",
+                "quality": "major",
+                "family": "9b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "d9b5-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            5,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "Ab"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d9b5-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            10,
+                            9,
+                            9,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C",
+                            "E",
+                            "Ab"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "d9(b5)"
             }
         },
         {
@@ -1180,9 +3233,202 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "d9sus4-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "d9sus4-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "d9sus4-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            10,
+                            12,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "G",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "d9sus4"
+            }
+        },
+        {
+            "id": 7670,
+            "type": "guitar_chord",
+            "name": "Dadd11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dadd11",
+            "data": {
+                "symbol": "Dadd11",
+                "bookSymbol": "Dadd11",
+                "root": "D",
+                "quality": "major",
+                "family": "add11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dadd11-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            7,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            2,
+                            2,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G",
+                            "D",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dadd11-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            0,
+                            3,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "G",
+                            "D",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "dadd11-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            12,
+                            11,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            3,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "D",
+                            "F#",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "dadd11"
             }
         },
         {
@@ -1232,9 +3478,202 @@
                             "F#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "dadd9-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            2,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            0,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "D",
+                            "A",
+                            "E",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dadd9-e-gen-7",
+                        "frets": [
+                            10,
+                            7,
+                            7,
+                            7,
+                            7,
+                            10
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            1,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "E",
+                            "A",
+                            "D",
+                            "F#",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dadd9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            5,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "A",
+                            "E",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "dadd9"
+            }
+        },
+        {
+            "id": 7669,
+            "type": "guitar_chord",
+            "name": "Dm(add9)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm(add9)",
+            "data": {
+                "symbol": "Dm(add9)",
+                "bookSymbol": "Dm(add9)",
+                "root": "D",
+                "quality": "minor",
+                "family": "madd9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmadd9-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            12,
+                            10,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            3,
+                            1,
+                            1,
+                            4
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmadd9-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            2,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            4,
+                            2,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "F",
+                            "A",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dmadd9-d-gen-10",
+                        "frets": [
+                            -1,
+                            -1,
+                            12,
+                            10,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            3
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "F",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "dm(add9)"
             }
         },
         {
@@ -1285,9 +3724,371 @@
                             "A"
                         ],
                         "source": "Dm(maj7) A-form type"
+                    },
+                    {
+                        "id": "dmmaj7-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            11,
+                            10,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmmaj7-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            2,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            2,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "dm-maj7"
+            }
+        },
+        {
+            "id": 7671,
+            "type": "guitar_chord",
+            "name": "Dm(maj9)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm(maj9)",
+            "data": {
+                "symbol": "Dm(maj9)",
+                "bookSymbol": "Dm(maj9)",
+                "root": "D",
+                "quality": "minor",
+                "family": "m(maj9)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmmaj9-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            11,
+                            10,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            4
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmmaj9-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "F",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "dm(maj9)"
+            }
+        },
+        {
+            "id": 7676,
+            "type": "guitar_chord",
+            "name": "Dm11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm11",
+            "data": {
+                "symbol": "Dm11",
+                "bookSymbol": "Dm11",
+                "root": "D",
+                "quality": "minor",
+                "family": "m11",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dm11-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            10,
+                            10,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "F",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dm11-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            5,
+                            5,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "F",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dm11-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            0,
+                            1,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "dm11"
+            }
+        },
+        {
+            "id": 7677,
+            "type": "guitar_chord",
+            "name": "Dm13",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm13",
+            "data": {
+                "symbol": "Dm13",
+                "bookSymbol": "Dm13",
+                "root": "D",
+                "quality": "minor",
+                "family": "m13",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9",
+                    "11",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dm13-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            0,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "F",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dm13-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            10,
+                            10,
+                            12,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "C",
+                            "F",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dm13-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            4,
+                            1,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "B",
+                            "C",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "dm13"
             }
         },
         {
@@ -1338,6 +4139,90 @@
                             "B"
                         ],
                         "source": "Dm6 A-form type (5. bånd)"
+                    },
+                    {
+                        "id": "dm6-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            2,
+                            0,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            0,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "A",
+                            "B",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "dm6-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            4,
+                            0,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            2,
+                            0,
+                            4
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "F",
+                            "B",
+                            "B",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dm6-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            12,
+                            10,
+                            12,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            3,
+                            1,
+                            4,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "F",
+                            "B",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "dm6"
@@ -1346,13 +4231,13 @@
         {
             "id": 235,
             "type": "guitar_chord",
-            "name": "Dm6\/9",
+            "name": "Dm6/9",
             "root_note": "D",
             "instrument": "guitar",
             "slug": "dm6-9",
             "data": {
-                "symbol": "Dm6\/9",
-                "bookSymbol": "Dm6\/9",
+                "symbol": "Dm6/9",
+                "bookSymbol": "Dm6/9",
                 "root": "D",
                 "quality": "minor",
                 "family": "m69",
@@ -1392,6 +4277,90 @@
                             "B"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "dm6-9-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "F",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dm6-9-e-gen-7",
+                        "frets": [
+                            10,
+                            7,
+                            7,
+                            10,
+                            10,
+                            7
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "E",
+                            "A",
+                            "F",
+                            "A",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dm6-9-d-gen-10",
+                        "frets": [
+                            -1,
+                            -1,
+                            12,
+                            10,
+                            12,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "F",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "dm6-9"
@@ -1472,6 +4441,35 @@
                             "A"
                         ],
                         "source": "Dm7 A-form barre"
+                    },
+                    {
+                        "id": "dm7-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            10,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "dm7"
@@ -1525,6 +4523,90 @@
                             "Ab"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "dm7b5-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            1,
+                            1,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "dm7b5-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            10,
+                            10,
+                            13,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F",
+                            "C",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dm7b5-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            5,
+                            3,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            4,
+                            1,
+                            2
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "F",
+                            "C",
+                            "D",
+                            "Ab"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
                     }
                 ],
                 "slug": "dm7-b5"
@@ -1579,9 +4661,259 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "dm9-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            3,
+                            5,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "F",
+                            "C",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dm9-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            10,
+                            10,
+                            10,
+                            12
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            1,
+                            1,
+                            3
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C",
+                            "F",
+                            "A",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dm9-d-gen-10",
+                        "frets": [
+                            -1,
+                            -1,
+                            12,
+                            10,
+                            13,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "F",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "dm9"
+            }
+        },
+        {
+            "id": 7678,
+            "type": "guitar_chord",
+            "name": "Dm9(b5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dm9(b5)",
+            "data": {
+                "symbol": "Dm9(b5)",
+                "bookSymbol": "Dm9(b5)",
+                "root": "D",
+                "quality": "minor",
+                "family": "m9b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dm9b5-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            10,
+                            10,
+                            13,
+                            12
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "Ab",
+                            "C",
+                            "F",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "dm9(b5)"
+            }
+        },
+        {
+            "id": 7675,
+            "type": "guitar_chord",
+            "name": "Dmaj13",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dmaj13",
+            "data": {
+                "symbol": "Dmaj13",
+                "bookSymbol": "Dmaj13",
+                "root": "D",
+                "quality": "major",
+                "family": "maj13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmaj13-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            9,
+                            9,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "B",
+                            "E",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmaj13-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            4,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "D",
+                            "B",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dmaj13-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            4,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "B",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "dmaj13"
             }
         },
         {
@@ -1659,9 +4991,257 @@
                             "A"
                         ],
                         "source": "Dmaj7 A-form"
+                    },
+                    {
+                        "id": "dmaj7-e-gen-10",
+                        "frets": [
+                            10,
+                            12,
+                            11,
+                            11,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            2,
+                            3,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "A",
+                            "C#",
+                            "F#",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "dmaj7"
+            }
+        },
+        {
+            "id": 7673,
+            "type": "guitar_chord",
+            "name": "Dmaj7#11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dmaj7#11",
+            "data": {
+                "symbol": "Dmaj7#11",
+                "bookSymbol": "Dmaj7(#11)",
+                "root": "D",
+                "quality": "major",
+                "family": "maj7#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmaj7sharp11-e-gen-10",
+                        "frets": [
+                            10,
+                            11,
+                            11,
+                            11,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmaj7sharp11-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            6,
+                            6,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dmaj7sharp11-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            1,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "D",
+                            "G#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "dmaj7#11"
+            }
+        },
+        {
+            "id": 7672,
+            "type": "guitar_chord",
+            "name": "Dmaj7(#5)",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dmaj7(#5)",
+            "data": {
+                "symbol": "Dmaj7(#5)",
+                "bookSymbol": "Dmaj7(#5)",
+                "root": "D",
+                "quality": "major",
+                "family": "maj7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmaj7sharp5-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            0,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "dmaj7sharp5-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            0,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "D",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dmaj7sharp5-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            11,
+                            11,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            3,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "dmaj7(#5)"
             }
         },
         {
@@ -1713,9 +5293,177 @@
                             "C#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "dmaj9-a-gen-2",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dmaj9-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            11,
+                            9,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            4,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C#",
+                            "E",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmaj9-d-gen-11",
+                        "frets": [
+                            -1,
+                            -1,
+                            12,
+                            11,
+                            14,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 11,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "dmaj9"
+            }
+        },
+        {
+            "id": 7674,
+            "type": "guitar_chord",
+            "name": "Dmaj9#11",
+            "root_note": "D",
+            "instrument": "guitar",
+            "slug": "dmaj9#11",
+            "data": {
+                "symbol": "Dmaj9#11",
+                "bookSymbol": "Dmaj9(#11)",
+                "root": "D",
+                "quality": "major",
+                "family": "maj9#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "dmaj9sharp11-e-gen-9",
+                        "frets": [
+                            10,
+                            9,
+                            11,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C#",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "dmaj9sharp11-a-gen-4",
+                        "frets": [
+                            -1,
+                            5,
+                            4,
+                            6,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            4,
+                            3,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "D",
+                            "F#",
+                            "C#",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "dmaj9#11"
             }
         },
         {
@@ -1764,6 +5512,62 @@
                             "E"
                         ],
                         "source": "Standard Dsus2 (åpen)"
+                    },
+                    {
+                        "id": "dsus2-a-gen-5",
+                        "frets": [
+                            -1,
+                            5,
+                            7,
+                            7,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "D",
+                            "A",
+                            "D",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dsus2-e-gen-7",
+                        "frets": [
+                            10,
+                            7,
+                            7,
+                            7,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "D",
+                            "E",
+                            "A",
+                            "D",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "dsus2"
@@ -1815,6 +5619,63 @@
                             "G"
                         ],
                         "source": "Standard Dsus4 (åpen)"
+                    },
+                    {
+                        "id": "dsus4-a-gen-3",
+                        "frets": [
+                            -1,
+                            5,
+                            0,
+                            0,
+                            3,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            0,
+                            0,
+                            1,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "D",
+                            "D",
+                            "G",
+                            "D",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "dsus4-e-gen-10",
+                        "frets": [
+                            10,
+                            10,
+                            12,
+                            12,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 10,
+                        "notes": [
+                            "D",
+                            "G",
+                            "D",
+                            "G",
+                            "A",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "dsus4"

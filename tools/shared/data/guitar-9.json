@@ -1,7 +1,7 @@
 {
     "success": true,
     "source": "mysql",
-    "count": 30,
+    "count": 50,
     "results": [
         {
             "id": 39,
@@ -79,6 +79,33 @@
                             "A"
                         ],
                         "source": "A-dur E-form barre (5. bånd)"
+                    },
+                    {
+                        "id": "a-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a"
@@ -119,9 +146,9 @@
                         "fingers": [
                             0,
                             0,
-                            3,
-                            1,
+                            4,
                             2,
+                            3,
                             1
                         ],
                         "position": 1,
@@ -147,9 +174,9 @@
                         "fingers": [
                             0,
                             0,
-                            3,
+                            4,
                             2,
-                            1,
+                            3,
                             1
                         ],
                         "position": 5,
@@ -160,6 +187,61 @@
                             "A"
                         ],
                         "source": "Aaug forflyttet +-form (xx7665)"
+                    },
+                    {
+                        "id": "aaug-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            3,
+                            2,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "E#",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "aaug-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            10,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            3,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "aaug"
@@ -213,9 +295,172 @@
                             "C"
                         ],
                         "source": "Adim kompakt voicing (x0121x)"
+                    },
+                    {
+                        "id": "adim-e-gen-4",
+                        "frets": [
+                            5,
+                            0,
+                            -1,
+                            5,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            0,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "A",
+                            "C",
+                            "Eb",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "adim-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            8,
+                            10,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            4,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "A",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "adim"
+            }
+        },
+        {
+            "id": 7808,
+            "type": "guitar_chord",
+            "name": "Adim7",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "adim7",
+            "data": {
+                "symbol": "Adim7",
+                "bookSymbol": "Adim7",
+                "root": "A",
+                "quality": "dim",
+                "family": "dim7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "bb7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "adim7-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            2,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "A",
+                            "C",
+                            "Gb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "adim7-e-gen-4",
+                        "frets": [
+                            5,
+                            0,
+                            4,
+                            5,
+                            4,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            3,
+                            1,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "A",
+                            "Gb",
+                            "C",
+                            "Eb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "adim7-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            8,
+                            7,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "Gb",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "adim7"
             }
         },
         {
@@ -294,6 +539,33 @@
                             "A"
                         ],
                         "source": "Am E-form barre (5. bånd)"
+                    },
+                    {
+                        "id": "am-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am"
@@ -376,6 +648,90 @@
                             "G"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a11-e-gen-5",
+                        "frets": [
+                            5,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "A",
+                            "D",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a11-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            7,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a11"
@@ -459,9 +815,235 @@
                             "B"
                         ],
                         "source": "A13 kompakt voicing med rot på 6. streng"
+                    },
+                    {
+                        "id": "a13-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            4,
+                            0,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "F#",
+                            "G",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a13-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            4,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "F#",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "a13"
+            }
+        },
+        {
+            "id": 7821,
+            "type": "guitar_chord",
+            "name": "A13#11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a13#11",
+            "data": {
+                "symbol": "A13#11",
+                "bookSymbol": "A13(#11)",
+                "root": "A",
+                "quality": "major",
+                "family": "13#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "#11",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a13sharp11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            0,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            2,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a13sharp11-e-gen-5",
+                        "frets": [
+                            5,
+                            6,
+                            5,
+                            6,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G",
+                            "C#",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "a13#11"
+            }
+        },
+        {
+            "id": 7823,
+            "type": "guitar_chord",
+            "name": "A13b9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a13b9",
+            "data": {
+                "symbol": "A13b9",
+                "bookSymbol": "A13(b9)",
+                "root": "A",
+                "quality": "major",
+                "family": "13b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a13b9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            4,
+                            3,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            4,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "F#",
+                            "Bb",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a13b9-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            5,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            4,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "G",
+                            "Bb",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "a13b9"
             }
         },
         {
@@ -514,6 +1096,63 @@
                             "F#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a13sus4-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a13sus4-e-gen-4",
+                        "frets": [
+                            5,
+                            5,
+                            4,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "D",
+                            "F#",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
                     }
                 ],
                 "slug": "a13sus4"
@@ -563,6 +1202,89 @@
                             "A"
                         ],
                         "source": "A5 Power chord (A-root)"
+                    },
+                    {
+                        "id": "a5-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a5-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            2,
+                            2,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "E",
+                            "A",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a5-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a5"
@@ -616,6 +1338,62 @@
                             "F#"
                         ],
                         "source": "A6 åpen variant (x02222)"
+                    },
+                    {
+                        "id": "a6-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            4,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "F#",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a6-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            7,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "F#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a6"
@@ -624,13 +1402,13 @@
         {
             "id": 76,
             "type": "guitar_chord",
-            "name": "A6\/9",
+            "name": "A6/9",
             "root_note": "A",
             "instrument": "guitar",
             "slug": "a6-9",
             "data": {
-                "symbol": "A6\/9",
-                "bookSymbol": "A6\/9",
+                "symbol": "A6/9",
+                "bookSymbol": "A6/9",
                 "root": "A",
                 "quality": "major",
                 "family": "69",
@@ -670,6 +1448,90 @@
                             "F#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a6-9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            4,
+                            4,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "F#",
+                            "B",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a6-9-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            4,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "F#",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a6-9-d-gen-6",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a6-9"
@@ -752,9 +1614,369 @@
                             "A"
                         ],
                         "source": "A7 E-form barre"
+                    },
+                    {
+                        "id": "a7-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            2,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            5,
+                            0,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            0,
+                            4,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "G",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            8,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            2,
+                            4
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7"
+            }
+        },
+        {
+            "id": 7819,
+            "type": "guitar_chord",
+            "name": "A7#11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7#11",
+            "data": {
+                "symbol": "A7#11",
+                "bookSymbol": "A7(#11)",
+                "root": "A",
+                "quality": "major",
+                "family": "7#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7sharp11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            0,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7sharp11-e-gen-5",
+                        "frets": [
+                            5,
+                            6,
+                            5,
+                            6,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G",
+                            "C#",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7sharp11-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            8,
+                            8,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "a7#11"
+            }
+        },
+        {
+            "id": 7826,
+            "type": "guitar_chord",
+            "name": "A7#5#9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7#5#9",
+            "data": {
+                "symbol": "A7#5#9",
+                "bookSymbol": "A7(#5,#9)",
+                "root": "A",
+                "quality": "major",
+                "family": "7#5#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7sharp5sharp9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            5,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            4,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "B#",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7sharp5sharp9-e-gen-3",
+                        "frets": [
+                            5,
+                            3,
+                            3,
+                            6,
+                            6,
+                            3
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            3,
+                            3,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "A",
+                            "B#",
+                            "E#",
+                            "C#",
+                            "E#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "a7#5#9"
+            }
+        },
+        {
+            "id": 7827,
+            "type": "guitar_chord",
+            "name": "A7#5b9",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7#5b9",
+            "data": {
+                "symbol": "A7#5b9",
+                "bookSymbol": "A7(#5,b9)",
+                "root": "A",
+                "quality": "major",
+                "family": "7#5b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7sharp5b9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            3,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "Bb",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7sharp5b9-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            5,
+                            6,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            4,
+                            4,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "C#",
+                            "E#",
+                            "Bb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "a7#5b9"
             }
         },
         {
@@ -805,6 +2027,90 @@
                             "G"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a7sharp9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            5,
+                            5,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "G",
+                            "B#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7sharp9-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            5,
+                            5,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            3,
+                            4,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "G",
+                            "B#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7sharp9-d-gen-6",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            3
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "B#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7#9"
@@ -858,6 +2164,89 @@
                             "E#"
                         ],
                         "source": "A7(#5) 7#5 (A-root)"
+                    },
+                    {
+                        "id": "a7sharp5-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            0,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            0,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "G",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7sharp5-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            3,
+                            0,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "E#",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7sharp5-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            10,
+                            8,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7-#5"
@@ -910,9 +2299,201 @@
                             "C#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a7b5-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            0,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            0,
+                            2,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7b5-e-gen-5",
+                        "frets": [
+                            5,
+                            6,
+                            5,
+                            6,
+                            8,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C#",
+                            "G",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7b5-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            8,
+                            8,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7-b5"
+            }
+        },
+        {
+            "id": 7822,
+            "type": "guitar_chord",
+            "name": "A7b13",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a7b13",
+            "data": {
+                "symbol": "A7b13",
+                "bookSymbol": "A7(b13)",
+                "root": "A",
+                "quality": "major",
+                "family": "7b13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b7",
+                    "b13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a7b13-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            0,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            0,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "F",
+                            "G",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7b13-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            3,
+                            0,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            2,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "F",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7b13-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            10,
+                            8,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "F",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "a7b13"
             }
         },
         {
@@ -964,6 +2545,90 @@
                             "Bb"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a7b9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            3,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "Bb",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7b9-e-gen-5",
+                        "frets": [
+                            5,
+                            7,
+                            5,
+                            6,
+                            5,
+                            6
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C#",
+                            "E",
+                            "Bb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7b9-d-gen-6",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            8,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "Bb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7b9"
@@ -1017,6 +2682,61 @@
                             "E"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a7sus2-e-gen-5",
+                        "frets": [
+                            5,
+                            0,
+                            -1,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "A",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7sus2-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            2,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7sus2"
@@ -1070,6 +2790,89 @@
                             "E"
                         ],
                         "source": "A7sus4 7sus4 (A-root)"
+                    },
+                    {
+                        "id": "a7sus4-a-gen-3",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            0,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a7sus4-e-gen-5",
+                        "frets": [
+                            5,
+                            0,
+                            0,
+                            0,
+                            -1,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "A",
+                            "D",
+                            "G",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a7sus4-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            7,
+                            8,
+                            10
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a7sus4"
@@ -1152,9 +2955,313 @@
                             "B"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a9-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            5,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a9-d-gen-6",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a9"
+            }
+        },
+        {
+            "id": 7820,
+            "type": "guitar_chord",
+            "name": "A9#11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a9#11",
+            "data": {
+                "symbol": "A9#11",
+                "bookSymbol": "A9(#11)",
+                "root": "A",
+                "quality": "major",
+                "family": "9#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a9sharp11-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            5,
+                            4,
+                            4,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "B",
+                            "D#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a9sharp11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "B",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "a9#11"
+            }
+        },
+        {
+            "id": 7825,
+            "type": "guitar_chord",
+            "name": "A9(#5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a9(#5)",
+            "data": {
+                "symbol": "A9(#5)",
+                "bookSymbol": "A9(#5)",
+                "root": "A",
+                "quality": "major",
+                "family": "9#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a9sharp5-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            4,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            4,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "B",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a9sharp5-e-gen-3",
+                        "frets": [
+                            5,
+                            4,
+                            3,
+                            0,
+                            0,
+                            -1
+                        ],
+                        "fingers": [
+                            3,
+                            2,
+                            1,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "E#",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "a9(#5)"
+            }
+        },
+        {
+            "id": 7824,
+            "type": "guitar_chord",
+            "name": "A9(b5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "a9(b5)",
+            "data": {
+                "symbol": "A9(b5)",
+                "bookSymbol": "A9(b5)",
+                "root": "A",
+                "quality": "major",
+                "family": "9b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "a9b5-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            5,
+                            4,
+                            4,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G",
+                            "B",
+                            "Eb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a9b5-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "B",
+                            "C#",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "a9(b5)"
             }
         },
         {
@@ -1206,9 +3313,202 @@
                             "G"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "a9sus4-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "a9sus4-e-gen-5",
+                        "frets": [
+                            5,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "A",
+                            "D",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "a9sus4-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            7,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "a9sus4"
+            }
+        },
+        {
+            "id": 7810,
+            "type": "guitar_chord",
+            "name": "Aadd11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "aadd11",
+            "data": {
+                "symbol": "Aadd11",
+                "bookSymbol": "Aadd11",
+                "root": "A",
+                "quality": "major",
+                "family": "add11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "aadd11-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "D",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "aadd11-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            0,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            0,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "D",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "aadd11-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            7,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "aadd11"
             }
         },
         {
@@ -1287,9 +3587,174 @@
                             "E"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "aadd9-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            2,
+                            4,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            1,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "E",
+                            "B",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "aadd9-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            5,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            4
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "E",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "aadd9"
+            }
+        },
+        {
+            "id": 7809,
+            "type": "guitar_chord",
+            "name": "Am(add9)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am(add9)",
+            "data": {
+                "symbol": "Am(add9)",
+                "bookSymbol": "Am(add9)",
+                "root": "A",
+                "quality": "minor",
+                "family": "madd9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "amadd9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "amadd9-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            2,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            3,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "E",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "amadd9-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            5,
+                            5,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C",
+                            "E",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "am(add9)"
             }
         },
         {
@@ -1369,9 +3834,315 @@
                             "A"
                         ],
                         "source": "Am(maj7) E-form type"
+                    },
+                    {
+                        "id": "ammaj7-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            9,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            3,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am-maj7"
+            }
+        },
+        {
+            "id": 7811,
+            "type": "guitar_chord",
+            "name": "Am(maj9)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am(maj9)",
+            "data": {
+                "symbol": "Am(maj9)",
+                "bookSymbol": "Am(maj9)",
+                "root": "A",
+                "quality": "minor",
+                "family": "m(maj9)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "ammaj9-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            5,
+                            0,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            0,
+                            2
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "E",
+                            "C",
+                            "B",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "ammaj9-e-gen-5",
+                        "frets": [
+                            5,
+                            7,
+                            6,
+                            5,
+                            5,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            4
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C",
+                            "E",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "am(maj9)"
+            }
+        },
+        {
+            "id": 7816,
+            "type": "guitar_chord",
+            "name": "Am11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am11",
+            "data": {
+                "symbol": "Am11",
+                "bookSymbol": "Am11",
+                "root": "A",
+                "quality": "minor",
+                "family": "m11",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "am11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am11-e-gen-5",
+                        "frets": [
+                            5,
+                            5,
+                            5,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "am11-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            7,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "am11"
+            }
+        },
+        {
+            "id": 7817,
+            "type": "guitar_chord",
+            "name": "Am13",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am13",
+            "data": {
+                "symbol": "Am13",
+                "bookSymbol": "Am13",
+                "root": "A",
+                "quality": "minor",
+                "family": "m13",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9",
+                    "11",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "am13-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            0,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D",
+                            "G",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am13-e-gen-3",
+                        "frets": [
+                            5,
+                            3,
+                            4,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            3,
+                            1,
+                            2,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "A",
+                            "C",
+                            "F#",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "am13"
             }
         },
         {
@@ -1422,6 +4193,90 @@
                             "F#"
                         ],
                         "source": "Am6 åpen variant (x02212)"
+                    },
+                    {
+                        "id": "am6-a-gen-4",
+                        "frets": [
+                            -1,
+                            0,
+                            4,
+                            5,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            2,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "F#",
+                            "C",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am6-e-gen-4",
+                        "frets": [
+                            5,
+                            0,
+                            4,
+                            5,
+                            5,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            3,
+                            4,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "A",
+                            "F#",
+                            "C",
+                            "E",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "am6-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            7,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            1,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "F#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am6"
@@ -1430,13 +4285,13 @@
         {
             "id": 77,
             "type": "guitar_chord",
-            "name": "Am6\/9",
+            "name": "Am6/9",
             "root_note": "A",
             "instrument": "guitar",
             "slug": "am6-9",
             "data": {
-                "symbol": "Am6\/9",
-                "bookSymbol": "Am6\/9",
+                "symbol": "Am6/9",
+                "bookSymbol": "Am6/9",
                 "root": "A",
                 "quality": "minor",
                 "family": "m69",
@@ -1476,6 +4331,90 @@
                             "F#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "am6-9-a-gen-4",
+                        "frets": [
+                            -1,
+                            0,
+                            4,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "F#",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am6-9-e-gen-4",
+                        "frets": [
+                            5,
+                            0,
+                            4,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            3,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "A",
+                            "F#",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "am6-9-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            5,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am6-9"
@@ -1558,6 +4497,33 @@
                             "A"
                         ],
                         "source": "Am7 E-form barre"
+                    },
+                    {
+                        "id": "am7-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am7"
@@ -1610,6 +4576,89 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "am7b5-a-gen-4",
+                        "frets": [
+                            -1,
+                            0,
+                            5,
+                            5,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "G",
+                            "C",
+                            "Eb",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am7b5-e-gen-4",
+                        "frets": [
+                            5,
+                            0,
+                            5,
+                            5,
+                            4,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            3,
+                            4,
+                            1,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "A",
+                            "G",
+                            "C",
+                            "Eb"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "am7b5-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            8,
+                            8,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am7-b5"
@@ -1664,9 +4713,287 @@
                             "G"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "am9-a-gen-5",
+                        "frets": [
+                            -1,
+                            0,
+                            5,
+                            5,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "G",
+                            "C",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am9-e-gen-3",
+                        "frets": [
+                            5,
+                            3,
+                            5,
+                            0,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "A",
+                            "C",
+                            "G",
+                            "G",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "am9-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            5,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "C",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "am9"
+            }
+        },
+        {
+            "id": 7818,
+            "type": "guitar_chord",
+            "name": "Am9(b5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "am9(b5)",
+            "data": {
+                "symbol": "Am9(b5)",
+                "bookSymbol": "Am9(b5)",
+                "root": "A",
+                "quality": "minor",
+                "family": "m9b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "am9b5-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            4,
+                            1,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            1,
+                            2
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "B",
+                            "C",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "am9b5-e-gen-5",
+                        "frets": [
+                            5,
+                            6,
+                            5,
+                            5,
+                            8,
+                            7
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "Eb",
+                            "G",
+                            "C",
+                            "G",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "am9(b5)"
+            }
+        },
+        {
+            "id": 7815,
+            "type": "guitar_chord",
+            "name": "Amaj13",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "amaj13",
+            "data": {
+                "symbol": "Amaj13",
+                "bookSymbol": "Amaj13",
+                "root": "A",
+                "quality": "major",
+                "family": "maj13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "amaj13-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            2,
+                            1,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "amaj13-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            4,
+                            4,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "F#",
+                            "B",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "amaj13-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            7,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "F#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "amaj13"
             }
         },
         {
@@ -1744,9 +5071,284 @@
                             "G#"
                         ],
                         "source": "Amaj7 kompakt voicing (xx7654)"
+                    },
+                    {
+                        "id": "amaj7-e-gen-5",
+                        "frets": [
+                            5,
+                            7,
+                            6,
+                            6,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            4,
+                            2,
+                            3,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C#",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "amaj7-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "amaj7"
+            }
+        },
+        {
+            "id": 7813,
+            "type": "guitar_chord",
+            "name": "Amaj7#11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "amaj7#11",
+            "data": {
+                "symbol": "Amaj7#11",
+                "bookSymbol": "Amaj7(#11)",
+                "root": "A",
+                "quality": "major",
+                "family": "maj7#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "amaj7sharp11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            1,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "amaj7sharp11-e-gen-5",
+                        "frets": [
+                            5,
+                            6,
+                            6,
+                            6,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "amaj7sharp11-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            8,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "amaj7#11"
+            }
+        },
+        {
+            "id": 7812,
+            "type": "guitar_chord",
+            "name": "Amaj7(#5)",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "amaj7(#5)",
+            "data": {
+                "symbol": "Amaj7(#5)",
+                "bookSymbol": "Amaj7(#5)",
+                "root": "A",
+                "quality": "major",
+                "family": "maj7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "7"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "amaj7sharp5-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "G#",
+                            "C#",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "amaj7sharp5-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            6,
+                            6,
+                            6,
+                            4
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            3,
+                            3,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "amaj7sharp5-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            10,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "amaj7(#5)"
             }
         },
         {
@@ -1798,9 +5400,149 @@
                             "G#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "amaj9-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            6,
+                            4,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            4,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G#",
+                            "B",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "amaj9-d-gen-6",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            6,
+                            9,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "amaj9"
+            }
+        },
+        {
+            "id": 7814,
+            "type": "guitar_chord",
+            "name": "Amaj9#11",
+            "root_note": "A",
+            "instrument": "guitar",
+            "slug": "amaj9#11",
+            "data": {
+                "symbol": "Amaj9#11",
+                "bookSymbol": "Amaj9(#11)",
+                "root": "A",
+                "quality": "major",
+                "family": "maj9#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9",
+                    "#11"
+                ],
+                "aliases": [],
+                "variants": [
+                    {
+                        "id": "amaj9sharp11-a-gen-1",
+                        "frets": [
+                            -1,
+                            0,
+                            1,
+                            4,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            2,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "A",
+                            "D#",
+                            "B",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "amaj9sharp11-e-gen-4",
+                        "frets": [
+                            5,
+                            4,
+                            6,
+                            4,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "A",
+                            "C#",
+                            "G#",
+                            "B",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "amaj9#11"
             }
         },
         {
@@ -1850,6 +5592,62 @@
                             "E"
                         ],
                         "source": "Standard Asus2 (x02200)"
+                    },
+                    {
+                        "id": "asus2-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            2,
+                            2,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "E",
+                            "A",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "asus2-d-gen-7",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            9,
+                            10,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "A",
+                            "E",
+                            "A",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "asus2"
@@ -1931,6 +5729,90 @@
                             "A"
                         ],
                         "source": "Asus4 E-form barre"
+                    },
+                    {
+                        "id": "asus4-a-gen-2",
+                        "frets": [
+                            -1,
+                            0,
+                            0,
+                            2,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            0,
+                            1,
+                            2,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "D",
+                            "A",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "asus4-e-gen-2",
+                        "frets": [
+                            5,
+                            0,
+                            0,
+                            2,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            3,
+                            0,
+                            0,
+                            1,
+                            2,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "A",
+                            "A",
+                            "D",
+                            "A",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "asus4-d-gen-5",
+                        "frets": [
+                            -1,
+                            -1,
+                            7,
+                            7,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 5,
+                        "notes": [
+                            "A",
+                            "D",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "asus4"

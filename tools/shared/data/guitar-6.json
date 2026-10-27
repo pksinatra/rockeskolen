@@ -1,7 +1,7 @@
 {
     "success": true,
     "source": "mysql",
-    "count": 30,
+    "count": 50,
     "results": [
         {
             "id": 308,
@@ -81,6 +81,33 @@
                             "C#"
                         ],
                         "source": "F# A-form barre (9. bånd)"
+                    },
+                    {
+                        "id": "fsharp-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#"
@@ -136,6 +163,89 @@
                             "C##"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpaug-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            0,
+                            3,
+                            3,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            0,
+                            3,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C##",
+                            "A#",
+                            "C##"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpaug-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            7,
+                            7,
+                            10
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            1,
+                            1,
+                            4
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C##",
+                            "F#",
+                            "C##"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpaug-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            7,
+                            7,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            3,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C##",
+                            "F#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#aug"
@@ -191,9 +301,201 @@
                             "F#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpdim-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            -1,
+                            2,
+                            1,
+                            2
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            0,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "A",
+                            "C",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpdim-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            11,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpdim-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            5,
+                            7,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            4,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "F#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#dim"
+            }
+        },
+        {
+            "id": 7748,
+            "type": "guitar_chord",
+            "name": "F#dim7",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#dim7",
+            "data": {
+                "symbol": "F#dim7",
+                "bookSymbol": "F#dim7",
+                "root": "F#",
+                "quality": "dim",
+                "family": "dim7",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "bb7"
+                ],
+                "aliases": [
+                    "Gbdim7"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpdim7-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            1,
+                            2,
+                            1,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            3,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "Eb",
+                            "A",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpdim7-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            5,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "Eb",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharpdim7-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            8,
+                            7,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            4,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "Eb",
+                            "F#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#dim7"
             }
         },
         {
@@ -274,6 +576,33 @@
                             "C#"
                         ],
                         "source": "F#m A-form barre (9. bånd)"
+                    },
+                    {
+                        "id": "fsharpm-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            2,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#m"
@@ -331,6 +660,90 @@
                             "G#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp11-e-gen-2",
+                        "frets": [
+                            2,
+                            2,
+                            2,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp11-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp11-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#11"
@@ -389,9 +802,266 @@
                             "G#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp13-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp13-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            9,
+                            11,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A#",
+                            "D#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp13-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            4,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#13"
+            }
+        },
+        {
+            "id": 7761,
+            "type": "guitar_chord",
+            "name": "F#13#11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#13#11",
+            "data": {
+                "symbol": "F#13#11",
+                "bookSymbol": "F#13(#11)",
+                "root": "F#",
+                "quality": "major",
+                "family": "13#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "#11",
+                    "13"
+                ],
+                "aliases": [
+                    "Gb13#11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp13sharp11-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G#",
+                            "B#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp13sharp11-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            9,
+                            11,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            3
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E",
+                            "A#",
+                            "D#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#13#11"
+            }
+        },
+        {
+            "id": 7763,
+            "type": "guitar_chord",
+            "name": "F#13b9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#13b9",
+            "data": {
+                "symbol": "F#13b9",
+                "bookSymbol": "F#13(b9)",
+                "root": "F#",
+                "quality": "major",
+                "family": "13b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "b9",
+                    "13"
+                ],
+                "aliases": [
+                    "Gb13b9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp13b9-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            1,
+                            0,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            0,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp13b9-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            8,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G",
+                            "D#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#13b9"
             }
         },
         {
@@ -444,6 +1114,90 @@
                             "D#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp13sus4-e-gen-1",
+                        "frets": [
+                            2,
+                            2,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "D#",
+                            "G#",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp13sus4-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            4,
+                            4,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "D#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharp13sus4-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            9,
+                            9,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "G#",
+                            "D#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
                     }
                 ],
                 "slug": "f#13sus4"
@@ -493,6 +1247,58 @@
                             "F#"
                         ],
                         "source": "F#5 Power chord (A-root)"
+                    },
+                    {
+                        "id": "fsharp5-e-gen-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            2,
+                            0,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp5-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            7,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#5"
@@ -549,6 +1355,89 @@
                             "F#"
                         ],
                         "source": "F#6 basert på F6-form transponert"
+                    },
+                    {
+                        "id": "fsharp6-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            11,
+                            11,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A#",
+                            "D#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp6-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            1,
+                            3,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp6-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            4,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            1,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "D#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#6"
@@ -557,13 +1446,13 @@
         {
             "id": 339,
             "type": "guitar_chord",
-            "name": "F#6\/9",
+            "name": "F#6/9",
             "root_note": "F#",
             "instrument": "guitar",
             "slug": "f#6-9",
             "data": {
-                "symbol": "F#6\/9",
-                "bookSymbol": "F#6\/9",
+                "symbol": "F#6/9",
+                "bookSymbol": "F#6/9",
                 "root": "F#",
                 "quality": "major",
                 "family": "69",
@@ -603,6 +1492,89 @@
                             "D#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp6-9-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp6-9-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            8,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp6-9-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#6-9"
@@ -659,9 +1631,375 @@
                             "F#"
                         ],
                         "source": "F#7 E-form barre"
+                    },
+                    {
+                        "id": "fsharp7-e-gen-2",
+                        "frets": [
+                            2,
+                            4,
+                            2,
+                            3,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            1,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            9,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp7-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#7"
+            }
+        },
+        {
+            "id": 7759,
+            "type": "guitar_chord",
+            "name": "F#7#11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7#11",
+            "data": {
+                "symbol": "F#7#11",
+                "bookSymbol": "F#7(#11)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "#11"
+                ],
+                "aliases": [
+                    "Gb7#11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7sharp11-e-gen-2",
+                        "frets": [
+                            2,
+                            3,
+                            2,
+                            3,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E",
+                            "A#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sharp11-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            9,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp7sharp11-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            5,
+                            5,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#7#11"
+            }
+        },
+        {
+            "id": 7766,
+            "type": "guitar_chord",
+            "name": "F#7#5#9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7#5#9",
+            "data": {
+                "symbol": "F#7#5#9",
+                "bookSymbol": "F#7(#5,#9)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7#5#9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "#9"
+                ],
+                "aliases": [
+                    "Gb7#5#9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7sharp5sharp9-e-gen-2",
+                        "frets": [
+                            2,
+                            0,
+                            0,
+                            3,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            0,
+                            0,
+                            2,
+                            2,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "G##",
+                            "C##",
+                            "A#",
+                            "C##",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sharp5sharp9-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            10,
+                            10
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            4
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G##",
+                            "C##"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#7#5#9"
+            }
+        },
+        {
+            "id": 7767,
+            "type": "guitar_chord",
+            "name": "F#7#5b9",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7#5b9",
+            "data": {
+                "symbol": "F#7#5b9",
+                "bookSymbol": "F#7(#5,b9)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7#5b9",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "b9"
+                ],
+                "aliases": [
+                    "Gb7#5b9"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7sharp5b9-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            0,
+                            0,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            0,
+                            0,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C##",
+                            "G",
+                            "C##",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sharp5b9-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            8,
+                            10
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G",
+                            "C##"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#7#5b9"
             }
         },
         {
@@ -689,32 +2027,87 @@
                 ],
                 "variants": [
                     {
-                        "id": "fsharp7#9-shape-2",
+                        "id": "fsharp7sharp9-e-gen-2",
                         "frets": [
                             2,
-                            1,
-                            2,
-                            2,
+                            0,
+                            4,
+                            3,
                             5,
-                            -1
+                            0
                         ],
                         "fingers": [
-                            2,
                             1,
-                            2,
-                            2,
+                            0,
                             3,
+                            2,
+                            4,
                             0
                         ],
                         "position": 2,
                         "notes": [
                             "F#",
+                            "G##",
+                            "F#",
                             "A#",
                             "E",
-                            "G##",
                             "E"
                         ],
-                        "source": "Music-theory audit: corrected standard-tuning voicing"
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sharp9-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G##"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharp7sharp9-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            10,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            0
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G##"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
                     }
                 ],
                 "slug": "f#7#9"
@@ -768,6 +2161,62 @@
                             "C##"
                         ],
                         "source": "F#7(#5) 7#5 (A-root)"
+                    },
+                    {
+                        "id": "fsharp7sharp5-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            0,
+                            3,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            0,
+                            3,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C##",
+                            "A#",
+                            "C##",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sharp5-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C##",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#7-#5"
@@ -821,9 +2270,203 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp7b5-e-gen-2",
+                        "frets": [
+                            2,
+                            3,
+                            2,
+                            3,
+                            -1,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            3,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "E",
+                            "A#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7b5-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            9,
+                            11,
+                            12
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "E",
+                            "A#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp7b5-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            5,
+                            5,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "E",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#7-b5"
+            }
+        },
+        {
+            "id": 7762,
+            "type": "guitar_chord",
+            "name": "F#7b13",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#7b13",
+            "data": {
+                "symbol": "F#7b13",
+                "bookSymbol": "F#7(b13)",
+                "root": "F#",
+                "quality": "major",
+                "family": "7b13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b7",
+                    "b13"
+                ],
+                "aliases": [
+                    "Gb7b13"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp7b13-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            0,
+                            3,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            0,
+                            3,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D",
+                            "A#",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7b13-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            12,
+                            9,
+                            11,
+                            10
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            1,
+                            3,
+                            2
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "D",
+                            "E",
+                            "A#",
+                            "D"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp7b13-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#7b13"
             }
         },
         {
@@ -878,6 +2521,61 @@
                             "E"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp7b9-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            8,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            1,
+                            4
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp7b9-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            5,
+                            3
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#7b9"
@@ -931,6 +2629,62 @@
                             "C#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp7sus2-e-gen-1",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            1,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            4,
+                            4,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "G#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sus2-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            2,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#7sus2"
@@ -984,6 +2738,90 @@
                             "C#"
                         ],
                         "source": "F#7sus4 7sus4 (A-root)"
+                    },
+                    {
+                        "id": "fsharp7sus4-e-gen-2",
+                        "frets": [
+                            2,
+                            2,
+                            2,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp7sus4-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            4,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharp7sus4-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            9,
+                            7,
+                            7
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "F#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
                     }
                 ],
                 "slug": "f#7sus4"
@@ -1041,9 +2879,321 @@
                             "F#"
                         ],
                         "source": "F#9 tett voicing"
+                    },
+                    {
+                        "id": "fsharp9-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp9-a-gen-6",
+                        "frets": [
+                            -1,
+                            9,
+                            6,
+                            9,
+                            7,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            4,
+                            2,
+                            1
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "F#",
+                            "G#",
+                            "E",
+                            "F#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp9-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#9"
+            }
+        },
+        {
+            "id": 7760,
+            "type": "guitar_chord",
+            "name": "F#9#11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#9#11",
+            "data": {
+                "symbol": "F#9#11",
+                "bookSymbol": "F#9(#11)",
+                "root": "F#",
+                "quality": "major",
+                "family": "9#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7",
+                    "9",
+                    "#11"
+                ],
+                "aliases": [
+                    "Gb9#11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp9sharp11-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "B#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp9sharp11-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            9,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "B#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#9#11"
+            }
+        },
+        {
+            "id": 7765,
+            "type": "guitar_chord",
+            "name": "F#9(#5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#9(#5)",
+            "data": {
+                "symbol": "F#9(#5)",
+                "bookSymbol": "F#9(#5)",
+                "root": "F#",
+                "quality": "major",
+                "family": "9#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [
+                    "Gb9(#5)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp9sharp5-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            3,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            4,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "C##",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "f#9(#5)"
+            }
+        },
+        {
+            "id": 7764,
+            "type": "guitar_chord",
+            "name": "F#9(b5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#9(b5)",
+            "data": {
+                "symbol": "F#9(b5)",
+                "bookSymbol": "F#9(b5)",
+                "root": "F#",
+                "quality": "major",
+                "family": "9b5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "b5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [
+                    "Gb9(b5)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharp9b5-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp9b5-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            9,
+                            9,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E",
+                            "G#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#9(b5)"
             }
         },
         {
@@ -1095,9 +3245,203 @@
                             "E"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharp9sus4-e-gen-1",
+                        "frets": [
+                            2,
+                            2,
+                            2,
+                            1,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            2,
+                            2,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "G#",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharp9sus4-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            9,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharp9sus4-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            4,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#9sus4"
+            }
+        },
+        {
+            "id": 7750,
+            "type": "guitar_chord",
+            "name": "F#add11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#add11",
+            "data": {
+                "symbol": "F#add11",
+                "bookSymbol": "F#add11",
+                "root": "F#",
+                "quality": "major",
+                "family": "add11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "11"
+                ],
+                "aliases": [
+                    "Gbadd11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpadd11-e-gen-2",
+                        "frets": [
+                            2,
+                            2,
+                            4,
+                            3,
+                            0,
+                            -1
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            3,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "F#",
+                            "A#",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpadd11-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            11,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            2,
+                            2,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "F#",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpadd11-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            0,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            0,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "B",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#add11"
             }
         },
         {
@@ -1150,9 +3494,202 @@
                             "G#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpadd9-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            4,
+                            1,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            4,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "F#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpadd9-a-gen-6",
+                        "frets": [
+                            -1,
+                            9,
+                            6,
+                            6,
+                            7,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "F#",
+                            "G#",
+                            "C#",
+                            "F#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpadd9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            1,
+                            4
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#add9"
+            }
+        },
+        {
+            "id": 7749,
+            "type": "guitar_chord",
+            "name": "F#m(add9)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m(add9)",
+            "data": {
+                "symbol": "F#m(add9)",
+                "bookSymbol": "F#m(add9)",
+                "root": "F#",
+                "quality": "minor",
+                "family": "madd9",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "9"
+                ],
+                "aliases": [
+                    "Gbm(add9)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmadd9-e-gen-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            2,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            3,
+                            1,
+                            1,
+                            4
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "A",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmadd9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            2,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharpmadd9-a-gen-6",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            6,
+                            9,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            2,
+                            1,
+                            4,
+                            0
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#m(add9)"
             }
         },
         {
@@ -1206,9 +3743,375 @@
                             "F#"
                         ],
                         "source": "F#m(maj7) E-form type"
+                    },
+                    {
+                        "id": "fsharpmmaj7-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            10,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            4,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpmmaj7-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            6,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            3,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#m-maj7"
+            }
+        },
+        {
+            "id": 7751,
+            "type": "guitar_chord",
+            "name": "F#m(maj9)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m(maj9)",
+            "data": {
+                "symbol": "F#m(maj9)",
+                "bookSymbol": "F#m(maj9)",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m(maj9)",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "7",
+                    "9"
+                ],
+                "aliases": [
+                    "Gbm(maj9)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmmaj9-e-gen-2",
+                        "frets": [
+                            2,
+                            4,
+                            3,
+                            2,
+                            2,
+                            4
+                        ],
+                        "fingers": [
+                            1,
+                            3,
+                            2,
+                            1,
+                            1,
+                            4
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A",
+                            "C#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmmaj9-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            10,
+                            9,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            4,
+                            3,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#m(maj9)"
+            }
+        },
+        {
+            "id": 7756,
+            "type": "guitar_chord",
+            "name": "F#m11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m11",
+            "data": {
+                "symbol": "F#m11",
+                "bookSymbol": "F#m11",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m11",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9",
+                    "11"
+                ],
+                "aliases": [
+                    "Gbm11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpm11-e-gen-2",
+                        "frets": [
+                            2,
+                            2,
+                            2,
+                            2,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "A",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm11-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            9,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpm11-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            4,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            1,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#m11"
+            }
+        },
+        {
+            "id": 7757,
+            "type": "guitar_chord",
+            "name": "F#m13",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m13",
+            "data": {
+                "symbol": "F#m13",
+                "bookSymbol": "F#m13",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m13",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7",
+                    "9",
+                    "11",
+                    "13"
+                ],
+                "aliases": [
+                    "Gbm13"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpm13-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "G#",
+                            "B",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm13-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            9,
+                            10,
+                            11
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            1,
+                            2,
+                            3
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "E",
+                            "A",
+                            "D#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpm13-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            2,
+                            4,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#m13"
             }
         },
         {
@@ -1262,6 +4165,89 @@
                             "F#"
                         ],
                         "source": "F#m6 tett voicing"
+                    },
+                    {
+                        "id": "fsharpm6-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            1,
+                            2,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            3,
+                            4,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm6-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            8,
+                            7,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            2,
+                            1,
+                            4
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "F#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpm6-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            4,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            3,
+                            1,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "D#",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#m6"
@@ -1270,13 +4256,13 @@
         {
             "id": 340,
             "type": "guitar_chord",
-            "name": "F#m6\/9",
+            "name": "F#m6/9",
             "root_note": "F#",
             "instrument": "guitar",
             "slug": "f#m6-9",
             "data": {
-                "symbol": "F#m6\/9",
-                "bookSymbol": "F#m6\/9",
+                "symbol": "F#m6/9",
+                "bookSymbol": "F#m6/9",
                 "root": "F#",
                 "quality": "minor",
                 "family": "m69",
@@ -1316,6 +4302,88 @@
                             "D#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpm6-9-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            2,
+                            -1
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            1,
+                            1,
+                            3,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm6-9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            2,
+                            4,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            3,
+                            4
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharpm6-9-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            8,
+                            9,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            2,
+                            4,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "D#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
                     }
                 ],
                 "slug": "f#m6-9"
@@ -1372,6 +4440,90 @@
                             "F#"
                         ],
                         "source": "F#m7 E-form barre"
+                    },
+                    {
+                        "id": "fsharpm7-e-gen-2",
+                        "frets": [
+                            2,
+                            4,
+                            2,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            1,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm7-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            9,
+                            10,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E",
+                            "A",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpm7-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            2,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#m7"
@@ -1425,6 +4577,90 @@
                             "C"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpm7b5-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            2,
+                            2,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            3,
+                            4,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E",
+                            "A",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm7b5-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            5,
+                            5,
+                            5
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C",
+                            "E",
+                            "A"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    },
+                    {
+                        "id": "fsharpm7b5-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            9,
+                            7,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            4,
+                            1,
+                            2
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E",
+                            "F#",
+                            "C"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
                     }
                 ],
                 "slug": "f#m7-b5"
@@ -1479,9 +4715,262 @@
                             "E"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpm9-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            2,
+                            1,
+                            2,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            3,
+                            1,
+                            4,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E",
+                            "G#",
+                            "C#",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpm9-a-gen-7",
+                        "frets": [
+                            -1,
+                            9,
+                            7,
+                            9,
+                            9,
+                            -1
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            3,
+                            4,
+                            0
+                        ],
+                        "position": 7,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpm9-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            2,
+                            5,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#m9"
+            }
+        },
+        {
+            "id": 7758,
+            "type": "guitar_chord",
+            "name": "F#m9(b5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#m9(b5)",
+            "data": {
+                "symbol": "F#m9(b5)",
+                "bookSymbol": "F#m9(b5)",
+                "root": "F#",
+                "quality": "minor",
+                "family": "m9b5",
+                "formulaDegrees": [
+                    "1",
+                    "b3",
+                    "b5",
+                    "b7",
+                    "9"
+                ],
+                "aliases": [
+                    "Gbm9(b5)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpm9b5-e-gen-1",
+                        "frets": [
+                            2,
+                            0,
+                            2,
+                            1,
+                            1,
+                            0
+                        ],
+                        "fingers": [
+                            2,
+                            0,
+                            3,
+                            1,
+                            1,
+                            0
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A",
+                            "E",
+                            "G#",
+                            "C",
+                            "E"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    }
+                ],
+                "slug": "f#m9(b5)"
+            }
+        },
+        {
+            "id": 7755,
+            "type": "guitar_chord",
+            "name": "F#maj13",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#maj13",
+            "data": {
+                "symbol": "F#maj13",
+                "bookSymbol": "F#maj13",
+                "root": "F#",
+                "quality": "major",
+                "family": "maj13",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9",
+                    "13"
+                ],
+                "aliases": [
+                    "Gbmaj13"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmaj13-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            2,
+                            1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            1,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "G#",
+                            "C#",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmaj13-a-gen-6",
+                        "frets": [
+                            -1,
+                            9,
+                            6,
+                            8,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            3,
+                            1,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "F#",
+                            "G#",
+                            "D#",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpmaj13-d-gen-1",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            4,
+                            1
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "D#",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#maj13"
             }
         },
         {
@@ -1535,9 +5024,287 @@
                             "F#"
                         ],
                         "source": "F#maj7 E-form type"
+                    },
+                    {
+                        "id": "fsharpmaj7-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            10,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            3,
+                            2,
+                            4,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpmaj7-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            2,
+                            2
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#maj7"
+            }
+        },
+        {
+            "id": 7753,
+            "type": "guitar_chord",
+            "name": "F#maj7#11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#maj7#11",
+            "data": {
+                "symbol": "F#maj7#11",
+                "bookSymbol": "F#maj7(#11)",
+                "root": "F#",
+                "quality": "major",
+                "family": "maj7#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "#11"
+                ],
+                "aliases": [
+                    "Gbmaj7#11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmaj7sharp11-e-gen-2",
+                        "frets": [
+                            2,
+                            3,
+                            3,
+                            3,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E#",
+                            "A#",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmaj7sharp11-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            10,
+                            10,
+                            11,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E#",
+                            "A#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpmaj7sharp11-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            5,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "B#",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#maj7#11"
+            }
+        },
+        {
+            "id": 7752,
+            "type": "guitar_chord",
+            "name": "F#maj7(#5)",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#maj7(#5)",
+            "data": {
+                "symbol": "F#maj7(#5)",
+                "bookSymbol": "F#maj7(#5)",
+                "root": "F#",
+                "quality": "major",
+                "family": "maj7#5",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "#5",
+                    "7"
+                ],
+                "aliases": [
+                    "Gbmaj7(#5)"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmaj7sharp5-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            3,
+                            3,
+                            3,
+                            1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            3,
+                            3,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E#",
+                            "A#",
+                            "C##",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmaj7sharp5-a-gen-6",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            7,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            4,
+                            3,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "C##",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpmaj7sharp5-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            7,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            4,
+                            2,
+                            3
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C##",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
+                    }
+                ],
+                "slug": "f#maj7(#5)"
             }
         },
         {
@@ -1589,9 +5356,179 @@
                             "E#"
                         ],
                         "source": "Music-theory audit: corrected standard-tuning voicing"
+                    },
+                    {
+                        "id": "fsharpmaj9-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            2,
+                            1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            4,
+                            1,
+                            3,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E#",
+                            "G#",
+                            "C#",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmaj9-a-gen-6",
+                        "frets": [
+                            -1,
+                            9,
+                            6,
+                            6,
+                            6,
+                            6
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 6,
+                        "notes": [
+                            "F#",
+                            "G#",
+                            "C#",
+                            "E#",
+                            "A#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpmaj9-d-gen-3",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            3,
+                            6,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            1,
+                            4,
+                            3
+                        ],
+                        "position": 3,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#maj9"
+            }
+        },
+        {
+            "id": 7754,
+            "type": "guitar_chord",
+            "name": "F#maj9#11",
+            "root_note": "F#",
+            "instrument": "guitar",
+            "slug": "f#maj9#11",
+            "data": {
+                "symbol": "F#maj9#11",
+                "bookSymbol": "F#maj9(#11)",
+                "root": "F#",
+                "quality": "major",
+                "family": "maj9#11",
+                "formulaDegrees": [
+                    "1",
+                    "3",
+                    "5",
+                    "7",
+                    "9",
+                    "#11"
+                ],
+                "aliases": [
+                    "Gbmaj9#11"
+                ],
+                "variants": [
+                    {
+                        "id": "fsharpmaj9sharp11-e-gen-1",
+                        "frets": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            1
+                        ],
+                        "fingers": [
+                            2,
+                            1,
+                            3,
+                            1,
+                            1,
+                            1
+                        ],
+                        "position": 1,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E#",
+                            "G#",
+                            "B#",
+                            "E#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpmaj9sharp11-a-gen-8",
+                        "frets": [
+                            -1,
+                            9,
+                            8,
+                            10,
+                            9,
+                            8
+                        ],
+                        "fingers": [
+                            0,
+                            2,
+                            1,
+                            4,
+                            3,
+                            1
+                        ],
+                        "position": 8,
+                        "notes": [
+                            "F#",
+                            "A#",
+                            "E#",
+                            "G#",
+                            "B#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    }
+                ],
+                "slug": "f#maj9#11"
             }
         },
         {
@@ -1617,22 +5554,50 @@
                 ],
                 "variants": [
                     {
-                        "id": "fsharpsus2-open",
+                        "id": "fsharpsus2-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            11,
+                            11,
+                            9,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "G#",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpsus2-e-gen-1",
                         "frets": [
                             2,
                             4,
                             4,
                             1,
                             2,
-                            2
+                            -1
                         ],
                         "fingers": [
-                            1,
-                            3,
+                            2,
+                            4,
                             4,
                             1,
-                            2,
-                            2
+                            3,
+                            0
                         ],
                         "position": 1,
                         "notes": [
@@ -1640,10 +5605,36 @@
                             "C#",
                             "F#",
                             "G#",
-                            "C#",
-                            "F#"
+                            "C#"
                         ],
-                        "source": "F#sus2 inspirert av Fsus2-form"
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpsus2-d-gen-4",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            6,
+                            7,
+                            4
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            1,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 4,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "G#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#sus2"
@@ -1699,6 +5690,89 @@
                             "F#"
                         ],
                         "source": "F#sus4 E-form sus-variant"
+                    },
+                    {
+                        "id": "fsharpsus4-e-gen-2",
+                        "frets": [
+                            2,
+                            4,
+                            4,
+                            4,
+                            0,
+                            -1
+                        ],
+                        "fingers": [
+                            1,
+                            2,
+                            2,
+                            2,
+                            0,
+                            0
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "C#",
+                            "F#",
+                            "B",
+                            "B"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on E string)"
+                    },
+                    {
+                        "id": "fsharpsus4-a-gen-9",
+                        "frets": [
+                            -1,
+                            9,
+                            9,
+                            11,
+                            12,
+                            9
+                        ],
+                        "fingers": [
+                            0,
+                            1,
+                            1,
+                            2,
+                            3,
+                            1
+                        ],
+                        "position": 9,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "F#",
+                            "B",
+                            "C#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on A string)"
+                    },
+                    {
+                        "id": "fsharpsus4-d-gen-2",
+                        "frets": [
+                            -1,
+                            -1,
+                            4,
+                            4,
+                            2,
+                            2
+                        ],
+                        "fingers": [
+                            0,
+                            0,
+                            2,
+                            2,
+                            1,
+                            1
+                        ],
+                        "position": 2,
+                        "notes": [
+                            "F#",
+                            "B",
+                            "C#",
+                            "F#"
+                        ],
+                        "source": "Generated and verified 2026-10-27 (root on D string)"
                     }
                 ],
                 "slug": "f#sus4"
