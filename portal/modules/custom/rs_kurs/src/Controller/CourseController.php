@@ -29,10 +29,10 @@ final class CourseController extends ControllerBase {
     $h = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     $groups = [];
     foreach (CourseRegistry::all() as $course) {
-      $groups[$course['area'] ?? 'Kurs'][] = $course;
+      $groups[$course['area'] ?? 'Tester'][] = $course;
     }
     $html = '<div class="rs-kurs-overview">'
-      . '<p class="rs-kurs-lead">Korte kurs der du lytter, prøver og løser oppgaver. Kursene hører til læringsstiene, men kan også tas alene. Første leksjon er åpen for alle.</p>';
+      . '<p class="rs-kurs-lead">Korte tester der du lytter, prøver og løser oppgaver. Testene hører til læringsstiene, men kan også tas alene. Første leksjon er åpen for alle.</p>';
     foreach ($groups as $area => $courses) {
       $html .= '<section class="rs-kurs-group"><h2>' . $h($area) . '</h2><div class="rs-kurs-grid">';
       foreach ($courses as $course) {
@@ -50,7 +50,7 @@ final class CourseController extends ControllerBase {
           . '<p>' . $h($course['module']) . '</p>'
           . '<ol class="rs-kurs-lessons">' . $lessons . '</ol>'
           . $path
-          . '<span class="rs-kurs-start" aria-hidden="true">Start kurset →</span>'
+          . '<span class="rs-kurs-start" aria-hidden="true">Start testen →</span>'
           . '</article>';
       }
       $html .= '</div></section>';

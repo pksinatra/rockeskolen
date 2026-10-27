@@ -419,12 +419,12 @@ HTML;
     foreach ($class::all() as $course) {
       $cards .= '<a class="rs-compact-news-card" href="/kurs/' . $escape($course['slug']) . '">'
         . '<strong>' . $escape($course['title']) . '</strong>'
-        . '<span>' . $escape(($course['area'] ?? 'Kurs') . ' · ' . $class::lessonCount($course) . ' leksjoner. ' . $course['module']) . '</span>'
-        . '<b aria-hidden="true">Start kurset →</b></a>';
+        . '<span>' . $escape(($course['area'] ?? 'Test') . ' · ' . $class::lessonCount($course) . ' leksjoner. ' . $course['module']) . '</span>'
+        . '<b aria-hidden="true">Start testen →</b></a>';
     }
     return '<section class="rs-compact-news rs-compact-courses" aria-labelledby="rs-compact-courses-title">'
-      . '<h2 id="rs-compact-courses-title">Kurs</h2>'
-      . '<p class="rs-compact-courses-lead">Korte kurs der du lytter, prøver og løser oppgaver. Første leksjon er åpen for alle. <a href="/kurs">Se alle kurs →</a></p>'
+      . '<h2 id="rs-compact-courses-title">Tester</h2>'
+      . '<p class="rs-compact-courses-lead">Korte tester der du lytter, prøver og løser oppgaver. Første leksjon er åpen for alle. <a href="/kurs">Se alle tester →</a></p>'
       . '<div class="rs-compact-news-grid">' . $cards . '</div></section>';
   }
 
@@ -733,12 +733,12 @@ HTML;
    */
   private function descriptionForPath(string $path): string {
     if ($path === '/kurs') {
-      return 'Korte kurs i musikkteori og musikk i praksis der du lytter, prøver og løser oppgaver. Første leksjon er åpen for alle.';
+      return 'Korte tester i musikkteori og musikk i praksis der du lytter, prøver og løser oppgaver. Første leksjon er åpen for alle.';
     }
     if (preg_match('#^/kurs/([a-z0-9-]+)$#', $path, $match) && class_exists('\\Drupal\\rs_kurs\\CourseRegistry')) {
       $course = \Drupal\rs_kurs\CourseRegistry::bySlug($match[1]);
       if ($course !== NULL) {
-        return 'Kurs: ' . $course['title'] . '. ' . $course['module'];
+        return 'Test: ' . $course['title'] . '. ' . $course['module'];
       }
     }
     if ($path === '/komponister' || str_starts_with($path, '/komponister/')) {

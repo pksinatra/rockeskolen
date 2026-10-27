@@ -2,7 +2,7 @@ rs_kurs.overview:
   path: '/kurs'
   defaults:
     _controller: '\Drupal\rs_kurs\Controller\CourseController::overview'
-    _title: 'Kurs'
+    _title: 'Tester'
   requirements:
     _access: 'TRUE'
 

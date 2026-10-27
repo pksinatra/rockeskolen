@@ -95,7 +95,7 @@ final class TheoryPathPresentation {
     $course = self::course((int) $term->id(), $cache);
     if ($course !== NULL) {
       $html .= '<a class="rs-theory-path__course" href="' . Html::escape($course['url']) . '">'
-        . 'Øv videre i kurset «' . Html::escape($course['title']) . '»</a>';
+        . 'Test deg selv: «' . Html::escape($course['title']) . '»</a>';
     }
 
     $field = clone $variables['fields']['description__value'];
