@@ -103,7 +103,7 @@ body.rs-front { margin: 0; background: var(--f-bg); color: var(--f-text); font-f
 /* Bunn */
 .f-footer { margin-top: clamp(64px, 9vw, 120px); padding: 40px 0; border-top: 1px solid var(--f-line); color: var(--f-muted); font-size: 14px; }
 .f-footer .f-wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
-.f-footer img { width: 130px; opacity: .8; }
+.f-footer img { width: 130px; height: auto; opacity: .8; }
 .f-footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 .f-footer a { color: #fff; text-decoration: none; font-weight: 700; }
 .f-footer a:hover { color: var(--f-red-2); }

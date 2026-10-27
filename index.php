@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/includes/front.css?v=20261025-1">
+  <link rel="stylesheet" href="/includes/front.css?v=20261027-1">
 </head>
 <body class="rs-front">
   <header class="f-header">
@@ -47,7 +47,7 @@
     <section class="f-hero" aria-labelledby="f-title">
       <div class="f-wrap">
         <div>
-          <p class="f-kicker">Rockeskolen · musikk på nett og i virkeligheten</p>
+          <p class="f-kicker">Rockeskolen </p>
           <h1 id="f-title"><span>Spill.</span><span>Utforsk.</span><span>Lag musikk.</span></h1>
           <p class="f-hero-lead">Musikkteori du kan høre, verktøy du kan spille på, og workshops der vi lager musikk sammen.</p>
           <div class="f-hero-actions">
@@ -153,7 +153,6 @@
   <footer class="f-footer">
     <div class="f-wrap">
       <img src="/images/rock-logo.png" alt="Rockeskolen" width="600" height="210">
-      <span>Musikk på nett og i virkeligheten.</span>
       <nav aria-label="Bunnmeny">
         <a href="https://portal.rockeskolen.com">Musikkportalen</a>
         <a href="/workshop/">Workshops</a>
