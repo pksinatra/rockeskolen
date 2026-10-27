@@ -62,6 +62,8 @@
           <select id="extension">
             <option value="maj">Major (triad)</option>
             <option value="min">Minor (triad)</option>
+            <option value="dim">dim</option>
+            <option value="aug">aug</option>
             <option value="5">5 (power)</option>
             <option value="6">6</option>
             <option value="m6">m6</option>
@@ -87,6 +89,27 @@
             <option value="11">11</option>
             <option value="13">13</option>
             <option value="13sus4">13sus4</option>
+            <option value="dim7">dim7</option>
+            <option value="m(maj7)">m(maj7)</option>
+            <option value="m(maj9)">m(maj9)</option>
+            <option value="madd9">m(add9)</option>
+            <option value="add11">add11</option>
+            <option value="maj7#5">maj7(#5)</option>
+            <option value="maj7#11">maj7(#11)</option>
+            <option value="maj9#11">maj9(#11)</option>
+            <option value="maj13">maj13</option>
+            <option value="m11">m11</option>
+            <option value="m13">m13</option>
+            <option value="m9b5">m9(b5)</option>
+            <option value="7#11">7(#11)</option>
+            <option value="9#11">9(#11)</option>
+            <option value="13#11">13(#11)</option>
+            <option value="7b13">7(b13)</option>
+            <option value="13b9">13(b9)</option>
+            <option value="9b5">9(b5)</option>
+            <option value="9#5">9(#5)</option>
+            <option value="7#5#9">7(#5,#9)</option>
+            <option value="7#5b9">7(#5,b9)</option>
             <option value="altered">Legacy: altered bucket</option>
           </select>
         </div>
@@ -139,6 +162,6 @@
   <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
 
   <!-- Stable full UI (clone of Beta Final + inlays/harmonics) -->
-  <script src="./ui.js?v=20261022-1"></script>
+  <script src="./ui.js?v=20261027-1"></script>
 </body>
 </html>

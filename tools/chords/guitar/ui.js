@@ -480,6 +480,16 @@ function parseChordType(chordType) {
 
   if (chordType === "altered") return { quality: "major", family: "altered" };
 
+  // Added 2026-10-27: extended and altered types
+  const MORE_TYPES = {
+    dim7: "dim", "m(maj9)": "minor", madd9: "minor", add11: "major",
+    "maj7#5": "major", "maj7#11": "major", "maj9#11": "major", maj13: "major",
+    m11: "minor", m13: "minor", m9b5: "minor", "7#11": "major", "9#11": "major",
+    "13#11": "major", "7b13": "major", "13b9": "major", "9b5": "major",
+    "9#5": "major", "7#5#9": "major", "7#5b9": "major"
+  };
+  if (MORE_TYPES[chordType]) return { quality: MORE_TYPES[chordType], family: chordType };
+
   // fallback: major triad
   return { quality: "major", family: "plain" };
 }
@@ -523,7 +533,27 @@ function parseChordType(chordType) {
         "9": "9",
         "11": "11",
         "13": "13",
-        altered: "Altered / crazychords"
+        altered: "Altered / crazychords",
+        dim7: "dim7",
+        "m(maj9)": "m(maj9)",
+        madd9: "m(add9)",
+        add11: "add11",
+        "maj7#5": "maj7(#5)",
+        "maj7#11": "maj7(#11)",
+        "maj9#11": "maj9(#11)",
+        maj13: "maj13",
+        m11: "m11",
+        m13: "m13",
+        m9b5: "m9(b5)",
+        "7#11": "7(#11)",
+        "9#11": "9(#11)",
+        "13#11": "13(#11)",
+        "7b13": "7(b13)",
+        "13b9": "13(b9)",
+        "9b5": "9(b5)",
+        "9#5": "9(#5)",
+        "7#5#9": "7(#5,#9)",
+        "7#5b9": "7(#5,b9)"
       };
       return map[family] || family;
     }
