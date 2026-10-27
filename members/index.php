@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class="row" style="justify-content:space-between;">
         <span class="pill">Logget inn som <strong style="color:var(--text);"><?= htmlspecialchars($u['email']) ?></strong></span>
-        <span class="pill">Plan: <strong style="color:var(--text);"><?= $isPro ? 'Pro' : 'Free' ?></strong></span>
+        <span class="pill">Plan: <strong style="color:var(--text);"><?= $isPro ? 'VIP' : 'Free' ?></strong></span>
       </div>
 
       <?php if ($updated): ?>
