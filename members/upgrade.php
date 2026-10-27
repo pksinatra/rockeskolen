@@ -265,7 +265,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
     <div class="pricing-badge">Introduksjonstilbud</div>
     <h1 class="hero-title">Bli VIP-medlem og få full tilgang med én gang</h1>
     <p class="hero-lead">
-      Lås opp alle akkorder, skalaer og verktøy i Rockeskolen for 39,90 kr/mnd eller 299 kr/år. Dette er medlemskapet for deg som vil ha hele verktøykassa tilgjengelig – uten sperrer og uten omveier.
+      Lås opp alle akkorder, skalaer og verktøy i Rockeskolen. Dette er medlemskapet for deg som vil ha hele verktøykassa tilgjengelig – uten sperrer og uten omveier.
     </p>
 
     <div class="cta-top">
@@ -292,16 +292,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_checkout'])) {
 
   <div class="feature-item">
     <strong>Full tilgang til hele Rockeskolen</strong>
-    Åpne alle artikler, verktøy og ressurser – uten begrensninger.
+    Åpne alle artikler, kurs, verktøy og ressurser – uten begrensninger.
   </div>
 
   <div class="feature-item">
     <strong>Alt av verktøy – uten sperrer</strong>
     Bruk akkordfinner, skalaer og andre verktøy fritt, når du trenger det.
-  </div>
-
-  <div class="feature-item">
-    VIP inkluderer Pro-funksjonene i ChordLink.
   </div>
 
   <div class="feature-item">
