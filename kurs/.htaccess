@@ -3,3 +3,4 @@ RedirectMatch 302 ^/kurs/?$ https://portal.rockeskolen.com/kurs
 RedirectMatch 302 ^/kurs/musikkteori(\.html)?$ https://portal.rockeskolen.com/kurs/musikkteori
 RedirectMatch 302 ^/kurs/gi-ut-din-egen-musikk(\.html)?$ https://portal.rockeskolen.com/kurs/gi-ut-din-egen-musikk
 RedirectMatch 302 ^/kurs/rytme(\.html)?$ https://portal.rockeskolen.com/kurs/rytme
+RedirectMatch 302 ^/kurs/intervaller(\.html)?$ https://portal.rockeskolen.com/kurs/intervaller

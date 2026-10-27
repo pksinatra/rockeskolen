@@ -38,6 +38,20 @@ final class CourseRegistry {
         ['title' => 'Hør rytmen', 'sub' => 'Lytteprøve'],
       ],
     ],
+    3 => [
+      'slug' => 'intervaller',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Intervaller', 'url' => '/taxonomy/term/36'],
+      'title' => 'Intervaller',
+      'module' => 'Modul 1: Avstanden mellom to toner. Fire korte leksjoner der du teller, bygger og hører intervaller.',
+      'storage' => 'rs-kurs-intervaller-m1',
+      'lessons' => [
+        ['title' => 'Tell trinnene', 'sub' => 'Fra prim til oktav'],
+        ['title' => 'Stor, liten eller ren?', 'sub' => 'Intervallets kvalitet'],
+        ['title' => 'Bygg intervallet', 'sub' => 'Finn tonen på tangentene'],
+        ['title' => 'Hør intervallet', 'sub' => 'Lytteprøve'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',
