@@ -177,3 +177,19 @@ svg.rhythm .ts{font:700 20px var(--display);fill:currentColor;text-anchor:middle
 .built{margin:.75rem 0 0}
 .rhythm-choices{max-width:340px}
 .rhythm-choices .choice{padding:.5rem .75rem}
+/* Tonearter */
+.btn.toggle[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+svg.circle5{display:block;width:100%;max-width:340px;height:auto;margin:.5rem 0}
+svg.circle5 .seg path{fill:var(--bg);stroke:var(--line);stroke-width:1.5}
+svg.circle5 .seg[role="button"]{cursor:pointer}
+svg.circle5 .seg[role="button"]:hover path,svg.circle5 .seg:focus-visible path{fill:var(--accent-soft)}
+svg.circle5 .seg.on path{fill:var(--accent)}
+svg.circle5 .seg.right path{fill:var(--ok-soft);stroke:var(--ok)}
+svg.circle5 .seg.wrong path{fill:var(--warn-soft);stroke:var(--warn)}
+svg.circle5 .seg:focus{outline:none}
+svg.circle5 text{text-anchor:middle;fill:var(--ink);pointer-events:none}
+svg.circle5 .maj{font:700 15px var(--body)}
+svg.circle5 .min{font:400 11px var(--body);fill:var(--muted)}
+svg.circle5 .seg.on text{fill:var(--accent-ink)}
+svg.circle5 .hub{fill:var(--surface);stroke:var(--line)}
+svg.circle5 .ring{fill:none;stroke:var(--line);stroke-width:1;pointer-events:none}

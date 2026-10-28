@@ -66,6 +66,20 @@ final class CourseRegistry {
         ['title' => 'Hør akkordrekken', 'sub' => 'Lytteprøve'],
       ],
     ],
+    5 => [
+      'slug' => 'tonearter',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Tonearter', 'url' => '/taxonomy/term/38'],
+      'title' => 'Tonearter og kvintsirkelen',
+      'module' => 'Modul 1: Fortegn, kvintsirkelen og parallelltonearter. Fire korte leksjoner der du finner, ser og hører tonearten.',
+      'storage' => 'rs-kurs-tonearter-m1',
+      'lessons' => [
+        ['title' => 'Fortegn i dur', 'sub' => 'Hvorfor G-dur har F♯'],
+        ['title' => 'Kvintsirkelen', 'sub' => 'Ett fortegn per kvint'],
+        ['title' => 'Parallelltonearter', 'sub' => 'Dur og moll med samme fortegn'],
+        ['title' => 'Hør tonearten', 'sub' => 'Lytteprøve'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',

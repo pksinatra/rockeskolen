@@ -5,3 +5,4 @@ RedirectMatch 302 ^/kurs/gi-ut-din-egen-musikk(\.html)?$ https://portal.rockesko
 RedirectMatch 302 ^/kurs/rytme(\.html)?$ https://portal.rockeskolen.com/kurs/rytme
 RedirectMatch 302 ^/kurs/intervaller(\.html)?$ https://portal.rockeskolen.com/kurs/intervaller
 RedirectMatch 302 ^/kurs/akkorder-og-harmoni(\.html)?$ https://portal.rockeskolen.com/kurs/akkorder-og-harmoni
+RedirectMatch 302 ^/kurs/tonearter(\.html)?$ https://portal.rockeskolen.com/kurs/tonearter
