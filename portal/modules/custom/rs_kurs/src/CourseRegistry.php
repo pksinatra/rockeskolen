@@ -125,7 +125,7 @@ final class CourseRegistry {
     9 => [
       'slug' => 'musikkproduksjon',
       'area' => 'Musikk i praksis',
-      'path' => ['title' => 'Studio', 'url' => '/taxonomy/term/27'],
+      'path' => ['title' => 'Musikk i praksis', 'url' => '/musikk-i-praksis'],
       'title' => 'Musikkproduksjon',
       'module' => 'Modul 1: Loop, lyd og signalvei. Fire korte leksjoner der du programmerer, lytter og mikser.',
       'storage' => 'rs-kurs-produksjon-m1',
