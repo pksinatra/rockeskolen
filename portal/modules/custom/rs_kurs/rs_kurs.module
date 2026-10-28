@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Drupal\rs_kurs\ProgressStore;
+use Drupal\rs_kurs\QuizStore;
 use Drupal\user\UserInterface;
 
 /**
@@ -10,4 +11,5 @@ use Drupal\user\UserInterface;
  */
 function rs_kurs_user_delete(UserInterface $account): void {
   ProgressStore::deleteUser((int) $account->id());
+  QuizStore::deleteUser((int) $account->id());
 }

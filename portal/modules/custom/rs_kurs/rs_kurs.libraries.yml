@@ -2,3 +2,16 @@ overview:
   css:
     theme:
       assets/overview.css: {}
+quiz_editor:
+  css:
+    theme:
+      assets/quiz-editor.css: {}
+  js:
+    assets/quiz-music.js: {}
+    assets/quiz-editor.js: {}
+  dependencies:
+    - core/drupalSettings
+quiz_entry:
+  css:
+    theme:
+      assets/overview.css: {}

@@ -61,3 +61,114 @@ rs_kurs.progress_sync:
     course: '\d+'
   options:
     no_cache: TRUE
+
+rs_kurs.quiz_entry:
+  path: '/test'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizController::entry'
+    _title: 'Ta en test'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rs_kurs.quiz:
+  path: '/test/{code}'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizController::page'
+  requirements:
+    _access: 'TRUE'
+    code: '[A-Za-z0-9]{6}'
+  options:
+    no_cache: TRUE
+
+rs_kurs.quiz_result:
+  path: '/api/test/{code}/resultat'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizController::postResult'
+  methods: [POST]
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _csrf_request_header_token: 'TRUE'
+    code: '[A-Za-z0-9]{6}'
+  options:
+    no_cache: TRUE
+
+rs_kurs.quiz_admin:
+  path: '/admin/content/tester'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::list'
+    _title: 'Lærertester'
+  requirements:
+    _permission: 'manage rs tests'
+
+rs_kurs.quiz_add:
+  path: '/admin/content/tester/ny'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::edit'
+    _title: 'Ny test'
+  requirements:
+    _permission: 'manage rs tests'
+
+rs_kurs.quiz_edit:
+  path: '/admin/content/tester/{id}/rediger'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::edit'
+    _title: 'Rediger test'
+  requirements:
+    _permission: 'manage rs tests'
+    id: '\d+'
+
+rs_kurs.quiz_results:
+  path: '/admin/content/tester/{id}/resultater'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::results'
+    _title: 'Resultater'
+  requirements:
+    _permission: 'manage rs tests'
+    id: '\d+'
+
+rs_kurs.quiz_students:
+  path: '/admin/content/tester/elever'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::students'
+    _title: 'Finn elev'
+  requirements:
+    _permission: 'manage rs tests'
+
+rs_kurs.quiz_student:
+  path: '/admin/content/tester/elever/{uid}'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::student'
+    _title: 'Elevens resultater'
+  requirements:
+    _permission: 'manage rs tests'
+    uid: '\d+'
+
+rs_kurs.quiz_save:
+  path: '/admin/content/tester/lagre'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::save'
+  methods: [POST]
+  requirements:
+    _permission: 'manage rs tests'
+    _csrf_request_header_token: 'TRUE'
+
+rs_kurs.quiz_upload:
+  path: '/admin/content/tester/bilde'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::upload'
+  methods: [POST]
+  requirements:
+    _permission: 'manage rs tests'
+    _csrf_request_header_token: 'TRUE'
+
+rs_kurs.quiz_delete:
+  path: '/admin/content/tester/{id}/slett'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\QuizAdminController::delete'
+  methods: [POST]
+  requirements:
+    _permission: 'manage rs tests'
+    _csrf_request_header_token: 'TRUE'
+    id: '\d+'

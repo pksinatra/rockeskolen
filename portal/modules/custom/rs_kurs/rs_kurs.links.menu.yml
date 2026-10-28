@@ -1,0 +1,5 @@
+rs_kurs.quiz_admin:
+  title: 'Lærertester'
+  description: 'Lag tester til elevene og se resultatene deres.'
+  route_name: rs_kurs.quiz_admin
+  parent: system.admin_content

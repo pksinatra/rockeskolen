@@ -225,3 +225,8 @@ svg.staff .head{fill:currentColor}
 svg.staff .clef{font:40px 'Noto Music','Apple Symbols','Segoe UI Symbol',serif;fill:currentColor}
 .choices.short{display:flex;flex-wrap:wrap;max-width:none}
 .choices.short .choice{min-width:3.2rem;text-align:center;padding:.6rem .8rem}
+/* Lærertester */
+.course.quiz{max-width:760px}
+.qmedia{margin:.5rem 0 1rem}
+.qimg{display:block;max-width:100%;max-height:360px;height:auto;border-radius:10px;margin:.25rem 0 .75rem}
+svg.staff .acc{font:40px 'Noto Music','Apple Symbols','Segoe UI Symbol',serif;fill:currentColor}

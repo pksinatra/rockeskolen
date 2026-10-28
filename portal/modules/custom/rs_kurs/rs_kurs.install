@@ -20,5 +20,74 @@ function rs_kurs_schema(): array {
     'primary key' => ['uid', 'course'],
     'indexes' => ['course' => ['course']],
   ];
+  return $schema + rs_kurs_quiz_schema();
+}
+
+/**
+ * Tables for tests that editors make for their students.
+ */
+function rs_kurs_quiz_schema(): array {
+  $schema['rs_quiz'] = [
+    'description' => 'Tests made by editors. Students open them with a short code.',
+    'fields' => [
+      'id' => ['type' => 'serial', 'unsigned' => TRUE, 'not null' => TRUE],
+      'code' => ['type' => 'varchar_ascii', 'length' => 8, 'not null' => TRUE],
+      'title' => ['type' => 'varchar', 'length' => 200, 'not null' => TRUE],
+      'intro' => ['type' => 'text', 'not null' => TRUE],
+      // Questions as JSON, see QuizStore::validate().
+      'data' => ['type' => 'text', 'size' => 'big', 'not null' => TRUE],
+      'open' => ['type' => 'int', 'size' => 'tiny', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 1],
+      'uid' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'created' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'changed' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+    ],
+    'primary key' => ['id'],
+    'unique keys' => ['code' => ['code']],
+  ];
+  $schema['rs_quiz_result'] = [
+    'description' => 'One row per finished attempt by a logged-in student.',
+    'fields' => [
+      'id' => ['type' => 'serial', 'unsigned' => TRUE, 'not null' => TRUE],
+      'quiz' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'uid' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+      'score' => ['type' => 'int', 'size' => 'small', 'unsigned' => TRUE, 'not null' => TRUE],
+      'total' => ['type' => 'int', 'size' => 'small', 'unsigned' => TRUE, 'not null' => TRUE],
+      // One character per question: 1 = right, 0 = wrong.
+      'correct' => ['type' => 'varchar_ascii', 'length' => 64, 'not null' => TRUE],
+      'created' => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+    ],
+    'primary key' => ['id'],
+    'indexes' => ['quiz' => ['quiz'], 'uid' => ['uid']],
+  ];
   return $schema;
+}
+
+/**
+ * Lets editors make tests.
+ */
+function rs_kurs_grant_quiz_permission(): void {
+  if (\Drupal\user\Entity\Role::load('content_editor')) {
+    user_role_grant_permissions('content_editor', ['manage rs tests']);
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function rs_kurs_install(): void {
+  rs_kurs_grant_quiz_permission();
+}
+
+/**
+ * Adds the tables for editors' tests and lets editors make them.
+ */
+function rs_kurs_update_10001(): string {
+  $schema = \Drupal::database()->schema();
+  foreach (rs_kurs_quiz_schema() as $table => $definition) {
+    if (!$schema->tableExists($table)) {
+      $schema->createTable($table, $definition);
+    }
+  }
+  rs_kurs_grant_quiz_permission();
+  return 'Lærertestene er klare.';
 }

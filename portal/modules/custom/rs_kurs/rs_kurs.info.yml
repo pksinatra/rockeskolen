@@ -4,4 +4,5 @@ description: 'Kurs i Rockeskolens Musikkportal med kompakt lagring av progresjon
 package: Custom
 core_version_requirement: ^11
 dependencies:
+  - drupal:file
   - drupal:user

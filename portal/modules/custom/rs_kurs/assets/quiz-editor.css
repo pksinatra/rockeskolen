@@ -1,0 +1,28 @@
+/* Redigering av lærertester i administrasjonstemaet. */
+.rsq-editor{max-width:860px}
+.rsq-editor .rsq-field{margin:0 0 1rem}
+.rsq-editor label{display:block;font-weight:600;margin:0 0 .25rem}
+.rsq-editor input[type=text],.rsq-editor textarea,.rsq-editor select{width:100%;max-width:100%;box-sizing:border-box;padding:.45rem .6rem;border:1px solid #8e929c;border-radius:4px;font:inherit}
+.rsq-editor textarea{min-height:4.5rem}
+.rsq-editor .rsq-check{display:flex;gap:.5rem;align-items:center;font-weight:400}
+.rsq-editor .rsq-check input{width:auto}
+.rsq-q{border:1px solid #d3d4d9;border-radius:8px;padding:1rem 1.1rem;margin:0 0 1rem;background:#fff}
+.rsq-q-head{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;margin:0 0 .75rem}
+.rsq-q-head h3{margin:0;font-size:1.05rem}
+.rsq-row{display:flex;gap:.5rem;align-items:center;margin:0 0 .4rem}
+.rsq-row input[type=text]{flex:1}
+.rsq-row input[type=radio]{width:auto;margin:0}
+.rsq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem}
+.rsq-small{font-size:.85rem;color:#55565b;margin:.25rem 0 0}
+.rsq-err{color:#a51b00;font-weight:600}
+.rsq-ok{color:#1a7f37;font-weight:600}
+.rsq-img{display:block;max-width:240px;max-height:180px;border-radius:6px;margin:.25rem 0 .5rem}
+.rsq-bar{position:sticky;bottom:0;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.75rem 0;background:#fff;border-top:1px solid #d3d4d9}
+.rsq-share{padding:.75rem 1rem;border-radius:8px;background:#eef6ee;margin:0 0 1rem}
+.rsq-share code{font-size:1.2rem;font-weight:700;letter-spacing:.08em}
+.rsq-btn-link{background:none;border:0;padding:0;color:#a51b00;text-decoration:underline;cursor:pointer;font:inherit}
+svg.qstaff{display:block;width:100%;height:auto;margin:.25rem 0 .5rem;color:#232429}
+svg.qstaff .line{stroke:currentColor;stroke-width:1.2}
+svg.qstaff .stem{stroke:currentColor;stroke-width:1.6}
+svg.qstaff .head{fill:currentColor}
+svg.qstaff .clef,svg.qstaff .acc{font:40px 'Noto Music','Apple Symbols','Segoe UI Symbol',serif;fill:currentColor}
