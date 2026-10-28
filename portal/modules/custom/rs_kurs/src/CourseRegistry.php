@@ -178,6 +178,20 @@ final class CourseRegistry {
         ['title' => 'Fortegnstest', 'sub' => 'Åtte spørsmål'],
       ],
     ],
+    13 => [
+      'slug' => 'frekvenser',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Frekvenser', 'url' => '/taxonomy/term/78'],
+      'title' => 'Frekvenser',
+      'module' => 'Hertz, oktaver og overtoner. Fire korte leksjoner der du lytter, regner og sammenligner.',
+      'storage' => 'rs-kurs-frekvenser-m1',
+      'lessons' => [
+        ['title' => 'Frekvens og tonehøyde', 'sub' => 'Hertz og lyse og dype toner'],
+        ['title' => 'Oktaven dobler frekvensen', 'sub' => '110, 220, 440, 880'],
+        ['title' => 'Overtoner', 'sub' => 'Grunntone og klang'],
+        ['title' => 'Høyere eller lavere?', 'sub' => 'Lyttetest'],
+      ],
+    ],
   ];
 
   public static function get(int $id): ?array {
