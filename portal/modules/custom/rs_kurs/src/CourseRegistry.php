@@ -164,6 +164,20 @@ final class CourseRegistry {
         ['title' => 'Lesetest', 'sub' => 'Ti noter på rad'],
       ],
     ],
+    12 => [
+      'slug' => 'fortegn',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Fortegn og andre tegn', 'url' => '/taxonomy/term/82'],
+      'title' => 'Fortegn og andre tegn',
+      'module' => 'Kryss, b, oppløsningstegn og enharmoniske toner. Fire korte leksjoner der du finner, navngir og leser fortegn.',
+      'storage' => 'rs-kurs-fortegn-m1',
+      'lessons' => [
+        ['title' => '♯, ♭ og ♮', 'sub' => 'Hev og senk'],
+        ['title' => 'Samme tangent, to navn', 'sub' => 'Enharmoniske toner'],
+        ['title' => 'Faste og løse fortegn', 'sub' => 'Hva gjelder hvor lenge?'],
+        ['title' => 'Fortegnstest', 'sub' => 'Åtte spørsmål'],
+      ],
+    ],
   ];
 
   public static function get(int $id): ?array {

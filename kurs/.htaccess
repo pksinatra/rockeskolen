@@ -11,3 +11,4 @@ RedirectMatch 302 ^/kurs/form-og-struktur(\.html)?$ https://portal.rockeskolen.c
 RedirectMatch 302 ^/kurs/latskriving(\.html)?$ https://portal.rockeskolen.com/kurs/latskriving
 RedirectMatch 302 ^/kurs/musikkproduksjon(\.html)?$ https://portal.rockeskolen.com/kurs/musikkproduksjon
 RedirectMatch 302 ^/kurs/noter(\.html)?$ https://portal.rockeskolen.com/kurs/noter
+RedirectMatch 302 ^/kurs/fortegn(\.html)?$ https://portal.rockeskolen.com/kurs/fortegn
