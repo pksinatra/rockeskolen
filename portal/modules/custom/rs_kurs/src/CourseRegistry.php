@@ -122,6 +122,20 @@ final class CourseRegistry {
         ['title' => 'Bygg låtformen', 'sub' => 'Fra intro til outro'],
       ],
     ],
+    9 => [
+      'slug' => 'musikkproduksjon',
+      'area' => 'Musikk i praksis',
+      'path' => ['title' => 'Studio', 'url' => '/taxonomy/term/27'],
+      'title' => 'Musikkproduksjon',
+      'module' => 'Modul 1: Loop, lyd og signalvei. Fire korte leksjoner der du programmerer, lytter og mikser.',
+      'storage' => 'rs-kurs-produksjon-m1',
+      'lessons' => [
+        ['title' => 'Lag en loop', 'sub' => 'Trommemaskin med 16 steg'],
+        ['title' => 'Bass, mellomtone og diskant', 'sub' => 'Lytteprøve med EQ'],
+        ['title' => 'Stereobildet', 'sub' => 'Panorering'],
+        ['title' => 'Signalkjeden', 'sub' => 'Fra mikrofon til høyttaler'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',

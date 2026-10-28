@@ -9,3 +9,4 @@ RedirectMatch 302 ^/kurs/tonearter(\.html)?$ https://portal.rockeskolen.com/kurs
 RedirectMatch 302 ^/kurs/melodi(\.html)?$ https://portal.rockeskolen.com/kurs/melodi
 RedirectMatch 302 ^/kurs/form-og-struktur(\.html)?$ https://portal.rockeskolen.com/kurs/form-og-struktur
 RedirectMatch 302 ^/kurs/latskriving(\.html)?$ https://portal.rockeskolen.com/kurs/latskriving
+RedirectMatch 302 ^/kurs/musikkproduksjon(\.html)?$ https://portal.rockeskolen.com/kurs/musikkproduksjon
