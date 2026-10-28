@@ -80,6 +80,20 @@ final class CourseRegistry {
         ['title' => 'Hør tonearten', 'sub' => 'Lytteprøve'],
       ],
     ],
+    6 => [
+      'slug' => 'melodi',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Melodi', 'url' => '/taxonomy/term/39'],
+      'title' => 'Melodi',
+      'module' => 'Modul 1: Retning, bevegelse og avslutning. Fire korte leksjoner der du hører, ser og spiller melodier.',
+      'storage' => 'rs-kurs-melodi-m1',
+      'lessons' => [
+        ['title' => 'Melodiens retning', 'sub' => 'Opp eller ned?'],
+        ['title' => 'Trinn og sprang', 'sub' => 'Hvordan melodien beveger seg'],
+        ['title' => 'Hør avslutningen', 'sub' => 'Lytteprøve'],
+        ['title' => 'Spill etter gehør', 'sub' => 'Finn tonene selv'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',

@@ -6,3 +6,4 @@ RedirectMatch 302 ^/kurs/rytme(\.html)?$ https://portal.rockeskolen.com/kurs/ryt
 RedirectMatch 302 ^/kurs/intervaller(\.html)?$ https://portal.rockeskolen.com/kurs/intervaller
 RedirectMatch 302 ^/kurs/akkorder-og-harmoni(\.html)?$ https://portal.rockeskolen.com/kurs/akkorder-og-harmoni
 RedirectMatch 302 ^/kurs/tonearter(\.html)?$ https://portal.rockeskolen.com/kurs/tonearter
+RedirectMatch 302 ^/kurs/melodi(\.html)?$ https://portal.rockeskolen.com/kurs/melodi
