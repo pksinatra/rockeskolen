@@ -20,6 +20,7 @@ final class CoursePage {
       ? '<script src="' . $h($base . $course['slug'] . '.js' . $version($course['slug'] . '.js')) . '"></script>'
       : '';
     $cssVersion = $version('kurs.css');
+    $jsVersion = $version('kurs.js');
     $description = $course['module'];
     $url = 'https://portal.rockeskolen.com' . $here;
     $image = 'https://portal.rockeskolen.com/sites/default/files/share/rockeskolen-portal.jpg';
@@ -71,7 +72,7 @@ final class CoursePage {
 </main>
 
 <script id="rs-kurs-config" type="application/json">{$json}</script>
-<script src="{$h($base)}kurs.js"></script>
+<script src="{$h($base)}kurs.js{$h($jsVersion)}"></script>
 {$courseScript}
 <script>RSKurs.start();</script>
 </body>
