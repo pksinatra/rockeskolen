@@ -150,6 +150,20 @@ final class CourseRegistry {
         ['title' => 'Lag en utgivelsesplan', 'sub' => 'Fra master til utgivelsesdag'],
       ],
     ],
+    11 => [
+      'slug' => 'noter',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Noter', 'url' => '/taxonomy/term/34'],
+      'title' => 'Noter',
+      'module' => 'Notelinjer, noteverdier, pauser og taktart. Fire korte leksjoner der du leser og teller.',
+      'storage' => 'rs-kurs-noter-m1',
+      'lessons' => [
+        ['title' => 'Notelinjer og G-nøkkel', 'sub' => 'Linjer, mellomrom og hjelpelinjer'],
+        ['title' => 'Noteverdier og pauser', 'sub' => 'Hvor lenge varer det?'],
+        ['title' => 'Takt og taktart', 'sub' => 'Hva tallene betyr'],
+        ['title' => 'Lesetest', 'sub' => 'Ti noter på rad'],
+      ],
+    ],
   ];
 
   public static function get(int $id): ?array {

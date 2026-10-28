@@ -132,7 +132,77 @@ window.RSKurs=(function(){
     });
   }
 
-  Object.assign(K,{h,shuffle,ac,markDone,completeBox,go,start,
+  /* ---------- felles oppgaveformer ---------- */
+  // Flervalg der eleven prøver til svaret er riktig. task: {q, small?, opts, right, why, hint?, show?(root)}
+  function choiceTasks(root,i,tasks,done='Alle oppgavene er løst.'){
+    let t=0, busy=false;
+    const task=h('div',{class:'task'}), extra=h('div'), ch=h('div',{class:'choices'}), fb=h('p',{class:'fb'});
+    root.append(task,extra,ch,fb);
+    function show(){
+      const x=tasks[t]; busy=false; fb.textContent=''; extra.replaceChildren();
+      task.replaceChildren(x.q,h('small',{},x.small||`Oppgave ${t+1} av ${tasks.length}.`));
+      if(x.show) x.show(extra);
+      ch.className=x.opts.every(o=>String(o).length<=3)?'choices short':'choices';
+      ch.replaceChildren(...x.opts.map(o=>{ const b=h('button',{class:'choice',type:'button',onclick:()=>answer(o,b)},o); return b; }));
+    }
+    function answer(o,b){
+      if(busy) return;
+      const x=tasks[t];
+      if(o===x.right){
+        busy=true; b.classList.add('right'); fb.className='fb ok'; fb.textContent='Riktig. '+(x.why||'');
+        t++;
+        if(t<tasks.length) setTimeout(show,1500);
+        else { task.replaceChildren(done); markDone(i); root.append(completeBox(i,'Leksjonen er fullført.')); }
+      } else {
+        b.classList.add('wrong'); fb.className='fb no'; fb.textContent='Ikke helt. '+(x.hint||'Prøv igjen.');
+      }
+    }
+    show();
+  }
+  // Prøve med fast antall runder og poeng. make() gir {q, opts, right, why, play?, show?(root)}.
+  function scoredQuiz(root,i,{rounds,pass,make,playLabel='Spill'}){
+    let round=0, results=[], cur=null, answered=false;
+    const status=h('div',{class:'task'}), dots=h('div',{class:'score','aria-hidden':'true'});
+    const extra=h('div'), ch=h('div',{class:'choices'}), fb=h('p',{class:'fb'});
+    const playBtn=h('button',{class:'btn primary',type:'button',onclick:()=>cur.play&&cur.play()},playLabel);
+    const nextBtn=h('button',{class:'btn',type:'button',onclick:next},'Neste');
+    const row=h('div',{class:'btns'},playBtn,nextBtn);
+    root.append(status,dots,row,extra,ch,fb);
+    function drawDots(){ dots.replaceChildren(...Array.from({length:rounds},(_,k)=>h('i',{class:results[k]===true?'r':results[k]===false?'x':''}))); }
+    function newRound(){
+      cur=make(); answered=false; extra.replaceChildren(); fb.textContent='';
+      playBtn.hidden=!cur.play; nextBtn.disabled=true;
+      status.replaceChildren(`Runde ${round+1} av ${rounds}`,h('small',{},cur.q));
+      if(cur.show) cur.show(extra);
+      ch.className=cur.opts.every(o=>String(o).length<=3)?'choices short':'choices';
+      ch.replaceChildren(...cur.opts.map(o=>{ const b=h('button',{class:'choice',type:'button',onclick:()=>answer(o,b)},o); return b; }));
+      drawDots();
+    }
+    function answer(o,b){
+      if(answered) return; answered=true; leaveHooks.forEach(f=>f());
+      const ok=o===cur.right; results.push(ok); drawDots();
+      b.classList.add(ok?'right':'wrong');
+      if(!ok) [...ch.children].find(x=>x.textContent===cur.right).classList.add('right');
+      [...ch.children].forEach(x=>x.disabled=true);
+      fb.className=ok?'fb ok':'fb no'; fb.textContent=(ok?'Riktig. ':'Ikke denne gangen. ')+(cur.why||'');
+      nextBtn.disabled=results.length===rounds;
+      if(results.length===rounds) finish();
+    }
+    function next(){ round++; if(round<rounds) newRound(); }
+    function finish(){
+      const score=results.filter(Boolean).length;
+      if(score>=pass){
+        status.replaceChildren(`${score} av ${rounds} riktige.`);
+        markDone(i,Math.round(score/rounds*100)); root.append(completeBox(i,'Leksjonen er fullført.'));
+      } else {
+        status.replaceChildren(`${score} av ${rounds} riktige. Du trenger ${pass} for å fullføre.`);
+        root.append(h('div',{class:'btns'},h('button',{class:'btn primary',type:'button',onclick:()=>go(i)},'Prøv igjen')));
+      }
+    }
+    newRound();
+  }
+
+  Object.assign(K,{h,shuffle,ac,markDone,completeBox,go,start,choiceTasks,scoredQuiz,
     register:(n,render)=>{ registered[n-1]=render; },
     onLeave:f=>leaveHooks.push(f)});
   return K;

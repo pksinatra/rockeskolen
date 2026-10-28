@@ -217,3 +217,11 @@ svg.contour circle{fill:var(--accent)}
 .pan-row .lbl{font-weight:700}
 .pan-row .pair{display:flex;gap:.35rem}
 .pan-row .btn{padding:.35rem .8rem;font-size:.88rem}
+/* Noter */
+svg.staff{display:block;width:100%;max-width:260px;height:auto;margin:.25rem 0 .5rem;color:var(--ink)}
+svg.staff .line{stroke:currentColor;stroke-width:1.2}
+svg.staff .stem{stroke:currentColor;stroke-width:1.6}
+svg.staff .head{fill:currentColor}
+svg.staff .clef{font:40px 'Noto Music','Apple Symbols','Segoe UI Symbol',serif;fill:currentColor}
+.choices.short{display:flex;flex-wrap:wrap;max-width:none}
+.choices.short .choice{min-width:3.2rem;text-align:center;padding:.6rem .8rem}
