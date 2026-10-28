@@ -94,6 +94,20 @@ final class CourseRegistry {
         ['title' => 'Spill etter gehør', 'sub' => 'Finn tonene selv'],
       ],
     ],
+    7 => [
+      'slug' => 'form-og-struktur',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Form og struktur', 'url' => '/taxonomy/term/40'],
+      'title' => 'Form og struktur',
+      'module' => 'Modul 1: Takter, deler og låtform. Fire korte leksjoner der du teller, hører og kjenner igjen formen.',
+      'storage' => 'rs-kurs-form-m1',
+      'lessons' => [
+        ['title' => 'Tell takter', 'sub' => 'Fire og åtte takter'],
+        ['title' => 'Like eller ulike?', 'sub' => 'A og B'],
+        ['title' => 'Delene i en låt', 'sub' => 'Vers, refreng og C-del'],
+        ['title' => 'Hør formen', 'sub' => 'Lytteprøve'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',

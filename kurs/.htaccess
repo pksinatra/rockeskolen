@@ -7,3 +7,4 @@ RedirectMatch 302 ^/kurs/intervaller(\.html)?$ https://portal.rockeskolen.com/ku
 RedirectMatch 302 ^/kurs/akkorder-og-harmoni(\.html)?$ https://portal.rockeskolen.com/kurs/akkorder-og-harmoni
 RedirectMatch 302 ^/kurs/tonearter(\.html)?$ https://portal.rockeskolen.com/kurs/tonearter
 RedirectMatch 302 ^/kurs/melodi(\.html)?$ https://portal.rockeskolen.com/kurs/melodi
+RedirectMatch 302 ^/kurs/form-og-struktur(\.html)?$ https://portal.rockeskolen.com/kurs/form-og-struktur
