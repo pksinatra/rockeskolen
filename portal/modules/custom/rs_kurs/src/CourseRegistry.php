@@ -108,6 +108,20 @@ final class CourseRegistry {
         ['title' => 'Hør formen', 'sub' => 'Lytteprøve'],
       ],
     ],
+    8 => [
+      'slug' => 'latskriving',
+      'area' => 'Musikk i praksis',
+      'path' => ['title' => 'Låtskriving – fra idé til ferdig låt', 'url' => '/artikkelserie/110'],
+      'title' => 'Låtskriving',
+      'module' => 'Modul 1: Akkorder, melodi, tekst og form. Fire korte leksjoner der du lager byggesteinene i en låt.',
+      'storage' => 'rs-kurs-latskriving-m1',
+      'lessons' => [
+        ['title' => 'Akkordrekken', 'sub' => 'Lag din egen loop'],
+        ['title' => 'Melodi over akkordene', 'sub' => 'Akkordtoner'],
+        ['title' => 'Ord og stavelser', 'sub' => 'Tekst som sitter'],
+        ['title' => 'Bygg låtformen', 'sub' => 'Fra intro til outro'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',
