@@ -52,6 +52,20 @@ final class CourseRegistry {
         ['title' => 'Hør intervallet', 'sub' => 'Lytteprøve'],
       ],
     ],
+    4 => [
+      'slug' => 'akkorder-og-harmoni',
+      'area' => 'Musikkteori',
+      'path' => ['title' => 'Akkorder og harmoni', 'url' => '/taxonomy/term/37'],
+      'title' => 'Akkorder og harmoni',
+      'module' => 'Modul 1: Treklanger og trinnakkorder. Fire korte leksjoner der du bygger, hører og bruker akkorder.',
+      'storage' => 'rs-kurs-akkorder-m1',
+      'lessons' => [
+        ['title' => 'Bygg en durakkord', 'sub' => 'Grunntone, ters og kvint'],
+        ['title' => 'Dur eller moll?', 'sub' => 'Tersen avgjør'],
+        ['title' => 'Akkordene i tonearten', 'sub' => 'Trinnakkorder i dur'],
+        ['title' => 'Hør akkordrekken', 'sub' => 'Lytteprøve'],
+      ],
+    ],
     10 => [
       'slug' => 'gi-ut-din-egen-musikk',
       'area' => 'Musikk i praksis',
