@@ -25,6 +25,7 @@ final class TheoryPathPresentation {
    */
   private const COURSES = [
     35 => 'musikkteori',
+    36 => 'intervaller',
     120 => 'rytme',
   ];
 
