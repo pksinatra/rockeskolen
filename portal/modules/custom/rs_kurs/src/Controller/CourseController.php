@@ -13,6 +13,7 @@ use Drupal\rs_kurs\CourseRegistry;
 use Drupal\rs_kurs\ProgressMerge;
 use Drupal\rs_kurs\ProgressStore;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -21,6 +22,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * Serves the course apps, their lessons and the progress API.
  */
 final class CourseController extends ControllerBase {
+
+  /**
+   * Sends the old /kurs addresses on to /tester.
+   */
+  public function legacy(string $slug = ''): RedirectResponse {
+    return new RedirectResponse($slug === '' ? '/tester' : '/tester/' . $slug, 301);
+  }
 
   /**
    * Lists all courses, grouped by area, inside the portal theme.
@@ -46,7 +54,7 @@ final class CourseController extends ControllerBase {
           : '';
         $html .= '<article class="rs-kurs-card">'
           . '<p class="rs-kurs-meta">' . $h($area) . ' · ' . $count . ' leksjoner</p>'
-          . '<h3><a href="/kurs/' . $h($course['slug']) . '">' . $h($course['title']) . '</a></h3>'
+          . '<h3><a href="/tester/' . $h($course['slug']) . '">' . $h($course['title']) . '</a></h3>'
           . '<p>' . $h($course['module']) . '</p>'
           . '<ol class="rs-kurs-lessons">' . $lessons . '</ol>'
           . $path
@@ -74,7 +82,7 @@ final class CourseController extends ControllerBase {
     foreach ($course['lessons'] as $index => $lesson) {
       $lessons[] = $lesson + ['open' => CourseAccess::canViewLesson($account, $index)];
     }
-    $here = '/kurs/' . $course['slug'];
+    $here = '/tester/' . $course['slug'];
     $config = [
       'id' => $course['id'],
       'slug' => $course['slug'],

@@ -10,7 +10,7 @@ namespace Drupal\rs_kurs;
 final class CoursePage {
 
   public static function html(array $course, array $config, string $base, bool $hasCourseScript): string {
-    $here = '/kurs/' . $course['slug'];
+    $here = '/tester/' . $course['slug'];
     $h = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     $json = json_encode($config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     $count = count($course['lessons']);

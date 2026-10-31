@@ -1,2 +1,2 @@
-# Lesson code is served only through /kurs/{slug}/leksjon/{n} after an access check.
+# Lesson code is served only through /tester/{slug}/leksjon/{n} after an access check.
 Require all denied

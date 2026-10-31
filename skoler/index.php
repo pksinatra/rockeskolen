@@ -82,7 +82,7 @@ require_once dirname(__DIR__) . '/includes/meta.php';
           <li class="start-path">
             <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/120">Rytme</a>
             <a class="start-path-first" href="https://portal.rockeskolen.com/node/279"><span>Start med del 1</span> Puls, tempo og BPM</a>
-            <div class="start-chips"><a class="start-chip" href="https://portal.rockeskolen.com/kurs/rytme">Test: Rytme</a></div>
+            <div class="start-chips"><a class="start-chip" href="https://portal.rockeskolen.com/tester/rytme">Test: Rytme</a></div>
           </li>
           <li class="start-path">
             <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/34">Noter</a>
@@ -107,7 +107,7 @@ require_once dirname(__DIR__) . '/includes/meta.php';
           <li class="start-path">
             <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/35">Skalaer</a>
             <a class="start-path-first" href="https://portal.rockeskolen.com/node/17"><span>Start med del 1</span> Hva er en skala?</a>
-            <div class="start-chips"><a class="start-chip" href="https://portal.rockeskolen.com/kurs/musikkteori">Test: Musikkteori fra bunnen</a><a class="start-chip" href="https://rockeskolen.com/tools/scales/piano/">Verktøy: Pianoskalaer</a></div>
+            <div class="start-chips"><a class="start-chip" href="https://portal.rockeskolen.com/tester/musikkteori">Test: Musikkteori fra bunnen</a><a class="start-chip" href="https://rockeskolen.com/tools/scales/piano/">Verktøy: Pianoskalaer</a></div>
           </li>
           <li class="start-path">
             <a class="start-path-name" href="https://portal.rockeskolen.com/taxonomy/term/37">Akkorder og harmoni</a>
@@ -137,7 +137,7 @@ require_once dirname(__DIR__) . '/includes/meta.php';
           </ul>
         </article>
       </div>
-      <p class="start-more">Til fordypning: <a href="https://portal.rockeskolen.com/taxonomy/term/78">Frekvenser</a> og <a href="https://portal.rockeskolen.com/node/229">kirketonearter</a>. Til praksis: <a href="https://portal.rockeskolen.com/artikkelserie/114">På bølgelengde – om samspill</a>, <a href="https://portal.rockeskolen.com/artikkelserie/110">Låtskriving – fra idé til ferdig låt</a> og testen <a href="https://portal.rockeskolen.com/kurs/gi-ut-din-egen-musikk">Gi ut din egen musikk</a>. Se også <a href="https://portal.rockeskolen.com/musikkteori">alle læringsstiene</a> og <a href="https://portal.rockeskolen.com/verktoy">alle verktøyene</a>.</p>
+      <p class="start-more">Til fordypning: <a href="https://portal.rockeskolen.com/taxonomy/term/78">Frekvenser</a> og <a href="https://portal.rockeskolen.com/node/229">kirketonearter</a>. Til praksis: <a href="https://portal.rockeskolen.com/artikkelserie/114">På bølgelengde – om samspill</a>, <a href="https://portal.rockeskolen.com/artikkelserie/110">Låtskriving – fra idé til ferdig låt</a> og testen <a href="https://portal.rockeskolen.com/tester/gi-ut-din-egen-musikk">Gi ut din egen musikk</a>. Se også <a href="https://portal.rockeskolen.com/musikkteori">alle læringsstiene</a> og <a href="https://portal.rockeskolen.com/verktoy">alle verktøyene</a>.</p>
     </section>
 
     <section class="section school-section" aria-labelledby="pilot-how">

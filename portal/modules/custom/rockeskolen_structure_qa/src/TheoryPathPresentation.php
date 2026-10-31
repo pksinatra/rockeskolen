@@ -139,7 +139,7 @@ final class TheoryPathPresentation {
     if ($course === NULL) {
       return NULL;
     }
-    $url = Url::fromUserInput('/kurs/' . $course['slug'])->toString(TRUE);
+    $url = Url::fromUserInput('/tester/' . $course['slug'])->toString(TRUE);
     $cache->addCacheableDependency($url);
     return ['title' => $course['title'], 'url' => $url->getGeneratedUrl()];
   }

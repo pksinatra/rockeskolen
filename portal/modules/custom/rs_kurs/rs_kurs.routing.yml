@@ -1,5 +1,5 @@
 rs_kurs.overview:
-  path: '/kurs'
+  path: '/tester'
   defaults:
     _controller: '\Drupal\rs_kurs\Controller\CourseController::overview'
     _title: 'Tester'
@@ -7,7 +7,7 @@ rs_kurs.overview:
     _access: 'TRUE'
 
 rs_kurs.course:
-  path: '/kurs/{slug}'
+  path: '/tester/{slug}'
   defaults:
     _controller: '\Drupal\rs_kurs\Controller\CourseController::page'
   requirements:
@@ -17,13 +17,32 @@ rs_kurs.course:
     no_cache: TRUE
 
 rs_kurs.lesson_script:
-  path: '/kurs/{slug}/leksjon/{lesson}'
+  path: '/tester/{slug}/leksjon/{lesson}'
   defaults:
     _controller: '\Drupal\rs_kurs\Controller\CourseController::lessonScript'
   requirements:
     _access: 'TRUE'
     slug: '[a-z0-9-]+'
     lesson: '\d+'
+  options:
+    no_cache: TRUE
+
+rs_kurs.legacy_overview:
+  path: '/kurs'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::legacy'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+
+rs_kurs.legacy_course:
+  path: '/kurs/{slug}'
+  defaults:
+    _controller: '\Drupal\rs_kurs\Controller\CourseController::legacy'
+  requirements:
+    _access: 'TRUE'
+    slug: '[a-z0-9-]+'
   options:
     no_cache: TRUE
 
