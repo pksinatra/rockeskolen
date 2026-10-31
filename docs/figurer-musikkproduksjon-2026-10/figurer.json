@@ -1,0 +1,200 @@
+[
+  {
+    "nr": 1,
+    "node": 294,
+    "file": "mp-lydkort.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-lydkort.svg",
+    "width": 960,
+    "height": 495,
+    "alt": "Lydkortet: inngang, forforsterker og A/D inn – D/A, nivå og utganger ut",
+    "caption": "Lydkortet tar imot signalet fra mikrofon eller instrument, forsterker det og gjør det digitalt. På vei ut gjøres det analogt igjen og sendes til høyttalere eller hodetelefoner.",
+    "where": "Lydkortet – forbindelsen mellom studioet og datamaskinen"
+  },
+  {
+    "nr": 2,
+    "node": 294,
+    "file": "mp-studio.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-studio.svg",
+    "width": 960,
+    "height": 380,
+    "alt": "Studioet som signalvei: mikrofon, lydkort, DAW, lydkort, høyttalere",
+    "caption": "Et enkelt opptak: lyden går inn gjennom lydkortet, behandles i DAW-en og går ut gjennom det samme lydkortet. Et MIDI-keyboard kobles gjerne rett til datamaskinen.",
+    "where": "Signalveien – nøkkelen til å forstå studioet"
+  },
+  {
+    "nr": 3,
+    "node": 295,
+    "file": "mp-lyd.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-lyd.svg",
+    "width": 960,
+    "height": 380,
+    "alt": "Frekvens og amplitude vist som lydbølger",
+    "caption": "Frekvensen er antall svingninger per sekund og henger sammen med tonehøyden. Amplituden er størrelsen på svingningene og henger sammen med hvor kraftig lyden er.",
+    "where": "Hva er egentlig lyd?"
+  },
+  {
+    "nr": 4,
+    "node": 295,
+    "file": "mp-sampling.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-sampling.svg",
+    "width": 960,
+    "height": 420,
+    "alt": "Sampling: det analoge signalet måles med jevne mellomrom",
+    "caption": "Omformeren måler signalet med jevne mellomrom. Samplingsfrekvensen er antall målinger per sekund: ved 44,1 kHz måles signalet 44 100 ganger i sekundet.",
+    "where": "Samplingsfrekvens – hvor ofte måler vi?"
+  },
+  {
+    "nr": 5,
+    "node": 295,
+    "file": "mp-bitdybde.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-bitdybde.svg",
+    "width": 960,
+    "height": 420,
+    "alt": "Bitdybde: få og mange mulige verdier for hver måling",
+    "caption": "Bitdybden avgjør hvor mange verdier hver måling kan få. Figuren bruker 3 og 5 bit for å gjøre trinnene synlige. 16 bit gir 65 536 verdier, 24 bit over 16 millioner.",
+    "where": "Bitdybde – hvor nøyaktig måler vi?"
+  },
+  {
+    "nr": 6,
+    "node": 295,
+    "file": "mp-reisen.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-reisen.svg",
+    "width": 1000,
+    "height": 340,
+    "alt": "Signalveien fra stemme til øre, og hvilken form signalet har underveis",
+    "caption": "Hele reisen fra stemme til øre. Underveis skifter signalet form: lydbølger i luften, analogt elektrisk signal, digitale tall – og tilbake igjen.",
+    "where": "Fra digitale data tilbake til lyd (ved «Hele reisen kan dermed beskrives slik»)"
+  },
+  {
+    "nr": 7,
+    "node": 295,
+    "file": "mp-niva.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-niva.svg",
+    "width": 960,
+    "height": 420,
+    "alt": "Nivåmåler i dBFS og en bølgeform med og uten clipping",
+    "caption": "0 dBFS er det høyeste nivået en vanlig digital lydfil kan lagre. Går signalet over, klippes toppene og lyden kan forvrenges. Ved opptak er det lurt å ha god margin.",
+    "where": "Signalnivå – når blir lyden for kraftig?"
+  },
+  {
+    "nr": 8,
+    "node": 296,
+    "file": "mp-audio-midi.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-audio-midi.svg",
+    "width": 960,
+    "height": 400,
+    "alt": "Samme frase som lydopptak (bølgeform) og som MIDI (pianorull)",
+    "caption": "Den samme frasen (C4 – E4 – G4 – C5) som lydopptak og som MIDI. Bølgeformen inneholder selve lyden. Pianorullen viser bare hvilke toner som spilles, når, hvor lenge og med hvilket anslag.",
+    "where": "To måter å arbeide med musikk på"
+  },
+  {
+    "nr": 9,
+    "node": 296,
+    "file": "mp-midi-vei.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-midi-vei.svg",
+    "width": 960,
+    "height": 320,
+    "alt": "MIDI-signalveien: data fra keyboardet blir lyd først i det virtuelle instrumentet",
+    "caption": "MIDI-keyboardet sender bare meldinger om hvilke toner som spilles. Det blir lyd først når meldingene når det virtuelle instrumentet.",
+    "where": "Hva skjer når vi spiller på et MIDI-keyboard?"
+  },
+  {
+    "nr": 10,
+    "node": 296,
+    "file": "mp-step.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-step.svg",
+    "width": 960,
+    "height": 320,
+    "alt": "Step sequencer med 16 trinn: stortromme, skarptromme og hi-hat i et enkelt komp",
+    "caption": "En step sequencer viser én takt som 16 trinn. Hver rad er en MIDI-note som utløser én trommelyd. Her: stortromme på 1 og 3, skarptromme på 2 og 4 og hi-hat på åttendedeler.",
+    "where": "MIDI og trommeprogrammering"
+  },
+  {
+    "nr": 11,
+    "node": 297,
+    "file": "mp-daw.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-daw.svg",
+    "width": 960,
+    "height": 400,
+    "alt": "En typisk DAW-arbeidsflate med spor, tidslinje, regioner og avspillingsposisjon",
+    "caption": "Programmene ser forskjellige ut, men de fleste DAW-er har de samme delene: transport, tidslinje, markører, spor og regioner med lyd eller MIDI.",
+    "where": "Det digitale arbeidsbordet"
+  },
+  {
+    "nr": 12,
+    "node": 297,
+    "file": "mp-looper.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-looper.svg",
+    "width": 960,
+    "height": 420,
+    "alt": "Kopiering, looping og repetert avspilling på en tidslinje",
+    "caption": "Tre arbeidsmåter som ligner på hverandre: kopiering lager nye regioner, looping gjentar det samme materialet, og repetert avspilling spiller et valgt område om og om igjen uten å endre prosjektet.",
+    "where": "Hva er en loop?"
+  },
+  {
+    "nr": 13,
+    "node": 297,
+    "file": "mp-fades.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-fades.svg",
+    "width": 960,
+    "height": 330,
+    "alt": "Fade-in, fade-out og crossfade mellom to lydregioner",
+    "caption": "Den hvite linjen viser nivået. En fade-in øker nivået gradvis, en fade-out senker det. I en crossfade dempes den første regionen mens den andre kommer inn.",
+    "where": "Overganger og crossfades"
+  },
+  {
+    "nr": 14,
+    "node": 298,
+    "file": "mp-kjede.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-kjede.svg",
+    "width": 960,
+    "height": 310,
+    "alt": "Forenklet signalvei gjennom en mikserkanal: lydspor, EQ, kompressor, fader, master og lydkort",
+    "caption": "En forenklet signalvei. Hvert trinn kan endre nivået, så vi følger med på det hele veien – ikke bare på masteren.",
+    "where": "Gain staging – kontroll på signalnivåene (ved eksempelet med pilrekken)"
+  },
+  {
+    "nr": 15,
+    "node": 298,
+    "file": "mp-stereo.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-stereo.svg",
+    "width": 960,
+    "height": 330,
+    "alt": "Eksempel på plassering av instrumenter i stereobildet",
+    "caption": "Et eksempel på plassering i stereobildet: bass, stortromme, skarptromme og vokal i midten, gitarene på hver sin side. Dette er vanlige arbeidsmåter, ikke faste regler.",
+    "where": "Panorering – plassering i stereobildet"
+  },
+  {
+    "nr": 16,
+    "node": 298,
+    "file": "mp-eq.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-eq.svg",
+    "width": 960,
+    "height": 310,
+    "alt": "Fire vanlige EQ-filtre vist som frekvenskurver",
+    "caption": "Fire vanlige EQ-filtre. Den vannrette linjen er 0 dB, altså ingen endring. Over linjen heves frekvensene, under linjen dempes de.",
+    "where": "Equalizer – kontroll over frekvensene"
+  },
+  {
+    "nr": 17,
+    "node": 298,
+    "file": "mp-kompressor.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-kompressor.svg",
+    "width": 960,
+    "height": 440,
+    "alt": "Kompressorkurve med threshold på −18 dB og ratio 4:1",
+    "caption": "Under terskelen går signalet uendret gjennom. Over terskelen gir ratio 4:1 omtrent 1 dB økning ut for hver 4 dB inn. Kurven viser full virkning, uten attack og release.",
+    "where": "Kompresjon – kontroll over dynamikken (ved eksempelet med ratio 4:1)"
+  },
+  {
+    "nr": 18,
+    "node": 298,
+    "file": "mp-ruting.svg",
+    "url": "https://rockeskolen.com/images/musikkproduksjon/mp-ruting.svg",
+    "width": 960,
+    "height": 470,
+    "alt": "Ruting: inserts på sporene, send til en felles romklang og trommespor samlet i en buss",
+    "caption": "Inserts ligger direkte i sporets signalvei. En send fører en andel av signalet til en felles effektkanal, her romklang. Åtte trommespor samles i én buss med felles EQ og kompresjon.",
+    "where": "Insert og send / Grupper og busser"
+  }
+]
