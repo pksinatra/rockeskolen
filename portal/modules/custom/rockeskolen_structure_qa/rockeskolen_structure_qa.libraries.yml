@@ -42,6 +42,11 @@ embed-height:
   js:
     js/embed-height.js: {}
 
+article-figures:
+  css:
+    theme:
+      css/article-figures.css: {}
+
 card-links:
   css:
     theme:

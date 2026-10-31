@@ -1,0 +1,33 @@
+/* Figurer i artikkeltekst: <figure class="rs-figur"><a><img></a><figcaption></figure> */
+.rs-figur {
+  margin: 2rem 0 2.25rem;
+}
+
+.rs-figur a {
+  display: block;
+}
+
+.rs-figur img {
+  border-radius: 12px;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.rs-figur figcaption {
+  color: #a6a9b6;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 0.65rem;
+}
+
+@media (max-width: 600px) {
+  .rs-figur {
+    margin: 1.5rem 0 1.75rem;
+  }
+
+  .rs-figur img {
+    border-radius: 8px;
+  }
+}
