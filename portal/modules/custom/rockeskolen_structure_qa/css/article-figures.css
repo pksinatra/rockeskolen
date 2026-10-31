@@ -15,7 +15,12 @@
   width: 100%;
 }
 
+/* ZUVI Pro gir figcaption ramme, bakgrunn og midtstilling; nullstilles her. */
 .rs-figur figcaption {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
   color: #a6a9b6;
   font-size: 0.95rem;
   line-height: 1.5;
