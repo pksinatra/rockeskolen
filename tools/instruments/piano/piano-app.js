@@ -19,6 +19,8 @@
       showFlats: 'Show flats',
       showSharps: 'Show sharps',
       sustainPedal: 'Sustain pedal',
+      hold: 'Hold',
+      holdTitle: 'Notes keep sounding after you let go. The next chord you play replaces them.',
       midi: 'Connect MIDI',
       midiOn: n => 'MIDI: ' + n + (n === 1 ? ' device' : ' devices'),
       midiNone: 'MIDI: no devices found',
@@ -73,6 +75,8 @@
       showFlats: 'Vis b-er',
       showSharps: 'Vis kryss',
       sustainPedal: 'Sustainpedal',
+      hold: 'Hold',
+      holdTitle: 'Tonene klinger videre når du slipper. Neste akkord du spiller, erstatter dem.',
       midi: 'Koble til MIDI',
       midiOn: n => 'MIDI: ' + n + (n === 1 ? ' enhet' : ' enheter'),
       midiNone: 'MIDI: fant ingen enheter',
@@ -297,7 +301,18 @@
     }
     sustainBtn.addEventListener('click', () => setSustain(!sustainOn));
 
+    const holdBtn = $('pk-hold');
+    let holdOn = false;
+    function setHold(on) {
+      holdOn = on;
+      keyboard.setHold(on);
+      holdBtn.setAttribute('aria-pressed', String(on));
+      updateReadout();
+    }
+    holdBtn.addEventListener('click', () => setHold(!holdOn));
+
     $('pk-panic').addEventListener('click', () => {
+      setHold(false);
       keyboard.allOff();
       setSustain(false);
       engine.panic();
@@ -473,6 +488,7 @@
         '</select></label>' +
         '<button type="button" id="pk-accidentals" class="pk-btn pk-icon" aria-label="' + esc(t.showFlats) + '" title="' + esc(t.showFlats) + '">♯</button>' +
         '<button type="button" id="pk-sustain" class="pk-btn pk-toggle" aria-pressed="false">' + esc(t.sustainPedal) + '</button>' +
+        '<button type="button" id="pk-hold" class="pk-btn pk-toggle" aria-pressed="false" title="' + esc(t.holdTitle) + '">' + esc(t.hold) + '</button>' +
         '<button type="button" id="pk-panic" class="pk-btn">' + esc(t.panic) + '</button>' +
       '</div>' +
       '<p id="pk-readout" class="pk-readout is-idle" aria-live="polite"></p>' +
