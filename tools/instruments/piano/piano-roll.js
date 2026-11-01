@@ -19,6 +19,7 @@
     beat: '#343434',
     bar: '#5f5f5f',
     note: '255, 106, 139',
+    noteSel: '255, 196, 120',
     noteBorder: '#ffd0db',
     noteText: '#22070e',
     keyWhite: '#e9e9e9',
@@ -37,6 +38,8 @@
       sequencer: null,
       noteName: m => String(m),
       onPreview: function () {},
+      onSelectionChange: function () {},
+      defaultVelocity: () => 0.8,
       label: 'Piano roll'
     }, options || {});
     const seq = opts.sequencer;
@@ -51,6 +54,8 @@
     let live = [];
     let drag = null;
     let rafId = 0;
+    let selected = new Set(); // id-er for valgte noter
+    let selectMode = false;   // Merk-modus: trykk velger i stedet for å legge til/fjerne (for touch)
 
     container.classList.add('pr');
     container.style.setProperty('--pr-keys-w', keysW + 'px');
@@ -63,6 +68,7 @@
         '<div class="pr-content">' +
           '<canvas class="pr-grid"></canvas>' +
           '<div class="pr-cursor" aria-hidden="true"></div>' +
+          '<div class="pr-marquee" aria-hidden="true" hidden></div>' +
           '<div class="pr-playhead" aria-hidden="true"></div>' +
         '</div>' +
       '</div>';
@@ -75,6 +81,7 @@
     const rulerCv = $('.pr-ruler');
     const cursorEl = $('.pr-cursor');
     const playheadEl = $('.pr-playhead');
+    const marqueeEl = $('.pr-marquee');
     scroll.setAttribute('role', 'region');
     scroll.setAttribute('aria-label', opts.label);
 
@@ -116,6 +123,7 @@
 
     function draw() {
       if (!gridCtx) return;
+      pruneSelection();
       if (seq.getState().beats !== beats) {
         layout();
         return;
@@ -154,8 +162,9 @@
       for (let i = 0; i * step <= beats + 1e-6; i++) {
         const b = i * step;
         const x = Math.round(b * beatW);
-        const isBar = Math.abs(b % 4) < 1e-6;
-        const isBeat = Math.abs(b % 1) < 1e-6;
+        // Toleranse for triolverdier, der b % 1 kan bli 0.9999999 i stedet for 0
+        const isBeat = Math.abs(b - Math.round(b)) < 1e-6;
+        const isBar = isBeat && Math.round(b) % 4 === 0;
         ctx.fillStyle = isBar ? C.bar : isBeat ? C.beat : C.sub;
         ctx.fillRect(Math.min(x, contentW - 1), 0, isBar ? 2 : 1, contentH);
       }
@@ -168,12 +177,15 @@
         const y = (HIGH - n.midi) * rowH + 1;
         const h = rowH - 2;
         const outside = n.start >= beats;
+        const isSel = selected.has(n.id);
         ctx.globalAlpha = outside ? 0.25 : 1;
-        ctx.fillStyle = 'rgba(' + C.note + ',' + (0.45 + 0.55 * n.vel).toFixed(2) + ')';
+        ctx.fillStyle = isSel
+          ? 'rgba(' + C.noteSel + ',' + (0.55 + 0.45 * n.vel).toFixed(2) + ')'
+          : 'rgba(' + C.note + ',' + (0.45 + 0.55 * n.vel).toFixed(2) + ')';
         roundRect(ctx, x + 0.5, y, w, h, 3);
         ctx.fill();
-        ctx.lineWidth = drag && drag.id === n.id ? 2 : 1;
-        ctx.strokeStyle = drag && drag.id === n.id ? '#ffffff' : C.noteBorder;
+        ctx.lineWidth = isSel || (drag && drag.id === n.id) ? 2 : 1;
+        ctx.strokeStyle = isSel || (drag && drag.id === n.id) ? '#ffffff' : C.noteBorder;
         ctx.stroke();
         if (w > 30 && h >= 12) {
           ctx.fillStyle = C.noteText;
@@ -296,14 +308,59 @@
     function snapFloor(b, st) { return st.snap ? Math.floor(b / st.grid + 1e-6) * st.grid : b; }
     function snapRound(b, st) { return st.snap ? Math.round(b / st.grid) * st.grid : b; }
 
+    // ---------- Utvalg ----------
+
+    function selectionChanged() {
+      opts.onSelectionChange(Array.from(selected));
+      draw();
+    }
+
+    function setSelection(ids) {
+      selected = new Set(ids);
+      selectionChanged();
+    }
+
+    function pruneSelection() {
+      if (!selected.size) return;
+      const ids = new Set(seq.getNotes().map(n => n.id));
+      let removed = false;
+      selected.forEach(id => {
+        if (!ids.has(id)) {
+          selected.delete(id);
+          removed = true;
+        }
+      });
+      if (removed) opts.onSelectionChange(Array.from(selected));
+    }
+
     function addAt(p) {
       const st = seq.getState();
       const start = snapFloor(p.beat, st);
       if (start >= st.beats) return null;
       const dur = Math.min(lastDur || st.grid, st.beats - start);
-      const note = seq.addNote(p.midi, start, dur, 0.8);
+      const note = seq.addNote(p.midi, start, dur, opts.defaultVelocity());
       if (note) opts.onPreview(p.midi);
       return note;
+    }
+
+    function updateMarquee(d, e) {
+      const rect = gridCv.getBoundingClientRect();
+      const x0 = Math.min(d.x0, e.clientX - rect.left);
+      const y0 = Math.min(d.y0, e.clientY - rect.top);
+      const x1 = Math.max(d.x0, e.clientX - rect.left);
+      const y1 = Math.max(d.y0, e.clientY - rect.top);
+      marqueeEl.hidden = false;
+      marqueeEl.style.transform = 'translate(' + x0 + 'px,' + y0 + 'px)';
+      marqueeEl.style.width = (x1 - x0) + 'px';
+      marqueeEl.style.height = (y1 - y0) + 'px';
+      const hits = seq.getNotes().filter(n => {
+        const nx = n.start * beatW;
+        const nw = Math.max(4, n.dur * beatW);
+        const ny = (HIGH - n.midi) * rowH;
+        return nx < x1 && nx + nw > x0 && ny < y1 && ny + rowH > y0;
+      }).map(n => n.id);
+      selected = new Set(d.base.concat(hits));
+      draw();
     }
 
     // ---------- Peker (mus, touch, penn) ----------
@@ -315,16 +372,43 @@
       try { gridCv.setPointerCapture(e.pointerId); } catch (err) { /* ignorer */ }
       const p = point(e);
       const hit = noteAt(p.x, p.y);
-      const base = { pointerId: e.pointerId, startX: e.clientX, startY: e.clientY, dragged: false };
+      const additive = e.shiftKey || selectMode;
+      const base = { pointerId: e.pointerId, startX: e.clientX, startY: e.clientY, dragged: false, additive: additive };
       if (hit) {
+        // Dra i en valgt note flytter hele utvalget; en note utenfor utvalget flyttes alene
+        if (!selected.has(hit.note.id) && !additive && selected.size) setSelection([]);
+        const group = selected.has(hit.note.id) ? Array.from(selected) : [hit.note.id];
+        const orig = {};
+        group.forEach(id => {
+          const n = findNote(id);
+          if (n) orig[id] = { start: n.start, dur: n.dur, midi: n.midi };
+        });
         seq.beginEdit();
-        drag = Object.assign(base, { mode: hit.edge ? 'resize' : 'move', id: hit.note.id, offset: p.beat - hit.note.start, midi: hit.note.midi });
+        drag = Object.assign(base, {
+          mode: hit.edge ? 'resize' : 'move',
+          id: hit.note.id,
+          group: group,
+          orig: orig,
+          offset: p.beat - hit.note.start,
+          midi: hit.note.midi
+        });
         opts.onPreview(hit.note.midi);
-      } else if (e.pointerType === 'mouse') {
-        const note = addAt(p);
-        if (note) drag = Object.assign(base, { mode: 'create', id: note.id });
+      } else if (additive) {
+        const rect = gridCv.getBoundingClientRect();
+        drag = Object.assign(base, {
+          mode: 'marquee',
+          x0: e.clientX - rect.left,
+          y0: e.clientY - rect.top,
+          base: e.shiftKey ? Array.from(selected) : []
+        });
       } else {
-        drag = Object.assign(base, { mode: 'tap', scrollL: scroll.scrollLeft, scrollT: scroll.scrollTop, p: p });
+        if (selected.size) setSelection([]);
+        if (e.pointerType === 'mouse') {
+          const note = addAt(p);
+          if (note) drag = Object.assign(base, { mode: 'create', id: note.id });
+        } else {
+          drag = Object.assign(base, { mode: 'tap', scrollL: scroll.scrollLeft, scrollT: scroll.scrollTop, p: p });
+        }
       }
       draw();
     });
@@ -334,7 +418,7 @@
         if (e.pointerType === 'mouse') {
           const p = point(e);
           const hit = noteAt(p.x, p.y);
-          gridCv.style.cursor = hit ? (hit.edge ? 'ew-resize' : 'grab') : 'crosshair';
+          gridCv.style.cursor = hit ? (hit.edge ? 'ew-resize' : 'grab') : (e.shiftKey || selectMode ? 'cell' : 'crosshair');
         }
         return;
       }
@@ -343,34 +427,61 @@
       if (dist > 6) drag.dragged = true;
       const st = seq.getState();
       const p = point(e);
+      if (drag.mode === 'marquee') {
+        if (drag.dragged) updateMarquee(drag, e);
+        return;
+      }
       if (drag.mode === 'tap' && dist > 8) drag.mode = 'pan';
       if (drag.mode === 'pan') {
         scroll.scrollLeft = drag.scrollL - (e.clientX - drag.startX);
         scroll.scrollTop = drag.scrollT - (e.clientY - drag.startY);
         return;
       }
-      const note = drag.id != null ? findNote(drag.id) : null;
-      if (!note) return;
       if (drag.mode === 'move') {
         if (!drag.dragged) return;
         gridCv.style.cursor = 'grabbing';
-        const maxStart = Math.max(0, st.beats - note.dur);
-        const start = Math.max(0, Math.min(maxStart, snapRound(p.beat - drag.offset, st)));
-        if (start !== note.start || p.midi !== note.midi) {
-          if (p.midi !== drag.midi) {
-            drag.midi = p.midi;
-            opts.onPreview(p.midi);
-          }
-          seq.updateNote(note.id, { start: start, midi: p.midi });
+        const anchor = drag.orig[drag.id];
+        if (!anchor) return;
+        // Samme forskyvning for hele gruppen, begrenset så ingen note havner utenfor rutenettet
+        let dBeat = snapRound(p.beat - drag.offset, st) - anchor.start;
+        let dMidi = p.midi - anchor.midi;
+        drag.group.forEach(id => {
+          const o = drag.orig[id];
+          if (!o) return;
+          dBeat = Math.max(dBeat, -o.start);
+          dBeat = Math.min(dBeat, Math.max(0, st.beats - o.dur) - o.start);
+          dMidi = Math.max(dMidi, LOW - o.midi);
+          dMidi = Math.min(dMidi, HIGH - o.midi);
+        });
+        const lead = findNote(drag.id);
+        if (lead && Math.abs(lead.start - (anchor.start + dBeat)) < 1e-9 && lead.midi === anchor.midi + dMidi) return;
+        if (anchor.midi + dMidi !== drag.midi) {
+          drag.midi = anchor.midi + dMidi;
+          opts.onPreview(drag.midi);
         }
+        seq.updateNotes(drag.group.filter(id => drag.orig[id]).map(id => ({
+          id: id,
+          start: drag.orig[id].start + dBeat,
+          midi: drag.orig[id].midi + dMidi
+        })));
       } else if (drag.mode === 'resize' || drag.mode === 'create') {
+        const note = findNote(drag.id);
+        if (!note) return;
         const minDur = st.snap ? st.grid : global.CLPianoSequencer.MIN_DUR;
         const end = snapRound(p.beat, st);
         const dur = Math.max(minDur, Math.min(st.beats - note.start, end - note.start));
-        if (Math.abs(dur - note.dur) > 1e-6) {
+        if (Math.abs(dur - note.dur) < 1e-6) return;
+        drag.dragged = true;
+        if (drag.mode === 'create') {
           seq.updateNote(note.id, { dur: dur });
-          drag.dragged = true;
+          return;
         }
+        // Endre lengden like mye på alle valgte noter
+        const delta = dur - drag.orig[drag.id].dur;
+        seq.updateNotes(drag.group.filter(id => drag.orig[id]).map(id => {
+          const o = drag.orig[id];
+          return { id: id, dur: Math.max(minDur, Math.min(st.beats - o.start, o.dur + delta)) };
+        }));
       }
     });
 
@@ -381,14 +492,25 @@
       const note = d.id != null ? findNote(d.id) : null;
       if (d.mode === 'move' || d.mode === 'resize') {
         if (!d.dragged && !cancelled && note) {
-          // Klikk eller trykk uten å dra fjerner noten
-          seq.removeNote(note.id, true);
+          if (d.additive) {
+            // Shift-klikk eller trykk i Merk-modus velger eller fjerner noten fra utvalget
+            if (selected.has(note.id)) selected.delete(note.id);
+            else selected.add(note.id);
+            selectionChanged();
+          } else {
+            // Vanlig klikk eller trykk uten å dra fjerner noten
+            seq.removeNote(note.id, true);
+          }
         } else if (d.mode === 'resize' && note) {
           lastDur = note.dur;
         }
         seq.endEdit(true);
       } else if (d.mode === 'create') {
         if (d.dragged && note) lastDur = note.dur;
+      } else if (d.mode === 'marquee') {
+        marqueeEl.hidden = true;
+        if (!d.dragged && !cancelled) selected = new Set(d.base);
+        selectionChanged();
       } else if (d.mode === 'tap' && !cancelled) {
         addAt(d.p);
       }
@@ -454,6 +576,15 @@
       draw,
       layout,
       scrollToNotes,
+      getSelection: () => Array.from(selected),
+      selectAll() { setSelection(seq.getNotes().map(n => n.id)); },
+      clearSelection() { if (selected.size) setSelection([]); },
+      deleteSelected() {
+        if (!selected.size) return;
+        seq.removeNotes(Array.from(selected));
+        setSelection([]);
+      },
+      setSelectMode(flag) { selectMode = !!flag; },
       setLive(midis) {
         live = midis || [];
         if (keysCtx) drawKeys();

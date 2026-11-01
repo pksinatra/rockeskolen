@@ -299,6 +299,19 @@
 .pr-cursor { background: var(--pk-mark); opacity: 0.85; }
 .pr-playhead[hidden], .pr-cursor[hidden] { display: none; }
 
+.pr-marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px dashed #ffc478;
+  background: rgba(255, 196, 120, 0.12);
+  pointer-events: none;
+}
+.pr-marquee[hidden] { display: none; }
+.pr-vel { min-width: 150px; }
+.pr-vel input[type="range"] { width: 100%; min-height: 32px; accent-color: #ffc478; }
+.pr-vel output { color: var(--pk-text); font-variant-numeric: tabular-nums; }
+
 .pr-foot { display: flex; justify-content: flex-end; margin-top: 0.35rem; }
 
 /* ---------- Mobil ---------- */

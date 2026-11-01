@@ -10,7 +10,9 @@
   const OLD_STORAGE_KEY = 'cl-piano-sequence-v1';
   const BEATS_PER_BAR = 4;
   const BAR_OPTIONS = [1, 2, 4, 8];
-  const GRID_OPTIONS = [1, 0.5, 0.25, 0.125]; // 1/4, 1/8, 1/16, 1/32 i taktslag
+  // Rutenett i taktslag: 1/4, 1/8, 1/8-triol, 1/16, 1/16-triol, 1/32
+  const GRID_OPTIONS = [1, 0.5, 1 / 3, 0.25, 1 / 6, 0.125];
+  const GRID_LABELS = ['1/4', '1/8', '1/8T', '1/16', '1/16T', '1/32'];
   const MAX_NOTES = 512;
   const MAX_HISTORY = 100;
   const MIN_DUR = 1 / 32;
@@ -32,6 +34,7 @@
     let grid = 0.25;
     let loop = true;
     let snap = true;
+    let metronome = false;
     let playing = false;
     let recording = false;
     let cursor = 0;   // innsettingspunkt for opptak når transporten står
@@ -49,6 +52,19 @@
       engine.playStep([ev], () => Tone.Ticks(ev.durTicks).toSeconds(), time);
     }, []);
     part.start(0);
+
+    // Metronom: kort klikk rett til utgangen (uten effekter), høyere tone på taktens første slag
+    const click = new Tone.Synth({
+      oscillator: { type: 'square' },
+      envelope: { attack: 0.001, decay: 0.05, sustain: 0, release: 0.02 },
+      volume: -14
+    }).toDestination();
+    Tone.Transport.scheduleRepeat(time => {
+      if (!metronome || !playing) return;
+      const beat = Math.round(Tone.Transport.getTicksAtTime(time) / Tone.Transport.PPQ);
+      click.triggerAttackRelease(beat % BEATS_PER_BAR === 0 ? 'C6' : 'G5', '32n', time);
+    }, '4n');
+
     applyTransport();
     rebuildPart();
 
@@ -57,13 +73,14 @@
     function save() {
       try {
         global.localStorage.setItem(STORAGE_KEY, JSON.stringify({
-          v: 1, bpm, bars, grid, loop, snap,
+          v: 1, bpm, bars, grid, loop, snap, metronome,
           notes: notes.map(n => [n.midi, round(n.start), round(n.dur), Math.round(n.vel * 100) / 100])
         }));
       } catch (err) { /* lagring er en bonus, ikke et krav */ }
     }
 
-    function round(v) { return Math.round(v * 10000) / 10000; }
+    // Seks desimaler holder triolverdier (1/3, 1/6) presise nok
+    function round(v) { return Math.round(v * 1e6) / 1e6; }
 
     function readJSON(key) {
       try { return JSON.parse(global.localStorage.getItem(key) || 'null'); } catch (err) { return null; }
@@ -74,9 +91,10 @@
       if (data && data.v === 1 && Array.isArray(data.notes)) {
         bpm = clampBpm(data.bpm);
         bars = BAR_OPTIONS.indexOf(data.bars) !== -1 ? data.bars : 2;
-        grid = GRID_OPTIONS.indexOf(data.grid) !== -1 ? data.grid : 0.25;
+        grid = gridValue(data.grid, 0.25);
         loop = data.loop !== false;
         snap = data.snap !== false;
+        metronome = data.metronome === true;
         notes = data.notes.slice(0, MAX_NOTES)
           .filter(n => Array.isArray(n) && Number.isInteger(n[0]) && n[0] >= 0 && n[0] <= 127 && n[1] >= 0 && n[2] > 0)
           .map(n => makeNote(n[0], Number(n[1]), Number(n[2]), typeof n[3] === 'number' ? n[3] : 0.8));
@@ -107,6 +125,13 @@
 
     function makeNote(midi, start, dur, vel) {
       return { id: nextId++, midi: midi, start: Math.max(0, start), dur: Math.max(MIN_DUR, dur), vel: clamp(vel, 0.1, 1) };
+    }
+
+    // Finn rutenettverdien som ligger nærmest (tåler avrundede triolverdier fra lagring eller skjema)
+    function gridValue(value, fallback) {
+      const n = Number(value);
+      const match = GRID_OPTIONS.find(g => Math.abs(g - n) < 1e-4);
+      return match == null ? fallback : match;
     }
 
     function clampBpm(value) {
@@ -309,13 +334,25 @@
         notes = notes.filter(n => n.id !== id);
         changed();
       },
+      removeNotes(ids) {
+        if (!ids.length) return;
+        pushHistory(snapshot());
+        notes = notes.filter(n => ids.indexOf(n.id) === -1);
+        changed();
+      },
       // Endringer under dra-operasjoner lagres uten egen historikk; beginEdit/endEdit rammer dem inn
       updateNote(id, patch) {
-        const note = notes.find(n => n.id === id);
-        if (!note) return;
-        if (patch.midi != null) note.midi = clamp(patch.midi, 0, 127);
-        if (patch.start != null) note.start = Math.max(0, patch.start);
-        if (patch.dur != null) note.dur = Math.max(MIN_DUR, patch.dur);
+        this.updateNotes([Object.assign({ id: id }, patch)]);
+      },
+      updateNotes(patches) {
+        patches.forEach(patch => {
+          const note = notes.find(n => n.id === patch.id);
+          if (!note) return;
+          if (patch.midi != null) note.midi = clamp(patch.midi, 0, 127);
+          if (patch.start != null) note.start = Math.max(0, patch.start);
+          if (patch.dur != null) note.dur = Math.max(MIN_DUR, patch.dur);
+          if (patch.vel != null) note.vel = clamp(patch.vel, 0.1, 1);
+        });
         changed();
       },
       beginEdit() { editSnapshot = snapshot(); },
@@ -323,10 +360,12 @@
         if (didChange && editSnapshot != null && editSnapshot !== snapshot()) pushHistory(editSnapshot);
         editSnapshot = null;
       },
-      quantizeAll() {
+      // Kvantiserer de valgte notene, eller alle hvis ingen er valgt
+      quantize(ids) {
         if (!notes.length) return;
         const before = snapshot();
-        notes.forEach(n => {
+        const target = ids && ids.length ? notes.filter(n => ids.indexOf(n.id) !== -1) : notes;
+        target.forEach(n => {
           n.start = Math.round(n.start / grid) * grid;
           n.dur = Math.max(grid, Math.round(n.dur / grid) * grid);
         });
@@ -372,9 +411,14 @@
         changed();
       },
       setGrid(value) {
-        grid = GRID_OPTIONS.indexOf(value) !== -1 ? value : grid;
+        grid = gridValue(value, grid);
         save();
         opts.onChange();
+      },
+      setMetronome(flag) {
+        metronome = !!flag;
+        save();
+        opts.onTransport();
       },
       setLoop(flag) {
         loop = !!flag;
@@ -402,7 +446,7 @@
 
       getNotes: () => notes,
       getState: () => ({
-        bpm, bars, grid, loop, snap, playing, recording, cursor,
+        bpm, bars, grid, loop, snap, metronome, playing, recording, cursor,
         beats: loopBeats(),
         canUndo: undoStack.length > 0,
         canRedo: redoStack.length > 0,
@@ -411,5 +455,5 @@
     };
   }
 
-  global.CLPianoSequencer = { create, BAR_OPTIONS, GRID_OPTIONS, BEATS_PER_BAR, MIN_DUR };
+  global.CLPianoSequencer = { create, BAR_OPTIONS, GRID_OPTIONS, GRID_LABELS, BEATS_PER_BAR, MIN_DUR };
 })(window);

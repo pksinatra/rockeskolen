@@ -55,8 +55,14 @@
       bpm: 'BPM',
       bars: 'Bars',
       grid: 'Grid',
-      grids: { 1: '1/4', 0.5: '1/8', 0.25: '1/16', 0.125: '1/32' },
       snap: 'Snap to grid',
+      metronome: 'Metronome',
+      select: 'Select',
+      selectTitle: 'Select mode: tap notes to select them, or drag across empty space to select several. Drag a selected note to move them all.',
+      deleteSel: 'Delete',
+      velocity: 'Velocity',
+      velocityTitle: 'Velocity of the selected notes, or of new notes when nothing is selected.',
+      selCount: n => n + ' selected',
       undo: 'Undo',
       redo: 'Redo',
       quantize: 'Quantize',
@@ -64,7 +70,7 @@
       exportMidi: 'Export MIDI',
       noteCount: n => n + (n === 1 ? ' note' : ' notes'),
       rollLabel: 'Piano roll grid. Rows are pitches, columns are time.',
-      rollHint: 'Click an empty cell to add a note and drag to set its length. Click a note to remove it, drag it to move it, or drag its right edge to change its length. On a touch screen, tap to add or remove, drag a note to move it and drag empty space to scroll. With Record on, play the keyboard or a MIDI keyboard: while playing, notes are recorded in time; when stopped, each note or chord goes in at the blue marker, which then moves one grid step. Space plays and stops; Ctrl/⌘+Z undoes. Your pattern is saved in this browser.',
+      rollHint: 'Click an empty cell to add a note and drag to set its length. Click a note to remove it, drag it to move it, or drag its right edge to change its length. On a touch screen, tap to add or remove, drag a note to move it and drag empty space to scroll. With Record on, play the keyboard or a MIDI keyboard: while playing, notes are recorded in time; when stopped, each note or chord goes in at the blue marker, which then moves one grid step. To select several notes, Shift-click them or drag across empty space with Shift held, or turn on Select (handy on a touch screen); then move, resize, quantize, delete (Delete key) or change velocity for all of them. Space plays and stops; Ctrl/⌘+Z undoes; Ctrl/⌘+A selects all. Your pattern is saved in this browser.',
       midiFile: 'piano-idea.mid'
     },
     nb: {
@@ -116,8 +122,14 @@
       bpm: 'BPM',
       bars: 'Takter',
       grid: 'Rutenett',
-      grids: { 1: '1/4', 0.5: '1/8', 0.25: '1/16', 0.125: '1/32' },
       snap: 'Fest til rutenett',
+      metronome: 'Metronom',
+      select: 'Merk',
+      selectTitle: 'Merk-modus: trykk på noter for å velge dem, eller dra over tom flate for å velge flere. Dra en valgt note for å flytte alle.',
+      deleteSel: 'Slett',
+      velocity: 'Anslag',
+      velocityTitle: 'Anslagsstyrken til de valgte notene, eller til nye noter når ingen er valgt.',
+      selCount: n => n + ' valgt',
       undo: 'Angre',
       redo: 'Gjør om',
       quantize: 'Kvantiser',
@@ -125,7 +137,7 @@
       exportMidi: 'Eksporter MIDI',
       noteCount: n => n + (n === 1 ? ' note' : ' noter'),
       rollLabel: 'Pianorull. Radene er tonehøyder, kolonnene er tid.',
-      rollHint: 'Klikk i en tom rute for å legge inn en note, og dra for å velge lengden. Klikk på en note for å fjerne den, dra den for å flytte den, eller dra i høyre kant for å endre lengden. På berøringsskjerm trykker du for å legge til eller fjerne, drar en note for å flytte den og drar i tom flate for å rulle. Med Ta opp på kan du spille på klaviaturet eller et MIDI-klaviatur: under avspilling tas notene opp i takt; når avspillingen står, settes hver tone eller akkord inn ved den blå markøren, som så flytter seg ett rutesteg. Mellomrom spiller og stopper; Ctrl/⌘+Z angrer. Mønsteret lagres i denne nettleseren.',
+      rollHint: 'Klikk i en tom rute for å legge inn en note, og dra for å velge lengden. Klikk på en note for å fjerne den, dra den for å flytte den, eller dra i høyre kant for å endre lengden. På berøringsskjerm trykker du for å legge til eller fjerne, drar en note for å flytte den og drar i tom flate for å rulle. Med Ta opp på kan du spille på klaviaturet eller et MIDI-klaviatur: under avspilling tas notene opp i takt; når avspillingen står, settes hver tone eller akkord inn ved den blå markøren, som så flytter seg ett rutesteg. For å velge flere noter kan du shift-klikke dem, dra over tom flate mens du holder Shift, eller slå på Merk (praktisk på berøringsskjerm). Da kan du flytte, endre lengde, kvantisere, slette (Delete-tasten) eller endre anslag for alle samtidig. Mellomrom spiller og stopper; Ctrl/⌘+Z angrer; Ctrl/⌘+A velger alle. Mønsteret lagres i denne nettleseren.',
       midiFile: 'piano-ide.mid'
     }
   };
@@ -369,6 +381,7 @@
     // ---------- Piano-roll og transport ----------
 
     let roll = null;
+    let defaultVel = 0.8;
     const sequencer = global.CLPianoSequencer.create({
       engine: engine,
       onChange: () => { if (roll) roll.draw(); renderTransport(); },
@@ -378,6 +391,8 @@
       sequencer: sequencer,
       label: t.rollLabel,
       noteName: m => keyboard.noteName(m),
+      defaultVelocity: () => defaultVel,
+      onSelectionChange: () => { syncVelocity(); renderTransport(); },
       onPreview: midi => {
         engine.start();
         engine.playStep([{ midi: midi, vel: 0.75 }], () => 0.3, Tone.now());
@@ -391,6 +406,9 @@
       $('pr-loop').setAttribute('aria-pressed', String(st.loop));
       $('pr-record').setAttribute('aria-pressed', String(st.recording));
       $('pr-snap').setAttribute('aria-pressed', String(st.snap));
+      $('pr-metronome').setAttribute('aria-pressed', String(st.metronome));
+      const selCount = roll ? roll.getSelection().length : 0;
+      $('pr-delete').disabled = !selCount;
       if (document.activeElement !== $('pr-bpm')) $('pr-bpm').value = String(st.bpm);
       $('pr-bars').value = String(st.bars);
       $('pr-grid').value = String(st.grid);
@@ -399,7 +417,7 @@
       $('pr-quantize').disabled = !st.count;
       $('pr-clear').disabled = !st.count;
       $('pr-export').disabled = !st.count;
-      $('pr-count').textContent = t.noteCount(st.count);
+      $('pr-count').textContent = t.noteCount(st.count) + (selCount ? ' · ' + t.selCount(selCount) : '');
     }
 
     function togglePlay() {
@@ -422,7 +440,56 @@
     $('pr-grid').addEventListener('change', e => sequencer.setGrid(Number(e.target.value)));
     $('pr-undo').addEventListener('click', () => sequencer.undo());
     $('pr-redo').addEventListener('click', () => sequencer.redo());
-    $('pr-quantize').addEventListener('click', () => sequencer.quantizeAll());
+    $('pr-quantize').addEventListener('click', () => sequencer.quantize(roll.getSelection()));
+    $('pr-metronome').addEventListener('click', () => {
+      engine.start();
+      sequencer.setMetronome(!sequencer.getState().metronome);
+    });
+    const selectBtn = $('pr-select');
+    selectBtn.addEventListener('click', () => {
+      const on = selectBtn.getAttribute('aria-pressed') !== 'true';
+      selectBtn.setAttribute('aria-pressed', String(on));
+      roll.setSelectMode(on);
+    });
+    $('pr-delete').addEventListener('click', () => roll.deleteSelected());
+
+    // Anslag: gjelder valgte noter, ellers nye noter
+    const velInput = $('pr-vel');
+    function showVelocity(v) {
+      velInput.value = String(Math.round(v * 100));
+      $('pr-vel-out').textContent = Math.round(v * 100) + ' %';
+    }
+    function syncVelocity() {
+      const ids = roll ? roll.getSelection() : [];
+      if (!ids.length) {
+        showVelocity(defaultVel);
+        return;
+      }
+      const sel = sequencer.getNotes().filter(n => ids.indexOf(n.id) !== -1);
+      showVelocity(sel.reduce((s, n) => s + n.vel, 0) / (sel.length || 1));
+    }
+    let velEditing = false;
+    velInput.addEventListener('input', () => {
+      const v = Number(velInput.value) / 100;
+      $('pr-vel-out').textContent = velInput.value + ' %';
+      const ids = roll.getSelection();
+      if (!ids.length) {
+        defaultVel = v;
+        return;
+      }
+      if (!velEditing) {
+        sequencer.beginEdit();
+        velEditing = true;
+      }
+      sequencer.updateNotes(ids.map(id => ({ id: id, vel: v })));
+    });
+    velInput.addEventListener('change', () => {
+      if (!velEditing) return;
+      velEditing = false;
+      sequencer.endEdit(true);
+      renderTransport();
+    });
+    showVelocity(defaultVel);
     $('pr-clear').addEventListener('click', () => sequencer.clear());
     $('pr-export').addEventListener('click', () => {
       const blob = new Blob([sequencer.exportMidi()], { type: 'audio/midi' });
@@ -448,6 +515,14 @@
       } else if (mod && !e.altKey && (e.key === 'y' || e.key === 'Y')) {
         e.preventDefault();
         sequencer.redo();
+      } else if (mod && !e.altKey && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        roll.selectAll();
+      } else if ((e.key === 'Delete' || e.key === 'Backspace') && roll.getSelection().length) {
+        e.preventDefault();
+        roll.deleteSelected();
+      } else if (e.key === 'Escape') {
+        roll.clearSelection();
       } else if (e.code === 'Space' && !mod && !e.repeat) {
         if (target && target.closest && target.closest('button, .pk-key, summary, a')) return;
         e.preventDefault();
@@ -477,7 +552,7 @@
     const waveOptions = Object.keys(t.waves).map(k => option(k, t.waves[k], k === 'triangle')).join('');
     const transposeOptions = [-24, -12, 0, 12, 24].map(n => option(n, n === 0 ? '0' : t.oct(n / 12), n === 0)).join('');
     const barOptions = global.CLPianoSequencer.BAR_OPTIONS.map(n => option(n, String(n), n === 2)).join('');
-    const gridOptions = global.CLPianoSequencer.GRID_OPTIONS.map(g => option(g, t.grids[g], g === 0.25)).join('');
+    const gridOptions = global.CLPianoSequencer.GRID_OPTIONS.map((g, i) => option(g, global.CLPianoSequencer.GRID_LABELS[i], g === 0.25)).join('');
     const sliders = SLIDERS.map(s =>
       '<label class="pk-control" for="pk-' + s.key + '">' +
         '<span class="pk-control-head"><span>' + esc(t[s.key]) + '</span><output id="pk-' + s.key + '-out" for="pk-' + s.key + '"></output></span>' +
@@ -518,6 +593,7 @@
             '<button type="button" id="pr-stop" class="pk-btn">■ ' + esc(t.stop) + '</button>' +
             '<button type="button" id="pr-loop" class="pk-btn pk-toggle" aria-pressed="true">⟲ ' + esc(t.loop) + '</button>' +
             '<button type="button" id="pr-record" class="pk-btn pk-toggle pk-record" aria-pressed="false">● ' + esc(t.record) + '</button>' +
+            '<button type="button" id="pr-metronome" class="pk-btn pk-toggle" aria-pressed="false">♩ ' + esc(t.metronome) + '</button>' +
           '</div>' +
           '<div class="pr-group pr-bpm">' +
             '<button type="button" id="pr-bpm-down" class="pk-btn pk-icon" aria-label="' + esc(t.bpm) + ' −1">−</button>' +
@@ -532,10 +608,13 @@
           '<div class="pr-group">' +
             '<button type="button" id="pr-undo" class="pk-btn pk-icon" aria-label="' + esc(t.undo) + '" title="' + esc(t.undo) + '">↶</button>' +
             '<button type="button" id="pr-redo" class="pk-btn pk-icon" aria-label="' + esc(t.redo) + '" title="' + esc(t.redo) + '">↷</button>' +
+            '<button type="button" id="pr-select" class="pk-btn pk-toggle" aria-pressed="false" title="' + esc(t.selectTitle) + '">⬚ ' + esc(t.select) + '</button>' +
+            '<button type="button" id="pr-delete" class="pk-btn">' + esc(t.deleteSel) + '</button>' +
             '<button type="button" id="pr-quantize" class="pk-btn">' + esc(t.quantize) + '</button>' +
             '<button type="button" id="pr-clear" class="pk-btn">' + esc(t.clear) + '</button>' +
             '<button type="button" id="pr-export" class="pk-btn">' + esc(t.exportMidi) + '</button>' +
           '</div>' +
+          '<label class="pk-field pr-vel" title="' + esc(t.velocityTitle) + '"><span>' + esc(t.velocity) + ' <output id="pr-vel-out"></output></span><input type="range" id="pr-vel" min="10" max="100" step="1" value="80"></label>' +
         '</div>' +
         '<div id="pr-roll"></div>' +
         '<div class="pr-foot"><span id="pr-count" class="pk-muted" aria-live="polite"></span></div>' +
