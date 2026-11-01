@@ -35,7 +35,7 @@
     let lowC = 48;
     let focusMidi = 60;
     let marked = [];
-    let hold = false; // Hold: tonene klinger videre etter at du slipper, til neste akkord
+    let hold = false; // Hold: hver tone klinger videre etter at du slipper, så du kan bygge en akkord tone for tone
 
     container.classList.add('pk-keyboard');
     container.setAttribute('role', 'group');
@@ -118,20 +118,11 @@
 
     // ---------- Trykk og slipp (felles for alle kilder) ----------
 
-    function physicalDown() {
-      for (const set of sources.values()) {
-        for (const src of set) if (src !== 'hold') return true;
-      }
-      return false;
-    }
-
     function releaseHeld() {
       Array.from(sources.keys()).forEach(midi => release(midi, 'hold'));
     }
 
     function press(midi, source, velocity) {
-      // Med Hold på erstatter en ny akkord den som holdes, så snart ingen tangenter er nede
-      if (hold && source !== 'hold' && !physicalDown()) releaseHeld();
       let set = sources.get(midi);
       if (!set) {
         set = new Set();

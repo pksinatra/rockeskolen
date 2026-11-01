@@ -32,7 +32,7 @@ $steps = $isNorwegian
         : 'Play piano in your browser and hear notes while you practise, teach or make music.',
 ]); ?>
 <?php chordlink_app_header_styles(); ?>
-<link rel="stylesheet" href="piano.css?v=20261101-2">
+<link rel="stylesheet" href="piano.css?v=20261101-3">
 
 <!-- Tone.js for lyd -->
 <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
@@ -40,10 +40,10 @@ $steps = $isNorwegian
 
 <!-- Musikkteori (akkordnavn) og pianomodulene -->
 <script src="/tools/chordprog/music.js" defer></script>
-<script src="piano-engine.js?v=20261101-2" defer></script>
-<script src="piano-keyboard.js?v=20261101-2" defer></script>
-<script src="piano-sequencer.js?v=20261101-2" defer></script>
-<script src="piano-app.js?v=20261101-2" defer></script>
+<script src="piano-engine.js?v=20261101-3" defer></script>
+<script src="piano-keyboard.js?v=20261101-3" defer></script>
+<script src="piano-sequencer.js?v=20261101-3" defer></script>
+<script src="piano-app.js?v=20261101-3" defer></script>
 </head>
 <body>
   <?php chordlink_app_header($isNorwegian ? 'Spillbart piano' : 'Playable piano'); ?>

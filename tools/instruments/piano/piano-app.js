@@ -20,7 +20,7 @@
       showSharps: 'Show sharps',
       sustainPedal: 'Sustain pedal',
       hold: 'Hold',
-      holdTitle: 'Notes keep sounding after you let go. The next chord you play replaces them.',
+      holdTitle: 'Every note keeps sounding after you let go, so you can build a chord one note at a time. Click Hold again or All notes off to release.',
       midi: 'Connect MIDI',
       midiOn: n => 'MIDI: ' + n + (n === 1 ? ' device' : ' devices'),
       midiNone: 'MIDI: no devices found',
@@ -76,7 +76,7 @@
       showSharps: 'Vis kryss',
       sustainPedal: 'Sustainpedal',
       hold: 'Hold',
-      holdTitle: 'Tonene klinger videre når du slipper. Neste akkord du spiller, erstatter dem.',
+      holdTitle: 'Hver tone klinger videre når du slipper, så du kan bygge en akkord tone for tone. Klikk på Hold igjen eller Stopp alle toner for å slippe.',
       midi: 'Koble til MIDI',
       midiOn: n => 'MIDI: ' + n + (n === 1 ? ' enhet' : ' enheter'),
       midiNone: 'MIDI: fant ingen enheter',
@@ -488,7 +488,7 @@
         '</select></label>' +
         '<button type="button" id="pk-accidentals" class="pk-btn pk-icon" aria-label="' + esc(t.showFlats) + '" title="' + esc(t.showFlats) + '">♯</button>' +
         '<button type="button" id="pk-sustain" class="pk-btn pk-toggle" aria-pressed="false">' + esc(t.sustainPedal) + '</button>' +
-        '<button type="button" id="pk-hold" class="pk-btn pk-toggle" aria-pressed="false" title="' + esc(t.holdTitle) + '">' + esc(t.hold) + '</button>' +
+        '<button type="button" id="pk-hold" class="pk-btn pk-toggle pk-hold" aria-pressed="false" title="' + esc(t.holdTitle) + '"><span class="pk-led" aria-hidden="true"></span>' + esc(t.hold) + '</button>' +
         '<button type="button" id="pk-panic" class="pk-btn">' + esc(t.panic) + '</button>' +
       '</div>' +
       '<p id="pk-readout" class="pk-readout is-idle" aria-live="polite"></p>' +
