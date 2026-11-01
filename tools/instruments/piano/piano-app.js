@@ -19,6 +19,7 @@
       showFlats: 'Show flats',
       showSharps: 'Show sharps',
       sustainPedal: 'Sustain pedal',
+      sustainTitle: 'Notes ring out naturally after you let go, like the sustain pedal on a piano.',
       hold: 'Hold',
       holdTitle: 'Every note keeps sounding after you let go, so you can build a chord one note at a time. Press a held key again to turn it off. Click Hold again or All notes off to release everything.',
       midi: 'Connect MIDI',
@@ -75,6 +76,7 @@
       showFlats: 'Vis b-er',
       showSharps: 'Vis kryss',
       sustainPedal: 'Sustainpedal',
+      sustainTitle: 'Tonene klinger naturlig ut når du slipper, som med sustainpedalen på et piano.',
       hold: 'Hold',
       holdTitle: 'Hver tone klinger videre når du slipper, så du kan bygge en akkord tone for tone. Trykk på en holdt tangent igjen for å slå den av. Klikk på Hold igjen eller Stopp alle toner for å slippe alt.',
       midi: 'Koble til MIDI',
@@ -487,7 +489,7 @@
           option('c', t.labelsC, true) + option('all', t.labelsAll) + option('none', t.labelsNone) +
         '</select></label>' +
         '<button type="button" id="pk-accidentals" class="pk-btn pk-icon" aria-label="' + esc(t.showFlats) + '" title="' + esc(t.showFlats) + '">♯</button>' +
-        '<button type="button" id="pk-sustain" class="pk-btn pk-toggle" aria-pressed="false">' + esc(t.sustainPedal) + '</button>' +
+        '<button type="button" id="pk-sustain" class="pk-btn pk-toggle" aria-pressed="false" title="' + esc(t.sustainTitle) + '">' + esc(t.sustainPedal) + '</button>' +
         '<button type="button" id="pk-hold" class="pk-btn pk-toggle pk-hold" aria-pressed="false" title="' + esc(t.holdTitle) + '"><span class="pk-led" aria-hidden="true"></span>' + esc(t.hold) + '</button>' +
         '<button type="button" id="pk-panic" class="pk-btn">' + esc(t.panic) + '</button>' +
       '</div>' +

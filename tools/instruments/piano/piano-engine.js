@@ -12,6 +12,7 @@
     pad:      { wave: 'sawtooth', volume: -17, attack: 0.42, decay: 0.65, sustain: 0.62, release: 1.8,  cutoff: 2200, reverb: 0.38, drive: 0.01, delay: 0.18 }
   };
 
+  const PEDAL_RELEASE = 4; // sekunder utklingning når sustainpedalen er nede
   const LIVE_VOICES = 24;
   const SEQ_VOICES = 16;
 
@@ -21,8 +22,7 @@
 
   function create() {
     const params = Object.assign({}, PRESETS.warm);
-    const held = new Map();      // tangent (midi) -> tonen som faktisk klinger
-    const sustained = new Map(); // tangenter som er sluppet mens sustain er på
+    const held = new Map(); // tangent (midi) -> tonen som faktisk klinger
     let sustainOn = false;
     let transpose = 0;
 
@@ -101,7 +101,19 @@
             break;
         }
       });
-      if (Object.keys(env).length) synths.forEach(s => s.set({ envelope: env }));
+      if (Object.keys(env).length) {
+        synths.forEach(s => s.set({ envelope: env }));
+        if ('release' in env) applyPedalRelease();
+      }
+    }
+
+    // Sustainpedal som på et piano: tonene klinger ut i stedet for å slippe brått, men holdes ikke uendelig
+    function applyPedalRelease() {
+      live.set({
+        envelope: sustainOn
+          ? { release: Math.max(params.release, PEDAL_RELEASE), releaseCurve: 'linear' }
+          : { release: params.release, releaseCurve: 'exponential' }
+      });
     }
 
     function applyPreset(name) {
@@ -115,10 +127,6 @@
     function noteOn(midi, velocity) {
       start();
       if (held.has(midi)) live.triggerRelease(held.get(midi), Tone.now());
-      if (sustained.has(midi)) {
-        live.triggerRelease(sustained.get(midi), Tone.now());
-        sustained.delete(midi);
-      }
       const note = midiToNote(midi + transpose);
       live.triggerAttack(note, Tone.now(), velocity == null ? 0.9 : velocity);
       held.set(midi, note);
@@ -128,18 +136,12 @@
       const note = held.get(midi);
       if (!note) return;
       held.delete(midi);
-      if (sustainOn) {
-        sustained.set(midi, note);
-        return;
-      }
       live.triggerRelease(note, Tone.now());
     }
 
     function setSustain(on) {
       sustainOn = !!on;
-      if (sustainOn) return;
-      sustained.forEach(note => live.triggerRelease(note, Tone.now()));
-      sustained.clear();
+      applyPedalRelease();
     }
 
     // notes: [{ midi, vel }], duration i sekunder, time fra Transport
@@ -152,7 +154,6 @@
     function panic() {
       synths.forEach(s => s.releaseAll());
       held.clear();
-      sustained.clear();
     }
 
     return {
