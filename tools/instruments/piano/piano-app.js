@@ -47,21 +47,25 @@
       drive: 'Overdrive',
       transpose: 'Transpose',
       oct: n => (n > 0 ? '+' : '') + n + ' oct',
-      sequencer: 'Step sequencer',
+      sequencer: 'Piano roll',
       play: 'Play',
       stop: 'Stop',
-      record: 'Record notes',
-      tempo: 'Tempo (BPM)',
-      steps: 'Steps',
-      gate: 'Note length',
-      gates: { '32n': '32nd', '16n': '16th', '8n': '8th', '4n': 'Quarter', tie: 'Tie (hold to next note)' },
-      clearStep: 'Clear step',
-      clearAll: 'Clear all',
-      stepLabel: (i, n) => 'Step ' + i + (n ? ', ' + n + (n === 1 ? ' note' : ' notes') : ', empty'),
-      stepTitle: i => 'Step ' + i,
-      emptyStep: 'No notes yet.',
-      removeNote: name => 'Remove ' + name,
-      seqHint: 'Turn on Record notes, choose a step and play keys to add them. Tie holds a note until the next step with notes. The pattern is saved in this browser.'
+      loop: 'Loop',
+      record: 'Record',
+      bpm: 'BPM',
+      bars: 'Bars',
+      grid: 'Grid',
+      grids: { 1: '1/4', 0.5: '1/8', 0.25: '1/16', 0.125: '1/32' },
+      snap: 'Snap to grid',
+      undo: 'Undo',
+      redo: 'Redo',
+      quantize: 'Quantize',
+      clear: 'Clear',
+      exportMidi: 'Export MIDI',
+      noteCount: n => n + (n === 1 ? ' note' : ' notes'),
+      rollLabel: 'Piano roll grid. Rows are pitches, columns are time.',
+      rollHint: 'Click an empty cell to add a note and drag to set its length. Click a note to remove it, drag it to move it, or drag its right edge to change its length. On a touch screen, tap to add or remove, drag a note to move it and drag empty space to scroll. With Record on, play the keyboard or a MIDI keyboard: while playing, notes are recorded in time; when stopped, each note or chord goes in at the blue marker, which then moves one grid step. Space plays and stops; Ctrl/⌘+Z undoes. Your pattern is saved in this browser.',
+      midiFile: 'piano-idea.mid'
     },
     nb: {
       keyboard: 'Pianoklaviatur',
@@ -104,21 +108,25 @@
       drive: 'Vreng',
       transpose: 'Transponering',
       oct: n => (n > 0 ? '+' : '') + n + ' okt.',
-      sequencer: 'Stegsequencer',
+      sequencer: 'Pianorull',
       play: 'Spill',
       stop: 'Stopp',
-      record: 'Ta opp toner',
-      tempo: 'Tempo (BPM)',
-      steps: 'Antall steg',
-      gate: 'Notelengde',
-      gates: { '32n': '32-del', '16n': '16-del', '8n': '8-del', '4n': '4-del', tie: 'Bind (hold til neste tone)' },
-      clearStep: 'Tøm steget',
-      clearAll: 'Tøm alt',
-      stepLabel: (i, n) => 'Steg ' + i + (n ? ', ' + n + (n === 1 ? ' tone' : ' toner') : ', tomt'),
-      stepTitle: i => 'Steg ' + i,
-      emptyStep: 'Ingen toner ennå.',
-      removeNote: name => 'Fjern ' + name,
-      seqHint: 'Slå på Ta opp toner, velg et steg og spill tangenter for å legge dem inn. Bind holder tonen til neste steg som har toner. Mønsteret lagres i denne nettleseren.'
+      loop: 'Loop',
+      record: 'Ta opp',
+      bpm: 'BPM',
+      bars: 'Takter',
+      grid: 'Rutenett',
+      grids: { 1: '1/4', 0.5: '1/8', 0.25: '1/16', 0.125: '1/32' },
+      snap: 'Fest til rutenett',
+      undo: 'Angre',
+      redo: 'Gjør om',
+      quantize: 'Kvantiser',
+      clear: 'Tøm',
+      exportMidi: 'Eksporter MIDI',
+      noteCount: n => n + (n === 1 ? ' note' : ' noter'),
+      rollLabel: 'Pianorull. Radene er tonehøyder, kolonnene er tid.',
+      rollHint: 'Klikk i en tom rute for å legge inn en note, og dra for å velge lengden. Klikk på en note for å fjerne den, dra den for å flytte den, eller dra i høyre kant for å endre lengden. På berøringsskjerm trykker du for å legge til eller fjerne, drar en note for å flytte den og drar i tom flate for å rulle. Med Ta opp på kan du spille på klaviaturet eller et MIDI-klaviatur: under avspilling tas notene opp i takt; når avspillingen står, settes hver tone eller akkord inn ved den blå markøren, som så flytter seg ett rutesteg. Mellomrom spiller og stopper; Ctrl/⌘+Z angrer. Mønsteret lagres i denne nettleseren.',
+      midiFile: 'piano-ide.mid'
     }
   };
 
@@ -262,11 +270,14 @@
       labels: 'c',
       onNoteOn(midi, velocity) {
         engine.noteOn(midi, velocity);
-        if (sequencer.addNote(midi, velocity, $('pk-gate').value)) renderSteps();
+        sequencer.recordNoteOn(midi, velocity);
+        roll.setLive(keyboard.heldNotes());
         updateReadout();
       },
       onNoteOff(midi) {
         engine.noteOff(midi);
+        sequencer.recordNoteOff(midi, keyboard.heldNotes().length === 0);
+        roll.setLive(keyboard.heldNotes());
         updateReadout();
       },
       onRangeChange(range) {
@@ -292,7 +303,7 @@
       accBtn.title = accBtn.getAttribute('aria-label');
       keyboard.setPreferFlats(preferFlats);
       updateReadout();
-      renderSteps();
+      roll.draw();
     });
 
     const sustainBtn = $('pk-sustain');
@@ -355,97 +366,95 @@
       else if (type === 0xb0 && data1 === 64) setSustain(data2 >= 64);
     }
 
-    // ---------- Sequencer ----------
+    // ---------- Piano-roll og transport ----------
 
-    const grid = $('pk-steps');
+    let roll = null;
     const sequencer = global.CLPianoSequencer.create({
       engine: engine,
-      onStep(index) {
-        grid.querySelectorAll('.pk-step.is-current').forEach(el => el.classList.remove('is-current'));
-        if (index >= 0) {
-          const el = grid.children[index];
-          if (el) el.classList.add('is-current');
-        }
-      },
-      onChange: () => renderSteps()
+      onChange: () => { if (roll) roll.draw(); renderTransport(); },
+      onTransport: () => { if (roll) roll.transportChanged(); renderTransport(); }
+    });
+    roll = global.CLPianoRoll.create($('pr-roll'), {
+      sequencer: sequencer,
+      label: t.rollLabel,
+      noteName: m => keyboard.noteName(m),
+      onPreview: midi => {
+        engine.start();
+        engine.playStep([{ midi: midi, vel: 0.75 }], () => 0.3, Tone.now());
+      }
     });
 
-    function renderSteps() {
-      const state = sequencer.getState();
-      if (grid.children.length !== state.length) {
-        grid.textContent = '';
-        for (let i = 0; i < state.length; i++) {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'pk-step';
-          btn.dataset.step = i;
-          btn.innerHTML = '<span class="pk-step-num">' + (i + 1) + '</span><span class="pk-step-dots" aria-hidden="true"></span>';
-          grid.appendChild(btn);
-        }
-      }
-      Array.from(grid.children).forEach((btn, i) => {
-        const count = sequencer.getStep(i).length;
-        btn.classList.toggle('is-selected', i === state.selected);
-        btn.classList.toggle('has-notes', count > 0);
-        btn.classList.toggle('is-beat', i % 4 === 0);
-        btn.setAttribute('aria-pressed', String(i === state.selected));
-        btn.setAttribute('aria-label', t.stepLabel(i + 1, count));
-        btn.querySelector('.pk-step-dots').textContent = count ? '•'.repeat(Math.min(count, 4)) : '';
-      });
-
-      const playBtn = $('pk-play');
-      playBtn.textContent = state.playing ? t.stop : t.play;
-      playBtn.setAttribute('aria-pressed', String(state.playing));
-      playBtn.classList.toggle('is-on', state.playing);
-      $('pk-record').setAttribute('aria-pressed', String(state.recording));
-      $('pk-tempo').value = String(state.tempo);
-      $('pk-length').value = String(state.length);
-
-      const notes = sequencer.getStep(state.selected);
-      $('pk-step-title').textContent = t.stepTitle(state.selected + 1);
-      const list = $('pk-step-notes');
-      list.textContent = '';
-      if (!notes.length) {
-        const empty = document.createElement('span');
-        empty.className = 'pk-muted';
-        empty.textContent = t.emptyStep;
-        list.appendChild(empty);
-      }
-      notes.forEach(n => {
-        const name = keyboard.noteName(n.midi);
-        const chip = document.createElement('button');
-        chip.type = 'button';
-        chip.className = 'pk-chip';
-        chip.dataset.midi = n.midi;
-        chip.setAttribute('aria-label', t.removeNote(name));
-        chip.textContent = name + ' · ' + t.gates[n.gate].split(' (')[0] + ' ×';
-        list.appendChild(chip);
-      });
-      keyboard.mark(notes.map(n => n.midi));
+    function renderTransport() {
+      const st = sequencer.getState();
+      const playBtn = $('pr-play');
+      playBtn.setAttribute('aria-pressed', String(st.playing));
+      $('pr-loop').setAttribute('aria-pressed', String(st.loop));
+      $('pr-record').setAttribute('aria-pressed', String(st.recording));
+      $('pr-snap').setAttribute('aria-pressed', String(st.snap));
+      if (document.activeElement !== $('pr-bpm')) $('pr-bpm').value = String(st.bpm);
+      $('pr-bars').value = String(st.bars);
+      $('pr-grid').value = String(st.grid);
+      $('pr-undo').disabled = !st.canUndo;
+      $('pr-redo').disabled = !st.canRedo;
+      $('pr-quantize').disabled = !st.count;
+      $('pr-clear').disabled = !st.count;
+      $('pr-export').disabled = !st.count;
+      $('pr-count').textContent = t.noteCount(st.count);
     }
 
-    grid.addEventListener('click', e => {
-      const btn = e.target.closest('.pk-step');
-      if (btn) sequencer.select(Number(btn.dataset.step));
-    });
-    $('pk-step-notes').addEventListener('click', e => {
-      const chip = e.target.closest('.pk-chip');
-      if (chip) sequencer.removeNote(sequencer.getState().selected, Number(chip.dataset.midi));
-    });
-    $('pk-play').addEventListener('click', () => {
+    function togglePlay() {
       if (sequencer.getState().playing) sequencer.stop();
       else sequencer.play();
-    });
-    $('pk-record').addEventListener('click', () => {
+    }
+
+    $('pr-play').addEventListener('click', () => sequencer.play());
+    $('pr-stop').addEventListener('click', () => sequencer.stop());
+    $('pr-loop').addEventListener('click', () => sequencer.setLoop(!sequencer.getState().loop));
+    $('pr-record').addEventListener('click', () => {
       engine.start();
       sequencer.setRecording(!sequencer.getState().recording);
     });
-    $('pk-tempo').addEventListener('change', e => {
-      e.target.value = String(sequencer.setTempo(e.target.value));
+    $('pr-snap').addEventListener('click', () => sequencer.setSnap(!sequencer.getState().snap));
+    $('pr-bpm').addEventListener('change', e => { e.target.value = String(sequencer.setBpm(e.target.value)); });
+    $('pr-bpm-down').addEventListener('click', () => sequencer.setBpm(sequencer.getState().bpm - 1));
+    $('pr-bpm-up').addEventListener('click', () => sequencer.setBpm(sequencer.getState().bpm + 1));
+    $('pr-bars').addEventListener('change', e => sequencer.setBars(Number(e.target.value)));
+    $('pr-grid').addEventListener('change', e => sequencer.setGrid(Number(e.target.value)));
+    $('pr-undo').addEventListener('click', () => sequencer.undo());
+    $('pr-redo').addEventListener('click', () => sequencer.redo());
+    $('pr-quantize').addEventListener('click', () => sequencer.quantizeAll());
+    $('pr-clear').addEventListener('click', () => sequencer.clear());
+    $('pr-export').addEventListener('click', () => {
+      const blob = new Blob([sequencer.exportMidi()], { type: 'audio/midi' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = t.midiFile;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
-    $('pk-length').addEventListener('change', e => sequencer.setLength(Number(e.target.value)));
-    $('pk-clear-step').addEventListener('click', () => sequencer.clearStep(sequencer.getState().selected));
-    $('pk-clear-all').addEventListener('click', () => sequencer.clearAll());
+
+    // Mellomrom spiller/stopper, Ctrl/⌘+Z angrer, Ctrl/⌘+Shift+Z eller Ctrl+Y gjør om
+    document.addEventListener('keydown', e => {
+      const target = e.target;
+      if (target && target.closest && target.closest('input, select, textarea, [contenteditable="true"]')) return;
+      const mod = e.ctrlKey || e.metaKey;
+      if (mod && !e.altKey && (e.key === 'z' || e.key === 'Z')) {
+        e.preventDefault();
+        if (e.shiftKey) sequencer.redo();
+        else sequencer.undo();
+      } else if (mod && !e.altKey && (e.key === 'y' || e.key === 'Y')) {
+        e.preventDefault();
+        sequencer.redo();
+      } else if (e.code === 'Space' && !mod && !e.repeat) {
+        if (target && target.closest && target.closest('button, .pk-key, summary, a')) return;
+        e.preventDefault();
+        engine.start();
+        togglePlay();
+      }
+    });
 
     // Lås opp lyden ved første berøring, uansett hvor på siden
     const unlock = () => {
@@ -456,7 +465,7 @@
     document.addEventListener('pointerdown', unlock, true);
     document.addEventListener('keydown', unlock, true);
 
-    renderSteps();
+    renderTransport();
     updateReadout();
   }
 
@@ -467,7 +476,8 @@
     const presetOptions = Object.keys(t.presets).map((k, i) => option(k, t.presets[k], i === 0)).join('') + option('custom', t.custom);
     const waveOptions = Object.keys(t.waves).map(k => option(k, t.waves[k], k === 'triangle')).join('');
     const transposeOptions = [-24, -12, 0, 12, 24].map(n => option(n, n === 0 ? '0' : t.oct(n / 12), n === 0)).join('');
-    const gateOptions = Object.keys(t.gates).map(k => option(k, t.gates[k], k === '16n')).join('');
+    const barOptions = global.CLPianoSequencer.BAR_OPTIONS.map(n => option(n, String(n), n === 2)).join('');
+    const gridOptions = global.CLPianoSequencer.GRID_OPTIONS.map(g => option(g, t.grids[g], g === 0.25)).join('');
     const sliders = SLIDERS.map(s =>
       '<label class="pk-control" for="pk-' + s.key + '">' +
         '<span class="pk-control-head"><span>' + esc(t[s.key]) + '</span><output id="pk-' + s.key + '-out" for="pk-' + s.key + '"></output></span>' +
@@ -500,6 +510,38 @@
         '<div class="pk-midi"><button type="button" id="pk-midi" class="pk-btn">' + esc(t.midi) + '</button><span id="pk-midi-status" class="pk-muted" aria-live="polite"></span></div>' +
       '</div>' +
 
+      '<details class="pk-panel pr-panel" open>' +
+        '<summary>' + esc(t.sequencer) + '</summary>' +
+        '<div class="pr-transport">' +
+          '<div class="pr-group">' +
+            '<button type="button" id="pr-play" class="pk-btn pk-play" aria-pressed="false">▶ ' + esc(t.play) + '</button>' +
+            '<button type="button" id="pr-stop" class="pk-btn">■ ' + esc(t.stop) + '</button>' +
+            '<button type="button" id="pr-loop" class="pk-btn pk-toggle" aria-pressed="true">⟲ ' + esc(t.loop) + '</button>' +
+            '<button type="button" id="pr-record" class="pk-btn pk-toggle pk-record" aria-pressed="false">● ' + esc(t.record) + '</button>' +
+          '</div>' +
+          '<div class="pr-group pr-bpm">' +
+            '<button type="button" id="pr-bpm-down" class="pk-btn pk-icon" aria-label="' + esc(t.bpm) + ' −1">−</button>' +
+            '<label class="pk-field"><span>' + esc(t.bpm) + '</span><input type="number" id="pr-bpm" min="40" max="240" step="1" inputmode="numeric"></label>' +
+            '<button type="button" id="pr-bpm-up" class="pk-btn pk-icon" aria-label="' + esc(t.bpm) + ' +1">+</button>' +
+          '</div>' +
+          '<div class="pr-group">' +
+            '<label class="pk-field"><span>' + esc(t.bars) + '</span><select id="pr-bars">' + barOptions + '</select></label>' +
+            '<label class="pk-field"><span>' + esc(t.grid) + '</span><select id="pr-grid">' + gridOptions + '</select></label>' +
+            '<button type="button" id="pr-snap" class="pk-btn pk-toggle" aria-pressed="true">' + esc(t.snap) + '</button>' +
+          '</div>' +
+          '<div class="pr-group">' +
+            '<button type="button" id="pr-undo" class="pk-btn pk-icon" aria-label="' + esc(t.undo) + '" title="' + esc(t.undo) + '">↶</button>' +
+            '<button type="button" id="pr-redo" class="pk-btn pk-icon" aria-label="' + esc(t.redo) + '" title="' + esc(t.redo) + '">↷</button>' +
+            '<button type="button" id="pr-quantize" class="pk-btn">' + esc(t.quantize) + '</button>' +
+            '<button type="button" id="pr-clear" class="pk-btn">' + esc(t.clear) + '</button>' +
+            '<button type="button" id="pr-export" class="pk-btn">' + esc(t.exportMidi) + '</button>' +
+          '</div>' +
+        '</div>' +
+        '<div id="pr-roll"></div>' +
+        '<div class="pr-foot"><span id="pr-count" class="pk-muted" aria-live="polite"></span></div>' +
+        '<p class="pk-hint">' + esc(t.rollHint) + '</p>' +
+      '</details>' +
+
       '<details class="pk-panel" open>' +
         '<summary>' + esc(t.sound) + '</summary>' +
         '<div class="pk-controls">' +
@@ -508,27 +550,6 @@
           '<label class="pk-control" for="pk-transpose"><span class="pk-control-head"><span>' + esc(t.transpose) + '</span></span><select id="pk-transpose">' + transposeOptions + '</select></label>' +
           sliders +
         '</div>' +
-      '</details>' +
-
-      '<details class="pk-panel" open>' +
-        '<summary>' + esc(t.sequencer) + '</summary>' +
-        '<div class="pk-seq-controls">' +
-          '<button type="button" id="pk-play" class="pk-btn pk-play" aria-pressed="false">' + esc(t.play) + '</button>' +
-          '<button type="button" id="pk-record" class="pk-btn pk-toggle pk-record" aria-pressed="false">● ' + esc(t.record) + '</button>' +
-          '<label class="pk-field"><span>' + esc(t.tempo) + '</span><input type="number" id="pk-tempo" min="40" max="220" step="1" inputmode="numeric"></label>' +
-          '<label class="pk-field"><span>' + esc(t.steps) + '</span><select id="pk-length">' + option(8, '8') + option(16, '16', true) + '</select></label>' +
-          '<label class="pk-field"><span>' + esc(t.gate) + '</span><select id="pk-gate">' + gateOptions + '</select></label>' +
-        '</div>' +
-        '<div id="pk-steps" class="pk-steps" role="group" aria-label="' + esc(t.sequencer) + '"></div>' +
-        '<div class="pk-step-detail">' +
-          '<strong id="pk-step-title"></strong>' +
-          '<div id="pk-step-notes" class="pk-step-notes"></div>' +
-          '<div class="pk-step-actions">' +
-            '<button type="button" id="pk-clear-step" class="pk-btn">' + esc(t.clearStep) + '</button>' +
-            '<button type="button" id="pk-clear-all" class="pk-btn">' + esc(t.clearAll) + '</button>' +
-          '</div>' +
-        '</div>' +
-        '<p class="pk-hint">' + esc(t.seqHint) + '</p>' +
       '</details>';
   }
 
