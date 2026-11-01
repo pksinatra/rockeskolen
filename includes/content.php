@@ -136,7 +136,7 @@ function rs_tools(): array {
             'slug' => 'spillbart-piano',
             'category' => 'Instrument',
             'product_status' => 'Klar',
-            'app_url' => '/tools/instruments/piano_playable.php',
+            'app_url' => '/tools/instruments/piano/',
             'cta_label' => 'Åpne',
             'short_description' => 'Et lite piano rett i nettleseren når du trenger å høre tonen nå.',
             'body' => "Det spillbare pianoet er et lavterskel instrumentverktøy. ChordLink bruker en annen sti for tilsvarende funksjon, så dette bør harmoniseres før større endringer.",

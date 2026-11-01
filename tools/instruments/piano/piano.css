@@ -1,0 +1,318 @@
+/* tools/instruments/piano/piano.css
+   Stil for Playable Piano. Filen deles mellom ChordLink og Rockeskolen – hold kopiene like. */
+
+.pk-page {
+  --pk-bg: #111;
+  --pk-panel: #181818;
+  --pk-panel-2: #1f1f1f;
+  --pk-line: #3a3a3a;
+  --pk-line-strong: #6d6d6d;
+  --pk-text: #ececec;
+  --pk-muted: #a3a3a3;
+  --pk-accent: #ff6a8b;
+  --pk-accent-soft: rgba(255, 106, 139, 0.35);
+  --pk-mark: #6fb7ff;
+  --pk-on: #2f8f55;
+  --pk-rec: #d0453f;
+  --pk-focus: #ffd166;
+
+  box-sizing: border-box;
+  max-width: 1040px;
+  margin: 1.5rem auto 2rem;
+  padding: 1.25rem 1.5rem 1.75rem;
+  background: var(--pk-panel);
+  color: var(--pk-text);
+  border: 1px solid #2b2b2b;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.pk-page *, .pk-page *::before, .pk-page *::after { box-sizing: inherit; }
+
+.pk-page h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.35rem, 3.5vw, 1.8rem);
+  letter-spacing: 0.02em;
+  color: #fdfdfd;
+}
+
+.pk-muted { color: var(--pk-muted); font-size: 0.85rem; }
+
+/* ---------- Knapper og felt ---------- */
+
+.pk-btn {
+  min-height: 40px;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--pk-line-strong);
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: var(--pk-text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.pk-btn:hover:not(:disabled) { background: #363636; }
+.pk-btn:disabled { opacity: 0.4; cursor: default; }
+.pk-btn.pk-icon { min-width: 40px; padding: 0.4rem 0.6rem; font-size: 1rem; }
+.pk-btn[aria-pressed="true"] { background: #3d3320; border-color: var(--pk-focus); }
+.pk-btn.pk-play[aria-pressed="true"] { background: #1e492c; border-color: #4fa36a; }
+.pk-btn.pk-play { border-color: #4fa36a; }
+.pk-btn.pk-record[aria-pressed="true"] { background: #5c1e1e; border-color: var(--pk-rec); }
+
+.pk-page select,
+.pk-page input[type="number"] {
+  min-height: 40px;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--pk-line-strong);
+  border-radius: 8px;
+  background: #121212;
+  color: var(--pk-text);
+  font: inherit;
+  font-size: 0.9rem;
+}
+.pk-page input[type="number"] { width: 5.5rem; }
+
+.pk-page :focus-visible {
+  outline: 3px solid var(--pk-focus);
+  outline-offset: 2px;
+}
+
+.pk-field {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--pk-muted);
+}
+
+/* ---------- Verktøylinje over klaviaturet ---------- */
+
+.pk-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.6rem 0.8rem;
+}
+.pk-octave { display: inline-flex; align-items: center; gap: 0.4rem; }
+.pk-range { min-width: 5.5rem; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.pk-readout {
+  min-height: 1.6em;
+  margin: 0.9rem 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.pk-readout.is-idle { color: var(--pk-muted); font-weight: 400; }
+
+/* ---------- Klaviatur ---------- */
+
+.pk-keyboard-wrap {
+  padding: 4px;
+  background: #222;
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.pk-keyboard {
+  position: relative;
+  height: clamp(130px, 24vw, 200px);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pk-key {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.05s ease, box-shadow 0.05s ease;
+}
+
+.pk-white {
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to bottom, #fff, #e3e3e3);
+  border: 1px solid #555;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
+}
+
+.pk-black {
+  height: 62%;
+  z-index: 2;
+  background: linear-gradient(to bottom, #444, #050505);
+  border: 1px solid #000;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.pk-white.is-marked { background: linear-gradient(to bottom, #fff, #cfe6ff); }
+.pk-black.is-marked { background: linear-gradient(to bottom, #3a5a80, #0b1726); }
+
+.pk-white.is-active {
+  background: linear-gradient(to bottom, #ffe6ec, #f5a9ba);
+  box-shadow: 0 0 10px var(--pk-accent-soft);
+}
+.pk-black.is-active {
+  background: linear-gradient(to bottom, #8a3a4c, #2a0d14);
+  box-shadow: 0 0 10px var(--pk-accent-soft);
+}
+
+.pk-key:focus-visible { outline-offset: -3px; z-index: 3; }
+
+.pk-label {
+  margin-bottom: 6px;
+  font-size: clamp(0.55rem, 1.4vw, 0.75rem);
+  font-weight: 600;
+  color: #555;
+  pointer-events: none;
+}
+.pk-black .pk-label { color: #ddd; font-size: clamp(0.5rem, 1.1vw, 0.65rem); }
+
+.pk-subbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+.pk-midi { display: inline-flex; align-items: center; gap: 0.6rem; }
+
+.pk-hint { margin: 0.4rem 0; font-size: 0.8rem; color: var(--pk-muted); }
+
+/* ---------- Paneler ---------- */
+
+.pk-panel {
+  margin-top: 1.25rem;
+  padding: 0.25rem 1rem 1rem;
+  background: var(--pk-panel-2);
+  border: 1px solid var(--pk-line);
+  border-radius: 10px;
+}
+.pk-panel > summary {
+  padding: 0.7rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pk-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.75rem 1rem;
+}
+
+.pk-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.55rem 0.7rem 0.65rem;
+  background: linear-gradient(145deg, #1d1d1d, #111);
+  border: 1px solid var(--pk-line-strong);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.pk-control-preset { border-color: #c99555; background: linear-gradient(145deg, #2b2118, #15110e); }
+.pk-control-head { display: flex; justify-content: space-between; gap: 0.5rem; }
+.pk-control-head output { color: var(--pk-muted); font-variant-numeric: tabular-nums; }
+.pk-control input[type="range"] { width: 100%; accent-color: #cccccc; min-height: 28px; }
+
+/* ---------- Sequencer ---------- */
+
+.pk-seq-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.6rem 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.pk-steps {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.pk-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.25rem 0;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background: #202020;
+  color: var(--pk-text);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.pk-step.is-beat { border-color: #808080; }
+.pk-step.has-notes { background: #34343a; }
+.pk-step.is-selected { border-color: var(--pk-mark); box-shadow: inset 0 0 0 1px var(--pk-mark); }
+.pk-step.is-current { background: #4a4a4a; box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
+.pk-step-dots { min-height: 1em; color: var(--pk-accent); letter-spacing: 1px; line-height: 1; }
+
+.pk-step-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.8rem;
+}
+.pk-step-notes { display: flex; flex-wrap: wrap; gap: 0.4rem; flex: 1 1 200px; }
+.pk-step-actions { display: flex; gap: 0.5rem; }
+
+.pk-chip {
+  min-height: 34px;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--pk-mark);
+  border-radius: 999px;
+  background: #16263a;
+  color: var(--pk-text);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.pk-chip:hover { background: #22395a; }
+
+/* ---------- Mobil ---------- */
+
+@media (max-width: 640px) {
+  .pk-page {
+    margin: 0.5rem;
+    padding: 0.9rem 0.75rem 1.25rem;
+    border-radius: 10px;
+  }
+  .pk-steps { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .pk-controls { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .pk-panel { padding: 0.25rem 0.6rem 0.8rem; }
+}
+
+@media (max-width: 340px) {
+  .pk-controls { grid-template-columns: 1fr; }
+}
+
+/* Tastaturhjelpen er bare relevant der det finnes et fysisk tastatur */
+@media (pointer: coarse) and (hover: none) {
+  .pk-keys-hint { display: none; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .pk-keyboard { height: 42vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pk-key { transition: none; }
+}
