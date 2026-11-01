@@ -122,8 +122,20 @@
       Array.from(sources.keys()).forEach(midi => release(midi, 'hold'));
     }
 
-    function press(midi, source, velocity) {
+    function press(midi, source, velocity, glide) {
       let set = sources.get(midi);
+      // Med Hold på slår et nytt trykk på en holdt tangent den av igjen (ikke når du drar over den)
+      if (hold && set && set.has('hold') && source !== 'hold') {
+        if (glide) return;
+        set.delete('hold');
+        if (!set.size) {
+          sources.delete(midi);
+          const el = keyEl(midi);
+          if (el) el.classList.remove('is-active');
+          opts.onNoteOff(midi, source);
+        }
+        return;
+      }
       if (!set) {
         set = new Set();
         sources.set(midi, set);
@@ -192,7 +204,7 @@
       if (midi === prev) return;
       if (prev != null) release(prev, 'p' + e.pointerId);
       pointers.set(e.pointerId, midi);
-      if (midi != null) press(midi, 'p' + e.pointerId, velocityAt(key, e.clientY));
+      if (midi != null) press(midi, 'p' + e.pointerId, velocityAt(key, e.clientY), true);
     });
 
     function pointerEnd(e) {
