@@ -1,5 +1,6 @@
 /* Figurer i artikkeltekst: <figure class="rs-figur"><a><img></a><figcaption></figure> */
 .rs-figur {
+  clear: both;
   margin: 2rem 0 2.25rem;
 }
 
@@ -25,6 +26,39 @@
   font-size: 0.95rem;
   line-height: 1.5;
   margin-top: 0.65rem;
+}
+
+/* Små interaktive widgets som flyter i høyrespalten av artikkelteksten:
+ * <aside class="rs-widget"><iframe …></iframe></aside>
+ * Store illustrasjoner legges i <figure class="rs-figur">, som rydder forbi widgets. */
+.rs-widget {
+  clear: right;
+  float: right;
+  margin: 0.35rem 0 1.5rem 2rem;
+  width: min(340px, 40%);
+}
+
+.rs-widget iframe {
+  border: 0;
+  border-radius: 14px;
+  display: block;
+  width: 100%;
+}
+
+.rs-figur iframe {
+  border-radius: 14px;
+}
+
+.field--name-field-body h2 {
+  clear: right;
+}
+
+@media (max-width: 800px) {
+  .rs-widget {
+    float: none;
+    margin: 1.5rem 0;
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
