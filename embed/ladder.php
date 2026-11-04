@@ -17,7 +17,7 @@ $widget = preg_replace('/[^a-z0-9]/', '', (string) ($_GET['widget'] ?? ''));
 <body<?= $widget ? ' class="widget"' : '' ?>>
   <main class="lab" id="app" data-widget="<?= $widget ?>"></main>
   <script src="lab.js?v=20261104-1"></script>
-  <script src="ladder.js?v=20261104-1"></script>
+  <script src="ladder.js?v=20261104-2"></script>
   <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>

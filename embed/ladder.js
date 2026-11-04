@@ -1,7 +1,8 @@
 /* Rockeskolen – tonestigen: skalaer og akkorder som trinn på en stige med 12 halvtoner per oktav.
  *
  * URL-parametere:
- *   mode     scale | chord               (standard: scale)
+ *   mode     scale | chord | stairs      (standard: scale)
+ *   stairs   chromatic | whole | major  startvalg for mode=stairs (standard: major)
  *   scale    major | minor | penta      (standard: major)
  *   root     C D E F G A B              (standard: C)
  *   widget   (tom) | step | quiz         step = lite eller stort steg, quiz = lys eller mørk (dur/moll)
@@ -81,7 +82,105 @@
   if (widget === 'step') return stepWidget();
   if (widget === 'quiz') return quizWidget();
   if (mode === 'chord') return chordView();
+  if (params.get('mode') === 'stairs') return stairsView();
   return scaleView();
+
+  // ======================================================================
+  // Trappen: like høye trinn mot tonestigens blandede trinn. Alle trappene ender en oktav høyere.
+  function stairsView() {
+    const STAIRS = {
+      chromatic: { label: t('Like små trinn', 'Equal small steps'), names: ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B', 'C'], steps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        text: t('Tolv like små trinn: alle tangentene etter hverandre. Hvert steg er et halvt tonetrinn. Det låter mer som en glidende stige enn som en skala.', 'Twelve equal small steps: every key in a row. Each step is a half step. It sounds more like a gliding ladder than a scale.') },
+      whole: { label: t('Like store trinn', 'Equal large steps'), names: ['C', 'D', 'E', 'F♯', 'G♯', 'A♯', 'C'], steps: [0, 2, 4, 6, 8, 10, 12],
+        text: t('Seks like store trinn: hvert steg er et helt tonetrinn. Det gir heltoneskalaen – den låter svevende, nesten uten et sted å lande.', 'Six equal large steps: each step is a whole step. That gives the whole-tone scale – it sounds floating, with hardly anywhere to land.') },
+      major: { label: t('Durskalaen', 'The major scale'), names: ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'], steps: [0, 2, 4, 5, 7, 9, 11, 12],
+        text: t('Sju trinn med to forskjellige høyder: langt – langt – kort – langt – langt – langt – kort. Det er blandingen som gir durskalaen dens karakter.', 'Seven steps of two different heights: long – long – short – long – long – long – short. The mix is what gives the major scale its character.') },
+    };
+    let id = STAIRS[params.get('stairs')] ? params.get('stairs') : 'major', run = null, lastHit = -1;
+    const glowAt = new Array(13).fill(0);
+    const status = h('p', { class: 'status', role: 'status' });
+    const pick = seg(t('Trapp', 'Staircase'), Object.entries(STAIRS).map(([k, s]) => [k, s.label]), id, v => { id = v; update(); walk(1); });
+    pick.classList.add('wrap');
+    const stage = h('div', { class: 'stage' });
+    app.append(
+      h('style', { text: `.seg.wrap { flex-wrap:wrap; border-radius:16px; }` }),
+      h('header', {}, h('div', {}, h('p', { class: 'eyebrow', text: t('Tenk deg en stige', 'Picture a ladder') }), h('h1', { text: params.get('title') || t('Like trinn – eller blandede?', 'Equal steps – or mixed?') })),
+        h('div', { class: 'row' },
+          h('button', { type: 'button', class: 'primary', on: { click: () => walk(1) } }, t('▲ Gå opp', '▲ Walk up')),
+          h('button', { type: 'button', on: { click: () => walk(-1) } }, t('▼ Gå ned', '▼ Walk down')))),
+      stage,
+      h('div', { class: 'row spread' }, pick, h('span', { class: 'small muted', text: t('Trykk på et trinn for å høre tonen.', 'Tap a step to hear the note.') })),
+      status);
+    const cv = canvas(stage, w => Math.min(380, Math.max(260, w * 0.42)));
+    stage.prepend(cv.c);
+    let geo = null;
+    function update() { status.textContent = STAIRS[id].text; }
+    function walk(dir) {
+      audio();
+      const s = STAIRS[id], idx = s.steps.map((_, k) => k), seq = dir > 0 ? idx : idx.reverse();
+      const dt = s.steps.length > 9 ? 0.2 : 0.34, t0 = RS.now() + 0.08;
+      run = { t0, dt, seq };
+      seq.forEach((k, j) => note(60 + s.steps[k], { time: t0 + j * dt, dur: j === seq.length - 1 ? 1.1 : dt + 0.06, vel: 0.55 }));
+    }
+    cv.c.addEventListener('pointerdown', e => {
+      if (!geo) return;
+      const r = cv.c.getBoundingClientRect(), x = e.clientX - r.left, k = Math.floor((x - geo.x0) / geo.sw);
+      const s = STAIRS[id]; if (k < 0 || k >= s.steps.length) return;
+      note(60 + s.steps[k], { dur: 0.7, vel: 0.6 }); glowAt[k] = 1; run = null; lastHit = k;
+      const d = k > 0 ? s.steps[k] - s.steps[k - 1] : 0;
+      status.textContent = k === 0 ? t(`Starttonen ${s.names[0]}.`, `The starting note ${s.names[0]}.`)
+        : k === s.steps.length - 1 ? t(`${s.names[k]} igjen – en oktav høyere enn der du startet.`, `${s.names[k]} again – an octave above where you started.`)
+          : `${s.names[k]}: ` + (d === 1 ? t('kort steg (halvt tonetrinn) fra forrige trinn.', 'short step (half step) from the previous one.') : t('langt steg (helt tonetrinn) fra forrige trinn.', 'long step (whole step) from the previous one.'));
+    });
+    function frame() {
+      const { g, w, h: hh } = cv, s = STAIRS[id], n = s.steps.length;
+      for (let k = 0; k < 13; k++) glowAt[k] = Math.max(0, glowAt[k] - 0.03);
+      let ball = null;
+      if (run && RS.ctx) {
+        const f = (RS.ctx.currentTime - run.t0) / run.dt, j = Math.floor(f);
+        if (j >= 0 && j < run.seq.length) {
+          const k = run.seq[j]; if (k !== lastHit) { glowAt[k] = 1; lastHit = k; }
+          const nx = run.seq[j + 1] ?? k, p = Math.min(1, Math.max(0, (f - j - 0.55) / 0.45));
+          ball = { k: k + (nx - k) * p, hop: Math.sin(p * Math.PI) };
+        } else if (j >= run.seq.length) { run = null; lastHit = -1; }
+      }
+      const top = 44, bottom = hh - 26, x0 = Math.max(30, w * 0.05), x1 = w - Math.max(30, w * 0.05), sw = (x1 - x0) / n;
+      const yOf = semis => bottom - (semis / 12) * (bottom - top - 20) - 20;
+      geo = { x0, sw };
+      g.clearRect(0, 0, w, hh);
+      // oktavlinje og startlinje
+      g.setLineDash([4, 6]); g.strokeStyle = 'rgba(255,255,255,.18)'; g.lineWidth = 1.5;
+      [0, 12].forEach(v => { g.beginPath(); g.moveTo(x0 - 10, yOf(v)); g.lineTo(x1 + 10, yOf(v)); g.stroke(); });
+      g.setLineDash([]);
+      g.fillStyle = 'rgba(255,255,255,.45)'; g.font = '700 11px Inter, system-ui'; g.textAlign = 'left'; g.textBaseline = 'bottom';
+      g.fillText(t('en oktav høyere', 'an octave higher'), x0 - 6, yOf(12) - 18);
+      s.steps.forEach((v, k) => {
+        const x = x0 + k * sw, y = yOf(v), d = k ? v - s.steps[k - 1] : 0, gl = glowAt[k];
+        const short = d === 1 && id === 'major';
+        const grad = g.createLinearGradient(0, y, 0, bottom);
+        grad.addColorStop(0, short ? 'rgba(255,42,95,' + (0.55 + 0.45 * gl) + ')' : 'rgba(255,255,255,' + (0.16 + 0.5 * gl) + ')');
+        grad.addColorStop(1, 'rgba(255,255,255,.02)');
+        g.fillStyle = grad; g.fillRect(x + 1, y, sw - 2, bottom - y);
+        glow(g, short ? '#ff2a5f' : '#ffffff', 6 + 22 * gl);
+        g.strokeStyle = short ? '#ff2a5f' : 'rgba(255,255,255,' + (0.55 + 0.45 * gl) + ')'; g.lineWidth = 3;
+        g.beginPath(); g.moveTo(x + 1, y); g.lineTo(x + sw - 1, y); g.stroke(); g.shadowBlur = 0;
+        g.fillStyle = gl > 0.2 || k === 0 || k === n - 1 ? '#fff' : 'rgba(255,255,255,.7)';
+        g.font = '800 ' + (sw > 46 ? 14 : 12) + 'px Inter, system-ui'; g.textAlign = 'center'; g.textBaseline = 'bottom';
+        g.fillText(s.names[k], x + sw / 2, y - 8);
+        if (d && sw > 34) {
+          g.fillStyle = d === 1 ? '#ff8aa6' : 'rgba(255,255,255,.55)'; g.font = '700 10px Inter, system-ui'; g.textBaseline = 'top';
+          g.fillText(d === 1 ? t('kort', 'short') : t('langt', 'long'), x + sw / 2, y + 7);
+        }
+      });
+      if (ball) {
+        const i = Math.floor(ball.k), fr = ball.k - i, a = s.steps[i], b = s.steps[Math.min(n - 1, i + 1)] ?? a;
+        const x = x0 + (ball.k + 0.5) * sw, y = yOf(a + (b - a) * fr) - 36 - 14 * ball.hop;
+        glow(g, '#ff2a5f', 26); g.fillStyle = '#fff'; g.beginPath(); g.arc(x, y + 6, 7, 0, Math.PI * 2); g.fill(); g.shadowBlur = 0;
+      }
+      requestAnimationFrame(frame);
+    }
+    update(); requestAnimationFrame(frame);
+  }
 
   // ======================================================================
   function scaleView() {
