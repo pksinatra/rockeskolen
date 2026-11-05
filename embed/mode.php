@@ -1,6 +1,6 @@
 <?php
-// Skala- og modus-embed for artikler i musikkportalen. Styres med URL-parametere, se mode.js.
-$lang = ($_GET['lang'] ?? 'en') === 'no' ? 'no' : 'en';
+// Skala- og modus-embed for artikler i musikkportalen: mørke noter, piano og lyd. Styres med URL-parametere, se mode.js.
+$lang = ($_GET['lang'] ?? 'no') === 'en' ? 'en' : 'no';
 $no = $lang === 'no';
 ?>
 <!doctype html>
@@ -9,48 +9,16 @@ $no = $lang === 'no';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title><?= $no ? 'Skalaer og kirketonearter' : 'Scales and modes' ?></title>
-  <link rel="stylesheet" href="mode.css?v=20261025-1">
-  <script src="https://cdn.jsdelivr.net/npm/vexflow@4.1.0/build/cjs/vexflow.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="lab.css?v=20261104-1">
 </head>
 <body>
-  <main class="mode" data-lang="<?= $lang ?>">
-    <header>
-      <div>
-        <p class="eyebrow" id="eyebrow"><?= $no ? 'Skalaer og kirketonearter' : 'Scales and modes' ?></p>
-        <h1 id="title"></h1>
-      </div>
-      <div class="options" role="group" aria-label="<?= $no ? 'Avspilling' : 'Playback' ?>">
-        <button id="drone" type="button" aria-pressed="false"><?= $no ? 'Borduntone' : 'Drone' ?></button>
-        <button id="updown" type="button" aria-pressed="false" title="<?= $no ? 'Opp og ned' : 'Up and down' ?>">↕</button>
-      </div>
-    </header>
-
-    <section id="cards" class="cards" aria-label="<?= $no ? 'Velg skala' : 'Choose scale' ?>"></section>
-
-    <section class="detail" aria-live="polite">
-      <div id="steps" class="steps"></div>
-      <p id="info" class="info"></p>
-    </section>
-
-    <section class="notation-panel" aria-label="<?= $no ? 'Skalaen på noter' : 'The scale in notation' ?>">
-      <div id="notation"></div>
-    </section>
-
-    <section class="piano-panel" aria-label="Piano">
-      <div id="piano" class="piano"></div>
-    </section>
-
-    <footer>
-      <div class="transport">
-        <button id="play" type="button">▶ <?= $no ? 'Spill' : 'Play' ?></button>
-        <button id="playAll" type="button" hidden>▶ <?= $no ? 'Spill alle' : 'Play all' ?></button>
-        <button id="playMark" type="button" hidden>♪ <?= $no ? 'Hør karaktertonen' : 'Hear the colour tone' ?></button>
-        <button id="stop" type="button">■ <?= $no ? 'Stopp' : 'Stop' ?></button>
-      </div>
-      <p id="status" role="status"></p>
-    </footer>
-  </main>
-  <script src="mode.js?v=20261025-1"></script>
+  <main class="lab" id="app"></main>
+  <script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
+  <script src="lab.js?v=20261104-1"></script>
+  <script src="mode.js?v=20261105-1"></script>
   <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>
