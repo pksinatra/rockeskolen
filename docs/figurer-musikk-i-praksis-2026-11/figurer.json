@@ -1,0 +1,112 @@
+[
+  {
+    "node": 237,
+    "file": "mip-distributor.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-distributor.svg",
+    "width": 960,
+    "height": 360,
+    "alt": "Distributøren som mellomledd: du leverer musikken, distributøren leverer til tjenestene, og inntektene for innspillingen går tilbake",
+    "caption": "Du leverer musikken til distributøren, som leverer den videre til tjenestene du har valgt. Inntektene for innspillingen går samme vei tilbake.",
+    "where": "Hva trenger du før du kan gi ut musikken?"
+  },
+  {
+    "node": 235,
+    "file": "mip-slutter-betale.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-slutter-betale.svg",
+    "width": 960,
+    "height": 350,
+    "alt": "Hva skjer når du slutter å betale: DistroKid og TuneCore kan fjerne musikken, CD Baby har ingen løpende abonnementsavgift, Amuse lar den ligge mot høyere provisjon",
+    "caption": "Betalingsmodellen avgjør hva som skjer med musikken hvis du slutter å betale.",
+    "where": "Eier du fortsatt musikken din?"
+  },
+  {
+    "node": 236,
+    "file": "mip-rettigheter.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-rettigheter.svg",
+    "width": 960,
+    "height": 420,
+    "alt": "Én låt, tre lag: musikkverket (TONO, ISWC), lydinnspillingen (Gramo, ISRC) og utgivelsen (UPC/EAN)",
+    "caption": "Én låt har flere lag: musikkverket, lydinnspillingen og selve utgivelsen. Hvert lag har sine rettigheter og sin kode.",
+    "where": "TONO – for deg som skriver musikken"
+  },
+  {
+    "node": 236,
+    "file": "mip-nordlys-koder.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-nordlys-koder.svg",
+    "width": 960,
+    "height": 330,
+    "alt": "Ett musikkverk, én innspilling og to utgivelser: singelen og albumet får hver sin UPC/EAN, mens innspillingen beholder sin ISRC",
+    "caption": "Ett musikkverk, én innspilling og to utgivelser. Singelen og albumet får hver sin produktkode, mens innspillingen beholder sin ISRC.",
+    "where": "Husk å avklare rettighetene før utgivelsen"
+  },
+  {
+    "node": 238,
+    "file": "mip-mappe.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-mappe.svg",
+    "width": 960,
+    "height": 430,
+    "alt": "Utgivelsesmappen for «Nordlys»: master, omslag, metadata og rettigheter, med prosjektfilene lagret separat",
+    "caption": "En tydelig utgivelsesmappe: det som skal lastes opp, og dokumentasjonen du skal ta vare på.",
+    "where": "9. Gjør en siste kontroll før du sender"
+  },
+  {
+    "node": 239,
+    "file": "mip-artistidentitet.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-artistidentitet.svg",
+    "width": 960,
+    "height": 380,
+    "alt": "Tre tjenester, én artistidentitet: Spotify for Artists, Apple Music for Artists og YouTube med samme navn og gjenkjennelig uttrykk",
+    "caption": "Tre tjenester med ulike verktøy, men publikum skal kjenne igjen den samme artisten.",
+    "where": "Skriv en biografi folk orker å lese"
+  },
+  {
+    "node": 240,
+    "file": "mip-lansering.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-lansering.svg",
+    "width": 960,
+    "height": 330,
+    "alt": "Lanseringsplan for «Nordlys» fra 4–6 uker før til 3–4 uker etter utgivelsen",
+    "caption": "En gjennomførbar lanseringsplan for «Nordlys», før og etter slippdagen.",
+    "where": "Ikke bruk opp hele historien på slippdagen"
+  },
+  {
+    "node": 241,
+    "file": "mip-pengestrommer.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-pengestrommer.svg",
+    "width": 960,
+    "height": 380,
+    "alt": "To pengestrømmer fra en strømmeavspilling: innspillingen via distributøren, musikkverket via TONO",
+    "caption": "En strømmeavspilling kan gi to inntekter: én for innspillingen og én for musikkverket. De kommer ikke gjennom samme utbetaling.",
+    "where": "Hva skjer med pengene fra Spotify?"
+  },
+  {
+    "node": 241,
+    "file": "mip-radio.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-radio.svg",
+    "width": 960,
+    "height": 340,
+    "alt": "Når en innspilling spilles på radio: TONO-vederlag til opphaverne og Gramo-vederlag, fordelt 50/50 mellom utøvere og produsenter",
+    "caption": "På radio kan både musikkverket og innspillingen gi vederlag – gjennom TONO og Gramo.",
+    "where": "Hva om du spiller «Nordlys» på konsert?"
+  },
+  {
+    "node": 242,
+    "file": "mip-ki.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-ki.svg",
+    "width": 960,
+    "height": 300,
+    "alt": "Fra KI som verktøy til bestilt musikk, med en gråsone imellom",
+    "caption": "Å bruke KI som verktøy er ikke det samme som å bestille en ferdig låt. Grensen er ikke alltid knivskarp.",
+    "where": "En saksofon uten saksofonist"
+  },
+  {
+    "node": 243,
+    "file": "mip-singel.svg",
+    "url": "https://rockeskolen.com/images/musikk-i-praksis/mip-singel.svg",
+    "width": 960,
+    "height": 380,
+    "alt": "Utgivelsen i tre faser: gjør låten klar, send inn og forbered lanseringen, og musikken er ute",
+    "caption": "Tolv steg i tre faser – fra ferdig låt til oppfølging etter utgivelsen.",
+    "where": "Fase 1: Gjør låten klar"
+  }
+]
