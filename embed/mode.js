@@ -12,6 +12,9 @@
  *   view    full | staff | keys | steps   (staff/keys/steps er små widgets; standard: full)
  *   dir     up | down | both – retning fra start (direction= godtas også). Melodisk moll går ned som naturlig moll.
  *   oct     oktav for grunntonen (standard 4)
+ *   key     auto = faste fortegn (toneartstegn) for hver skala som hører til en vanlig toneart. Skalaer med dobbeltkryss
+ *           eller blandede fortegn (D♯-dur, harmonisk moll …) skrives med løse fortegn. Uten key: bare løse fortegn.
+ *           key=G, key=Eb osv. gir et bestemt toneartstegn (durnavn), også for tonerekker (sets).
  *   drone   1 = borduntone på grunntonen er slått på fra start
  *   title   egen overskrift
  *   tempo   slag per minutt (standard 100)
@@ -74,8 +77,8 @@
     aeolian:           { st: MINOR, no: 'eolisk', en: 'Aeolian', char: [5] },
     minor:             { st: MINOR, no: 'moll', en: 'minor', char: [] },
     locrian:           { st: [0, 1, 3, 5, 6, 8, 10], no: 'lokrisk', en: 'Locrian', char: [1, 4] },
-    harmonic_minor:    { st: [0, 2, 3, 5, 7, 8, 11], name: r => t(`harmonisk ${r}-moll`, `${r} harmonic minor`), char: [6] },
-    melodic_minor:     { st: [0, 2, 3, 5, 7, 9, 11], down: MINOR, name: r => t(`melodisk ${r}-moll`, `${r} melodic minor`), char: [5, 6] },
+    harmonic_minor:    { st: [0, 2, 3, 5, 7, 8, 11], sig: 'minor', name: r => t(`harmonisk ${r}-moll`, `${r} harmonic minor`), char: [6] },
+    melodic_minor:     { st: [0, 2, 3, 5, 7, 9, 11], down: MINOR, sig: 'minor', name: r => t(`melodisk ${r}-moll`, `${r} melodic minor`), char: [5, 6] },
     phrygian_dominant: { st: [0, 1, 4, 5, 7, 8, 10], no: 'frygisk dominant', en: 'Phrygian dominant', char: [1, 2] },
     // Bluesskalaen har seks toner; ♭5 staves som eget bokstavtrinn (D♭ i G-blues, E♭ i A-blues).
     minor_blues:       { st: [0, 3, 5, 6, 7, 10], steps: [0, 2, 3, 4, 4, 6], name: r => t(`${r}-bluesskala (moll)`, `${r} blues scale`), char: [3] },
@@ -159,6 +162,26 @@
       item.up.forEach(n => { if (!n.octave && !set.has(n.semi % 12)) item.marks.add(n.degree); });
     });
   });
+  // Faste fortegn: en sjutoneskala med én av hver bokstav og fortegn i kvintsirkelens rekkefølge (F C G D A E B / B E A D G C F).
+  const SHARP_KEYS = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#'], FLAT_KEYS = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb'];
+  function keySignature(item) {
+    const kp = params.get('key');
+    if (kp && kp !== 'auto') {
+      const i = SHARP_KEYS.indexOf(kp), j = FLAT_KEYS.indexOf(kp);
+      if (i < 0 && j < 0) return null;
+      const acc = {}; (i >= 0 ? 'FCGDAEB'.slice(0, i) : 'BEADGCF'.slice(0, j)).split('').forEach(l => { acc[l] = i >= 0 ? 1 : -1; });
+      return { spec: kp, acc };
+    }
+    if (kp !== 'auto' || item.kind !== 'scale' || item.def.st.length !== 7 || item.def.steps) return null;
+    // Harmonisk og melodisk moll bruker toneartstegnet til ren moll; det hevede trinnet får løst fortegn.
+    const src = item.def.sig ? buildScale(item.root, item.def.sig) : item;
+    const acc = {}; src.up.slice(0, 7).forEach(n => { acc[n.letter] = n.acc; });
+    const sharps = Object.keys(acc).filter(l => acc[l] === 1), flats = Object.keys(acc).filter(l => acc[l] === -1);
+    if (Object.values(acc).some(a => Math.abs(a) > 1) || (sharps.length && flats.length)) return null;
+    const order = sharps.length ? 'FCGDAEB' : 'BEADGCF', list = sharps.length ? sharps : flats;
+    if (!list.every(l => order.indexOf(l) < list.length)) return null;
+    return { spec: (sharps.length ? SHARP_KEYS : FLAT_KEYS)[list.length], acc };
+  }
   const marked = (item, n) => n.hot || item.kind === 'scale' && !n.octave && item.marks.has(n.degree) && item.up[n.degree].midi === n.midi;
   const chord = parseChord(params.get('chord'));
   const tempo = Math.max(40, Math.min(200, Number(params.get('tempo')) || 100));
@@ -201,10 +224,15 @@
   function drawScore(ctx, L) {
     const item = items[active], seq = seqOf(item);
     const left = chord ? 26 : 8;
-    const treble = new VF.Stave(left, -6, L - left - 8).addClef('treble').setContext(ctx).draw();
+    const sig = keySignature(item);
+    const treble = new VF.Stave(left, -6, L - left - 8).addClef('treble');
+    if (sig) treble.addKeySignature(sig.spec);
+    treble.setContext(ctx).draw();
     let bass = null;
     if (chord) {
-      bass = new VF.Stave(left, 92, L - left - 8).addClef('bass').setContext(ctx).draw();
+      bass = new VF.Stave(left, 92, L - left - 8).addClef('bass');
+      if (sig) bass.addKeySignature(sig.spec);
+      bass.setContext(ctx).draw();
       new VF.StaveConnector(treble, bass).setType('brace').setContext(ctx).draw();
       new VF.StaveConnector(treble, bass).setType('singleLeft').setContext(ctx).draw();
     }
@@ -217,7 +245,7 @@
       const sn = new VF.StaveNote({ keys: [n.key], duration: 'w', clef: 'treble' });
       const col = i === playing ? COOL : marked(item, n) ? HOT : INK;
       // Skalaer: fortegn gjelder ut takten. Tonerekker (sets): fortegnene vises slik de er skrevet.
-      const k = n.letter + n.oct, show = n.explicit ? (n.natural || n.acc !== 0) : (shown[k] ?? 0) !== n.acc;
+      const k = n.letter + n.oct, show = n.explicit ? (n.natural || n.acc !== (sig ? sig.acc[n.letter] || 0 : 0)) : (shown[k] ?? (sig ? sig.acc[n.letter] || 0 : 0)) !== n.acc;
       shown[k] = n.acc;
       if (show) { const a = new VF.Accidental(VFACC[n.acc]); a.setStyle({ fillStyle: col, strokeStyle: col }); sn.addModifier(a, 0); }
       paintNote(sn, col);
@@ -227,7 +255,7 @@
     if (bass) {
       const col = chordLit ? COOL : INK;
       const cn = new VF.StaveNote({ keys: chord.tones.map(x => x.key), duration: 'w', clef: 'bass' });
-      chord.tones.forEach((x, i) => { if (x.acc) { const a = new VF.Accidental(VFACC[x.acc]); a.setStyle({ fillStyle: col, strokeStyle: col }); cn.addModifier(a, i); } });
+      chord.tones.forEach((x, i) => { if (x.acc !== (sig ? sig.acc[x.letter] || 0 : 0)) { const a = new VF.Accidental(VFACC[x.acc]); a.setStyle({ fillStyle: col, strokeStyle: col }); cn.addModifier(a, i); } });
       paintNote(cn, col);
       place(ctx, bass, [cn], [xs[0]]);
       label(ctx, chord.sym, xs[0] + 6, bass.getYForLine(4) + 44, { size: 15, color: chordLit ? COOL : INK, weight: '800' });

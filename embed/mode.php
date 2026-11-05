@@ -18,7 +18,7 @@ $no = $lang === 'no';
   <main class="lab" id="app"></main>
   <script src="https://unpkg.com/vexflow@4.2.5/build/cjs/vexflow.js"></script>
   <script src="lab.js?v=20261104-1"></script>
-  <script src="mode.js?v=20261105-1"></script>
+  <script src="mode.js?v=20261105-2"></script>
   <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>
