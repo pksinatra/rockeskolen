@@ -4,12 +4,16 @@
  * Akkordsymboler skrives med vanlige tegn (Bb, F#m), enkelttoner med ♭/♯.
  *
  * URL-parametere:
- *   mode     chord | build | resolve | degrees       (standard: chord)
+ *   mode     chord | build | resolve | degrees | sketch   (standard: chord)
  *   chord    akkordsymbol for mode=chord, f.eks. C, Am, Cdim, Caug, Csus4, Cadd9, Emaj7, C9, C11, C13 (standard: C)
  *   compare  akkord å sammenligne med; tonene som er ulike, blir røde (mode=chord)
  *   root     grunntone for mode=build (C D E F G A B, standard: C)
  *   quality  dur | moll for mode=build (standard: dur)
  *   key      toneart for mode=degrees (C G D F Bb, standard: C)
+ *   bars     låtskisse for mode=sketch: takter med akkord og eventuelt melodi, f.eks. "Am:A4-C5-E5,Fmaj7:A4-C5-E5".
+ *            Tre meloditoner får motivrytmen åttedel – åttedel – halvnote – firedelspause, fire toner blir firedeler.
+ *            Flere varianter skilles med semikolon og kan ha navn: "Vers|Am,Fmaj7,C,G;Refreng|C,G,Am,F".
+ *   tempo    slag per minutt for mode=sketch (standard 84)
  *   title    egen overskrift
  *   lang     no | en
  */
@@ -17,7 +21,7 @@
   const { t, h, audio, seg, params, note } = RS;
   const VF = Vex.Flow;
   const app = document.getElementById('app');
-  const mode = ['chord', 'build', 'resolve', 'degrees'].includes(params.get('mode')) ? params.get('mode') : 'chord';
+  const mode = ['chord', 'build', 'resolve', 'degrees', 'sketch'].includes(params.get('mode')) ? params.get('mode') : 'chord';
   const INK = '#f2f2f5', MUTED = '#6f6f7c', SOFT = '#a3a3b0', HOT = '#ff2a5f';
 
   app.append(h('style', { text: `
@@ -53,14 +57,14 @@
   const R = [0, 0, '1'], M3 = [2, 4, '3'], m3 = [2, 3, '♭3'], P5 = [4, 7, '5'], b7 = [6, 10, '♭7'], N9 = [8, 14, '9'];
   const TYPES = {
     '': [R, M3, P5], m: [R, m3, P5], dim: [R, m3, [4, 6, '♭5']], aug: [R, M3, [4, 8, '♯5']],
-    sus2: [R, [1, 2, '2'], P5], sus4: [R, [3, 5, '4'], P5], add9: [R, M3, P5, N9], 5: [R, P5],
+    sus2: [R, [1, 2, '2'], P5], sus4: [R, [3, 5, '4'], P5], add9: [R, M3, P5, N9], 5: [R, P5], 6: [R, M3, P5, [5, 9, '6']],
     7: [R, M3, P5, b7], maj7: [R, M3, P5, [6, 11, '7']], m7: [R, m3, P5, b7],
     9: [R, M3, P5, b7, N9], 11: [R, M3, P5, b7, N9, [10, 17, '11']], 13: [R, M3, P5, b7, N9, [12, 21, '13']],
   };
   const DEG = {
     1: t('grunntone', 'root'), 3: t('stor ters', 'major third'), '♭3': t('liten ters', 'minor third'), 5: t('ren kvint', 'perfect fifth'),
     '♭5': t('forminsket kvint', 'diminished fifth'), '♯5': t('forstørret kvint', 'augmented fifth'), 2: t('stor sekund', 'major second'),
-    4: t('ren kvart', 'perfect fourth'), '♭7': t('liten septim', 'minor seventh'), 7: t('stor septim', 'major seventh'),
+    4: t('ren kvart', 'perfect fourth'), 6: t('stor sekst', 'major sixth'), '♭7': t('liten septim', 'minor seventh'), 7: t('stor septim', 'major seventh'),
     9: t('none', 'ninth'), 11: t('undesim', 'eleventh'), 13: t('tredesim', 'thirteenth'),
   };
   function parse(sym) {
@@ -71,7 +75,7 @@
   }
   function longName(c) {
     const q = { '': t(`${c.root}-dur`, `${c.root} major`), m: t(`${c.root}-moll`, `${c.root} minor`), dim: t('forminsket', 'diminished'), aug: t('forstørret', 'augmented'),
-      sus2: t('sus-akkord', 'suspended'), sus4: t('sus-akkord', 'suspended'), add9: t('add-akkord', 'added ninth'), 5: t('kvintakkord', 'power chord'),
+      sus2: t('sus-akkord', 'suspended'), sus4: t('sus-akkord', 'suspended'), add9: t('add-akkord', 'added ninth'), 5: t('kvintakkord', 'power chord'), 6: t('sekstakkord', 'sixth chord'),
       7: t('septimakkord', 'seventh chord'), maj7: t('stor septimakkord', 'major seventh'), m7: t('mollseptimakkord', 'minor seventh'),
       9: t('nier-akkord', 'ninth chord'), 11: t('elleve-akkord', 'eleventh chord'), 13: t('tretten-akkord', 'thirteenth chord') }[c.type];
     return c.type === '' || c.type === 'm' ? q : `${c.sym} – ${q}`;
@@ -361,5 +365,104 @@
     status.textContent = t('Trykk på en akkord for å høre den. I, IV og V er durakkordene i tonearten.', 'Tap a chord to hear it. I, IV and V are the major chords in the key.');
   }
 
-  ({ chord: chordView, build: buildView, resolve: resolveView, degrees: degreesView })[mode]();
+
+  // ======================================================================
+  // Låtskisse: et motiv med rytme over én eller flere akkorder. Tallene under melodien viser tonens plass i akkorden.
+  function sketchView() {
+    const tempo = Math.max(50, Math.min(160, Number(params.get('tempo')) || 84));
+    const note1 = txt => { const m = /^([A-G])(#|b)?(\d)$/.exec(txt.trim()); if (!m) return null; const L = LET.indexOf(m[1]), o = Number(m[3]); return tone(7 * (o + 1) + L, 12 * (o + 1) + NAT[L] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0)); };
+    // Akkorden i f-nøkkel: C, D og E fra oktav 3, F–B fra oktav 2.
+    const low = c => { const L = LET.indexOf(c.root[0]), d = L < 3 ? 1 : 2; return c.tones.map(x => ({ ...tone(x.li - 7 * d, x.midi - 12 * d), deg: x.deg })); };
+    const MAJ = [0, 2, 4, 5, 7, 9, 11];
+    const NAME = { 1: t('grunntone', 'root'), '♭2': t('liten sekund', 'minor second'), 2: t('stor sekund', 'major second'), '♭3': t('liten ters', 'minor third'), 3: t('stor ters', 'major third'),
+      4: t('ren kvart', 'perfect fourth'), '♯4': t('forstørret kvart', 'augmented fourth'), '♭5': t('forminsket kvint', 'diminished fifth'), 5: t('ren kvint', 'perfect fifth'),
+      '♭6': t('liten sekst', 'minor sixth'), 6: t('stor sekst', 'major sixth'), '♭7': t('liten septim', 'minor seventh'), 7: t('stor septim', 'major seventh') };
+    // Tonens funksjon i akkorden, regnet fra bokstavtrinn og halvtoner over grunntonen.
+    function degree(x, c) {
+      const r = c.tones[0], dl = (((x.li - r.li) % 7) + 7) % 7, semi = (((x.midi - r.midi) % 12) + 12) % 12, adj = ((semi - MAJ[dl] + 18) % 12) - 6;
+      return (adj < 0 ? '♭' : adj > 0 ? '♯' : '') + (dl + 1);
+    }
+    const presets = (params.get('bars') || 'Am:A4-C5-E5').split(';').map(part => {
+      const [name, list] = part.includes('|') ? part.split('|') : ['', part];
+      const bars = list.split(',').map(b => { const [sym, mel] = b.split(':'); const c = parse(sym.trim()); return c && { chord: c, bass: low(c), melody: mel ? mel.split('-').map(note1).filter(Boolean) : [] }; }).filter(Boolean);
+      return bars.length && { name: name.trim() || bars.map(b => b.chord.sym).join(' – '), bars };
+    }).filter(Boolean);
+    let cur = presets[0], lit = { bar: -1, note: -1 }, timers = [];
+    const RHY = { 1: [[0, 'w', 0, 4]], 3: [[0, '8', 0, 0.5], [1, '8', 0.5, 0.5], [2, 'h', 1, 2], [-1, 'qr']], 4: [0, 1, 2, 3].map(i => [i, 'q', i, 1]) };
+    const status = h('p', { class: 'status', role: 'status' }), chips = h('div', { class: 'chips' });
+    const stop = () => { timers.forEach(clearTimeout); timers = []; lit = { bar: -1, note: -1 }; box.redraw(); describe(); };
+    function run(withMelody) {
+      stop(); audio();
+      const beat = 60 / tempo, t0 = RS.now() + 0.08;
+      cur.bars.forEach((b, i) => {
+        const tb = t0 + i * 4 * beat, at = (sec, fn) => timers.push(setTimeout(fn, (sec - RS.now()) * 1000));
+        play(b.melody.length && withMelody ? b.bass : b.bass.concat(b.chord.tones), { time: tb, dur: 4 * beat - 0.08, bass: false });
+        at(tb, () => { lit = { bar: i, note: -1 }; box.redraw(); describe(i); });
+        if (withMelody) (RHY[b.melody.length] || []).forEach(([k, , off, len]) => {
+          if (k < 0) return;
+          note(b.melody[k].midi, { time: tb + off * beat, dur: len * beat * 0.92, vel: 0.62 });
+          at(tb + off * beat, () => { lit = { bar: i, note: k }; box.redraw(); });
+        });
+      });
+      timers.push(setTimeout(stop, (cur.bars.length * 4 * beat + 0.4) * 1000));
+    }
+    function describe(i = cur.bars.length === 1 ? 0 : -1) {
+      if (i < 0) { chips.replaceChildren(); status.textContent = t(`Akkordene: ${list(cur.bars.map(b => b.chord.sym))}. Trykk på Spill.`, `The chords: ${list(cur.bars.map(b => b.chord.sym))}. Press Play.`); return; }
+      const b = cur.bars[i];
+      chips.replaceChildren(...b.melody.map(x => { const d = degree(x, b.chord); return h('span', { class: 'chip' }, h('b', { text: x.name }), h('i', { text: d }), NAME[d] || ''); }));
+      status.textContent = b.melody.length ? t(`${b.chord.sym} = ${list(b.chord.tones.map(x => x.name))}. Tallene viser hvilken plass meloditonene har i akkorden.`, `${b.chord.sym} = ${list(b.chord.tones.map(x => x.name))}. The numbers show each melody note's place in the chord.`)
+        : `${b.chord.sym} = ${list(b.chord.tones.map(x => x.name))}.`;
+    }
+    const hasMelody = presets.some(p => p.bars.some(b => b.melody.length));
+    app.append(header(hasMelody ? t('Melodi og akkorder', 'Melody and chords') : t('Akkordrekke', 'Chord progression'), params.get('title') || cur.name,
+      h('button', { type: 'button', class: 'primary', on: { click: () => run(true) } }, t('▶ Spill', '▶ Play')),
+      hasMelody ? h('button', { type: 'button', on: { click: () => run(false) } }, t('Bare akkordene', 'Chords only')) : null,
+      h('button', { type: 'button', on: { click: stop } }, t('■ Stopp', '■ Stop'))));
+    const box = mount(app, 222, (ctx, L) => {
+      const n = cur.bars.length, left = 26, first = 62, w = (L - left - 8 - first) / n;
+      let top0 = null;
+      cur.bars.forEach((b, i) => {
+        const x = left + (i ? first + i * w : 0), width = i ? w : first + w;
+        const tr = new VF.Stave(x, 4, width), bs = new VF.Stave(x, 104, width);
+        if (!i) { tr.addClef('treble').addTimeSignature('4/4'); bs.addClef('bass').addTimeSignature('4/4'); }
+        if (i === n - 1) { tr.setEndBarType(VF.Barline.type.END); bs.setEndBarType(VF.Barline.type.END); }
+        tr.setContext(ctx).draw(); bs.setContext(ctx).draw();
+        if (!i) { top0 = tr; new VF.StaveConnector(tr, bs).setType('brace').setContext(ctx).draw(); new VF.StaveConnector(tr, bs).setType('singleLeft').setContext(ctx).draw(); }
+        if (i === n - 1) new VF.StaveConnector(tr, bs).setType('boldDoubleRight').setContext(ctx).draw();
+        else new VF.StaveConnector(tr, bs).setType('singleRight').setContext(ctx).draw();
+        const on = lit.bar === i, col = k => (on && (k === lit.note || (k === -2 && lit.note < 0)) ? HOT : INK);
+        const acc = (sn, x, k, c) => { if (x.acc) { const a = new VF.Accidental(VFACC[x.acc]); a.setStyle({ fillStyle: c, strokeStyle: c }); sn.addModifier(a, k); } };
+        // Melodi (eller akkorden i g-nøkkel når takten ikke har melodi).
+        let mel;
+        if (b.melody.length && RHY[b.melody.length]) mel = RHY[b.melody.length].map(([k, d]) => {
+          if (k < 0) return new VF.StaveNote({ keys: ['b/4'], duration: d, clef: 'treble' });
+          const x0 = b.melody[k], sn = new VF.StaveNote({ keys: [x0.key], duration: d, clef: 'treble' }), c = col(k);
+          acc(sn, x0, 0, c); sn.setStyle({ fillStyle: c, strokeStyle: c }); return sn;
+        });
+        else { const sn = new VF.StaveNote({ keys: b.chord.tones.map(x => x.key), duration: 'w', clef: 'treble' }), c = col(-2); b.chord.tones.forEach((x, k) => acc(sn, x, k, c)); sn.setStyle({ fillStyle: c, strokeStyle: c }); mel = [sn]; }
+        mel.forEach(sn => sn.setLedgerLineStyle({ strokeStyle: SOFT, fillStyle: SOFT }));
+        const bassTones = b.melody.length ? b.bass : [b.bass[0]];
+        const bn = new VF.StaveNote({ keys: bassTones.map(x => x.key), duration: 'w', clef: 'bass' }), bc = on ? HOT : INK;
+        bassTones.forEach((x, k) => acc(bn, x, k, bc)); bn.setStyle({ fillStyle: bc, strokeStyle: bc }); bn.setLedgerLineStyle({ strokeStyle: SOFT, fillStyle: SOFT });
+        const v1 = new VF.Voice({ num_beats: 4, beat_value: 4 }).setMode(VF.Voice.Mode.SOFT).addTickables(mel);
+        const v2 = new VF.Voice({ num_beats: 4, beat_value: 4 }).setMode(VF.Voice.Mode.SOFT).addTickables([bn]);
+        const beams = VF.Beam.generateBeams(mel.filter(sn => sn.getDuration() === '8'));
+        beams.forEach(bm => bm.setStyle({ fillStyle: INK, strokeStyle: INK }));
+        const fw = Math.max(30, tr.getNoteEndX() - tr.getNoteStartX() - 18);
+        new VF.Formatter().joinVoices([v1]).format([v1], fw); new VF.Formatter().joinVoices([v2]).format([v2], fw);
+        v1.draw(ctx, tr); v2.draw(ctx, bs); beams.forEach(bm => bm.setContext(ctx).draw());
+        label(ctx, b.chord.sym, tr.getNoteStartX() + 10, 22, { size: 15, color: on ? HOT : INK, weight: '800', align: 'left' });
+        if (b.melody.length) mel.forEach((sn, k) => { const m = RHY[b.melody.length][k]; if (m[0] >= 0) label(ctx, degree(b.melody[m[0]], b.chord), sn.getAbsoluteX() + 6, 134, { size: 12, color: on && lit.note === m[0] ? HOT : SOFT }); });
+      });
+    });
+    if (presets.length > 1) {
+      const pick = seg(t('Velg variant', 'Choose version'), presets.map((p, i) => [i, p.name]), 0, i => { stop(); cur = presets[i]; if (!params.get('title')) app.querySelector('h1').textContent = cur.name; box.redraw(); describe(); run(true); });
+      pick.classList.add('wrap');
+      app.append(h('div', { class: 'row' }, pick));
+    }
+    app.append(chips, status);
+    describe();
+  }
+
+  ({ chord: chordView, build: buildView, resolve: resolveView, degrees: degreesView, sketch: sketchView })[mode]();
 })();
