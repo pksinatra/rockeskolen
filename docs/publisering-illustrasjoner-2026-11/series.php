@@ -1,0 +1,2 @@
+<?php require __DIR__.'/db.inc.php';
+foreach ($pdo->query("SELECT n.nid, n.title, n.status, LENGTH(b.field_body_value) len FROM {$p}node_field_data n LEFT JOIN {$p}node__field_body b ON b.entity_id=n.nid WHERE n.title LIKE '%skala%' OR n.title LIKE '%modus%' OR n.title LIKE '%Modi%' OR n.title LIKE '%penta%' OR n.title LIKE '%blues%' OR n.title LIKE '%kirketone%' ORDER BY n.nid") as $r) echo implode(' | ', $r), "\n";
