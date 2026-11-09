@@ -271,21 +271,7 @@ function rockeskolen_structure_qa_article_series_navigation(NodeInterface $node)
       $siblings[] = $sibling;
     }
 
-    usort($siblings, static function (NodeInterface $left, NodeInterface $right): int {
-      $left_part = rockeskolen_structure_qa_part_number($left);
-      $right_part = rockeskolen_structure_qa_part_number($right);
-      if ($left_part === NULL && $right_part !== NULL) {
-        return 1;
-      }
-      if ($left_part !== NULL && $right_part === NULL) {
-        return -1;
-      }
-      if ($left_part !== $right_part) {
-        return ($left_part ?? 0) <=> ($right_part ?? 0);
-      }
-      $title_order = strnatcasecmp($left->label(), $right->label());
-      return $title_order !== 0 ? $title_order : ((int) $left->id() <=> (int) $right->id());
-    });
+    usort($siblings, 'rockeskolen_structure_qa_compare_parts');
 
     $current_index = NULL;
     foreach ($siblings as $index => $sibling) {
@@ -335,6 +321,28 @@ function rockeskolen_structure_qa_part_number(NodeInterface $node): ?int {
     return NULL;
   }
   return (int) $node->get('field_delnummer')->value;
+}
+
+/**
+ * Orders series articles by part number, then by when they were created.
+ *
+ * Articles without a part number come last, oldest first, so a series that
+ * lacks numbers still reads in the order it was written.
+ */
+function rockeskolen_structure_qa_compare_parts(NodeInterface $left, NodeInterface $right): int {
+  $left_part = rockeskolen_structure_qa_part_number($left);
+  $right_part = rockeskolen_structure_qa_part_number($right);
+  if ($left_part === NULL && $right_part !== NULL) {
+    return 1;
+  }
+  if ($left_part !== NULL && $right_part === NULL) {
+    return -1;
+  }
+  if ($left_part !== $right_part) {
+    return $left_part <=> $right_part;
+  }
+  $created_order = (int) $left->getCreatedTime() <=> (int) $right->getCreatedTime();
+  return $created_order !== 0 ? $created_order : ((int) $left->id() <=> (int) $right->id());
 }
 
 /**

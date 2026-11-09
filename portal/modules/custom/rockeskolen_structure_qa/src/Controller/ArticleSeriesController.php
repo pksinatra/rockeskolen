@@ -58,16 +58,17 @@ final class ArticleSeriesController extends ControllerBase {
       ->accessCheck(TRUE)
       ->condition('status', NodeInterface::PUBLISHED)
       ->condition('field_artikkelserie.target_id', $term->id())
-      ->sort('field_delnummer.value', 'ASC')
-      ->sort('title', 'ASC')
       ->execute();
+    // Samme rekkefølge som serienavigasjonen: delnummer, deretter opprettet.
+    $nodes = $storage->loadMultiple($ids);
+    usort($nodes, 'rockeskolen_structure_qa_compare_parts');
 
     $cards = [];
     $cacheability = CacheableMetadata::createFromObject($term)
       ->addCacheTags(['node_list'])
       ->addCacheContexts(['languages:language_content', 'user.node_grants:view', 'user.permissions']);
 
-    foreach ($storage->loadMultiple($ids) as $node) {
+    foreach ($nodes as $node) {
       $node = $this->translatedNode($node);
       $access = $node->access('view', NULL, TRUE);
       $cacheability->addCacheableDependency($node)->addCacheableDependency($access);
@@ -75,9 +76,7 @@ final class ArticleSeriesController extends ControllerBase {
         continue;
       }
 
-      $part = !$node->get('field_delnummer')->isEmpty()
-        ? (int) $node->get('field_delnummer')->value
-        : NULL;
+      $part = rockeskolen_structure_qa_part_number($node);
       $summary = $this->summary($node);
       $image = NULL;
       if ($node->hasField('field_bilde') && !$node->get('field_bilde')->isEmpty() && $node->get('field_bilde')->access('view')) {
