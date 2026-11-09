@@ -24,7 +24,8 @@ for p in paths:
     remote = '/www/' + p; data = (root / p).read_bytes()
     head = subprocess.run(['git', '-C', str(root), 'show', base + ':' + p], capture_output=True).stdout
     old = get(remote, missing_ok=True)
-    if old is None and head == b'': sys.exit(f'STOPP: {p} er ikke committet')
+    # En ny fil må være committet slik den er nå (sjekkes mot HEAD, siden base kan være commiten før den kom til).
+    if old is None and subprocess.run(['git', '-C', str(root), 'show', 'HEAD:' + p], capture_output=True).stdout != data: sys.exit(f'STOPP: {p} er ikke committet')
     if old is None: print('ny fil   ', remote)
     elif old == data: print('uendret  ', remote); continue
     elif old != head: sys.exit(f'STOPP: {remote} i produksjon avviker fra git {base} – kan være nyere arbeid')
