@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://rockeskolen.com/images/workshops.jpg">
   <meta property="og:image:secure_url" content="https://rockeskolen.com/images/workshops.jpg">
   <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="987">
+  <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="1280">
   <meta property="og:image:alt" content="Musiker arbeider med gitar og keyboard i Rockeskolens studio">
   <meta name="twitter:card" content="summary_large_image">
@@ -67,7 +67,10 @@
           </div>
         </div>
         <div class="f-hero-media">
-          <img src="/images/workshops.jpg" alt="Musiker arbeider med gitar og keyboard i Rockeskolens studio" width="987" height="1280" fetchpriority="high">
+          <picture>
+            <source srcset="/images/workshops.webp" type="image/webp">
+            <img src="/images/workshops.jpg" alt="To unge musikere spiller gitar og keyboard i Rockeskolens studio" width="1024" height="1280" fetchpriority="high">
+          </picture>
           <div class="f-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
