@@ -1,6 +1,6 @@
 # Rockeskolen – handover til Claude
 
-Sist oppdatert: 22. oktober 2026.
+Sist oppdatert: 9. november 2026.
 
 Dette dokumentet beskriver de viktigste reglene, plasseringene og arbeidsmåtene for Rockeskolen. Les også `AGENTS.md` før du gjør endringer. Ved motstrid gjelder de nyeste, eksplisitte instruksene fra brukeren foran eldre dokumentasjon.
 
@@ -101,7 +101,7 @@ Disse er ikke nødvendigvis i bruk, men de skal ikke flyttes eller slettes uten 
 
 ## 6. Hovedside og statiske sider
 
-- Forside: `index.php` og `index.html` i repo-roten. Kontroller hvilken fil produksjonen faktisk serverer før redigering.
+- Forside: `index.php` i repo-roten. Det skal bare finnes én forside – ingen `index.html`.
 - Skoleside: `skoler/index.php`
 - Workshops: `workshop/index.php`
 - Verktøykatalog på hoveddomenet: `tools/index.php`
@@ -204,6 +204,7 @@ Test minst:
 - `http://127.0.0.1:8796/tools/scales/guitar/`
 - `http://127.0.0.1:8796/tools/circles/fifths/`
 - `http://127.0.0.1:8796/tools/tuners/`
+- `http://127.0.0.1:8796/tools/intervals/`
 - `http://127.0.0.1:8796/tools/shared/music.php?type=scale`
 
 Kontroller for hvert berørte verktøy:
@@ -358,3 +359,70 @@ Det gjelder både musikalsk samspill og måten Rockeskolen utvikler innhold, ver
 
 - **Intervallverktøyet** ligger på `/tools/intervals/` (lokalt `tools/intervals/`, FTP `/www/tools/intervals/`). Det er hentet fra chordlink.net/tools/intervals/ og tilpasset Rockeskolen: Rockeskolens toppfelt og delingsdata via `tools/shared/bootstrap.php`, norsk som standard og engelsk bare med `?lang=en`, og lydfilene i `/audio/`. Endringer gjøres i Rockeskolens kopi, aldri i ChordLink.
 - **Verktøyoversikten** styres av `includes/content.php` (`rs_tools()`). Den samme listen vises på rockeskolen.com/tools/ og på musikkportalens Verktøy-side. Produksjonsversjonen av filen er autoritativ; hent den før endringer.
+
+## Arbeidsdeling og pågående mål (9. november 2026)
+
+- **Claude tar det tekniske. Codex og ChatGPT står for planleggingen.** Planer kan komme inn som innlimt tekst. Gjennomfør dem teknisk, men følg reglene i dette dokumentet.
+- **Mål 1:** Flytte alle verktøyene fra ChordLink over til Rockeskolen og tilpasse dem, på samme måte som intervallverktøyet. Det betyr toppfeltet og delingsdataene via `tools/shared/bootstrap.php`, norsk som standard og engelsk med `?lang=en`, VIP i stedet for PRO og ingen avhengigheter til ChordLink.
+- **Mål 2:** Gjøre musikkportalen ferdig slik at den kan presenteres for skoler.
+
+### Verktøy i ChordLink og Rockeskolen (lokale mapper, 9. november 2026)
+
+Hentet fra `/Users/pk/Documents/Codex/chordlink/tools/` og `tools/`. Hvor langt hvert verktøy er tilpasset er ikke kartlagt ennå. At begge har en mappe med samme navn betyr ikke at Rockeskolens kopi er oppdatert.
+
+| Status | Verktøy |
+|---|---|
+| Bare i ChordLink | `chordflow`, `chordplay`, `mxl-viewer`, `noted`, `progression-access`, `wheels/chords`, `explore-build`, `frequencygenerator` (Rockeskolen har `frequencer/`) |
+| I begge | `charts`, `chordlog`, `chordprog`, `chords` (piano, guitar, notes), `circles/fifths`, `instruments/piano`, `intervals`, `notes`, `scales` (piano, guitar), `symbols`, `theory`, `tuners`, `visualizers/piano` |
+| Bare i Rockeskolen | `games/mahjong`, `generators`, `soundlab`, `shared` |
+
+## Fakta og faste regler lært underveis (oppdatert 9. november 2026)
+
+### Forside og ruting
+
+- **Det skal bare finnes én forside: `index.php`.** Ingen `index.html` i repoet eller på serveren. Kontrollert via FTP 9. november 2026: `/www/` har `index.php`, `index-wp.php` og to `*.codex-meta-backup`-filer, men ingen `index.html`. Disse filene skal ikke ryddes uten godkjenning.
+- `.htaccess` har `DirectoryIndex index.html index.php`. Den har også en oppsamlingsregel som sender alle stier som ikke finnes til `/index.php`. Den er laget for gamle WordPress-permalenker.
+- **Konsekvens for testing:** En URL som ikke finnes, svarer **HTTP 200 med forsiden**. Et 200-svar beviser altså ikke at en fil finnes på serveren. Kontroller innholdet, eller list filen via FTP.
+
+### FTP
+
+- Vert `ftp.domeneshop.no`, brukernavn `rockeskolen`. Passordet er det samme som i `~/.netrc`-oppføringen for `ftp.domeneshop.no`, men den oppføringen har et annet brukernavn (en annen konto). Les passordet med Pythons `netrc`-modul. Det skal aldri skrives ut eller lagres i repoet.
+- Kontroller at du er på riktig konto ved å sjekke at `/www/embed/interval.php` finnes. Kjør `TYPE I` før `SIZE`.
+- **FTP kan være den eneste kopien.** Serveren har filer som verken finnes på Macen eller på GitHub. Sikkerhetskopier lokalt før en serverfil endres.
+
+### Rydding
+
+- Mac, GitHub og FTP skal ryddes kontrollert og gradvis. **All rydding krever dobbel bekreftelse.** Det gjelder sletting, flytting, overskriving, opprydding i grener og committing av andres arbeid. Legg først fram planen og få et ja. Bekreft deretter en gang til med den konkrete listen.
+- `members/config.php.save` og `members/debug.txt` ligger lokalt. Hva de inneholder og om de ligger offentlig tilgjengelig er ikke vurdert. Filene kan inneholde hemmeligheter, så ikke vis innholdet.
+
+### ChordLink
+
+- Lokal ChordLink-repo: `/Users/pk/Documents/Codex/chordlink` (remote `pksinatra/chordlink`). ChordLink skal **aldri** ligge i den lokale `rockeskolen/`-mappen. Under Rockeskolen finnes ChordLink bare på FTP (`/www/chordlink/`).
+- ChordLink kan bli skilt ut og solgt. Den skal derfor ikke ha avhengigheter til Rockeskolen, og verktøy som kopieres til Rockeskolen skal ikke ha avhengigheter tilbake til ChordLink.
+
+### Redaksjonelt
+
+- **Spør før redaksjonelle valg** og valg som endrer hvordan innhold presenteres (skrivemåte, merkevare, bilder, tekst, hva som vises). Tekniske rettelser av klare feil kan gjøres direkte. Et kort «ja» på et spørsmål med flere alternativer er uklart, så spør hvilket alternativ som menes.
+- **Ikke tull med stavemåten.** Skalaer og akkorder har én faglig riktig stavemåte, og alternative stavemåter skal ikke presenteres som like riktige. Eksempel: C hel–halv dim er **C – D – E♭ – F – F♯ – G♯ – A – B**. F og F♯ er ulike toner. Spør hvis du er usikker.
+- Frasen **«Musikk på nett og i virkeligheten»** skal ikke brukes. Slagordet er «Spill. Utforsk. Lag musikk.».
+- **Noteillustrasjoner:** Mange hvite notelinjer i full bredde blir stripete mot den mørke portalen. Bruk mørk bakgrunn i samme stil som `embed/lab.css`, og samle små eksempler i én illustrasjon per tema.
+- **Kildekode for publiserte filer** (f.eks. figurgeneratorer for SVG-er i `images/`) skal committes i repoet, typisk i en mappe under `docs/`. Se `docs/figurer-musikkproduksjon-2026-10/` og `docs/figurer-musikk-i-praksis-2026-11/`. Kildekoden skal ikke bare ligge i en lokal skissemappe. Nye mapper krever fortsatt godkjenning.
+- Svar alltid brukeren på norsk (bokmål).
+
+### Git
+
+- Når brukeren ber om push, skal hele lokale `main` synkroniseres med origin, også commits fra Codex og andre økter. Kjør `git fetch` og integrer uten force-push. Skann upushede commits for hemmeligheter og filer over 100 MB, og nevn kort hvilke andre commits som ble med. Ucommittede og usporede filer fra andre skal fortsatt ikke committes uten grunn.
+
+### Drupal, medlemskap og FEIDE
+
+- Drupal er den autoritative medlemsbasen (migrert 11. august 2026). SQL-tabellene er et tilgangsspeil. Se `docs/drupal-som-autoritativ-medlemsbase.md` og `docs/innlogging-og-sso.md`.
+- Brukeren installerer Drupals sikkerhetsoppdateringer selv, så ikke mas om advarselen. Planen er å oppgradere til Drupal 12 når den kommer. Da må egne moduler få `core_version_requirement: ^11 || ^12` og sjekkes for API-endringer.
+- **FEIDE gjennomgås samlet av brukeren senere.** Valg som avhenger av FEIDE, som hvordan lærervisningen finner elevene sine, utsettes. Ikke endre FEIDE-koden i `rockeskolen_membership` som en del av andre oppgaver.
+
+### Kart over repoet (hovedtrekk)
+
+- `includes/`: felles toppfelt (`app-header.php`, `front-header.php`), `meta.php`, stil og `content.php` (`rs_tools()`).
+- `embed/`: interaktive elementer til artikler (`chord`, `circle`, `form`, `groove`, `home`, `interval`, `ladder`, `melody`, `mode`, `pulse`, `rhythm`, `sound`, `staff`). Felles stil ligger i `lab.css`, og `autoheight.js` justerer høyden på iframes.
+- `skoler/`, `workshop/`, `kurs/`, `vip/`, `admin/`, `api/`, `audio/`, `images/`, `assets/`.
+- Eksperimentelle frekvensmapper i roten: `frequencer-layout/`, `frequencer-next/`, `frequencygenerator-etherea-beta/`. `frequencygenerator/` er et eget repo.
+- `docs/` har planer og statusdokumenter (portal, skoletilgang, SSO). De kan være historiske, så kontroller mot produksjon.
