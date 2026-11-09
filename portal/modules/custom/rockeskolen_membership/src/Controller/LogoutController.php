@@ -82,6 +82,10 @@ final class LogoutController extends ControllerBase {
    * Clears the Rockeskolen session after Drupal has logged the user out.
    */
   public function continueLogout(): TrustedRedirectResponse {
+    $feideNonce = (string) \Drupal::request()->query->get('feide', '');
+    if ($feideNonce !== '') {
+      return $this->feideLogout($feideNonce);
+    }
     $feideReturn = NULL;
     if ((string) \Drupal::request()->query->get('portal', '') === '1' && !$this->currentUser()->isAnonymous()) {
       $feideReturn = $this->prepareFeideLogout();
@@ -101,8 +105,7 @@ final class LogoutController extends ControllerBase {
    * "Logg inn med FEIDE" signs the previous user in again, which matters on
    * shared school devices.
    */
-  public function feideLogout(): TrustedRedirectResponse {
-    $nonce = (string) \Drupal::request()->query->get('n', '');
+  private function feideLogout(string $nonce): TrustedRedirectResponse {
     $store = \Drupal::service('keyvalue.expirable')->get(self::FEIDE_LOGOUT_STORE);
     $token = preg_match('/^[0-9a-f]{32}$/', $nonce) ? $store->get($nonce) : NULL;
     if (!is_string($token)) {
@@ -133,7 +136,7 @@ final class LogoutController extends ControllerBase {
     $token = (string) (\Drupal::service('openid_connect.session')->retrieveIdToken() ?? '');
     $nonce = bin2hex(random_bytes(16));
     \Drupal::service('keyvalue.expirable')->get(self::FEIDE_LOGOUT_STORE)->setWithExpire($nonce, $token, 300);
-    return 'https://portal.rockeskolen.com/members/feide-logout?n=' . $nonce;
+    return 'https://portal.rockeskolen.com/members/logout-continue?feide=' . $nonce;
   }
 
   /**

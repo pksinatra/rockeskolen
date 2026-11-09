@@ -64,12 +64,3 @@ rockeskolen_membership.logout_start:
     _access: 'TRUE'
   options:
     no_cache: TRUE
-
-rockeskolen_membership.feide_logout:
-  path: '/members/feide-logout'
-  defaults:
-    _controller: '\Drupal\rockeskolen_membership\Controller\LogoutController::feideLogout'
-  requirements:
-    _access: 'TRUE'
-  options:
-    no_cache: TRUE

@@ -8,7 +8,7 @@ $parsed = parse_url($redirect);
 $allowedPortalReturn = is_array($parsed)
     && ($parsed['scheme'] ?? '') === 'https'
     && ($parsed['host'] ?? '') === 'portal.rockeskolen.com'
-    && in_array(($parsed['path'] ?? ''), ['/user/login', '/admin-login', '/members/feide-logout'], true);
+    && in_array(($parsed['path'] ?? ''), ['/user/login', '/admin-login', '/members/logout-continue'], true);
 if (!$allowedPortalReturn) {
     $redirect = safe_redirect($redirect);
 }
