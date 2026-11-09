@@ -109,21 +109,28 @@
   function renderNotation(active = -1) {
     const target = document.getElementById('notation');
     target.innerHTML = '';
-    const width = Math.max(440, Math.min(920, target.parentElement.clientWidth - 24));
+    const width = Math.max(280, Math.min(920, target.parentElement.clientWidth - 24));
     const renderer = new Vex.Flow.Renderer(target, Vex.Flow.Renderer.Backends.SVG);
     renderer.resize(width, 164);
     const ctx = renderer.getContext();
+    // Mørk bakgrunn: hvite noter og linjer, rød akkord mens den spilles.
+    const INK = '#f2f2f5', HOT = '#ff2a5f', SOFT = '#a3a3b0';
+    ctx.setFillStyle(INK); ctx.setStrokeStyle(INK);
     const stave = new Vex.Flow.Stave(10, 28, width - 20).addClef('treble').addTimeSignature(`${activePreset.chords.length}/4`);
     stave.setContext(ctx).draw();
     const notes = activePreset.chords.map((symbol,i) => {
       const spelled = spelledNotes(symbol);
       const note = new Vex.Flow.StaveNote({ clef:'treble', keys:spelled.map(n => `${n.name.toLowerCase()}/${n.oct}`), duration:'q' });
-      spelled.forEach((n, k) => { if (n.sign) note.addModifier(new Vex.Flow.Accidental(n.sign), k); });
-      if (i === active) note.setStyle({ fillStyle:'#7c3aed', strokeStyle:'#7c3aed' });
-      return note.addModifier(new Vex.Flow.Annotation(symbol).setVerticalJustification(Vex.Flow.Annotation.VerticalJustify.TOP));
+      const col = i === active ? HOT : INK;
+      spelled.forEach((n, k) => { if (n.sign) { const a = new Vex.Flow.Accidental(n.sign); a.setStyle({ fillStyle:col, strokeStyle:col }); note.addModifier(a, k); } });
+      note.setStyle({ fillStyle:col, strokeStyle:col });
+      note.setLedgerLineStyle({ fillStyle:SOFT, strokeStyle:SOFT });
+      const label = new Vex.Flow.Annotation(symbol).setFont('Inter, system-ui, sans-serif', 15, 'bold').setVerticalJustification(Vex.Flow.Annotation.VerticalJustify.TOP);
+      label.setStyle({ fillStyle:col, strokeStyle:col });
+      return note.addModifier(label);
     });
     const voice = new Vex.Flow.Voice({ num_beats:activePreset.chords.length, beat_value:4 }).setStrict(false).addTickables(notes);
-    new Vex.Flow.Formatter().joinVoices([voice]).format([voice], width - 120);
+    new Vex.Flow.Formatter().joinVoices([voice]).format([voice], width - (width < 440 ? 90 : 120));
     voice.draw(ctx, stave);
   }
   function renderAll(active = -1) {

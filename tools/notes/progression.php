@@ -7,7 +7,10 @@ $lang = ($_GET['lang'] ?? 'en') === 'no' ? 'no' : 'en';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title><?= $lang === 'no' ? 'Akkordprogresjon' : 'Chord progression' ?></title>
-  <link rel="stylesheet" href="progression.css?v=20260909-1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="progression.css?v=20261109-1">
   <script src="https://cdn.jsdelivr.net/npm/vexflow@4.1.0/build/cjs/vexflow.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.js"></script>
 </head>
@@ -45,7 +48,7 @@ $lang = ($_GET['lang'] ?? 'en') === 'no' ? 'no' : 'en';
       <p id="status" role="status"></p>
     </footer>
   </main>
-  <script src="progression.js?v=20261025-1"></script>
+  <script src="progression.js?v=20261109-1"></script>
   <script src="/embed/autoheight.js?v=20261025-1"></script>
 </body>
 </html>
