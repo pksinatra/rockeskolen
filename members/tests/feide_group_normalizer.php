@@ -52,4 +52,26 @@ if (count($expiredNormalized) !== 1 || $expiredNormalized[0]['org_unit_id'] !== 
     exit(1);
 }
 
+$vgs = FeideGroupNormalizer::memberships([[
+    'id' => 'fc:org:testusers.feide.no:unit:NO895395126',
+    'type' => 'fc:org',
+    'displayName' => 'Frogner VGS',
+    'orgType' => ['upper_secondary'],
+    'membership' => ['affiliation' => ['member', 'faculty']],
+], [
+    'id' => 'fc:org:testusers.feide.no:unit:NO974760673',
+    'type' => 'fc:org',
+    'displayName' => 'Universitet',
+    'orgType' => ['higher_education'],
+    'membership' => ['affiliation' => ['member', 'student']],
+]]);
+if ($vgs !== [[
+    'org_unit_id' => 'NO895395126',
+    'group_id' => '',
+    'affiliation' => 'faculty',
+]]) {
+    fwrite(STDERR, 'Upper secondary school was not accepted, or higher education was not rejected' . "\n");
+    exit(1);
+}
+
 echo "Feide group normalizer tests passed\n";

@@ -22,7 +22,12 @@ final class FeideGroupNormalizer {
   }
 
   /**
-   * Keeps school groups for school-wide contracts.
+   * Feide organization types that can hold a school contract.
+   */
+  private const SCHOOL_ORG_TYPES = ['primary_and_lower_secondary', 'upper_secondary'];
+
+  /**
+   * Keeps school groups (grunnskole and VGS) for school-wide contracts.
    *
    * @return array<int, array{org_unit_id: string, group_id: string, affiliation: string}>
    */
@@ -31,7 +36,7 @@ final class FeideGroupNormalizer {
     foreach ($groups as $group) {
       if (!is_array($group)
         || ($group['type'] ?? '') !== 'fc:org'
-        || !in_array('primary_and_lower_secondary', (array) ($group['orgType'] ?? []), TRUE)) {
+        || !array_intersect(self::SCHOOL_ORG_TYPES, (array) ($group['orgType'] ?? []))) {
         continue;
       }
       $groupId = trim((string) ($group['id'] ?? ''));
