@@ -117,8 +117,7 @@ $plans = [
   <style>
     @media (max-width: 640px) {
       .page-title h1 {
-        font-size: clamp(38px, 11vw, 48px);
-        overflow-wrap: anywhere;
+        font-size: clamp(26px, 9.5vw, 48px);
       }
     }
   </style>
