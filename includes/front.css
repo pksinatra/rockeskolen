@@ -48,7 +48,7 @@ body.rs-front { margin: 0; background: var(--f-bg); color: var(--f-text); font-f
 .f-nav .f-help-panel a:hover { background: rgba(239, 32, 41, .14); }
 
 /* Hero */
-.f-hero { position: relative; overflow: hidden; padding: clamp(56px, 8vw, 110px) 0 clamp(48px, 7vw, 90px); }
+.f-hero { position: relative; overflow: hidden; padding: clamp(28px, 4vw, 56px) 0 clamp(48px, 7vw, 90px); }
 .f-hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(239, 32, 41, .22), transparent 62%); pointer-events: none; }
 .f-hero .f-wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
 .f-hero h1 { margin: 0 0 26px; font-size: clamp(50px, 7.2vw, 108px); font-weight: 900; letter-spacing: -.05em; line-height: .88; }

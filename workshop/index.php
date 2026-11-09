@@ -113,11 +113,19 @@ $plans = [
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/includes/front.css?v=20261109-2">
+  <link rel="stylesheet" href="/includes/front.css?v=20261109-3">
   <style>
+    /* Kortene får aldri bli bredere enn kolonnen, og lange ord som «Musikkproduksjon» deles med bindestrek. */
+    .resource-card { min-width: 0; }
+    .resource-card strong { overflow-wrap: break-word; hyphens: auto; }
+    @media (max-width: 1180px) {
+      .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 640px) {
+      .resource-grid { grid-template-columns: 1fr; }
       .page-title h1 {
         font-size: clamp(26px, 9.5vw, 48px);
+        overflow-wrap: normal;
       }
     }
   </style>
