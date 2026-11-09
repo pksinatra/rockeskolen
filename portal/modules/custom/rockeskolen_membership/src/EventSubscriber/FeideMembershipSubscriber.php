@@ -7,9 +7,12 @@ namespace Drupal\rockeskolen_membership\EventSubscriber;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\rockeskolen_membership\AccessSynchronizer;
 use Drupal\rockeskolen_membership\MembershipConnection;
+use Drupal\rockeskolen_membership\SchoolAccessNotice;
 use Drupal\rockeskolen_membership\SchoolEntitlementResolver;
 use Drupal\rockeskolen_membership\VipGrantManager;
 use Drupal\user\UserInterface;
@@ -31,6 +34,7 @@ final class FeideMembershipSubscriber implements EventSubscriberInterface {
     private readonly LoggerChannelInterface $logger,
     private readonly VipGrantManager $vipGrantManager,
     private readonly SchoolEntitlementResolver $schoolEntitlementResolver,
+    private readonly MessengerInterface $messenger,
   ) {}
 
   /**
@@ -110,6 +114,7 @@ final class FeideMembershipSubscriber implements EventSubscriberInterface {
         $this->vipGrantManager->setGrant($uid, 'school', $schoolGrantId, TRUE);
       }
       AccessSynchronizer::applyToMembership($pdo, (int) $membership['id'], $account);
+      $this->rememberSchoolAccess($session, $uid, (bool) $schoolDecision['allowed'], $verifiedMemberships);
       $session->set('rockeskolen_membership_synced_uid', $uid);
       $session->set('rockeskolen_membership_synced_at', time());
     }
@@ -118,6 +123,22 @@ final class FeideMembershipSubscriber implements EventSubscriberInterface {
         '@uid' => $uid,
         '@message' => $exception->getMessage(),
       ]);
+    }
+  }
+
+  /**
+   * Stores the school access state and tells users without a contract once.
+   *
+   * Users with VIP from another source (Stripe, ChordLink Pro) get no notice.
+   */
+  private function rememberSchoolAccess($session, int $uid, bool $allowed, array $memberships): void {
+    $fresh = $this->entityTypeManager->getStorage('user')->loadUnchanged($uid);
+    $missing = !$allowed && $fresh instanceof UserInterface && !$fresh->hasRole('vip_member');
+    $audience = SchoolAccessNotice::audience($memberships);
+    $session->set('rockeskolen_school_notice', $missing ? $audience : '');
+    if ($missing && !$session->get('rockeskolen_school_notice_shown')) {
+      $this->messenger->addWarning(Markup::create(SchoolAccessNotice::html($audience)));
+      $session->set('rockeskolen_school_notice_shown', TRUE);
     }
   }
 

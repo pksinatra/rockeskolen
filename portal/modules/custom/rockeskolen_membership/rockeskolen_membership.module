@@ -7,6 +7,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\rockeskolen_membership\FeideGroupNormalizer;
 use Drupal\rockeskolen_membership\FeidePlaceholderEmail;
+use Drupal\rockeskolen_membership\SchoolAccessNotice;
 use Drupal\user\UserInterface;
 use Drupal\rockeskolen_membership\AccessSynchronizer;
 use Drupal\rockeskolen_membership\ArticleAccessPolicy;
@@ -211,6 +212,14 @@ function rockeskolen_membership_user_view(
     }
     $profile_action = implode('', $profileActions);
   }
+  $school_notice = '';
+  if ((int) $viewer->id() === (int) $account->id()) {
+    $audience = (string) \Drupal::request()->getSession()->get('rockeskolen_school_notice', '');
+    if ($audience !== '') {
+      $school_notice = '<div class="messages messages--warning rs-school-notice" role="status">'
+        . SchoolAccessNotice::html($audience) . '</div>';
+    }
+  }
   $build['rockeskolen_membership_status'] = [
     '#weight' => -100,
     '#markup' => '<section class="rs-profile-status" aria-labelledby="rs-profile-status-title">'
@@ -219,8 +228,9 @@ function rockeskolen_membership_user_view(
       . '<dl>' . $email_row
       . '<div><dt>Tilgang i portalen</dt><dd><strong>' . $access . '</strong></dd></div>'
       . '<div><dt>Rockeskolen / ChordLink</dt><dd><strong>' . $member_status . '</strong></dd></div></dl>'
+      . $school_notice
       . '<div class="rs-profile-actions">' . $profile_action . '</div></section>',
-    '#cache' => ['contexts' => ['user'], 'tags' => $account->getCacheTags()],
+    '#cache' => ['contexts' => ['user', 'session'], 'tags' => $account->getCacheTags(), 'max-age' => 0],
   ];
 }
 

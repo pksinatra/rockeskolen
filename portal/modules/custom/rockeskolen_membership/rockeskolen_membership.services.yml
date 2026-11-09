@@ -17,6 +17,7 @@ services:
       - '@logger.channel.rockeskolen_membership'
       - '@rockeskolen_membership.vip_grant_manager'
       - '@rockeskolen_membership.school_entitlement_resolver'
+      - '@messenger'
     tags:
       - { name: event_subscriber }
 
