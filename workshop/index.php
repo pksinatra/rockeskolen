@@ -110,6 +110,10 @@ $plans = [
     'Workshop på Rockeskolen'
 ); ?>
   <link rel="stylesheet" href="/includes/site.css?v=5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/includes/front.css?v=20261109-2">
   <style>
     @media (max-width: 640px) {
       .page-title h1 {
@@ -120,18 +124,7 @@ $plans = [
   </style>
 </head>
 <body>
-  <header class="page-header">
-    <div class="topbar">
-      <a class="brand" href="/" aria-label="Rockeskolen">
-        <img src="/images/rock-logo.png" alt="Rockeskolen">
-      </a>
-      <nav class="nav" aria-label="Hovednavigasjon">
-        <a href="/">Forside</a>
-        <a href="#kontakt">Kontakt</a>
-        <a href="https://portal.rockeskolen.com">Musikkportalen</a>
-      </nav>
-    </div>
-  </header>
+<?php include dirname(__DIR__) . '/includes/front-header.php'; ?>
 
   <main class="page-shell">
     <section class="page-title">
