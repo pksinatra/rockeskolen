@@ -14,6 +14,8 @@
  *            Tre meloditoner får motivrytmen åttedel – åttedel – halvnote – firedelspause, fire toner blir firedeler.
  *            Flere varianter skilles med semikolon og kan ha navn: "Vers|Am,Fmaj7,C,G;Refreng|C,G,Am,F".
  *   tempo    slag per minutt for mode=sketch (standard 84)
+ *            I mode=sketch gir key (durtoneart, f.eks. C) trinn under akkordene (I, IV, iv, bVI, bVII) og røde
+ *            symboler for akkorder med toner utenfor tonearten, som lånte akkorder fra C-moll i C-dur.
  *   title    egen overskrift
  *   lang     no | en
  */
@@ -388,6 +390,21 @@
       return bars.length && { name: name.trim() || bars.map(b => b.chord.sym).join(' – '), bars };
     }).filter(Boolean);
     let cur = presets[0], lit = { bar: -1, note: -1 }, timers = [];
+    // Toneart for trinn og lånte akkorder (bare når key er satt).
+    const km = /^([A-G])(#|b)?$/.exec(params.get('key') || '');
+    const KEY = km && (() => {
+      const L = LET.indexOf(km[1]), pc = NAT[L] + (km[2] === '#' ? 1 : km[2] === 'b' ? -1 : 0), sc = [0, 2, 4, 5, 7, 9, 11], mi = [0, 2, 3, 5, 7, 8, 10];
+      const scale = sc.map((x, i) => tone(35 + L + i, 60 + pc + x)), minor = mi.map((x, i) => tone(35 + L + i, 60 + pc + x));
+      return { name: km[1] + (km[2] || ''), L, pc, scale, minor };
+    })();
+    const ROM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+    const pcOf = x => ((x.midi % 12) + 12) % 12;
+    const outside = c => (KEY ? c.tones.filter(x => !KEY.scale.some(y => pcOf(y) === pcOf(x) && y.letter === x.letter)) : []);
+    function roman(c) {
+      const r = c.tones[0], dl = (((r.li - (35 + KEY.L)) % 7) + 7) % 7, adj = ((pcOf(r) - KEY.pc - [0, 2, 4, 5, 7, 9, 11][dl] + 18) % 12) - 6;
+      const minor = c.type === 'm' || c.type === 'm7' || c.type === 'dim';
+      return (adj < 0 ? 'b' : adj > 0 ? '#' : '') + (minor ? ROM[dl].toLowerCase() : ROM[dl]) + (c.type === 'dim' ? '°' : '');
+    }
     const RHY = { 1: [[0, 'w', 0, 4]], 3: [[0, '8', 0, 0.5], [1, '8', 0.5, 0.5], [2, 'h', 1, 2], [-1, 'qr']], 4: [0, 1, 2, 3].map(i => [i, 'q', i, 1]) };
     const status = h('p', { class: 'status', role: 'status' }), chips = h('div', { class: 'chips' });
     const stop = () => { timers.forEach(clearTimeout); timers = []; lit = { bar: -1, note: -1 }; box.redraw(); describe(); };
@@ -408,17 +425,24 @@
     }
     function describe(i = cur.bars.length === 1 ? 0 : -1) {
       if (i < 0) { chips.replaceChildren(); status.textContent = t(`Akkordene: ${list(cur.bars.map(b => b.chord.sym))}. Trykk på Spill.`, `The chords: ${list(cur.bars.map(b => b.chord.sym))}. Press Play.`); return; }
-      const b = cur.bars[i];
+      const b = cur.bars[i], out = outside(b.chord);
+      if (KEY && out.length) {
+        const fromMinor = out.every(x => KEY.minor.some(y => pcOf(y) === pcOf(x) && y.letter === x.letter));
+        const swaps = out.map(x => t(`${x.name} i stedet for ${KEY.scale.find(y => y.letter === x.letter).name}`, `${x.name} instead of ${KEY.scale.find(y => y.letter === x.letter).name}`));
+        chips.replaceChildren();
+        status.textContent = `${b.chord.sym} (${roman(b.chord)}) = ${list(b.chord.tones.map(x => x.name))}. ` + (fromMinor ? t(`Lånt fra ${KEY.name}-moll: `, `Borrowed from ${KEY.name} minor: `) : t('Utenfor tonearten: ', 'Outside the key: ')) + swaps.join(', ') + '.';
+        return;
+      }
       chips.replaceChildren(...b.melody.map(x => { const d = degree(x, b.chord); return h('span', { class: 'chip' }, h('b', { text: x.name }), h('i', { text: d }), NAME[d] || ''); }));
       status.textContent = b.melody.length ? t(`${b.chord.sym} = ${list(b.chord.tones.map(x => x.name))}. Tallene viser hvilken plass meloditonene har i akkorden.`, `${b.chord.sym} = ${list(b.chord.tones.map(x => x.name))}. The numbers show each melody note's place in the chord.`)
-        : `${b.chord.sym} = ${list(b.chord.tones.map(x => x.name))}.`;
+        : `${b.chord.sym}${KEY ? ` (${roman(b.chord)})` : ''} = ${list(b.chord.tones.map(x => x.name))}.${KEY ? t(` Alle tonene hører til ${KEY.name}-dur.`, ` All the notes belong to ${KEY.name} major.`) : ''}`;
     }
     const hasMelody = presets.some(p => p.bars.some(b => b.melody.length));
     app.append(header(hasMelody ? t('Melodi og akkorder', 'Melody and chords') : t('Akkordrekke', 'Chord progression'), params.get('title') || cur.name,
       h('button', { type: 'button', class: 'primary', on: { click: () => run(true) } }, t('▶ Spill', '▶ Play')),
       hasMelody ? h('button', { type: 'button', on: { click: () => run(false) } }, t('Bare akkordene', 'Chords only')) : null,
       h('button', { type: 'button', on: { click: stop } }, t('■ Stopp', '■ Stop'))));
-    const box = mount(app, 222, (ctx, L) => {
+    const box = mount(app, KEY ? 240 : 222, (ctx, L) => {
       const n = cur.bars.length, left = 26, first = 62, w = (L - left - 8 - first) / n;
       let top0 = null;
       cur.bars.forEach((b, i) => {
@@ -451,7 +475,9 @@
         const fw = Math.max(30, tr.getNoteEndX() - tr.getNoteStartX() - 18);
         new VF.Formatter().joinVoices([v1]).format([v1], fw); new VF.Formatter().joinVoices([v2]).format([v2], fw);
         v1.draw(ctx, tr); v2.draw(ctx, bs); beams.forEach(bm => bm.setContext(ctx).draw());
-        label(ctx, b.chord.sym, tr.getNoteStartX() + 10, 22, { size: 15, color: on ? HOT : INK, weight: '800', align: 'left' });
+        const lent = outside(b.chord).length > 0;
+        label(ctx, b.chord.sym, tr.getNoteStartX() + 10, 22, { size: 15, color: on ? HOT : lent ? '#ff8aa6' : INK, weight: '800', align: 'left' });
+        if (KEY) label(ctx, roman(b.chord), tr.getNoteStartX() + 10, 228, { size: 14, color: on ? HOT : lent ? '#ff8aa6' : SOFT, weight: '800', align: 'left' });
         if (b.melody.length) mel.forEach((sn, k) => { const m = RHY[b.melody.length][k]; if (m[0] >= 0) label(ctx, degree(b.melody[m[0]], b.chord), sn.getAbsoluteX() + 6, 134, { size: 12, color: on && lit.note === m[0] ? HOT : SOFT }); });
       });
     });
@@ -460,6 +486,7 @@
       pick.classList.add('wrap');
       app.append(h('div', { class: 'row' }, pick));
     }
+    if (KEY) app.append(h('p', { class: 'small muted', text: t(`Røde akkorder har toner utenfor ${KEY.name}-dur. Trinnene står under akkordene.`, `Red chords contain notes outside ${KEY.name} major. The degrees are shown below the chords.`) }));
     app.append(chips, status);
     describe();
   }

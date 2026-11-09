@@ -27,5 +27,6 @@ Alle tørrkjører uten `apply`. De tar sikkerhetskopi av hver node, krever at hv
 | `utgivelse.php` | 235–243 | SVG-figurene fra `../figurer-musikk-i-praksis-2026-11/` |
 | `circle289.php` | 289 | Beslektede tonearter: `embed/circle.php` |
 | `publish289.php` | 289 | Publiserte artikkelen (status 1 på noden og gjeldende revisjon) |
+| `lant288.php` | 288 | To like progresjonsspillere ble én visning med trinn og lånte akkorder |
 
 Etter endringer i noder: kjør `php cache.php`.
