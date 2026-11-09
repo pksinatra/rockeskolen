@@ -1,5 +1,8 @@
 DirectoryIndex index.html index.php
 
+# Serve WebP images with their content type.
+AddType image/webp .webp
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
