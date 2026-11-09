@@ -433,6 +433,28 @@ function rockeskolen_membership_openid_connect_post_authorize(UserInterface $acc
       throw new \RuntimeException('Feide Groups API returned an invalid response.');
     }
     $memberships = FeideGroupNormalizer::memberships($groups);
+    // Shape of the Feide groups, without names or user identifiers, so the
+    // normalizer can be checked against what Feide actually sends.
+    $shape = [];
+    foreach ($groups as $group) {
+      if (!is_array($group)) {
+        continue;
+      }
+      $membership = is_array($group['membership'] ?? NULL) ? $group['membership'] : [];
+      $shape[] = implode('|', [
+        (string) ($group['type'] ?? ''),
+        (string) ($group['go_type'] ?? ''),
+        implode(',', (array) ($group['orgType'] ?? [])),
+        implode(',', (array) ($membership['affiliation'] ?? [])),
+        (string) ($membership['primaryAffiliation'] ?? ''),
+        preg_replace('/^(fc:[a-z]+:[^:]+).*?((?::unit)?:(?:NO[0-9]{9}|U[0-9]+))?$/', '$1…$2', (string) ($group['id'] ?? '')),
+        preg_replace('/^(fc:[a-z]+:[^:]+).*?((?::unit)?:(?:NO[0-9]{9}|U[0-9]+))?$/', '$1…$2', (string) ($group['parent'] ?? '')),
+      ]);
+    }
+    \Drupal::logger('rockeskolen_membership')->info(
+      'Feide groups for uid @uid: @count groups, @kept school memberships. @shape',
+      ['@uid' => $account->id(), '@count' => count($groups), '@kept' => count($memberships), '@shape' => implode(' ; ', $shape)],
+    );
     $session = \Drupal::request()->getSession();
     $session->set('rockeskolen_feide_memberships', $memberships);
     $session->set('rockeskolen_feide_memberships_fetched_at', time());
