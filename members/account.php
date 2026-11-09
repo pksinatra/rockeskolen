@@ -195,7 +195,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
       <div class="row" style="justify-content:space-between;">
+        <?php if (str_ends_with(strtolower((string) $u['email']), '@feide.rockeskolen.com')): ?>
+        <span class="pill">Logget inn med <strong style="color:var(--text);">FEIDE</strong></span>
+        <?php else: ?>
         <span class="pill">Logget inn som <strong style="color:var(--text);"><?= htmlspecialchars($u['email']) ?></strong></span>
+        <?php endif; ?>
         <span class="pill">Medlemsnivå: <strong style="color:var(--text);"><?= htmlspecialchars($roleLabel, ENT_QUOTES, 'UTF-8') ?></strong></span>
       </div>
 
