@@ -143,7 +143,7 @@ Opprett konto
       <section class="feide-choice" aria-labelledby="feide-choice-title">
         <h2 id="feide-choice-title">Har du FEIDE?</h2>
         <p class="small">Elever og ansatte kan bruke skolekontoen sin i Rockeskolens Musikkportal.</p>
-        <a class="btn feide full" href="https://portal.rockeskolen.com/user/login?destination=<?= rawurlencode($feideDestination) ?>">Gå til FEIDE-innlogging</a>
+        <a class="btn feide full" href="https://portal.rockeskolen.com/user/login?feide=1&amp;destination=<?= rawurlencode($feideDestination) ?>">Gå til FEIDE-innlogging</a>
       </section>
 
     </div>

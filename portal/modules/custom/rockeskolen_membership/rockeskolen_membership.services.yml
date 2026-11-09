@@ -21,6 +21,16 @@ services:
     tags:
       - { name: event_subscriber }
 
+  rockeskolen_membership.feide_login_start:
+    class: Drupal\rockeskolen_membership\EventSubscriber\FeideLoginStartSubscriber
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@openid_connect.claims'
+      - '@openid_connect.session'
+    tags:
+      - { name: event_subscriber }
+
   rockeskolen_membership.vip_grant_manager:
     class: Drupal\rockeskolen_membership\VipGrantManager
     arguments:
