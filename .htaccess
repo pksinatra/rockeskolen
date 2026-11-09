@@ -10,4 +10,7 @@ RewriteRule ^ https://rockeskolen.com%{REQUEST_URI} [R=301,L,NE]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# Route WordPress permalinks (articles, categories and pages) through WordPress.
+RewriteRule . /index.php [L]
 </IfModule>
