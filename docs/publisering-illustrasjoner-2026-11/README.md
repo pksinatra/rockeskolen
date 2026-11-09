@@ -25,5 +25,6 @@ Alle tørrkjører uten `apply`. De tar sikkerhetskopi av hver node, krever at hv
 | `tonearter.php` | 15, 163, 181, 216, 288 | Tonearter og Fortegn, med faste fortegn |
 | `praksis.php` | 261–276 | Låtskriving, Øving og Samspill: skisse, rytme, puls, groove, form og melodi |
 | `utgivelse.php` | 235–243 | SVG-figurene fra `../figurer-musikk-i-praksis-2026-11/` |
+| `circle289.php` | 289 | Beslektede tonearter: `embed/circle.php` |
 
 Etter endringer i noder: kjør `php cache.php`.
