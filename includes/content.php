@@ -155,6 +155,18 @@ function rs_tools(): array {
             'show_on_home' => false,
             'sort_order' => 90,
         ],
+        [
+            'title' => 'Monsterprøven',
+            'slug' => 'monsterproven',
+            'category' => 'Teori',
+            'product_status' => 'Klar',
+            'app_url' => '/tools/games/monsterproven/',
+            'cta_label' => 'Spill',
+            'short_description' => 'Musikkteori-spill der monstrene stiller spørsmålene. Sju delprøver, 26 nivåer.',
+            'body' => "Monsterprøven øver toner, notelesing, intervaller, akkorder, skalaer, noteverdier og pauser. Første nivå i hver delprøve er gratis, resten krever VIP.",
+            'show_on_home' => false,
+            'sort_order' => 100,
+        ],
     ];
 }
 
