@@ -2,7 +2,7 @@
 namespace Symfony\Component\EventDispatcher { interface EventSubscriberInterface {} }
 namespace {
 define('DRUPAL_ROOT','/private/tmp/rs-portal-preview/portal');
-require '/Users/pk/Documents/Codex/rockeskolen/docs/chordprog-portal-2026-09-28/release/CanonicalResponseSubscriber.php';
+require '/Users/pk/Developer/Codex/rockeskolen/docs/chordprog-portal-2026-09-28/release/CanonicalResponseSubscriber.php';
 $c = new \Drupal\rockeskolen_structure_qa\EventSubscriber\CanonicalResponseSubscriber();
 $m = new ReflectionMethod($c,'renderToolCatalog');
 $front = $m->invoke($c,'Test','Åpne',true);

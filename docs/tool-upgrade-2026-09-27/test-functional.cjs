@@ -15,4 +15,4 @@ for(const lang of ['nb','en']) for(const role of ['guest','free','pro','vip','ad
  assert.deepEqual(errors,[]);report.push({lang,role,result:'pass'});console.log(lang,role,'passed');await context.close();
 }
 const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();for(const app of ['guitar-chords','piano-chords','guitar-scales','piano-scales','fifths','tuner']){await page.goto(`http://127.0.0.1:8794/tools/updated/${app}/?lang=nb`,{waitUntil:'networkidle'});const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2);report.push({app,mobileOverflow:overflow});await page.screenshot({path:`/private/tmp/rs-mobile-${app}.png`,fullPage:true});}
-fs.writeFileSync('/Users/pk/Documents/Codex/rockeskolen/docs/tool-upgrade-2026-09-27/functional-test.json',JSON.stringify(report,null,2));await browser.close();})();
+fs.writeFileSync('/Users/pk/Developer/Codex/rockeskolen/docs/tool-upgrade-2026-09-27/functional-test.json',JSON.stringify(report,null,2));await browser.close();})();

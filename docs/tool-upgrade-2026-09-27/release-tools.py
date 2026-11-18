@@ -1,5 +1,5 @@
 import pathlib,os,ftplib,hashlib,json,sys
-root=pathlib.Path('/Users/pk/Documents/Codex/rockeskolen');doc=root/'docs/tool-upgrade-2026-09-27'
+root=pathlib.Path('/Users/pk/Developer/Codex/rockeskolen');doc=root/'docs/tool-upgrade-2026-09-27'
 f=ftplib.FTP('ftp.domeneshop.no',timeout=40);f.login(os.environ['FTP_USER'],os.environ['FTP_PASS'])
 def get(path):
  data=bytearray();f.retrbinary('RETR '+path,data.extend);return bytes(data)

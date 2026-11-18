@@ -6,7 +6,7 @@ from docx.enum.section import WD_SECTION
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
-OUT = '/Users/pk/Documents/Codex/rockeskolen/docs/rockeskolen-tools-overview.docx'
+OUT = '/Users/pk/Developer/Codex/rockeskolen/docs/rockeskolen-tools-overview.docx'
 
 catalog = [
     ('ChordFlow', '/tools/chordflow/', 'Ikke funnet lokalt'),

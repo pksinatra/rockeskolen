@@ -1,6 +1,6 @@
 from pathlib import Path
 import ftplib,os,sys,json,hashlib
-root=Path('/Users/pk/Documents/Codex/rockeskolen');doc=root/'docs/chordprog-portal-2026-09-28'
+root=Path('/Users/pk/Developer/Codex/rockeskolen');doc=root/'docs/chordprog-portal-2026-09-28'
 f=ftplib.FTP('ftp.domeneshop.no',timeout=40);f.login(os.environ['FTP_USER'],os.environ['FTP_PASS'])
 def get(remote):
  b=bytearray();f.retrbinary('RETR '+remote,b.extend);return bytes(b)
