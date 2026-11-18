@@ -6,7 +6,7 @@ Dette dokumentet beskriver de viktigste reglene, plasseringene og arbeidsmåtene
 
 ## 1. Prosjekt og domener
 
-- Lokal repo-rot: `/Users/pk/Documents/Codex/rockeskolen`
+- Lokal repo-rot: `/Users/pk/Developer/Codex/rockeskolen`
 - GitHub: `https://github.com/pksinatra/rockeskolen.git`
 - Produksjon, hovedside og verktøy: `https://rockeskolen.com/`
 - Produksjon, musikkportal/Drupal: `https://portal.rockeskolen.com/`
@@ -14,7 +14,7 @@ Dette dokumentet beskriver de viktigste reglene, plasseringene og arbeidsmåtene
 - FTP-dokumentroten `/www/` tilsvarer roten på `rockeskolen.com`.
 - Drupal ligger lokalt under `portal/`. Produksjonsinnholdet i Drupal-databasen er autoritativt og kan være nyere enn lokale kopier.
 
-Git og FTP er to separate publiseringsløp. En Git-push publiserer ikke nødvendigvis nettstedet, og en FTP-opplasting skal aldri gjøres uten uttrykkelig beskjed.
+Git og FTP er to separate publiseringsløp. En Git-push publiserer ikke nødvendigvis nettstedet, og en FTP-opplasting skal aldri gjøres uten godkjenning.
 
 ## 2. Ufravikelige redaksjonelle regler
 
@@ -99,6 +99,22 @@ Disse er ikke nødvendigvis i bruk, men de skal ikke flyttes eller slettes uten 
 
 `.pnpm-store/` er lokal cache og skal være ignorert.
 
+### Monsterprøven (musikkteori-spill)
+
+- Lokal mappe: `tools/games/monsterproven/` (én selvstendig `index.php`)
+- Kanonisk URL: `/tools/games/monsterproven/`
+- FTP-mappe: `/www/tools/games/monsterproven/`
+- VIP: `has_rockeskolen_access()`. Første nivå i hver delprøve er gratis, resten er VIP-låst med lenke til `/members/upgrade.php`.
+- Sju delprøver. Én delprøve vises med `?delprove=<slug>`: `toner`, `notelesing`, `intervaller`, `akkorder`, `skalaer`, `noteverdier`, `pauser`. Gamle `?delspill=`-lenker virker også.
+- Artikkel-embed: `embed/monsterproven.php?delprove=<slug>` (FTP `/www/embed/monsterproven.php`). Den viser spillet uten topplinje, med fast høyde, og bruker `autoheight.js`.
+- Delingslenker legger til `&s=<stjerner>` og viser en utfordring («En venn har 7 av 12 stjerner …»).
+
+Innbygging av en delprøve i en artikkel, samme format som de andre embedene:
+
+```html
+<iframe style="background-color:#0b0b10;border-width:0;display:block;" src="https://rockeskolen.com/embed/monsterproven.php?delprove=noteverdier" width="100%" height="680" title="Monsterprøven – Noteverdier" loading="lazy" allow="autoplay"></iframe>
+```
+
 ## 6. Hovedside og statiske sider
 
 - Forside: `index.php` i repo-roten. Det skal bare finnes én forside – ingen `index.html`.
@@ -168,7 +184,7 @@ Etter endringer i Drupal-PHP, Twig, ruting, tjenester, biblioteker eller databas
 
 ## 9. Publisering og FTP
 
-Publiser bare når brukeren uttrykkelig ber om det.
+Publiser bare med brukerens godkjenning.
 
 Ved FTP-publisering:
 
@@ -193,7 +209,7 @@ Produksjonsstatus per 22. oktober 2026:
 Start en enkel PHP-server fra repo-roten:
 
 ```bash
-php -S 127.0.0.1:8796 -t /Users/pk/Documents/Codex/rockeskolen
+php -S 127.0.0.1:8796 -t /Users/pk/Developer/Codex/rockeskolen
 ```
 
 Test minst:
@@ -368,7 +384,7 @@ Det gjelder både musikalsk samspill og måten Rockeskolen utvikler innhold, ver
 
 ### Verktøy i ChordLink og Rockeskolen (lokale mapper, 9. november 2026)
 
-Hentet fra `/Users/pk/Documents/Codex/chordlink/tools/` og `tools/`. Hvor langt hvert verktøy er tilpasset er ikke kartlagt ennå. At begge har en mappe med samme navn betyr ikke at Rockeskolens kopi er oppdatert.
+Hentet fra `/Users/pk/Developer/Codex/chordlink/tools/` og `tools/`. Hvor langt hvert verktøy er tilpasset er ikke kartlagt ennå. At begge har en mappe med samme navn betyr ikke at Rockeskolens kopi er oppdatert.
 
 | Status | Verktøy |
 |---|---|
@@ -397,7 +413,7 @@ Hentet fra `/Users/pk/Documents/Codex/chordlink/tools/` og `tools/`. Hvor langt 
 
 ### ChordLink
 
-- Lokal ChordLink-repo: `/Users/pk/Documents/Codex/chordlink` (remote `pksinatra/chordlink`). ChordLink skal **aldri** ligge i den lokale `rockeskolen/`-mappen. Under Rockeskolen finnes ChordLink bare på FTP (`/www/chordlink/`).
+- Lokal ChordLink-repo: `/Users/pk/Developer/Codex/chordlink` (remote `pksinatra/chordlink`). ChordLink skal **aldri** ligge i den lokale `rockeskolen/`-mappen. Under Rockeskolen finnes ChordLink bare på FTP (`/www/chordlink/`).
 - ChordLink kan bli skilt ut og solgt. Den skal derfor ikke ha avhengigheter til Rockeskolen, og verktøy som kopieres til Rockeskolen skal ikke ha avhengigheter tilbake til ChordLink.
 
 ### Redaksjonelt

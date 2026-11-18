@@ -15,4 +15,4 @@ Arbeidsdeling: Claude tar det tekniske. Codex og ChatGPT står for planleggingen
 - Akkorder og tonearter skrives med vanlige tegn (Bb, F#m, Eb-dur). Enkelttoner og noter skrives med ♭/♯ (E♭, F♯).
 - Det finnes bare én forside: `index.php`. Ingen `index.html`.
 - Ingen mapper flyttes, opprettes, omdøpes eller slettes uten brukerens godkjenning. All rydding krever dobbel bekreftelse.
-- Ingen FTP-opplasting eller push uten uttrykkelig beskjed.
+- Ingen FTP-opplasting eller push uten godkjenning.
