@@ -49,14 +49,16 @@
   ],
   "fifths": [
     [
-      "Click a segment to select a key. Choose major or minor.",
-      "The panel shows related keys, chords and scale notes.",
-      "Play a chord or scale. Shift-click plays the relative minor; Stop silences playback."
+      "Click a major key on the outer ring or a minor key on the middle ring. The chord plays and the key is selected.",
+      "The panel shows the key signature, scale notes and chords in the key. Chords in the key are marked with their degree on the circle.",
+      "Choose a scale or mode, for example harmonic minor or Dorian. Click a chord to hear it.",
+      "Use the arrow keys to move around the circle, and Esc to stop the sound. The link in the address bar shows the selected key and scale, so you can share it."
     ],
     [
-      "Klikk på et felt for å velge toneart. Velg dur eller moll.",
-      "Panelet viser beslektede tonearter, akkorder og skalatoner.",
-      "Spill akkord eller skala. Shift-klikk spiller parallelltonearten i moll; Stopp stanser lyden."
+      "Klikk på en durtoneart i den ytre ringen eller en molltoneart i den midterste ringen. Akkorden spilles, og tonearten velges.",
+      "Se fortegn, skalatoner og akkordene i tonearten i panelet. Akkordene i tonearten er markert med trinn i sirkelen.",
+      "Velg skala eller modus, for eksempel harmonisk moll eller dorisk. Klikk på en akkord for å høre den.",
+      "Bruk piltastene for å gå rundt i sirkelen, og Esc for å stoppe lyden. Lenken i adressefeltet viser valgt toneart og skala, så du kan dele den."
     ]
   ],
   "tuner": [

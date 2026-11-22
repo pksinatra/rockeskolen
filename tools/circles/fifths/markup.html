@@ -1,0 +1,80 @@
+<!-- Circle of Fifths markup. Shared with Rockeskolen: all text is filled in by ui.js (data-i18n). -->
+<main class="cf-app" id="cfApp">
+  <header class="cf-head">
+    <h1 data-i18n="title">Circle of Fifths</h1>
+    <p data-i18n="tagline"></p>
+  </header>
+
+  <div class="cf-layout">
+    <section class="cf-stage cf-card">
+      <div id="cfWheel" class="cf-wheel" role="group" data-i18n-aria="wheelLabel"></div>
+      <div class="cf-wheelbar">
+        <label class="cf-check"><input type="checkbox" id="cfRotate"> <span data-i18n="rotate"></span></label>
+        <button type="button" class="cf-btn cf-btn-small" id="cfEnh"></button>
+      </div>
+      <div class="cf-legend" aria-hidden="true">
+        <span><i class="cf-dot cf-dot-tonic"></i><span data-i18n="legendTonic"></span></span>
+        <span><i class="cf-dot cf-dot-dia"></i><span data-i18n="legendDiatonic"></span></span>
+      </div>
+      <div id="cfPiano" class="cf-piano"></div>
+    </section>
+
+    <aside class="cf-panel">
+      <section class="cf-card cf-keycard" aria-live="polite">
+        <div class="cf-keytitle" id="cfKeyTitle"></div>
+        <dl class="cf-facts">
+          <div><dt data-i18n="signature"></dt><dd id="cfSignature"></dd></div>
+          <div><dt data-i18n="scaleNotes"></dt><dd id="cfNotes"></dd></div>
+        </dl>
+        <p class="cf-note" id="cfScaleNote" hidden></p>
+      </section>
+
+      <section class="cf-card">
+        <label class="cf-label" for="cfScale" data-i18n="scaleLabel"></label>
+        <select id="cfScale" class="cf-control"></select>
+        <div class="cf-related" id="cfRelated"></div>
+      </section>
+
+      <section class="cf-card">
+        <div class="cf-row">
+          <h2 class="cf-h2" data-i18n="chordsInKey"></h2>
+          <div class="cf-seg" role="group" data-i18n-aria="chordSize">
+            <button type="button" class="cf-segbtn is-on" data-size="3" data-i18n="triads"></button>
+            <button type="button" class="cf-segbtn" data-size="4" data-i18n="sevenths"></button>
+          </div>
+        </div>
+        <div class="cf-chords" id="cfChords"></div>
+      </section>
+
+      <section class="cf-card">
+        <h2 class="cf-h2" data-i18n="playback"></h2>
+        <div class="cf-btnrow">
+          <button type="button" class="cf-btn cf-btn-primary" id="cfPlayChord" data-i18n="playChord"></button>
+          <button type="button" class="cf-btn" id="cfPlayScale"></button>
+          <button type="button" class="cf-btn cf-btn-stop" id="cfStop" data-i18n-aria="stop" data-i18n-title="stop">■</button>
+        </div>
+        <label class="cf-label" for="cfProg" data-i18n="progression"></label>
+        <div class="cf-btnrow">
+          <select id="cfProg" class="cf-control"></select>
+          <button type="button" class="cf-btn" id="cfPlayProg"></button>
+        </div>
+        <div class="cf-grid2">
+          <div>
+            <label class="cf-label" for="cfOct" data-i18n="octave"></label>
+            <select id="cfOct" class="cf-control">
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label" for="cfBpm"><span data-i18n="tempo"></span> <output id="cfBpmVal">100</output></label>
+            <input id="cfBpm" type="range" min="50" max="180" value="100">
+          </div>
+        </div>
+        <p class="cf-status" id="cfStatus" role="status"></p>
+        <a class="cf-upgrade" id="cfUpgrade" target="_top" hidden></a>
+      </section>
+    </aside>
+  </div>
+</main>

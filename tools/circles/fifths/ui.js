@@ -1,558 +1,746 @@
+/* Circle of Fifths – shared between ChordLink and Rockeskolen.
+ * The host page sets window.CF_CONFIG = { lang: 'en'|'nb', paid: bool, upgradeUrl: string, tierLabel: string }.
+ * Spelling rules: chord and key names use plain characters (Bb, F#m, Eb major, bVII);
+ * single notes use ♭/♯ (E♭, F♯). The note B is always B, never H.
+ */
 (() => {
-  const FIFTHS = [
-  "C",  // 0
-  "G",  // 1  ♯
-  "D",  // 2  ♯♯
-  "A",  // 3
-  "E",  // 4
-  "B",  // 5
-  "F#", // 6  ← enharmonisk senter
-  "Db", // 7  ← enharmonisk senter
-  "Ab", // 8  ♭
-  "Eb", // 9  ♭♭
-  "Bb", // 10 ♭
-  "F"   // 11 ♭
-];
-  const ENHARMONIC = {"A#":"Bb","D#":"Eb","G#":"Ab","C#":"Db","F#":"Gb"};
-  const NOTE_TO_SEMI = {"C":0,"C#":1,"Db":1,"D":2,"D#":3,"Eb":3,"E":4,"F":5,"F#":6,"Gb":6,"G":7,"G#":8,"Ab":8,"A":9,"A#":10,"Bb":10,"B":11,"Cb":11};
-  const SEMI_TO_NOTE_SHARP = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
-  const SEMI_TO_NOTE_FLAT  = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
+  'use strict';
 
-  const octSel = document.getElementById("octSel");
-  const bpmEl = document.getElementById("bpm");
-  const bpmVal = document.getElementById("bpmVal");
-  const playChordBtn = document.getElementById("playChordBtn");
-  const playScaleBtn = document.getElementById("playScaleBtn");
-  const infoPanel = document.getElementById("infoPanel");
-  const segBtns = Array.from(document.querySelectorAll(".segBtn[data-quality]"));
-  const IS_PRO = !!window.CL_IS_PRO;
-  
-  let currentKey = "C";
-  let currentQuality = "maj"; // maj/min
-  let toneReady = false;
-  let synth = null;
-  let wedges = [];
+  const CFG = Object.assign({ lang: 'en', paid: false, upgradeUrl: '/members/upgrade.php', tierLabel: 'PRO' }, window.CF_CONFIG || {});
+  const LANG = CFG.lang === 'nb' ? 'nb' : 'en';
 
-  // Active chord = what "Play chord" and scale playback use.
-  // In minor mode we use the relative minor of the selected major-column (currentKey).
-  function getActiveRoot(){
-    return (currentQuality === "maj") ? currentKey : relMinorFromMajor(currentKey);
-  }
-  function getActiveQual(){
-    return (currentQuality === "maj") ? "maj" : "min";
-  }
-let wheelGeom = null;            // {cx,cy,innerR}
-let midAngleByKey = {};          // key -> mid angle
-let dimBadgeCircle = null;
-let dimBadgeText = null;
-
-let scheduledTimeouts = [];
-
-
-
-  function preferAccidentals(key){
-    const flatKeys = new Set(["F","Bb","Eb","Ab","Db","Gb","Cb"]);
-    const k = ENHARMONIC[key] ? ENHARMONIC[key] : key;
-    return flatKeys.has(k) ? "flat" : "sharp";
-  }
-  function normKey(key){
-    const pref = preferAccidentals(key);
-    if (pref === "flat" && ENHARMONIC[key]) return ENHARMONIC[key];
-    return key;
-  }
-  
-function keyLabel(k) {
-  if (k === "F#") return "Gb/ F#";
-  return k;
-}
-
-function minorLabelFromMajorKey(k){
-  // Kun én spesial: relativ moll til F# / Gb
-  if (k === "F#") return "Ebm / D#m";
-  const pref = preferAccidentals(k);       // ♯ høyre / ♭ venstre
-  const semi = (NOTE_TO_SEMI[k] + 9) % 12; // relativ moll (−3)
-  return semiToNote(semi, pref) + "m";
-}
-
-  function semiToNote(semi, pref){
-    semi = (semi%12+12)%12;
-    return pref==="flat" ? SEMI_TO_NOTE_FLAT[semi] : SEMI_TO_NOTE_SHARP[semi];
-  }
-function dualLabelSemi(semi, pref){
-  semi = (semi%12+12)%12;
-  const sharp = SEMI_TO_NOTE_SHARP[semi];
-  const flat  = SEMI_TO_NOTE_FLAT[semi];
-  if (sharp === flat) return sharp;              // C, D, E, F, G, A, B
-  return (pref === "flat") ? `${flat}/${sharp}`  // venstre side
-                           : `${sharp}/${flat}`; // høyre side
-}
-
-
-  function scaleSemis(quality){
-    return quality==="maj" ? [0,2,4,5,7,9,11] : [0,2,3,5,7,8,10];
-  }
-  function diatonicChords(quality){
-    return quality==="maj"
-      ? ["maj","min","min","maj","maj","min","dim"]
-      : ["min","dim","maj","min","min","maj","maj"];
-  }
-  function relMajorFromMinor(minKey){
-    const pref = preferAccidentals(minKey);
-    return semiToNote(NOTE_TO_SEMI[minKey]+3, pref);
-  }
-  function relMinorFromMajor(majKey){
-    const pref = preferAccidentals(majKey);
-    return semiToNote(NOTE_TO_SEMI[majKey]+9, pref);
-  }
-  function dominant(key){
-    const pref = preferAccidentals(key);
-    return semiToNote(NOTE_TO_SEMI[key]+7, pref);
-  }
-  function subdominant(key){
-    const pref = preferAccidentals(key);
-    return semiToNote(NOTE_TO_SEMI[key]+5, pref);
-  }
-  function chordNotes(root, qual){
-    const pref = preferAccidentals(root);
-    const r = NOTE_TO_SEMI[root];
-    const ints = qual==="maj" ? [0,4,7] : qual==="min" ? [0,3,7] : [0,3,6];
-    return ints.map(i => semiToNote(r+i, pref));
-  }
-
-function dualLabel(note, pref){
-  const enh = {
-    "C#":"Db","Db":"C#",
-    "D#":"Eb","Eb":"D#",
-    "F#":"Gb","Gb":"F#",
-    "G#":"Ab","Ab":"G#",
-    "A#":"Bb","Bb":"A#"
+  // ---------------------------------------------------------------- texts
+  const STR = {
+    en: {
+      title: 'Circle of Fifths',
+      tagline: 'Click a key to hear it and see its chords, scale and key signature.',
+      wheelLabel: 'Circle of fifths',
+      rotate: 'Turn the selected key to the top',
+      enh: 'Show {a} instead of {b}',
+      legendTonic: 'Selected key',
+      legendDiatonic: 'Chords in the key',
+      signature: 'Key signature',
+      scaleNotes: 'Scale notes',
+      noSignature: 'No sharps or flats',
+      sharps: '{n} sharp|{n} sharps',
+      flats: '{n} flat|{n} flats',
+      scaleLabel: 'Scale or mode',
+      groupMajMin: 'Major and minor',
+      groupModes: 'Modes',
+      chordsInKey: 'Chords in the key',
+      chordSize: 'Chord size',
+      triads: 'Triads',
+      sevenths: 'Sevenths',
+      playback: 'Playback',
+      playChord: 'Play chord',
+      playScale: 'Play scale',
+      stop: 'Stop all sound',
+      progression: 'Chord progression',
+      playProg: 'Play',
+      octave: 'Octave',
+      tempo: 'Tempo (BPM)',
+      locked: '{name} is a {tier} feature.',
+      upgrade: 'Upgrade to {tier} to unlock scale and progression playback.',
+      noAudio: 'Sound could not start. Check that the page has loaded and try again.',
+      relative: 'Relative {q}',
+      parallel: 'Parallel {q}',
+      dominantKey: 'Dominant key',
+      subdominantKey: 'Subdominant key',
+      parentKey: 'Parent major key',
+      melodicNote: 'Descending, melodic minor is usually played as natural minor.',
+      harmonicNote: 'The raised 7th ({n}) is added as an accidental. It is not part of the key signature.',
+      melodicSig: 'The raised 6th and 7th ({n}) are added as accidentals. They are not part of the key signature.',
+      major: 'major', minor: 'minor',
+      keyName: '{k} {s}',
+      pianoLabel: 'Keyboard with the scale notes marked',
+      playing: 'Playing {x}',
+      scales: {
+        major: 'major', minor: 'natural minor', harmonic: 'harmonic minor', melodic: 'melodic minor',
+        dorian: 'Dorian', phrygian: 'Phrygian', lydian: 'Lydian', mixolydian: 'Mixolydian', locrian: 'Locrian'
+      },
+      scaleMenu: {
+        major: 'Major (Ionian)', minor: 'Natural minor (Aeolian)', harmonic: 'Harmonic minor', melodic: 'Melodic minor',
+        dorian: 'Dorian', phrygian: 'Phrygian', lydian: 'Lydian', mixolydian: 'Mixolydian', locrian: 'Locrian'
+      }
+    },
+    nb: {
+      title: 'Kvintsirkel',
+      tagline: 'Klikk på en toneart for å høre den og se akkorder, skala og fortegn.',
+      wheelLabel: 'Kvintsirkel',
+      rotate: 'Snu valgt toneart til toppen',
+      enh: 'Vis {a} i stedet for {b}',
+      legendTonic: 'Valgt toneart',
+      legendDiatonic: 'Akkorder i tonearten',
+      signature: 'Faste fortegn',
+      scaleNotes: 'Skalatoner',
+      noSignature: 'Ingen faste fortegn',
+      sharps: '{n} kryss|{n} kryss',
+      flats: '{n} b|{n} b-er',
+      scaleLabel: 'Skala eller modus',
+      groupMajMin: 'Dur og moll',
+      groupModes: 'Moduser',
+      chordsInKey: 'Akkorder i tonearten',
+      chordSize: 'Akkordstørrelse',
+      triads: 'Treklanger',
+      sevenths: 'Firklanger',
+      playback: 'Avspilling',
+      playChord: 'Spill akkord',
+      playScale: 'Spill skala',
+      stop: 'Stopp all lyd',
+      progression: 'Akkordrekke',
+      playProg: 'Spill',
+      octave: 'Oktav',
+      tempo: 'Tempo (BPM)',
+      locked: '{name} krever {tier}.',
+      upgrade: 'Bli {tier} for å spille av skalaer og akkordrekker.',
+      noAudio: 'Lyden kunne ikke starte. Kontroller at siden er lastet, og prøv igjen.',
+      relative: 'Parallelltoneart',
+      parallel: 'Varianttoneart',
+      dominantKey: 'Dominanttoneart',
+      subdominantKey: 'Subdominanttoneart',
+      parentKey: 'Dur med samme fortegn',
+      melodicNote: 'Nedadgående spilles melodisk moll vanligvis som naturlig moll.',
+      harmonicNote: 'Det hevede 7. trinnet ({n}) skrives som løst fortegn. Det er ikke med i de faste fortegnene.',
+      melodicSig: 'Det hevede 6. og 7. trinnet ({n}) skrives som løse fortegn. De er ikke med i de faste fortegnene.',
+      major: 'dur', minor: 'moll',
+      keyName: '{k}-{s}',
+      pianoLabel: 'Klaviatur med skalatonene markert',
+      playing: 'Spiller {x}',
+      scales: {
+        major: 'dur', minor: 'moll', harmonic: 'harmonisk moll', melodic: 'melodisk moll',
+        dorian: 'dorisk', phrygian: 'frygisk', lydian: 'lydisk', mixolydian: 'miksolydisk', locrian: 'lokrisk'
+      },
+      scaleMenu: {
+        major: 'Dur (ionisk)', minor: 'Naturlig moll (eolisk)', harmonic: 'Harmonisk moll', melodic: 'Melodisk moll',
+        dorian: 'Dorisk', phrygian: 'Frygisk', lydian: 'Lydisk', mixolydian: 'Miksolydisk', locrian: 'Lokrisk'
+      }
+    }
   };
-  if (!enh[note]) return note;
-  return pref === "sharp"
-    ? `${note}/${enh[note]}`
-    : `${enh[note]}/${note}`;
-}
+  const S = STR[LANG];
+  function t(key, vars) {
+    let s = key.split('.').reduce((o, k) => (o ? o[k] : undefined), S);
+    if (s === undefined) s = key;
+    if (vars && typeof vars.n === 'number' && s.includes('|')) {
+      const [one, many] = s.split('|');
+      s = vars.n === 1 ? one : many;
+    }
+    return String(s).replace(/\{(\w+)\}/g, (_, k) => (vars && vars[k] !== undefined ? vars[k] : ''));
+  }
 
+  // ---------------------------------------------------------------- theory
+  const LETTERS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+  const NAT = [0, 2, 4, 5, 7, 9, 11];
+  const LETTER_FIFTHS = { F: -1, C: 0, G: 1, D: 2, A: 3, E: 4, B: 5 };
+  const MAJOR_STEPS = [0, 2, 4, 5, 7, 9, 11];
 
-  function ensureAudio(){
-    if (toneReady) return Promise.resolve(true);
-    return Tone.start().then(() => {
+  // Modes rotate the major scale; mode = degree of the parent major scale (0 = Ionian).
+  const SCALES = {
+    major:      { steps: [0, 2, 4, 5, 7, 9, 11], mode: 0, family: 'maj' },
+    minor:      { steps: [0, 2, 3, 5, 7, 8, 10], mode: 5, family: 'min' },
+    harmonic:   { steps: [0, 2, 3, 5, 7, 8, 11], mode: 5, family: 'min', raised: [6] },
+    melodic:    { steps: [0, 2, 3, 5, 7, 9, 11], mode: 5, family: 'min', raised: [5, 6], descending: 'minor' },
+    dorian:     { steps: [0, 2, 3, 5, 7, 9, 10], mode: 1, family: 'min' },
+    phrygian:   { steps: [0, 1, 3, 5, 7, 8, 10], mode: 2, family: 'min' },
+    lydian:     { steps: [0, 2, 4, 6, 7, 9, 11], mode: 3, family: 'maj' },
+    mixolydian: { steps: [0, 2, 4, 5, 7, 9, 10], mode: 4, family: 'maj' },
+    locrian:    { steps: [0, 1, 3, 5, 6, 8, 10], mode: 6, family: 'min' }
+  };
+  const SCALE_GROUPS = [['groupMajMin', ['major', 'minor', 'harmonic', 'melodic']], ['groupModes', ['dorian', 'phrygian', 'lydian', 'mixolydian', 'locrian']]];
+
+  const mod = (n, m) => ((n % m) + m) % m;
+  function parseNote(s) {
+    const m = /^([A-G])(##|#|x|bb|b)?$/.exec(String(s || '').trim());
+    if (!m) return null;
+    const acc = { '#': 1, '##': 2, x: 2, b: -1, bb: -2 }[m[2]] || 0;
+    return { l: LETTERS.indexOf(m[1]), a: acc };
+  }
+  const pc = n => mod(NAT[n.l] + n.a, 12);
+  const fifthsPos = n => LETTER_FIFTHS[LETTERS[n.l]] + 7 * n.a;
+  function noteAt(n, letterSteps, semis) {
+    const l = mod(n.l + letterSteps, 7);
+    let a = mod(pc(n) + semis - NAT[l], 12);
+    if (a > 6) a -= 12;
+    return { l, a };
+  }
+  // Single note: ♯/♭ (𝄪 for double sharp). Chord/key names: plain characters.
+  function noteSym(n) {
+    const L = LETTERS[n.l];
+    if (n.a === 2) return L + '𝄪';
+    if (n.a > 0) return L + '♯'.repeat(n.a);
+    if (n.a < 0) return L + '♭'.repeat(-n.a);
+    return L;
+  }
+  function noteTxt(n) {
+    const L = LETTERS[n.l];
+    return n.a >= 0 ? L + '#'.repeat(n.a) : L + 'b'.repeat(-n.a);
+  }
+  const sameNote = (a, b) => a && b && a.l === b.l && a.a === b.a;
+
+  function scaleNotes(tonic, id) {
+    return SCALES[id].steps.map((s, i) => noteAt(tonic, i, s));
+  }
+
+  const TRIAD = { '4,7': ['', 'maj'], '3,7': ['m', 'min'], '3,6': ['°', 'dim'], '4,8': ['+', 'aug'] };
+  const SEVENTH = {
+    '4,7,11': ['maj7', 'maj'], '4,7,10': ['7', 'maj'], '3,7,10': ['m7', 'min'], '3,7,11': ['m(maj7)', 'min'],
+    '3,6,10': ['m7b5', 'dim'], '3,6,9': ['dim7', 'dim'], '4,8,11': ['maj7#5', 'aug'], '4,8,10': ['7#5', 'aug']
+  };
+  const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+
+  function diatonicChords(tonic, id, size) {
+    const notes = scaleNotes(tonic, id);
+    const steps = SCALES[id].steps;
+    return notes.map((root, i) => {
+      const tones = [0, 2, 4, 6].slice(0, size).map(k => notes[(i + k) % 7]);
+      const ints = tones.slice(1).map(n => mod(pc(n) - pc(root), 12));
+      const triad = TRIAD[ints.slice(0, 2).join(',')] || ['?', 'maj'];
+      const quality = triad[1];
+      let suffix = triad[0];
+      let rn = ROMAN[i];
+      if (quality === 'min' || quality === 'dim') rn = rn.toLowerCase();
+      const alt = mod(steps[i] - MAJOR_STEPS[i] + 6, 12) - 6;
+      const prefix = alt < 0 ? 'b'.repeat(-alt) : '#'.repeat(alt);
+      let rnSuffix = quality === 'dim' ? '°' : quality === 'aug' ? '+' : '';
+      if (size === 4) {
+        const sev = SEVENTH[ints.join(',')];
+        suffix = sev ? sev[0] : suffix;
+        rnSuffix = { maj7: 'maj7', '7': '7', m7: '7', 'm(maj7)': '(maj7)', m7b5: 'ø7', dim7: '°7', 'maj7#5': '+maj7', '7#5': '+7' }[suffix] || rnSuffix;
+      }
+      return { root, tones, quality, name: noteTxt(root) + suffix, roman: prefix + rn + rnSuffix, degree: i };
+    });
+  }
+
+  // Wheel: 12 positions clockwise from C. Position 6 can be shown with sharps or flats.
+  const WHEEL_MAJOR = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
+  function wheelMajor(pos) {
+    if (pos === 6 && state.enhSharp) return parseNote('F#');
+    return parseNote(WHEEL_MAJOR[pos]);
+  }
+  const wheelMinor = pos => noteAt(wheelMajor(pos), 5, 9);
+  const wheelDim = pos => noteAt(wheelMajor(pos), 6, 11);
+  // Position of a key on the wheel, from the major key with the same signature.
+  function parentMajor(tonic, id) {
+    const m = SCALES[id].mode;
+    return noteAt(tonic, mod(-m, 7), mod(-MAJOR_STEPS[m], 12));
+  }
+  const posOf = majorNote => mod(fifthsPos(majorNote), 12);
+
+  // ---------------------------------------------------------------- state
+  const state = {
+    tonic: parseNote('C'),
+    scale: 'major',
+    size: 3,
+    rotate: false,
+    enhSharp: false,
+    activeChord: null
+  };
+
+  function readUrl() {
+    const p = new URLSearchParams(location.search);
+    const k = parseNote((p.get('key') || '').replace(/♯/g, '#').replace(/♭/g, 'b'));
+    const s = p.get('scale');
+    if (s && SCALES[s]) state.scale = s;
+    if (k) state.tonic = k;
+    if (p.get('rotate') === '1') state.rotate = true;
+    const pm = parentMajor(state.tonic, state.scale);
+    if (Math.abs(fifthsPos(pm)) > 7) state.tonic = parseNote('C');
+  }
+  function writeUrl() {
+    const p = new URLSearchParams(location.search);
+    p.set('key', noteTxt(state.tonic));
+    p.set('scale', state.scale);
+    if (state.rotate) p.set('rotate', '1'); else p.delete('rotate');
+    try { history.replaceState(null, '', location.pathname + '?' + p.toString() + location.hash); } catch (e) { /* ignore */ }
+  }
+
+  // ---------------------------------------------------------------- audio
+  let synth = null;
+  let audioReady = false;
+  let timers = [];
+  const statusEl = document.getElementById('cfStatus');
+
+  async function ensureAudio() {
+    if (audioReady) return true;
+    if (typeof window.Tone === 'undefined') { setStatus(t('noAudio')); return false; }
+    try {
+      await Tone.start();
       synth = new Tone.PolySynth(Tone.Synth, {
-        oscillator:{type:"triangle8"},
-        envelope:{attack:0.005, decay:0.12, sustain:0.22, release:0.6}
+        oscillator: { type: 'triangle8' },
+        envelope: { attack: 0.008, decay: 0.2, sustain: 0.25, release: 0.9 }
       }).toDestination();
-      toneReady = true;
+      synth.volume.value = -8;
+      audioReady = true;
       return true;
-    }).catch(() => false);
-  }
-
-  async function playChord(root, qual){
-    const ok = await ensureAudio();
-    if (!ok || !synth) return;
-    const notes = chordNotes(root, qual).map(n => n + (parseInt(octSel.value,10)));
-    synth.triggerAttackRelease(notes, "8n");
-  }
-
-  async function playScale(root, quality){
-    const ok = await ensureAudio();
-    if (!ok || !synth) return;
-
-    const pref = preferAccidentals(root);
-    const rootSemi = NOTE_TO_SEMI[root];
-    const semis = scaleSemis(quality); // e.g. [0,2,4,5,7,9,11]
-
-    const bpm = parseInt(bpmEl.value,10);
-    Tone.Transport.bpm.value = bpm;
-    Tone.Transport.stop();
-    Tone.Transport.cancel();
-
-    // Auto base octave: C..F => 4, else => 3
-    const baseOct = (rootSemi <= NOTE_TO_SEMI["F"]) ? 4 : 3;
-
-    // Build strictly ascending MIDI sequence + include final tonic
-    const seqMidi = [];
-    let prev = null;
-    for (let i=0;i<semis.length;i++){
-      let midi = (rootSemi + semis[i]) + baseOct*12;
-      while (prev !== null && midi <= prev) midi += 12;
-      seqMidi.push(midi);
-      prev = midi;
+    } catch (e) {
+      setStatus(t('noAudio'));
+      return false;
     }
-
-// stoppknapp 
-
-const panicBtn = document.getElementById("panicBtn");
-
-panicBtn.addEventListener("click", () => {
-  // stopp alle timeouts
-  scheduledTimeouts.forEach(id => clearTimeout(id));
-  scheduledTimeouts.length = 0;
-
-  // stopp alle aktive toner
-  if (synth) synth.releaseAll();
-});
-
-window.addEventListener("keydown", e => {
-  if (e.key === "Escape") panicBtn.click();
-});
-
-    // Add top tonic (octave)
-    let top = rootSemi + baseOct*12;
-    while (prev !== null && top <= prev) top += 12;
-    seqMidi.push(top);
-
-    const seqNotes = seqMidi.map(m => Tone.Frequency(m, "midi").toNote());
-
-    const step = (60 / bpm) * 0.5; // 8th-ish feel
-const now = Tone.now();
-
-seqNotes.forEach((n, i) => {
-  const id = setTimeout(() => {
-    synth.triggerAttackRelease(n, "16n");
-  }, i * step * 1000);
-  scheduledTimeouts.push(id);
-});
   }
-
-function setHighlights(){
-  if (!wedges.length) return;
-
-  const wheelKey = currentKey;
-  const idx = FIFTHS.indexOf(wheelKey);
-  if (idx === -1) return;
-
-  const dom = FIFTHS[(idx + 1) % 12];
-  const sub = FIFTHS[(idx + 11) % 12];
-
-  wedges.forEach(w => {
-    const k = w.dataset.key;
-    w.classList.toggle("isSelected", k === wheelKey);
-    w.classList.toggle("isDomSub", k === dom || k === sub);
-    w.classList.remove("isRelated");
-    w.classList.remove("isParallel");
-  });
-
-  if (typeof updateDimBadge === "function") updateDimBadge();
-}
-
-
-  
-  function updateInfo(){
-    // currentKey is always the selected MAJOR-column on the wheel.
-    // Display + theory follow currentQuality:
-    // - maj: currentKey is tonic
-    // - min: relative minor of currentKey is tonic
-    const wheelKey = currentKey;
-    const tonic = (currentQuality === "maj") ? wheelKey : relMinorFromMajor(wheelKey);
-
-const pref = preferAccidentals(wheelKey); // venstre = flat, høyre = sharp
-
-const tonicSemi = NOTE_TO_SEMI[tonic];
-const key = dualLabelSemi(tonicSemi, pref);
-const qual = currentQuality;
-
-const title = (qual==="maj") ? `${key} major` : `${key} minor`;
-const rel = (qual === "maj")
-  ? `${dualLabelSemi(tonicSemi + 9, pref)} minor`
-  : `${dualLabelSemi(tonicSemi + 3, pref)} major`;
-  
-// Dominant/Subdominant som tone (med riktig ♭/♯ rekkefølge)
-let dom = dualLabelSemi(tonicSemi + 7, pref);
-let sub = dualLabelSemi(tonicSemi + 5, pref);
-
-// Når Moll er valgt: vis dem som moll-akkorder i infoboksen
-if (qual === "min"){
-  dom += "m";
-  sub += "m";
-}
-
-    const rootSemi = NOTE_TO_SEMI[tonic];
-    const semis = scaleSemis(qual);
-    const scale = semis.map(s => semiToNote(rootSemi+s, pref));
-
-    const chordQuals = diatonicChords(qual);
-    const chords = scale.map((n,i) => {
-      const q = chordQuals[i];
-      if (q === "dim") return `${n}°`;
-      if (q === "min") return `${n}m`;
-      return `${n}`;
+  const midiOf = (n, oct) => 12 * (oct + 1) + NAT[n.l] + n.a;
+  const freq = midi => 440 * Math.pow(2, (midi - 69) / 12);
+  function voice(tones, oct) {
+    const out = [];
+    let prev = -Infinity;
+    tones.forEach(n => {
+      let m = midiOf(n, oct);
+      while (m <= prev) m += 12;
+      out.push(m);
+      prev = m;
     });
+    return out;
+  }
+  function stopAll() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    if (synth) synth.releaseAll();
+    flashPiano(null);
+    setStatus('');
+  }
+  function octave() { return parseInt(octSel.value, 10) || 4; }
+  function beat() { return 60 / (parseInt(bpmEl.value, 10) || 100); }
 
-    const relLabel = qual==="maj" ? "relative minor" : "relative major";
-
-    // Dim degree (matches your diatonic mapping): maj -> vii°, min -> ii°
-    const dimIndex = (qual === "maj") ? 6 : 1;
-const dimChord = `${dualLabel(scale[dimIndex], pref)}°`;
-
-
-    infoPanel.innerHTML = `
-      <div class="infoTitle">${title}</div>
-      <div class="infoRow"><span>${relLabel}:</span> <strong>${rel}</strong></div>
-      <div class="infoRow"><span>dominant:</span> <strong>${dom}</strong></div>
-      <div class="infoRow"><span>subdominant:</span> <strong>${sub}</strong></div>
-      <div class="infoRow"><span>dim:</span> <strong>${dimChord}</strong></div>
-
-      <div class="hr"></div>
-      <div class="infoSub">Chords in the key</div>
-      <div class="chips">${chords.map(c=>`<span class="chip">${c}</span>`).join("")}</div>
-
-      <div class="hr"></div>
-      <div class="infoSub">${qual==="maj"?"Major scale":"Natural minor"}</div>
-      <div class="infoRow"><span>tones:</span> <strong>${scale.join(" ")}</strong></div>
-    `;
+  async function playChord(chord) {
+    if (!(await ensureAudio())) return;
+    stopAll();
+    const midis = voice(chord.tones, chord.root.l >= 4 ? octave() - 1 : octave());
+    synth.triggerAttackRelease(midis.map(freq), 1.1);
+    state.activeChord = chord;
+    flashPiano(chord.tones.map(pc));
+    renderWheelState();
+    renderChords();
+    setStatus(t('playing', { x: chord.name }));
   }
 
-
-  function polar(cx, cy, r, a){ return {x: cx + r*Math.cos(a), y: cy + r*Math.sin(a)}; }
-  function arcPath(cx, cy, r0, r1, a0, a1){
-    const p0 = polar(cx,cy,r1,a0), p1 = polar(cx,cy,r1,a1), p2 = polar(cx,cy,r0,a1), p3 = polar(cx,cy,r0,a0);
-    const large = (a1-a0) > Math.PI ? 1 : 0;
-    return `M ${p0.x.toFixed(3)} ${p0.y.toFixed(3)} A ${r1} ${r1} 0 ${large} 1 ${p1.x.toFixed(3)} ${p1.y.toFixed(3)} L ${p2.x.toFixed(3)} ${p2.y.toFixed(3)} A ${r0} ${r0} 0 ${large} 0 ${p3.x.toFixed(3)} ${p3.y.toFixed(3)} Z`;
-  }
-
-  function renderWheel(){
-    const wrap = document.getElementById("wheelWrap");
-    wrap.innerHTML = "";
-    wedges = [];
-
-    const size = 700, cx = size/2, cy = size/2, outerR = 320, innerR = 140;
-    wheelGeom = { cx, cy, innerR };
-    midAngleByKey = {};
-
-    const svgNS = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
-    svg.setAttribute("width","100%");
-    svg.setAttribute("height","100%");
-
-    const plate = document.createElementNS(svgNS,"rect");
-    plate.setAttribute("x","20"); plate.setAttribute("y","20");
-    plate.setAttribute("width", (size-40).toString());
-    plate.setAttribute("height",(size-40).toString());
-    plate.setAttribute("rx","22");
-    plate.setAttribute("fill","rgba(0,0,0,.22)");
-    plate.setAttribute("stroke","rgba(255,92,122,.28)");
-    plate.setAttribute("stroke-width","2");
-    svg.appendChild(plate);
-
-    const group = document.createElementNS(svgNS,"g");
-    svg.appendChild(group);
-
-    const step = (Math.PI*2)/12;
-    const start = -Math.PI/2 - step/2;
-
-    for (let i=0;i<12;i++){
-      const a0 = start + i*step, a1 = a0 + step;
-      const path = document.createElementNS(svgNS,"path");
-      path.setAttribute("class","wedge");
-      path.setAttribute("d", arcPath(cx,cy,innerR,outerR,a0,a1));
-      const hue = (i*360/12);
-      path.setAttribute("fill", `hsla(${hue}, 85%, 60%, 0.14)`);
-      path.dataset.key = FIFTHS[i];
-      group.appendChild(path);
-
-      const mid = (a0+a1)/2;
-
-      const pMaj = polar(cx,cy,(innerR+outerR)/2 + 35, mid);
-      const tMaj = document.createElementNS(svgNS,"text");
-      const k = FIFTHS[i];
-      midAngleByKey[k] = mid;
-      tMaj.setAttribute("x", pMaj.x.toFixed(3));
-      tMaj.setAttribute("y", pMaj.y.toFixed(3));
-      tMaj.setAttribute("text-anchor","middle");
-      tMaj.setAttribute("dominant-baseline","middle");
-      tMaj.setAttribute("class","wedgeTextMajor");
-      tMaj.setAttribute("fill", `hsla(${hue}, 85%, 72%, 0.95)`);
-      tMaj.textContent = keyLabel(FIFTHS[i]);
-      group.appendChild(tMaj);
-
-      const pMin = polar(cx,cy,(innerR+outerR)/2 - 20, mid);
-      const tMin = document.createElementNS(svgNS,"text");
-      tMin.setAttribute("x", pMin.x.toFixed(3));
-      tMin.setAttribute("y", pMin.y.toFixed(3));
-      tMin.setAttribute("text-anchor","middle");
-      tMin.setAttribute("dominant-baseline","middle");
-      tMin.setAttribute("class","wedgeTextMinor");
-      tMin.setAttribute("fill", `hsla(${hue}, 70%, 84%, 0.8)`);
-      tMin.textContent = minorLabelFromMajorKey(k);
-      group.appendChild(tMin);
-
-      wedges.push(path);
+  async function playScale() {
+    if (!guard(t('playScale'))) return;
+    if (!(await ensureAudio())) return;
+    stopAll();
+    const up = scaleNotes(state.tonic, state.scale);
+    const downId = SCALES[state.scale].descending || state.scale;
+    const down = scaleNotes(state.tonic, downId);
+    const oct = state.tonic.l >= 4 ? octave() - 1 : octave();
+    const upMidi = voice(up.concat([state.tonic]), oct);
+    const top = upMidi[upMidi.length - 1];
+    const downMidi = [];
+    for (let i = 6; i >= 0; i--) {
+      let m = midiOf(down[i], oct);
+      while (m < upMidi[0]) m += 12;
+      while (m >= top) m -= 12;
+      if (i === 0) m = upMidi[0];
+      downMidi.push(m);
     }
-// --- DIM BADGE (circle + text) ---
-dimBadgeCircle = document.createElementNS(svgNS,"circle");
-dimBadgeCircle.setAttribute("r","18");
-dimBadgeCircle.setAttribute("fill","rgba(255,255,255,.06)");
-dimBadgeCircle.setAttribute("stroke","rgba(255,255,255,.18)");
-dimBadgeCircle.setAttribute("stroke-width","1.5");
-dimBadgeCircle.setAttribute("style","pointer-events:none");
-group.appendChild(dimBadgeCircle);
-
-dimBadgeText = document.createElementNS(svgNS,"text");
-dimBadgeText.setAttribute("text-anchor","middle");
-dimBadgeText.setAttribute("dominant-baseline","middle");
-dimBadgeText.setAttribute("class","wedgeTextMajor");
-dimBadgeText.setAttribute("fill","rgba(234,240,255,.92)");
-dimBadgeText.setAttribute("style","pointer-events:none");
-group.appendChild(dimBadgeText);
-
-    const disk = document.createElementNS(svgNS,"circle");
-    disk.setAttribute("cx", cx.toString());
-    disk.setAttribute("cy", cy.toString());
-    disk.setAttribute("r", (innerR-20).toString());
-    disk.setAttribute("fill","rgba(6,9,20,.85)");
-    disk.setAttribute("stroke","rgba(255,255,255,.12)");
-    disk.setAttribute("stroke-width","2");
-    group.appendChild(disk);
-
-    const centerTitle = document.createElementNS(svgNS,"text");
-    centerTitle.setAttribute("x", cx.toString());
-    centerTitle.setAttribute("y", (cy-8).toString());
-    centerTitle.setAttribute("text-anchor","middle");
-    centerTitle.setAttribute("class","wedgeTextMajor");
-    centerTitle.setAttribute("fill","rgba(234,240,255,.9)");
-    centerTitle.textContent = "RELATIVE MINOR";
-    group.appendChild(centerTitle);
-
-    const centerSub = document.createElementNS(svgNS,"text");
-    centerSub.setAttribute("x", cx.toString());
-    centerSub.setAttribute("y", (cy+18).toString());
-    centerSub.setAttribute("text-anchor","middle");
-    centerSub.setAttribute("class","wedgeTextMinor");
-    centerSub.setAttribute("fill","rgba(169,182,216,.85)");
-    centerSub.textContent = "Shift+click for relative minor";
-    group.appendChild(centerSub);
-
-    wedges.forEach((w) => {
-      w.addEventListener("click", async (e) => {
-
-        hideProBox();
-        const k = w.dataset.key;
-
-        // Shift+click: momentary parallel minor chord (does NOT lock mode)
-        if (e.shiftKey){
-          await playChord(relMinorFromMajor(k), "min");
-          return;
-        }
-
-        // Normal click: select the column key (major ring), then play the active chord for the current mode
-        currentKey = k;
-        await playChord(getActiveRoot(), getActiveQual());
-
-        setHighlights();
-        updateInfo();
-        updateDimBadge();
-      }, {passive:true});
+    const seq = upMidi.map((m, i) => [m, up[i % 7]]).concat(downMidi.map((m, i) => [m, down[6 - i]]));
+    const step = beat() / 2;
+    seq.forEach(([m, n], i) => {
+      timers.push(setTimeout(() => {
+        synth.triggerAttackRelease(freq(m), step * 0.95);
+        flashPiano([pc(n)]);
+      }, i * step * 1000));
     });
-
-wrap.appendChild(svg);
-setHighlights();
-updateDimBadge();
-}
-
-segBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    hideProBox();
-    const box = document.getElementById("proBox");
-    if (box) box.style.display = "none";
-      currentQuality = (btn.dataset.quality === "min") ? "min" : "maj";
-      segBtns.forEach(b => b.classList.toggle("isOn", b === btn));
-
-      // Mode styling hook (major vs minor row emphasis)
-      const wrap = document.getElementById("wheelWrap");
-      if (wrap) wrap.classList.toggle("modeMin", currentQuality === "min");
-
-      setHighlights();
-      updateInfo();
-      updateDimBadge();
-
-// 🔊 spill akkord automatisk
-playChord(
-  currentQuality === "maj"
-    ? currentKey
-    : relMinorFromMajor(currentKey),
-  currentQuality === "maj" ? "maj" : "min"
-);
-      
-    });
-  });
-
-bpmEl.addEventListener("input", () => bpmVal.textContent = bpmEl.value);
-
-playChordBtn.addEventListener("click", async () => {
-  hideProBox();
-  await playChord(getActiveRoot(), getActiveQual());
-});
-playScaleBtn.addEventListener("click", async () => {
-  hideProBox();
-  if (!IS_PRO) {
-    showProNotice(getActiveRoot());
-    return;
-  }
-  await playScale(getActiveRoot(), currentQuality);
-});
-
-function hideProBox(){
-  const box = document.getElementById("proBox");
-  if (box) box.style.display = "none";
-}
-
-function showProNotice(name){
-  let box = document.getElementById("proBox");
-  if (!box){
-    box = document.createElement("a");
-    box.id = "proBox";
-    box.href = "/members/upgrade.php";
-    box.target = "_top"
-    box.className = "pro-cta";
-    box.style.display = "none";
-
-    const host = document.getElementById("wheelWrap") || document.body;
-    host.parentNode.insertBefore(box, host);
+    timers.push(setTimeout(() => { flashPiano(null); setStatus(''); }, seq.length * step * 1000 + 200));
+    setStatus(t('playing', { x: keyTitle() }));
   }
 
-  box.innerHTML = `
-    <strong>VIP only:</strong> <strong>${name}</strong> is available with VIP.
-    Choose a free option, or
-    <span class="pro-cta-sub">upgrade to VIP to unlock all features</span>.
-  `;
-  box.style.display = "block";
-  box.scrollIntoView({ behavior:"smooth", block:"center" });
-}
+  async function playProgression() {
+    if (!guard(t('progression'))) return;
+    if (!(await ensureAudio())) return;
+    stopAll();
+    const chords = diatonicChords(state.tonic, state.scale, state.size);
+    const prog = PROGRESSIONS[parseInt(progSel.value, 10) || 0];
+    const len = beat() * 2;
+    prog.forEach((deg, i) => {
+      timers.push(setTimeout(() => {
+        const c = chords[deg];
+        const midis = voice(c.tones, c.root.l >= 4 ? octave() - 1 : octave());
+        synth.triggerAttackRelease(midis.map(freq), len * 0.9);
+        state.activeChord = c;
+        flashPiano(c.tones.map(pc));
+        renderWheelState();
+        renderChords();
+      }, i * len * 1000));
+    });
+    timers.push(setTimeout(() => setStatus(''), prog.length * len * 1000));
+    setStatus(t('playing', { x: prog.map(d => chords[d].name).join(' – ') }));
+  }
 
+  const PROGRESSIONS = [[0, 3, 4, 0], [0, 4, 5, 3], [1, 4, 0], [0, 5, 3, 4], [5, 3, 0, 4], [0, 6, 5, 4]];
 
-function updateDimBadge(){
-  if (!wheelGeom || !dimBadgeCircle || !dimBadgeText) return;
+  function guard(name) {
+    if (CFG.paid) { upgradeEl.hidden = true; return true; }
+    upgradeEl.href = CFG.upgradeUrl;
+    upgradeEl.innerHTML = '<strong>' + esc(t('locked', { name, tier: CFG.tierLabel })) + '</strong> ' + esc(t('upgrade', { tier: CFG.tierLabel }));
+    upgradeEl.hidden = false;
+    return false;
+  }
+  function setStatus(s) { if (statusEl) statusEl.textContent = s; }
+  function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
-  const wheelKey = currentKey;
-  const mid = midAngleByKey[wheelKey];
-  if (mid == null) return;
+  // ---------------------------------------------------------------- DOM
+  const $ = id => document.getElementById(id);
+  const wheelEl = $('cfWheel');
+  const pianoEl = $('cfPiano');
+  const scaleSel = $('cfScale');
+  const progSel = $('cfProg');
+  const octSel = $('cfOct');
+  const bpmEl = $('cfBpm');
+  const bpmVal = $('cfBpmVal');
+  const upgradeEl = $('cfUpgrade');
+  const rotateEl = $('cfRotate');
+  const enhBtn = $('cfEnh');
 
-  // Tonic depends on mode (maj = wheelKey, min = relative minor)
-  const tonic = (currentQuality === "maj") ? wheelKey : relMinorFromMajor(wheelKey);
+  function applyStaticText() {
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
+    document.querySelectorAll('[data-i18n-title]').forEach(el => el.setAttribute('title', t(el.dataset.i18nTitle)));
+    const lock = CFG.paid ? '' : ' 🔒';
+    $('cfPlayScale').textContent = t('playScale') + lock;
+    $('cfPlayProg').textContent = t('playProg') + lock;
+    scaleSel.innerHTML = SCALE_GROUPS.map(([g, ids]) =>
+      '<optgroup label="' + esc(t(g)) + '">' + ids.map(id => '<option value="' + id + '">' + esc(t('scaleMenu.' + id)) + '</option>').join('') + '</optgroup>'
+    ).join('');
+  }
 
-  // Dim degree: maj -> vii°, min (natural) -> ii°
-const pref = preferAccidentals(wheelKey);
-  const rootSemi = NOTE_TO_SEMI[tonic];
-  const semis = scaleSemis(currentQuality);
-  const dimIndex = (currentQuality === "maj") ? 6 : 1;
-  const dimRoot = semiToNote(rootSemi + semis[dimIndex], pref);
+  function keyTitle() {
+    const fam = SCALES[state.scale].family;
+    const name = noteTxt(state.tonic);
+    if (state.scale === 'major' || state.scale === 'minor') {
+      return t('keyName', { k: name, s: t(fam === 'maj' ? 'major' : 'minor') });
+    }
+    return name + ' ' + t('scales.' + state.scale);
+  }
+  function keyNameFor(note, family) {
+    return t('keyName', { k: noteTxt(note), s: t(family === 'maj' ? 'major' : 'minor') });
+  }
 
-  // Position: slightly inside the inner ring (tuned by you)
-  const r = wheelGeom.innerR + 30;
-  const p = polar(wheelGeom.cx, wheelGeom.cy, r, mid);
+  function signatureInfo() {
+    const pm = parentMajor(state.tonic, state.scale);
+    const n = fifthsPos(pm);
+    if (n === 0) return { text: t('noSignature'), n };
+    const order = n > 0 ? ['F', 'C', 'G', 'D', 'A', 'E', 'B'] : ['B', 'E', 'A', 'D', 'G', 'C', 'F'];
+    const count = Math.abs(n);
+    const list = [];
+    for (let i = 0; i < Math.min(count, 7); i++) list.push(order[i] + (n > 0 ? '♯' : '♭'));
+    const label = t(n > 0 ? 'sharps' : 'flats', { n: count });
+    return { text: label + ': ' + list.join(' '), n };
+  }
 
-  dimBadgeCircle.setAttribute("cx", p.x.toFixed(3));
-  dimBadgeCircle.setAttribute("cy", p.y.toFixed(3));
-  dimBadgeText.setAttribute("x", p.x.toFixed(3));
-  dimBadgeText.setAttribute("y", (p.y + 4).toFixed(3));
-  dimBadgeText.textContent = `${dimRoot}°`;
-}
+  // ---------------------------------------------------------------- wheel
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const SIZE = 760, C = SIZE / 2;
+  const R = { out: 335, maj: 236, min: 150, dim: 98, disk: 92, sig: 356 };
+  let cells = [];
+  let rotGroup = null;
+  let centerKey = null, centerSub = null, centerSig = null;
 
+  function el(name, attrs, parent) {
+    const e = document.createElementNS(SVGNS, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  const polar = (r, a) => [C + r * Math.cos(a), C + r * Math.sin(a)];
+  function arc(r0, r1, a0, a1) {
+    const [x0, y0] = polar(r1, a0), [x1, y1] = polar(r1, a1), [x2, y2] = polar(r0, a1), [x3, y3] = polar(r0, a0);
+    return `M${x0.toFixed(2)} ${y0.toFixed(2)}A${r1} ${r1} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}L${x2.toFixed(2)} ${y2.toFixed(2)}A${r0} ${r0} 0 0 0 ${x3.toFixed(2)} ${y3.toFixed(2)}Z`;
+  }
 
-  renderWheel();
-  const wrap = document.getElementById("wheelWrap");
-  if (wrap) wrap.classList.toggle("modeMin", currentQuality === "min");
-  updateInfo();
-  updateDimBadge();
+  function buildWheel() {
+    wheelEl.innerHTML = '';
+    cells = [];
+    const svg = el('svg', { viewBox: `0 0 ${SIZE} ${SIZE}`, class: 'cf-svg' }, wheelEl);
+    rotGroup = el('g', { class: 'cf-rot' }, svg);
+    const step = Math.PI * 2 / 12;
+    const rings = [['maj', R.maj, R.out, 0.5], ['min', R.min, R.maj, 0.5], ['dim', R.dim, R.min, 0.5]];
+    for (let pos = 0; pos < 12; pos++) {
+      const mid = -Math.PI / 2 + pos * step;
+      const a0 = mid - step / 2 + 0.006, a1 = mid + step / 2 - 0.006;
+      rings.forEach(([ring, r0, r1, nameAt]) => {
+        const g = el('g', { class: 'cf-cell cf-' + ring, tabindex: '0', role: 'button', 'data-pos': pos, 'data-ring': ring }, rotGroup);
+        el('path', { d: arc(r0 + 2, r1 - 2, a0, a1), class: 'cf-cellbg' }, g);
+        // Name and degree sit in one upright group, so they stay stacked when the wheel turns.
+        const [lx, ly] = polar(r0 + (r1 - r0) * nameAt, mid);
+        const anchor = el('g', { transform: `translate(${lx.toFixed(2)} ${ly.toFixed(2)})` }, g);
+        const lbl = el('g', { class: 'cf-lbl' }, anchor);
+        const gap = ring === 'maj' ? 20 : ring === 'min' ? 15 : 10;
+        const name = el('text', { x: 0, y: -gap * 0.35, class: 'cf-name' }, lbl);
+        const roman = el('text', { x: 0, y: gap * 0.85, class: 'cf-roman' }, lbl);
+        g.addEventListener('click', e => onCell(pos, ring, e));
+        g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onCell(pos, ring, e); } });
+        cells.push({ g, pos, ring, name, roman, lbl, gap });
+      });
+      const [sx, sy] = polar(R.sig, mid);
+      const sig = el('text', { x: sx, y: sy, class: 'cf-sig cf-lbl', 'data-pos': pos }, rotGroup);
+      cells.push({ g: null, pos, ring: 'sig', name: sig });
+    }
+    el('circle', { cx: C, cy: C, r: R.disk, class: 'cf-disk' }, svg);
+    centerKey = el('text', { x: C, y: C - 18, class: 'cf-ckey' }, svg);
+    centerSub = el('text', { x: C, y: C + 16, class: 'cf-csub' }, svg);
+    centerSig = el('text', { x: C, y: C + 44, class: 'cf-csig' }, svg);
+  }
+
+  function cellChord(pos, ring) {
+    const root = ring === 'maj' ? wheelMajor(pos) : ring === 'min' ? wheelMinor(pos) : wheelDim(pos);
+    const ints = ring === 'maj' ? [[2, 4], [4, 7]] : ring === 'min' ? [[2, 3], [4, 7]] : [[2, 3], [4, 6]];
+    const tones = [root].concat(ints.map(([l, s]) => noteAt(root, l, s)));
+    const suffix = ring === 'maj' ? '' : ring === 'min' ? 'm' : '°';
+    return { root, tones, quality: ring, name: noteTxt(root) + suffix, roman: '' };
+  }
+
+  function renderWheelState() {
+    const triads = diatonicChords(state.tonic, state.scale, 3);
+    const tonicPc = pc(state.tonic);
+    const fam = SCALES[state.scale].family;
+    // Turn the tonic's own cell to the top (for modes this differs from the parent major).
+    const tq = triads[0].quality;
+    const tonicPos = mod(fifthsPos(state.tonic) - (tq === 'min' ? 3 : tq === 'dim' ? 5 : 0), 12);
+    const rot = state.rotate ? -(mod(tonicPos + 6, 12) - 6) * 30 : 0;
+    rotGroup.style.transform = `rotate(${rot}deg)`;
+    cells.forEach(c => {
+      if (c.ring === 'sig') {
+        const n = fifthsPos(wheelMajor(c.pos));
+        c.name.textContent = n === 0 ? '0' : Math.abs(n) + (n > 0 ? '♯' : '♭');
+        c.name.style.transform = `rotate(${-rot}deg)`;
+        return;
+      }
+      const ch = cellChord(c.pos, c.ring);
+      c.lbl.style.transform = `rotate(${-rot}deg)`;
+      const match = triads.find(d => pc(d.root) === pc(ch.root) && d.quality === c.ring);
+      // Chords in the key are spelled as in the key (e.g. C# rather than Db in F# major).
+      c.name.textContent = match ? match.name : ch.name;
+      c.roman.textContent = match ? match.roman : '';
+      c.name.setAttribute('y', match ? (-c.gap * 0.35).toFixed(1) : '0');
+      c.g.classList.toggle('is-dia', !!match);
+      const isTonic = pc(ch.root) === tonicPc && ((c.ring === 'maj' && fam === 'maj' && (triads[0].quality === 'maj' || triads[0].quality === 'aug')) || (c.ring === 'min' && triads[0].quality === 'min') || (c.ring === 'dim' && triads[0].quality === 'dim'));
+      c.g.classList.toggle('is-tonic', isTonic);
+      const active = state.activeChord && pc(state.activeChord.root) === pc(ch.root) && state.activeChord.quality === c.ring;
+      c.g.classList.toggle('is-active', !!active);
+      c.g.setAttribute('aria-label', (match ? match.name + ', ' + match.roman : ch.name));
+      c.g.setAttribute('aria-pressed', isTonic ? 'true' : 'false');
+    });
+    const sig = signatureInfo();
+    centerKey.textContent = noteTxt(state.tonic);
+    centerSub.textContent = t('scales.' + state.scale);
+    centerSig.textContent = sig.n === 0 ? '0' : Math.abs(sig.n) + (sig.n > 0 ? '♯' : '♭');
+    const other = state.enhSharp ? 'Gb / Ebm' : 'F# / D#m';
+    const cur = state.enhSharp ? 'F# / D#m' : 'Gb / Ebm';
+    enhBtn.textContent = t('enh', { a: other, b: cur });
+  }
+
+  function onCell(pos, ring, e) {
+    upgradeEl.hidden = true;
+    let ch = cellChord(pos, ring);
+    // Use the chord as the cell shows it: chords in the key are spelled as in the key (C# in F# major, not Db).
+    const match = diatonicChords(state.tonic, state.scale, 3).find(d => pc(d.root) === pc(ch.root) && d.quality === ring);
+    if (match) ch = Object.assign({}, ch, { root: match.root, tones: match.tones, name: match.name });
+    if (ring === 'dim' || (e && e.shiftKey)) { playChord(ch); return; }
+    const fam = ring === 'maj' ? 'maj' : 'min';
+    let scale = state.scale;
+    if (SCALES[scale].family !== fam || !['major', 'minor', 'harmonic', 'melodic'].includes(scale)) scale = fam === 'maj' ? 'major' : 'minor';
+    // Keep the shown spelling only if that key exists (at most seven sharps or flats).
+    state.tonic = Math.abs(fifthsPos(parentMajor(ch.root, scale))) <= 7 ? ch.root : cellChord(pos, ring).root;
+    state.scale = scale;
+    scaleSel.value = scale;
+    update();
+    playChord(diatonicChords(state.tonic, state.scale, state.size)[0]);
+  }
+
+  // ---------------------------------------------------------------- piano
+  let pianoKeys = [];
+  function buildPiano() {
+    const W = 36, H = 130, BW = 22, BH = 80, whites = 14;
+    const svg = el('svg', { viewBox: `0 0 ${whites * W + 2} ${H + 2}`, class: 'cf-pianosvg', role: 'img', 'aria-label': t('pianoLabel') }, pianoEl);
+    pianoKeys = [];
+    const whitePcs = [0, 2, 4, 5, 7, 9, 11];
+    for (let i = 0; i < whites; i++) {
+      const p = whitePcs[i % 7];
+      const g = el('g', { class: 'cf-key cf-white' }, svg);
+      el('rect', { x: 1 + i * W, y: 1, width: W - 2, height: H, rx: 4 }, g);
+      const lbl = el('text', { x: 1 + i * W + W / 2 - 1, y: H - 12, class: 'cf-keylbl' }, g);
+      pianoKeys.push({ g, pc: p, lbl });
+    }
+    const blackAfter = [0, 1, 3, 4, 5];
+    const blackPcs = { 0: 1, 1: 3, 3: 6, 4: 8, 5: 10 };
+    for (let o = 0; o < 2; o++) {
+      blackAfter.forEach(w => {
+        const i = o * 7 + w;
+        const x = 1 + (i + 1) * W - BW / 2 - 1;
+        const g = el('g', { class: 'cf-key cf-black' }, svg);
+        el('rect', { x, y: 1, width: BW, height: BH, rx: 3 }, g);
+        const lbl = el('text', { x: x + BW / 2, y: BH - 10, class: 'cf-keylbl' }, g);
+        pianoKeys.push({ g, pc: blackPcs[w], lbl });
+      });
+    }
+  }
+  function renderPiano() {
+    const notes = scaleNotes(state.tonic, state.scale);
+    const byPc = {};
+    notes.forEach(n => { byPc[pc(n)] = n; });
+    const tonicPc = pc(state.tonic);
+    pianoKeys.forEach(k => {
+      const n = byPc[k.pc];
+      k.g.classList.toggle('is-scale', !!n);
+      k.g.classList.toggle('is-tonic', k.pc === tonicPc);
+      k.lbl.textContent = n ? noteSym(n) : '';
+    });
+  }
+  function flashPiano(pcs) {
+    pianoKeys.forEach(k => k.g.classList.toggle('is-on', !!pcs && pcs.includes(k.pc)));
+  }
+
+  // ---------------------------------------------------------------- panel
+  function renderPanel() {
+    const sc = SCALES[state.scale];
+    const notes = scaleNotes(state.tonic, state.scale);
+    $('cfKeyTitle').textContent = keyTitle();
+    const sig = signatureInfo();
+    $('cfSignature').textContent = sig.text;
+    $('cfNotes').textContent = notes.map(noteSym).join(' – ');
+    const noteEl = $('cfScaleNote');
+    let note = '';
+    if (state.scale === 'harmonic') note = t('harmonicNote', { n: noteSym(notes[6]) });
+    if (state.scale === 'melodic') note = t('melodicSig', { n: noteSym(notes[5]) + ', ' + noteSym(notes[6]) }) + ' ' + t('melodicNote');
+    noteEl.textContent = note;
+    noteEl.hidden = !note;
+
+    // related keys
+    const rel = [];
+    if (state.scale === 'major') {
+      rel.push([t('relative', { q: t('minor') }), noteAt(state.tonic, 5, 9), 'minor']);
+      rel.push([t('parallel', { q: t('minor') }), state.tonic, 'minor']);
+      rel.push([t('dominantKey'), noteAt(state.tonic, 4, 7), 'major']);
+      rel.push([t('subdominantKey'), noteAt(state.tonic, 3, 5), 'major']);
+    } else if (sc.family === 'min' && sc.mode === 5) {
+      rel.push([t('relative', { q: t('major') }), noteAt(state.tonic, 2, 3), 'major']);
+      rel.push([t('parallel', { q: t('major') }), state.tonic, 'major']);
+      rel.push([t('dominantKey'), noteAt(state.tonic, 4, 7), state.scale]);
+      rel.push([t('subdominantKey'), noteAt(state.tonic, 3, 5), state.scale]);
+    } else {
+      rel.push([t('parentKey'), parentMajor(state.tonic, state.scale), 'major']);
+    }
+    const relEl = $('cfRelated');
+    relEl.innerHTML = '';
+    rel.forEach(([label, note, scale]) => {
+      const pm = parentMajor(note, scale);
+      const ok = Math.abs(fifthsPos(pm)) <= 7;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cf-relbtn';
+      b.disabled = !ok;
+      const fam = SCALES[scale].family;
+      const name = (scale === 'major' || scale === 'minor') ? keyNameFor(note, fam) : noteTxt(note) + ' ' + t('scales.' + scale);
+      b.innerHTML = '<span>' + esc(label) + '</span><strong>' + esc(name) + '</strong>';
+      b.addEventListener('click', () => {
+        state.tonic = note;
+        state.scale = scale;
+        scaleSel.value = scale;
+        update();
+        playChord(diatonicChords(state.tonic, state.scale, state.size)[0]);
+      });
+      relEl.appendChild(b);
+    });
+
+    // progressions
+    const triads = diatonicChords(state.tonic, state.scale, 3);
+    const prev = progSel.value;
+    progSel.innerHTML = PROGRESSIONS.map((p, i) => '<option value="' + i + '">' + esc(p.map(d => triads[d].roman).join(' – ')) + '</option>').join('');
+    if (prev) progSel.value = prev;
+  }
+
+  function renderChords() {
+    const list = diatonicChords(state.tonic, state.scale, state.size);
+    const box = $('cfChords');
+    box.innerHTML = '';
+    list.forEach(c => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cf-chord cf-q-' + c.quality;
+      const active = state.activeChord && pc(state.activeChord.root) === pc(c.root) && state.activeChord.name === c.name;
+      if (active) b.classList.add('is-active');
+      b.innerHTML = '<span class="cf-chord-rn">' + esc(c.roman) + '</span><span class="cf-chord-name">' + esc(c.name) + '</span><span class="cf-chord-notes">' + esc(c.tones.map(noteSym).join(' ')) + '</span>';
+      b.addEventListener('click', () => { upgradeEl.hidden = true; playChord(c); });
+      box.appendChild(b);
+    });
+  }
+
+  function update() {
+    stopAll(); // pending scale/progression playback belongs to the previous key
+    const pm = parentMajor(state.tonic, state.scale);
+    if (posOf(pm) === 6) state.enhSharp = fifthsPos(pm) > 0;
+    state.activeChord = null;
+    renderWheelState();
+    renderPiano();
+    renderPanel();
+    renderChords();
+    writeUrl();
+  }
+
+  function move(delta) {
+    // Move the parent key one fifth; keep the scale.
+    const pm = parentMajor(state.tonic, state.scale);
+    const next = mod(posOf(pm) + delta, 12);
+    const newParent = wheelMajor(next);
+    const m = SCALES[state.scale].mode;
+    state.tonic = noteAt(newParent, m, MAJOR_STEPS[m]);
+    update();
+    playChord(diatonicChords(state.tonic, state.scale, state.size)[0]);
+  }
+
+  // ---------------------------------------------------------------- init
+  function init() {
+    readUrl();
+    applyStaticText();
+    buildWheel();
+    buildPiano();
+    scaleSel.value = state.scale;
+    rotateEl.checked = state.rotate;
+    bpmVal.textContent = bpmEl.value;
+
+    scaleSel.addEventListener('change', () => {
+      const s = scaleSel.value;
+      if (!SCALES[s]) return;
+      const pm = parentMajor(state.tonic, s);
+      if (Math.abs(fifthsPos(pm)) > 7) {
+        // e.g. G# Lydian: respell the tonic enharmonically so the key exists.
+        const alt = noteAt(state.tonic, fifthsPos(pm) > 0 ? 1 : -1, 0);
+        if (Math.abs(fifthsPos(parentMajor(alt, s))) <= 7) state.tonic = alt;
+      }
+      state.scale = s;
+      update();
+    });
+    document.querySelectorAll('.cf-segbtn[data-size]').forEach(b => b.addEventListener('click', () => {
+      state.size = parseInt(b.dataset.size, 10) === 4 ? 4 : 3;
+      document.querySelectorAll('.cf-segbtn[data-size]').forEach(x => x.classList.toggle('is-on', x === b));
+      state.activeChord = null;
+      renderChords();
+    }));
+    rotateEl.addEventListener('change', () => { state.rotate = rotateEl.checked; renderWheelState(); writeUrl(); });
+    enhBtn.addEventListener('click', () => {
+      state.enhSharp = !state.enhSharp;
+      const pm = parentMajor(state.tonic, state.scale);
+      if (posOf(pm) === 6) {
+        const m = SCALES[state.scale].mode;
+        state.tonic = noteAt(wheelMajor(6), m, MAJOR_STEPS[m]);
+        update();
+      } else renderWheelState();
+    });
+    bpmEl.addEventListener('input', () => { bpmVal.textContent = bpmEl.value; });
+    $('cfPlayChord').addEventListener('click', () => { upgradeEl.hidden = true; playChord(diatonicChords(state.tonic, state.scale, state.size)[0]); });
+    $('cfPlayScale').addEventListener('click', playScale);
+    $('cfPlayProg').addEventListener('click', playProgression);
+    $('cfStop').addEventListener('click', stopAll);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { stopAll(); return; }
+      const tag = (e.target && e.target.tagName) || '';
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(tag)) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); move(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); move(-1); }
+    });
+    update();
+  }
+
+  // Exposed for tests.
+  window.CF_THEORY = { parseNote, scaleNotes, diatonicChords, noteSym, noteTxt, parentMajor, fifthsPos };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
