@@ -490,7 +490,10 @@
     const triads = diatonicChords(state.tonic, state.scale, 3);
     const tonicPc = pc(state.tonic);
     const fam = SCALES[state.scale].family;
-    const rot = state.rotate ? -posOf(parentMajor(state.tonic, state.scale)) * 30 : 0;
+    // Turn the tonic's own cell to the top (for modes this differs from the parent major).
+    const tq = triads[0].quality;
+    const tonicPos = mod(fifthsPos(state.tonic) - (tq === 'min' ? 3 : tq === 'dim' ? 5 : 0), 12);
+    const rot = state.rotate ? -(mod(tonicPos + 6, 12) - 6) * 30 : 0;
     rotGroup.style.transform = `rotate(${rot}deg)`;
     cells.forEach(c => {
       if (c.ring === 'sig') {
@@ -656,6 +659,7 @@
   }
 
   function update() {
+    stopAll(); // pending scale/progression playback belongs to the previous key
     const pm = parentMajor(state.tonic, state.scale);
     if (posOf(pm) === 6) state.enhSharp = fifthsPos(pm) > 0;
     state.activeChord = null;
