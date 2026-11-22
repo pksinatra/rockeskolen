@@ -528,12 +528,16 @@
 
   function onCell(pos, ring, e) {
     upgradeEl.hidden = true;
-    const ch = cellChord(pos, ring);
+    let ch = cellChord(pos, ring);
+    // Use the chord as the cell shows it: chords in the key are spelled as in the key (C# in F# major, not Db).
+    const match = diatonicChords(state.tonic, state.scale, 3).find(d => pc(d.root) === pc(ch.root) && d.quality === ring);
+    if (match) ch = Object.assign({}, ch, { root: match.root, tones: match.tones, name: match.name });
     if (ring === 'dim' || (e && e.shiftKey)) { playChord(ch); return; }
     const fam = ring === 'maj' ? 'maj' : 'min';
     let scale = state.scale;
     if (SCALES[scale].family !== fam || !['major', 'minor', 'harmonic', 'melodic'].includes(scale)) scale = fam === 'maj' ? 'major' : 'minor';
-    state.tonic = ch.root;
+    // Keep the shown spelling only if that key exists (at most seven sharps or flats).
+    state.tonic = Math.abs(fifthsPos(parentMajor(ch.root, scale))) <= 7 ? ch.root : cellChord(pos, ring).root;
     state.scale = scale;
     scaleSel.value = scale;
     update();
