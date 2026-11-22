@@ -1,80 +1,54 @@
-<?php require_once dirname(__DIR__, 2) . '/shared/bootstrap.php'; ?>
+<?php
+declare(strict_types=1);
 
-<!doctype html>
-<html lang="<?= rs_updated_lang() ?>">
+// Kvintsirkelen – den moderniserte versjonen fra ChordLink, tilpasset Rockeskolen.
+// ui.js, app.css og markup.html deles uendret med ChordLink. Alt verktøyet trenger
+// fra siden kommer inn via window.CF_CONFIG.
+// Norsk er standard; engelsk bare med ?lang=en (ingen cookie).
+require_once dirname(__DIR__, 2) . '/shared/bootstrap.php';
+
+$isNorwegian = rs_updated_lang() !== 'en';
+$cfConfig = [
+    'lang' => $isNorwegian ? 'nb' : 'en',
+    'paid' => (bool) $isPro,
+    'loggedIn' => (bool) $isLoggedIn,
+    'upgradeUrl' => '/members/upgrade.php',
+    'tierLabel' => 'VIP',
+];
+header('Content-Language: ' . ($isNorwegian ? 'nb' : 'en'));
+?><!doctype html>
+<html lang="<?= $isNorwegian ? 'nb' : 'en' ?>">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <?php chordlink_share_meta(['title' => 'Interactive Circle of Fifths | ChordLink', 'description' => 'Navigate keys, chords, scales, and harmonic relationships with an interactive circle of fifths.', 'path' => '/tools/circles/fifths/', 'image' => '/images/tools/chordlink-tool-circle-of-fifths-v1.png', 'width' => 1586, 'height' => 992]); ?>
+  <?php chordlink_share_meta([]); ?>
   <?php chordlink_app_header_styles(); ?>
-  <link rel="stylesheet" href="./app.css">
-
-  <!-- PHP → JS flags -->
-  <script>
-    window.CL_LOGGED_IN = <?= $isLoggedIn ? 'true' : 'false' ?>;
-    window.CL_IS_PRO    = <?= $isPro ? 'true' : 'false' ?>;
-  </script>
-  <script src="https://unpkg.com/tone@15.1.22/build/Tone.js"></script>
-  <script src="./ui.js" defer></script>
+  <link rel="stylesheet" href="./app.css?v=20261122-1">
+  <style>
+    /* Rockeskolens uttrykk: mørkt/svart med røde aksenter. */
+    :root {
+      --cf-bg0: #07080c;
+      --cf-bg1: #0b0b10;
+      --cf-text: #f5f6f8;
+      --cf-muted: #a9adb8;
+      --cf-accent: #ef2029;
+      --cf-tonic: rgba(239, 32, 41, .5);
+      --cf-tonic-line: #ff4a52;
+    }
+    .cf-body {
+      background:
+        radial-gradient(900px 520px at 12% 0%, rgba(239, 32, 41, .12), transparent 60%),
+        linear-gradient(180deg, var(--cf-bg0), var(--cf-bg1));
+    }
+    .cf-body .rs-app-help { color: var(--cf-text); }
+  </style>
+  <script>window.CF_CONFIG = <?= json_encode($cfConfig, JSON_UNESCAPED_SLASHES) ?>;</script>
+  <script src="https://unpkg.com/tone@15.1.22/build/Tone.js" defer></script>
+  <script src="./ui.js?v=20261122-1" defer></script>
 </head>
-
-<body class="darkPremium">    
-<?php chordlink_app_header('Circle of Fifths'); ?>
-
-<header class="top">
-  <div class="brand">
-    <h1>INTERACTIVE CIRCLE OF FIFTHS</h1>
-    <div class="sub">Shift+click = relative minor.</div>
-  </div>
-</header>
-
-<main class="layout">
-  <section class="stage card">
-    <div id="wheelWrap" class="wheelWrap" aria-label="Circle of fifths"></div>
-  </section>
-
-  <aside class="panel card">
-    <div class="section">
-      <div class="sectionTitle">Info</div>
-      <div id="infoPanel" class="infoPanel"></div>
-    </div>
-
-    <div class="section">
-      <div class="sectionTitle">Major / Minor</div>
-      <div class="seg" role="tablist" aria-label="Choose major or minor">
-        <button type="button" class="segBtn isOn" data-quality="maj">Major</button>
-        <button type="button" class="segBtn" data-quality="min">Minor</button>
-      </div>
-    </div>
-
-    <div class="section grid2">
-      <div>
-        <div class="label">Octave</div>
-        <select id="octSel" class="control">
-          <option value="3">3</option>
-          <option value="4" selected>4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <div>
-        <div class="label">Tempo</div>
-        <input id="bpm" type="range" min="60" max="180" value="110" />
-        <div class="mini">BPM: <span id="bpmVal">110</span></div>
-      </div>
-    </div>
-
-    <div class="section btnRow">
-      <button id="playChordBtn" class="btn primary">Play chord</button>
-      <button id="playScaleBtn" class="btn">Play scale</button>
-      <button id="panicBtn" title="Stop all sound">⏹︎</button>
-    </div>
-
-    <div class="section hint">
-      Tip: <strong>Shift+click</strong> plays the relative minor for the selected segment.
-    </div>
-  </aside>
-</main>
-
+<body class="cf-body">
+<?php chordlink_app_header($isNorwegian ? 'Kvintsirkelen' : 'Circle of fifths'); ?>
+<?php require __DIR__ . '/markup.html'; ?>
 <?php rs_updated_help('fifths'); ?>
 </body>
 </html>
